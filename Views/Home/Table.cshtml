@@ -1,0 +1,100 @@
+﻿<style>
+    .table td, .table th {
+        vertical-align: middle;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.15s ease;
+    }
+
+        .table tbody tr:hover {
+            background-color: #dde8ff;
+            cursor: default;
+        }
+
+    .table tbody td:nth-child(2) {
+        font-family: monospace;
+        font-weight: 600;
+        color: #0d6efd;
+    }
+
+    .table-wrapper {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .missing {
+        color: #adb5bd;
+        font-style: italic;
+    }
+
+    .table tbody td:nth-child(1) {
+        border-left: 3px solid transparent;
+        transition: border-left-color 0.2s ease, background-color 0.2s ease;
+        position: relative;
+        padding: 0;
+    }
+
+        .table tbody td:nth-child(1):hover {
+            border-left-color: #0d6efd;
+            background-color: #f0f4ff;
+        }
+
+        .table tbody td:nth-child(1) a {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+            .table tbody td:nth-child(1) a:hover {
+                color: #0d6efd;
+            }
+</style>
+
+<div class="table-wrapper">
+    <table class="table table-bordered table-striped mb-0">
+        <thead class="table-dark">
+            <tr>
+                <th style="width:60%;">Form Title</th>
+                <th style="width:25%;">Form Number</th>
+                <th style="width:15%;">Form Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td><a href="/media/24" data-entity-type="media" data-entity-uuid="1b2a5ec3-b569-4279-8ab8-f82c663426a0" data-entity-substitution="media_download_inline">Buy Here - Pay Here Dealer Affidavit</a></td><td>DMV-86-TR</td><td>Dealers</td></tr>
+            <tr><td>Dealer Vehicle Liability and Property Damage Certificate of Insurance</td><td>DMV-126-DS-J</td><td>Dealers</td></tr>
+            <tr><td>Notice of Cancellation of Vehicle Dealer Liability Insurance</td><td>DMV-126-DS-K</td><td>Dealers</td></tr>
+            <tr><td>Application for Additional Dealer License Plates</td><td>DMV-126-DS-O</td><td>Dealers</td></tr>
+            <tr><td>Dealer Renewal Application</td><td>DMV-126-E-DS</td><td>Dealers</td></tr>
+            <tr><td>Notice of Change in Dealership</td><td>DMV-126-M-DS</td><td>Dealers</td></tr>
+            <tr><td>Application for a Nonprofit Research and Development License</td><td>DMV-126-NP-DS</td><td>Dealers</td></tr>
+            <tr><td>Dealer Inquiry Form</td><td>DMV-128-DS</td><td>Dealers</td></tr>
+            <tr><td>Dealer Recovery Fund Complaint Form</td><td>DMV-127-DS</td><td>Dealers</td></tr>
+            <tr><td>Affidavit of Correction for a Title or Registration</td><td>DMV-35-DL</td><td>Dealers</td></tr>
+            <tr><td>Odometer Disclosure Statement (Dealers)</td><td>DMV-43</td><td>Dealers</td></tr>
+            <tr><td>EFT Authorization</td><td><span class="missing">-</span></td><td>Dealers</td></tr>
+            <tr><td>Unlicensed Dealer Complaint Form</td><td>DMV-IV-UDC</td><td>Dealers</td></tr>
+            <tr><td>Formula for Issuance of Dealer Plates</td><td>DMV-99-DS</td><td>Dealers</td></tr>
+            <tr><td>Surety Bond Form</td><td>MV-126-DS-P</td><td>Dealers</td></tr>
+            <tr><td>Minimum Requirements for a Motor Vehicle Dealer, W/D/R, and Automobile Auction</td><td><span class="missing">-</span></td><td>Dealers</td></tr>
+            <tr><td>Surety Bond Form - 100K</td><td>MV-100-LS</td><td>Dealers</td></tr>
+            <tr><td>Application for License Service to Process and Issue Registration Decals</td><td>DMV-101-LS</td><td>Dealers</td></tr>
+            <tr><td>Salvage Inspection Schedule</td><td><span class="missing">-</span></td><td>Dealers</td></tr>
+            <tr><td>Application for License Service License Certificate</td><td>DMV-126-I-DS</td><td>Dealers</td></tr>
+            <tr><td>Application for License Service License Certificate Renewal</td><td>DMV-126-R-DS</td><td>Dealers</td></tr>
+            <tr><td>Application for Motor Vehicle Leasing Permit</td><td>DMV-4L</td><td>Dealers</td></tr>
+            <tr><td>Dealer's Notice of Lien</td><td>DMV-85-TR</td><td>Dealers</td></tr>
+            <tr><td>Surety Bond</td><td>MV-1LB</td><td>Dealers</td></tr>
+            <tr><td>Motor Vehicles Titling Seminar Manual</td><td><span class="missing">-</span></td><td>Dealers</td></tr>
+            <tr><td>Motor Vehicle Rental Agency Certificate</td><td>DMV-126-F-DS</td><td>Dealers</td></tr>
+            <tr><td>Surety Bond Form Rental Agency</td><td>MV-126-DS-R</td><td>Dealers</td></tr>
+            <tr><td>Dealer Verification of VIN</td><td>DMV-90-TR</td><td>Dealers</td></tr>
+        </tbody>
+    </table>
+</div>

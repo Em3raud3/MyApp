@@ -11,7 +11,21 @@ namespace MyApp.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult BasicPage()
+        {
+            return View();
+        }
+
+        public IActionResult Table()
+        {
+            return View();
+        }
+
+        public IActionResult TableNoHighlight()
+        {
+            return View();
+        }
+        public IActionResult WIP()
         {
             return View();
         }

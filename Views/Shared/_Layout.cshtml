@@ -8,10 +8,45 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyApp.styles.css" asp-append-version="true" />
+    <style>
+        .navbar-brand {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+            .navbar-brand:hover {
+                transform: scale(1.08);
+                opacity: 0.85;
+            }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            transition: opacity 0.2s ease;
+            padding-bottom: 0.4rem;
+        }
+
+            .navbar-nav .nav-link::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background-color: #fff;
+                transition: width 0.3s ease;
+            }
+
+            .navbar-nav .nav-link:hover {
+                opacity: 0.8;
+            }
+
+                .navbar-nav .nav-link:hover::after {
+                    width: 100%;
+                }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color: #1E8449;">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,10 +56,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="BasicPage">Basic Page</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Table">Table</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="TableNoHighlight">Table No Highlight</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
                         </li>
                     </ul>
                 </div>
@@ -37,9 +78,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-white" style="background-color: #1E8449;">
         <div class="container">
-            &copy; 2026 - MyApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2026 - MyApp
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
