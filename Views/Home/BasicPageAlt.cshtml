@@ -1,0 +1,208 @@
+﻿<style>
+    .section-label {
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Reminders panel */
+    .reminder-panel {
+        background-color: #edf1f7;
+        border: 1px solid #cfd8e3;
+        border-left: 4px solid #5a6e82;
+        border-radius: 0.375rem;
+        padding: 0.75rem 1.25rem;
+    }
+
+        .reminder-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .reminder-panel ul li {
+                position: relative;
+                padding: 0.65rem 0 0.65rem 1.4rem;
+                font-size: 1.1rem;
+                color: #4a5568;
+                border-bottom: 1px solid #cfd8e3;
+            }
+
+                .reminder-panel ul li:last-child {
+                    border-bottom: none;
+                    padding-bottom: 0;
+                }
+
+                .reminder-panel ul li::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 1.05rem;
+                    width: 0.4rem;
+                    height: 0.4rem;
+                    background-color: #5a6e82;
+                    border-radius: 50%;
+                }
+
+    /* Steps */
+    .steps-list .step-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid #cfd8e3;
+        font-size: 1.1rem;
+        color: #4a5568;
+    }
+
+        .steps-list .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list .step-item p {
+            margin: 0;
+        }
+
+    .step-badge {
+        min-width: 1.9rem;
+        height: 1.9rem;
+        font-size: 0.95rem;
+        background-color: #5a6e82;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .step-link {
+        color: #5a6e82;
+    }
+
+        .step-link:hover {
+            color: #2d3748;
+        }
+
+    /* Forms list-group */
+    .resource-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+        transition: background-color 0.2s ease;
+    }
+
+        .resource-list .list-group-item:hover {
+            background-color: #dde4ef;
+        }
+
+        .resource-list .list-group-item h6 {
+            font-size: 1.1rem;
+        }
+
+            .resource-list .list-group-item h6 a {
+                color: #2d3748 !important;
+            }
+
+        .resource-list .list-group-item .small {
+            font-size: 1rem !important;
+            color: #637080 !important;
+        }
+</style>
+
+<div class="py-4">
+    <p class="text-secondary mb-4" style="font-size: 1.1rem;">Licensing requirements and application instructions for motor vehicle salespersons and finance/insurance personnel in West Virginia.</p>
+    <hr class="mb-4" style="border-color: #cfd8e3;" />
+
+    <p class="section-label">Instructions &amp; Reminders</p>
+    <div class="reminder-panel mb-4">
+        <ul>
+            <li>Salespersons and Finance/Insurance personnel <strong>must</strong> be licensed. The salesperson license must be kept in his/her possession at all times.</li>
+            <li>Renewal fee for a salesperson license is <strong>$10.00</strong>.</li>
+            <li>After <strong>six (6) months</strong> of expiration, individuals must start the process for a new license and pay all initial licensing fees. This includes a background check and salesperson test.</li>
+            <li>The duplicate license fee is <strong>$5.00</strong> for lost, stolen, or destroyed licenses.</li>
+            <li>Transfer fee is <strong>$5.00</strong>. A new salesperson license in the name of the new employer must be obtained before engaging in the activities of a salesperson.</li>
+        </ul>
+    </div>
+
+    <p class="section-label">Application Steps</p>
+    <div class="steps-list mb-4">
+
+        <div class="step-item">
+            <div class="step-badge">1</div>
+            <p>Complete the Salesperson Licensing Application (<a href="https://transportation.wv.gov/DMV/DMVFormSearch/Salesperson_License_Application.pdf" target="_blank" class="step-link">download form here</a> or obtain a form at any DMV regional office).</p>
+        </div>
+
+        <div class="step-item">
+            <div class="step-badge">2</div>
+            <p>Have the employer sign, date, and check the appropriate box in the certification section at the bottom of the application.</p>
+        </div>
+
+        <div class="step-item">
+            <div class="step-badge">3</div>
+            <p>Complete a background check through digital fingerprinting via <strong>SAFRAN MORPHOTRUST USA</strong> by calling <strong>1-855-766-7746</strong> or visiting <a href="http://www.morphotrust.com/" target="_blank" class="step-link">www.morphotrust.com</a>. All background checks must be submitted to DMV Dealer Services.</p>
+        </div>
+
+        <div class="step-item">
+            <div class="step-badge">4</div>
+            <p>Visit a local DMV Regional Office with your completed application and Morphotrust receipt. Present a valid driver's license or government-issued photo ID.</p>
+        </div>
+
+        <div class="step-item">
+            <div class="step-badge">5</div>
+            <p>Submit a fee of <strong>$7.00</strong> per licensing year. Payment entitles the applicant to one (1) test attempt <strong>(76% correct, or 19 out of 25)</strong>. The test may not be taken more than once per week.</p>
+        </div>
+
+        <div class="step-item">
+            <div class="step-badge">6</div>
+            <p>After passing the test and submitting all required fees and the Morphotrust receipt, the Division will notify the applicant via letter once the background check is approved. <em>Note: The Division will automatically update the temporary license to permanent status in the DMV system — it is not necessary to obtain another Salesperson Identification Card.</em></p>
+        </div>
+
+    </div>
+
+    <p class="section-label">Helpful Tools &amp; Forms</p>
+    <div class="list-group shadow-sm rounded resource-list mb-4">
+
+        <div class="list-group-item list-group-item-action py-3 px-4">
+            <h6 class="mb-1 fw-semibold">
+                <a href="https://transportation.wv.gov/DMV/DMVFormSearch/SalespersonTestStudyGuide.pdf"
+                   target="_blank"
+                   class="text-decoration-none stretched-link">
+                    Salesperson Test Study Guide
+                </a>
+            </h6>
+            <p class="mb-0 small">Study guide to help prepare for the salesperson licensing exam.</p>
+        </div>
+
+        <div class="list-group-item list-group-item-action py-3 px-4">
+            <h6 class="mb-1 fw-semibold">
+                <a href="https://transportation.wv.gov/DMV/DMVFormSearch/Salesperson_License_Application.pdf"
+                   target="_blank"
+                   class="text-decoration-none stretched-link">
+                    Motor Vehicle Salesperson License Application
+                </a>
+            </h6>
+            <p class="mb-0 small">Official application form for a new motor vehicle salesperson license.</p>
+        </div>
+
+        <div class="list-group-item list-group-item-action py-3 px-4">
+            <h6 class="mb-1 fw-semibold">
+                <a href="https://transportation.wv.gov/DMV/DMVFormSearch/ARCHIVE/DMV-12-DS_Salesperson-Notification-of-Change-WF.pdf"
+                   target="_blank"
+                   class="text-decoration-none stretched-link">
+                    Salesperson Notification of Change Form
+                </a>
+            </h6>
+            <p class="mb-0 small">Use this form to report any changes to an existing salesperson license.</p>
+        </div>
+
+    </div>
+
+    <div class="mt-2 p-3 border rounded" style="background-color: #dde4ef; border-color: #cfd8e3 !important; color: #637080; font-size: 1.05rem;">
+        <strong style="color: #2d3748;">Note:</strong> The DMV does not send renewal notices for the salesperson license.
+    </div>
+
+</div>

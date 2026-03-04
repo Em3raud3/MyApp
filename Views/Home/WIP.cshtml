@@ -1,518 +1,464 @@
 ﻿<style>
-    .table td, .table th {
-        vertical-align: middle;
+    .resource-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+        transition: background-color 0.2s ease;
     }
 
-    .table tbody tr {
-        transition: background-color 0.15s ease;
-    }
-
-        .table tbody tr:hover {
-            background-color: #dde8ff;
-            cursor: default;
+        .resource-list .list-group-item:hover {
+            background-color: #dde4ef;
         }
 
-    .table tbody td:nth-child(3) {
-        font-family: monospace;
-        font-weight: 600;
-        color: #0d6efd;
-    }
+        .resource-list .list-group-item h6 a {
+            color: #2d3748 !important;
+        }
 
-    .table-wrapper {
-        border-radius: 10px;
+        .resource-list .list-group-item .small {
+            color: #637080 !important;
+        }
+
+    .info-block {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
         overflow: hidden;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .address-city {
-        color: #6c757d;
-        font-size: 0.85rem;
+    .info-block-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.15rem;
     }
+
+    .info-block-body {
+        padding: 1.25rem;
+        color: #4a5568;
+        font-size: 1.05rem;
+        background-color: #fff;
+    }
+
+        .info-block-body p {
+            margin-bottom: 0.75rem;
+        }
+
+            .info-block-body p:last-child {
+                margin-bottom: 0;
+            }
+
+        .info-block-body ul {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-block-body a {
+            color: #2b6cb0;
+        }
+
+        .info-block-body strong {
+            color: #2d3748;
+        }
+
+    .section-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+    }
+
+        .section-list .list-group-item:hover {
+            background-color: #dde4ef;
+        }
+
+    .section-toggle {
+        color: #2d3748;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+        .section-toggle:hover {
+            color: #1a202c;
+        }
+
+        .section-toggle .chevron {
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            color: #637080;
+        }
+
+        .section-toggle[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+        }
+
+    .section-body {
+        color: #4a5568;
+        padding-top: 0.75rem;
+        border-top: 1px solid #cfd8e3;
+        margin-top: 0.75rem;
+        font-size: 1.05rem;
+    }
+
+        .section-body p {
+            margin-bottom: 0.75rem;
+        }
+
+            .section-body p:last-child {
+                margin-bottom: 0;
+            }
+
+        .section-body ul, .section-body ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-body a {
+            color: #2b6cb0;
+            word-break: break-word;
+        }
+
+        .section-body h4 {
+            color: #2d3748;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-body blockquote {
+            border-left: 3px solid #cfd8e3;
+            padding-left: 1rem;
+            color: #637080;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+            .section-body table td, .section-body table th {
+                padding: 0.5rem 0.75rem;
+                border: 1px solid #cfd8e3;
+            }
+
+            .section-body table th {
+                background-color: #edf1f7;
+                font-weight: 600;
+                color: #2d3748;
+            }
+
+    .inner-section-list {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        margin-top: 0.75rem;
+    }
+
+    .inner-section-item {
+        background-color: #f7f9fc;
+        border-bottom: 1px solid #cfd8e3;
+        padding: 0.6rem 1rem;
+    }
+
+        .inner-section-item:last-child {
+            border-bottom: none;
+        }
+
+    .inner-section-toggle {
+        color: #2d3748;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+        .inner-section-toggle:hover {
+            color: #1a202c;
+        }
+
+        .inner-section-toggle .inner-chevron {
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            color: #637080;
+        }
+
+        .inner-section-toggle[aria-expanded="true"] .inner-chevron {
+            transform: rotate(180deg);
+        }
+
+    .inner-section-body {
+        color: #4a5568;
+        padding-top: 0.5rem;
+        border-top: 1px solid #e2e8f0;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+    }
+
+        .inner-section-body p {
+            margin-bottom: 0.5rem;
+        }
+
+        .inner-section-body ul {
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .inner-section-body a {
+            color: #2b6cb0;
+            word-break: break-word;
+        }
 </style>
 
 <div class="py-4">
-    <p class="text-secondary mb-4">
-        For customers needing immediate title work and to obtain a temporary vehicle registration and plate,
-        DMV is providing the following list of available Licensing Services for customer convenience.
-    </p>
-    <hr class="mb-4" />
+    <p class="text-secondary mb-4">Driver licensing resources, services, and information provided by the West Virginia DMV.</p>
+    <hr class="mb-4" style="border-color: #cfd8e3;" />
 
-    <div class="table-wrapper">
-        <table class="table table-bordered table-striped mb-0">
-            <thead class="table-dark">
-                <tr>
-                    <th style="width:40%;">Business Name</th>
-                    <th style="width:45%;">Address</th>
-                    <th style="width:15%;">Phone</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>A Plus License Service, Inc.</td>
-                    <td>3691 Robert C. Byrd Drive<br /><span class="address-city">Beckley, WV 25801</span></td>
-                    <td>304-253-5853</td>
-                </tr>
-                <tr>
-                    <td>Paul's License Service</td>
-                    <td>601 Thorn Street<br /><span class="address-city">Princeton, WV 24740</span></td>
-                    <td>304-425-7466</td>
-                </tr>
-                <tr>
-                    <td>Cooks License Service</td>
-                    <td>P.O. Box 792<br /><span class="address-city">Oceana, WV 24870</span></td>
-                    <td>304-682-5314</td>
-                </tr>
-                <tr>
-                    <td>Bill's License Service</td>
-                    <td>P.O. Box 218<br /><span class="address-city">Madison, WV 25130</span></td>
-                    <td>304-369-0163</td>
-                </tr>
-                <tr>
-                    <td>Thorne's License Service</td>
-                    <td>1950 Double Cribbs Road<br /><span class="address-city">Burlington, WV 26710</span></td>
-                    <td>304-289-3666</td>
-                </tr>
-                <tr>
-                    <td>American Title &amp; License Service</td>
-                    <td>1989 Greenbrier Street<br /><span class="address-city">Charleston, WV 25311</span></td>
-                    <td>304-346-5938</td>
-                </tr>
-                <tr>
-                    <td>Skeens Insurance Agency, Inc.</td>
-                    <td>4053 Coal Heritage Road<br /><span class="address-city">Bluefield, WV 24701</span></td>
-                    <td>304-589-3260</td>
-                </tr>
-                <tr>
-                    <td>Tolliver Licensing &amp; Title Services</td>
-                    <td>P.O. Box 1784<br /><span class="address-city">Pineville, WV 24874</span></td>
-                    <td>304-202-0203</td>
-                </tr>
-                <tr>
-                    <td>Wetzel-Valley Agencies, Inc.</td>
-                    <td>300 Main Street<br /><span class="address-city">New Martinsville, WV 26155</span></td>
-                    <td>304-455-4600</td>
-                </tr>
-                <tr>
-                    <td>Loudin Insurance Agency, Inc.</td>
-                    <td>207 South Kanawha Street<br /><span class="address-city">Buckhannon, WV 26201</span></td>
-                    <td>304-472-1532</td>
-                </tr>
-                <tr>
-                    <td>Floyd's License Service</td>
-                    <td>373 South Mineral Street<br /><span class="address-city">Keyser, WV 26726</span></td>
-                    <td>304-788-4004</td>
-                </tr>
-                <tr>
-                    <td>Knight Vehicle Licensing</td>
-                    <td>P.O. Box 700<br /><span class="address-city">Clendenin, WV 25045</span></td>
-                    <td>304-548-4726</td>
-                </tr>
-                <tr>
-                    <td>Citywide Ins and Fin Service</td>
-                    <td>2066 National Road<br /><span class="address-city">Wheeling, WV 26003</span></td>
-                    <td>304-242-7500</td>
-                </tr>
-                <tr>
-                    <td>D.I.G. LLC DBA Richardson Insurance Agency</td>
-                    <td>607 E. Park Ave.<br /><span class="address-city">Fairmont, WV 26554</span></td>
-                    <td>304-333-6030</td>
-                </tr>
-                <tr>
-                    <td>A-1 Service &amp; License</td>
-                    <td>P.O. Box 247<br /><span class="address-city">Bruceton Mills, WV 26525</span></td>
-                    <td>304-379-4345</td>
-                </tr>
-                <tr>
-                    <td>Pleasants County Ins Agency, Inc.</td>
-                    <td>904 Second Street<br /><span class="address-city">Saint Marys, WV 26170</span></td>
-                    <td>304-684-7688</td>
-                </tr>
-                <tr>
-                    <td>Tri Towns Electric</td>
-                    <td>84 Ashfield Street<br /><span class="address-city">Piedmont, WV 26750</span></td>
-                    <td>304-355-8012</td>
-                </tr>
-                <tr>
-                    <td>Garrett License Service</td>
-                    <td>P.O. Box 478<br /><span class="address-city">Wardensville, WV 26851</span></td>
-                    <td>304-874-3512</td>
-                </tr>
-                <tr>
-                    <td>Brady Insurance Services</td>
-                    <td>422 Buckhannon Pike<br /><span class="address-city">Nutter Fort, WV 26301</span></td>
-                    <td>304-622-6007</td>
-                </tr>
-                <tr>
-                    <td>AAA License Service</td>
-                    <td>3126 West Street<br /><span class="address-city">Weirton, WV 26062</span></td>
-                    <td>304-748-1616</td>
-                </tr>
-                <tr>
-                    <td>Wilson's Auto and Licensing Service, LLC</td>
-                    <td>P.O. Box 535<br /><span class="address-city">Philippi, WV 26416</span></td>
-                    <td>304-457-3500</td>
-                </tr>
-                <tr>
-                    <td>Runyon Insurance Agency, Inc.</td>
-                    <td>84 E. Third Ave.<br /><span class="address-city">Williamson, WV 25661</span></td>
-                    <td>304-235-1400</td>
-                </tr>
-                <tr>
-                    <td>Tracey's Title Service</td>
-                    <td>40 Mongold Rd.<br /><span class="address-city">Mathias, WV 26812</span></td>
-                    <td>304-897-5789</td>
-                </tr>
-                <tr>
-                    <td>First United Licensing Service</td>
-                    <td>503 Morgantown Ave., Suite 110<br /><span class="address-city">Fairmont, WV 26554</span></td>
-                    <td>304-366-5179</td>
-                </tr>
-                <tr>
-                    <td>AAA License Service</td>
-                    <td>846 National Road<br /><span class="address-city">Wheeling, WV 26003</span></td>
-                    <td>304-233-1810</td>
-                </tr>
-                <tr>
-                    <td>Parrack Licensing and Title Service</td>
-                    <td>1301 Harrison Avenue<br /><span class="address-city">Elkins, WV 26241</span></td>
-                    <td>304-636-0899</td>
-                </tr>
-                <tr>
-                    <td>Greg Robertson Title Service</td>
-                    <td>P.O. Box 4800<br /><span class="address-city">Bridgeport, WV 26330</span></td>
-                    <td>304-265-1255</td>
-                </tr>
-                <tr>
-                    <td>Drake's License &amp; Title Service</td>
-                    <td>P.O. Box 1027<br /><span class="address-city">Glenville, WV 26351</span></td>
-                    <td>304-462-7903</td>
-                </tr>
-                <tr>
-                    <td>Gauley Title and License Service</td>
-                    <td>P.O. Box 1202<br /><span class="address-city">Craigsville, WV 26205</span></td>
-                    <td>304-742-5000</td>
-                </tr>
-                <tr>
-                    <td>Addison License Service, LLC.</td>
-                    <td>377 Elk River Rd.<br /><span class="address-city">Webster Springs, WV 26288</span></td>
-                    <td>304-847-5669</td>
-                </tr>
-                <tr>
-                    <td>Summersville License Service</td>
-                    <td>305 Jackson Avenue<br /><span class="address-city">Summersville, WV 26651</span></td>
-                    <td>304-872-1187</td>
-                </tr>
-                <tr>
-                    <td>Clark West License Service</td>
-                    <td>P.O. Box 362<br /><span class="address-city">Craigsville, WV 26205</span></td>
-                    <td>304-742-3700</td>
-                </tr>
-                <tr>
-                    <td>K &amp; D Title and License Serv.</td>
-                    <td>79 Boaz Main St.<br /><span class="address-city">Williamstown, WV 26187</span></td>
-                    <td>304-481-0066</td>
-                </tr>
-                <tr>
-                    <td>Tucker County License &amp; Title Service</td>
-                    <td>101 Chestnut Street<br /><span class="address-city">Parsons, WV 26287</span></td>
-                    <td>304-478-3641</td>
-                </tr>
-                <tr>
-                    <td>Fish's Auto License Service</td>
-                    <td>617 Broad Street<br /><span class="address-city">Summersville, WV 26651</span></td>
-                    <td>304-872-7930</td>
-                </tr>
-                <tr>
-                    <td>Bialek License &amp; Title Service</td>
-                    <td>P.O. Box 304<br /><span class="address-city">Belington, WV 26250</span></td>
-                    <td>304-823-2500</td>
-                </tr>
-                <tr>
-                    <td>Tammy Doty Ins and License Serv LLC</td>
-                    <td>P.O. Box 469<br /><span class="address-city">Man, WV 25635</span></td>
-                    <td>304-583-6518</td>
-                </tr>
-                <tr>
-                    <td>Nicholson License Service</td>
-                    <td>P.O. Box 63<br /><span class="address-city">Salem, WV 26426</span></td>
-                    <td>304-782-4222</td>
-                </tr>
-                <tr>
-                    <td>Ritchie County Insurance Agency, Inc.</td>
-                    <td>P.O. Box 99<br /><span class="address-city">Ellenboro, WV 26346</span></td>
-                    <td>304-869-3332</td>
-                </tr>
-                <tr>
-                    <td>J. W. Potts Ins Agency &amp; License Serv.</td>
-                    <td>625 3rd Street<br /><span class="address-city">New Martinsville, WV 26155</span></td>
-                    <td>304-455-4477</td>
-                </tr>
-                <tr>
-                    <td>Preston Business Service</td>
-                    <td>23939 George Washington Hwy.<br /><span class="address-city">Aurora, WV 26705</span></td>
-                    <td>304-735-6981</td>
-                </tr>
-                <tr>
-                    <td>Friend's Title &amp; License Service</td>
-                    <td>148 Lost Avenue<br /><span class="address-city">Buckhannon, WV 26201</span></td>
-                    <td>304-472-1379</td>
-                </tr>
-                <tr>
-                    <td>United Security Agency</td>
-                    <td>649 North Pike Street<br /><span class="address-city">Grafton, WV 26354</span></td>
-                    <td>304-265-3427</td>
-                </tr>
-                <tr>
-                    <td>Davis Agency</td>
-                    <td>179 Holland Avenue<br /><span class="address-city">Morgantown, WV 26501</span></td>
-                    <td>304-296-5481</td>
-                </tr>
-                <tr>
-                    <td>DM Business Service</td>
-                    <td>38 Annon Road<br /><span class="address-city">Newburg, WV 26410</span></td>
-                    <td>304-892-3813</td>
-                </tr>
-                <tr>
-                    <td>Kimberly H Bell Title &amp; License Serv.</td>
-                    <td>4601 Pennsylvania Avenue<br /><span class="address-city">Charleston, WV 25302</span></td>
-                    <td>304-965-6911</td>
-                </tr>
-                <tr>
-                    <td>Nelson Auto Sales</td>
-                    <td>P.O. Box 488<br /><span class="address-city">Ridgeley, WV 26753</span></td>
-                    <td>304-738-9290</td>
-                </tr>
-                <tr>
-                    <td>Matewan Insurance &amp; Realty, Inc.</td>
-                    <td>P.O. Box 690<br /><span class="address-city">Matewan, WV 25678</span></td>
-                    <td>304-426-8761</td>
-                </tr>
-                <tr>
-                    <td>SCG License &amp; Title Service, Inc.</td>
-                    <td>200 Moran Avenue<br /><span class="address-city">Mullens, WV 25882</span></td>
-                    <td>304-294-7283</td>
-                </tr>
-                <tr>
-                    <td>Ken Bass Ins Agency &amp; License Serv.</td>
-                    <td>P.O. Box 335<br /><span class="address-city">New Haven, WV 25265</span></td>
-                    <td>304-882-2145</td>
-                </tr>
-                <tr>
-                    <td>Bob's License &amp; Title Service</td>
-                    <td>528 North Main Avenue<br /><span class="address-city">Weston, WV 26452</span></td>
-                    <td>304-269-2210</td>
-                </tr>
-                <tr>
-                    <td>L. Jay Kniceley License Service</td>
-                    <td>P.O. Box 147<br /><span class="address-city">Marlinton, WV 24954</span></td>
-                    <td>304-799-6243</td>
-                </tr>
-                <tr>
-                    <td>Ellen Galford License &amp; Title Serv.</td>
-                    <td>16859 Seneca Trail<br /><span class="address-city">Buckeye, WV 24924</span></td>
-                    <td>304-799-4614</td>
-                </tr>
-                <tr>
-                    <td>J &amp; S License Service</td>
-                    <td>2850 Birds Creek Road<br /><span class="address-city">Tunnelton, WV 26444</span></td>
-                    <td>304-329-0529</td>
-                </tr>
-                <tr>
-                    <td>Stevens Realty License Service</td>
-                    <td>201 First Street<br /><span class="address-city">Parsons, WV 26287</span></td>
-                    <td>304-478-2141</td>
-                </tr>
-                <tr>
-                    <td>Mary K. Forman dba Mary's Clerical Service</td>
-                    <td>P.O. Box 234<br /><span class="address-city">Arthurdale, WV 26520</span></td>
-                    <td>304-864-6253</td>
-                </tr>
-                <tr>
-                    <td>Mountaineer Ins and License Service</td>
-                    <td>P.O. Box 367<br /><span class="address-city">Fairmont, WV 26554</span></td>
-                    <td>304-366-2200</td>
-                </tr>
-                <tr>
-                    <td>Ball P/O Auto Title and License Service</td>
-                    <td>P.O. Box 1<br /><span class="address-city">Terra Alta, WV 26764</span></td>
-                    <td>304-789-2147</td>
-                </tr>
-                <tr>
-                    <td>Michael P. Lamar dba Lamar Ins</td>
-                    <td>P.O. Box 35<br /><span class="address-city">Anmoore, WV 26323</span></td>
-                    <td>304-368-1323</td>
-                </tr>
-                <tr>
-                    <td>Farley's License &amp; Title Service</td>
-                    <td>117 South Kanawha Street<br /><span class="address-city">Buckhannon, WV 26201</span></td>
-                    <td>304-472-0223</td>
-                </tr>
-                <tr>
-                    <td>Legacy Licensing Service, LLC.</td>
-                    <td>3819 Earl L. Core Road<br /><span class="address-city">Morgantown, WV 26508</span></td>
-                    <td>304-291-5609</td>
-                </tr>
-                <tr>
-                    <td>K. Niceley's Ins. Agy / K. Niceley's L/S</td>
-                    <td>583 Nicholas Street<br /><span class="address-city">Rupert, WV 25984</span></td>
-                    <td>304-392-6965</td>
-                </tr>
-                <tr>
-                    <td>Title &amp; License Place</td>
-                    <td>105 North Court Street<br /><span class="address-city">Ripley, WV 25271</span></td>
-                    <td>304-514-7220</td>
-                </tr>
-                <tr>
-                    <td>Mtn St Ins Ctr Inc / Mtn St Tit &amp; Lic Service</td>
-                    <td>31452 Veterans Memorial Highway<br /><span class="address-city">Terra Alta, WV 26764</span></td>
-                    <td>304-789-2488</td>
-                </tr>
-                <tr>
-                    <td>Rose Mary Lawson dba RM Lic &amp; Tit</td>
-                    <td>1226 Hazelton Road<br /><span class="address-city">Bruceton Mills, WV 26525</span></td>
-                    <td>304-379-7477</td>
-                </tr>
-                <tr>
-                    <td>Fast Eddie's Title and License Service</td>
-                    <td>6250 Grand Central Avenue<br /><span class="address-city">Vienna, WV 26105</span></td>
-                    <td>304-295-0111</td>
-                </tr>
-                <tr>
-                    <td>Affordable Auto Tag &amp; Title</td>
-                    <td>1884 Valley Road<br /><span class="address-city">Berkeley Springs, WV 25411</span></td>
-                    <td>304-258-9700</td>
-                </tr>
-                <tr>
-                    <td>Berg Licensing Service, LLC.</td>
-                    <td>196 North Tornado Way, Suite #4<br /><span class="address-city">Keyser, WV 26726</span></td>
-                    <td>304-790-7688</td>
-                </tr>
-                <tr>
-                    <td>Jen's Licensing &amp; Notary Service</td>
-                    <td>575 Chestnut Street<br /><span class="address-city">Keyser, WV 26726</span></td>
-                    <td>304-721-4700</td>
-                </tr>
-                <tr>
-                    <td>BSA P/O Autos and Licensing Service</td>
-                    <td>182 Main Street<br /><span class="address-city">Hinton, WV 25951</span></td>
-                    <td>304-309-5040</td>
-                </tr>
-                <tr>
-                    <td>Robert Hogbin Used Autos &amp; Lic Serv</td>
-                    <td>22841 Northwestern Pike<br /><span class="address-city">Romney, WV 26757</span></td>
-                    <td>304-538-4692</td>
-                </tr>
-                <tr>
-                    <td>Mountain State Tag and Title Services, LLC.</td>
-                    <td>25 Lights Addition Drive<br /><span class="address-city">Martinsburg, WV 25404</span></td>
-                    <td>681-260-6768</td>
-                </tr>
-                <tr>
-                    <td>Sam's Title Service LLC</td>
-                    <td>1789 Roby Road<br /><span class="address-city">Maysville, WV 26833</span></td>
-                    <td>304-668-3156</td>
-                </tr>
-                <tr>
-                    <td>Mid Atlantic Tag &amp; Title, LLC.</td>
-                    <td>1015 Mid-Atlantic Parkway<br /><span class="address-city">Martinsburg, WV 25404</span></td>
-                    <td>304-270-0394</td>
-                </tr>
-                <tr>
-                    <td>Hott License Services Tag &amp; Title</td>
-                    <td>207 North Main Street<br /><span class="address-city">Petersburg, WV 26847</span></td>
-                    <td>304-903-2025</td>
-                </tr>
-                <tr>
-                    <td>DCA Pre-owned Auto Sales, LLC.</td>
-                    <td>408 1st Avenue South<br /><span class="address-city">Nitro, WV 25143</span></td>
-                    <td>304-553-1295</td>
-                </tr>
-                <tr>
-                    <td>Out Wayne Title &amp; Tag, LLC.</td>
-                    <td>166 Sunshine Lane<br /><span class="address-city">Wayne, WV 25570</span></td>
-                    <td>304-272-2240</td>
-                </tr>
-                <tr>
-                    <td>Victor Licensing Services, LLC.</td>
-                    <td>5825 Robert C. Byrd Drive<br /><span class="address-city">Mount Hope, WV 25880</span></td>
-                    <td>681-422-3242</td>
-                </tr>
-                <tr>
-                    <td>Jarrett's Tag &amp; Title Service LLC</td>
-                    <td>3010 East Dupont Avenue<br /><span class="address-city">Belle, WV 25015</span></td>
-                    <td>304-595-2702</td>
-                </tr>
-                <tr>
-                    <td>Route 28 Auto Sales, Inc.</td>
-                    <td>2472 Frankfort Highway<br /><span class="address-city">Ridgeley, WV 26753</span></td>
-                    <td>304-738-9272</td>
-                </tr>
-                <tr>
-                    <td>M &amp; T Preowned Auto LLC &amp; Licensing Service</td>
-                    <td>3324 Court Street<br /><span class="address-city">Fayetteville, WV 25840</span></td>
-                    <td>304-574-2305</td>
-                </tr>
-                <tr>
-                    <td>Heather's Title Tag and Notary, LLC.</td>
-                    <td>125 East High Street, Room C<br /><span class="address-city">Kingwood, WV 26537</span></td>
-                    <td>304-329-1677</td>
-                </tr>
-                <tr>
-                    <td>Prudence Insurance and Licensing Serv.</td>
-                    <td>1438 Main Street East<br /><span class="address-city">Oak Hill, WV 25901</span></td>
-                    <td>304-469-7023</td>
-                </tr>
-                <tr>
-                    <td>Gazsi P/O Mtrs, LLC. / Gazsi P/O Mtrs &amp; Titling Service</td>
-                    <td>3772 Earl L. Core Road<br /><span class="address-city">Morgantown, WV 26508</span></td>
-                    <td>304-282-1288</td>
-                </tr>
-                <tr>
-                    <td>United Tag and Title, Inc.</td>
-                    <td>912 Middleway Pike<br /><span class="address-city">Inwood, WV 25428</span></td>
-                    <td>304-283-2763</td>
-                </tr>
-                <tr>
-                    <td>Keener's Auto Repair Mntnc Tit &amp; Lic Ser.</td>
-                    <td>133 River Street<br /><span class="address-city">Grantsville, WV 26147</span></td>
-                    <td>304-354-7195</td>
-                </tr>
-                <tr>
-                    <td>Sean Michael Ent., LLC. / Robinson Tag &amp; Title</td>
-                    <td>7475 Hedgesville Road<br /><span class="address-city">Hedgesville, WV 25427</span></td>
-                    <td>304-807-9922</td>
-                </tr>
-                <tr>
-                    <td>Aluity License and Title Service, LLC.</td>
-                    <td>1273 Stafford Drive<br /><span class="address-city">Princeton, WV 24740</span></td>
-                    <td>304-431-9900</td>
-                </tr>
-                <tr>
-                    <td>Courtney L. Cooper Agy., Inc. / Hamlin License &amp; Title Service</td>
-                    <td>8048 Lynn Avenue<br /><span class="address-city">Hamlin, WV 25523</span></td>
-                    <td>304-824-5300</td>
-                </tr>
-                <tr>
-                    <td>Cardinal Tag &amp; Title, LLC.</td>
-                    <td>5086 Hammonds Mill Road<br /><span class="address-city">Falling Waters, WV 25419</span></td>
-                    <td>304-263-3349</td>
-                </tr>
-                <tr>
-                    <td>Sure Group, Inc.</td>
-                    <td>145 Wyoming Street<br /><span class="address-city">Welch, WV 24801</span></td>
-                    <td>304-362-6466</td>
-                </tr>
-                <tr>
-                    <td>Martinsburg Tag and Title</td>
-                    <td>37 Meadow Lane<br /><span class="address-city">Martinsburg, WV 25404</span></td>
-                    <td>304-726-6667</td>
-                </tr>
-                <tr>
-                    <td>Country Roads Tag &amp; Title LLC</td>
-                    <td>7015 Bloomery Pike<br /><span class="address-city">Slanesville, WV 25444</span></td>
-                    <td>304-492-5652</td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="row g-3 mb-4">
+        <div class="col-md-6">
+            <drupal-media data-entity-type="media" data-entity-uuid="180fe282-210b-48f0-b85c-435d2363ef6e">&nbsp;</drupal-media>
+        </div>
+        <div class="col-md-6">
+            <drupal-media data-entity-type="media" data-entity-uuid="01999940-2910-4af4-9a3a-188b1f2eb824">&nbsp;</drupal-media>
+        </div>
     </div>
+
+    <!-- Always expanded: Two Types -->
+    <div class="info-block mb-3">
+        <div class="info-block-header">There are TWO types of Driver's Licenses &amp; ID Cards</div>
+        <div class="info-block-body">
+            <p>You have the choice between a <strong>Not For Federal Use</strong> driver's license or ID card, or a <strong>REAL ID / For Federal Use</strong> card that contains a gold star, indicating that the card meets full federal requirements for future use at airports and other designated federal facilities and uses nationwide. Details of how Federal Government will implement this requirement have not been released.</p>
+            <p>Applicants applying for, renewing, or obtaining a duplicate driver's license or ID card are required to provide specific documents. The documents you need to bring to the DMV depends on what type of card you choose. Due to processing and shipping costs, an additional <strong>$10.00 fee</strong> is required to obtain a <strong>REAL ID / For Federal Use</strong> card.</p>
+        </div>
+    </div>
+
+    <!-- Always expanded: REAL ID / Central Issuance -->
+    <div class="info-block mb-4">
+        <div class="info-block-header">NOTE: REAL ID / Central Issuance</div>
+        <div class="info-block-body">
+            <p>In late 2020, DMV phased-in a new driver's license issuance program, in compliance with the Real ID Act of 2005. Customers renewing or applying for a driver's license or identification card credential, in the regional offices, at the kiosks, or online, now receive a temporary card/receipt, valid for <strong>60 days</strong>, and their permanent credential will be mailed to them as part of the central issuance requirement for REAL ID. Customers applying for duplicate credentials will also receive a temporary card and their permanent credential in the mail. All license and ID issuance is now done through the central print location, with no credentials being printed in the offices.</p>
+            <p>Central issuance involves mailing permanent license and ID cards from a secure facility. Additionally, the new program also includes a new design for licenses and IDs with several upgraded security features. These security features will reduce the risk of fraud and identity theft.</p>
+            <p>Customers that want a new driver's license are encouraged to make an appointment through the DMV website at <a href="https://dmv.wv.gov" target="_blank">dmv.wv.gov</a>. If you currently have an appointment for a driver's license transaction, you do not need to make a new one. The same documents are required as before — proof of identity, proof of social security number, and two proofs of physical residency.</p>
+        </div>
+    </div>
+
+    <!-- Accordion sections -->
+    <div class="list-group shadow-sm rounded section-list">
+
+        <div class="list-group-item py-3 px-4">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-nffu" aria-expanded="false" aria-controls="sec-nffu">
+                <span>Not for Federal Identification Card Requirements</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-nffu" class="collapse">
+                <div class="section-body">
+                    <p><strong>Renewal Applicants</strong> for a driver's license or ID card with no changes are required to provide their current license or ID card OR the renewal application. Any changes in address since the last card will require two proof of WV residency documents with name and physical address. Any change of legal name requires proof of legal name change document(s).</p>
+                    <p><strong>Duplicate Applicants:</strong> If your license has been lost, stolen, or destroyed, you are required to provide one proof of identity document and one proof of WV residency document. Additionally, if your legal name has changed from what was listed on your previous license or ID card, you must also provide proof of legal name change document(s). If you have changed your address since the last card was issued, you must provide two proofs of WV residency documents.</p>
+                    <p><strong>New Applicants, Transfers, and Expired License Applicants</strong> are required to provide one proof of identity, one proof of Social Security number, two proofs of WV residency with name and physical address, and proof of legal name change document(s) if your name has changed or is different than the provided proof of identity document.</p>
+                    <ul>
+                        <li>Applicants who have never held a driver's license or ID card, who are transferring a license from out-of-state, or who have a West Virginia license that has been expired for more than three (3) years are considered first-time applicants.</li>
+                        <li>Applicants who are applying for a West Virginia driver's license and are transferring a license from another state must also submit their current license from the previous state or present a current certified driving record from their previous state, dated 30 days or less from the date of the application. New residents who want to drive in WV must apply for a WV driver's license within 30 days.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item py-3 px-4">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-realid" aria-expanded="false" aria-controls="sec-realid">
+                <span>For Federal Identification (REAL ID) Card Requirements</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-realid" class="collapse">
+                <div class="section-body">
+                    <p><strong>Renewal Applications</strong> for a REAL ID / For-Federal Identification driver's license or ID card with no changes are required to provide their current license or ID card OR the renewal application. Any changes in address since the last card will require two proof of WV residency documents with name and physical address. Any change of legal name requires proof of legal name change document(s) and one proof of Social Security number document.</p>
+                    <p><strong>Duplicate Applicants</strong> choosing a "For Federal Use" driver's license or ID card are required to provide one proof of identity document, one proof of Social Security number document, two proofs of WV residency documents with name and physical address, and proof of legal name change document(s) if their name has ever changed or is different than the provided proof of identity document.</p>
+                    <p><strong>New Applicants, Transfers, and Expired License Applicants</strong> are required to provide one proof of identity, one proof of Social Security number, two proofs of WV residency with name and physical address, and proof of legal name change document(s) if your name has ever changed.</p>
+                    <ul>
+                        <li>Applicants who have never held a driver's license or ID card, who are transferring a license from out-of-state, or who have a West Virginia license that has been expired for more than three (3) years are considered first-time applicants.</li>
+                        <li>Applicants who are applying for a West Virginia driver's license and are transferring a license from another state must also submit their current license from the previous state or present a current certified driving record from their previous state, dated 30 days or less from the date of the application. New residents who want to drive in WV must apply for a WV driver's license within 30 days.</li>
+                    </ul>
+                    <p><em>This card is sent to the applicant's address via USPS in 10–15 business days. A temporary license is issued at the time the application is accepted at DMV for use during the production and shipping of this card.</em></p>
+                    <h4>REAL ID Headstart</h4>
+                    <p><strong>*New –</strong> <a href="http://go.wv.gov/realidheadstart" target="_blank">REAL-ID Headstart PreEnrollment Service</a> is now available to West Virginians. The new service from the West Virginia Division of Motor Vehicles is the easiest and fastest way to upgrade a current "Not for Federal Identification" type WV Driver's License or State ID to a REAL ID. Enter your information, upload your documents, then book your appointment (once approved) — it's that easy! Spend up to 50% less time at the DMV during your in-person appointment! <a href="http://go.wv.gov/realidheadstart" target="_blank">http://go.wv.gov/realidheadstart</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item py-3 px-4">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-docs" aria-expanded="false" aria-controls="sec-docs">
+                <span>Acceptable Proof Documents</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-docs" class="collapse">
+                <div class="section-body">
+
+                    <div class="inner-section-list">
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-identity" aria-expanded="false" aria-controls="sec-identity">
+                                <span>Proof of Identity Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-identity" class="collapse">
+                                <div class="inner-section-body">
+                                    <ul>
+                                        <li>
+                                            An original or certified copy of a United States-issued birth certificate (U.S. Department of State and U.S. Military birth certificates ARE acceptable, hospital birth certificates and Bureau of Census records are NOT acceptable)
+                                            <ul>
+                                                <li>To obtain a birth certificate, if you were born in West Virginia, contact the Office of Vital Statistics or the County Clerk at the courthouse of the county in which you were born. If you were born in another state, the National Center for Health Statistics has information on how to obtain a birth certificate.</li>
+                                            </ul>
+                                        </li>
+                                        </br>
+                                        <li>Valid, unexpired U.S. Passport or official U.S. Passport card</li>
+                                        </br>
+                                        <li>
+                                            If foreign born, valid, unexpired Department of Homeland Security (DHS) document(s) or acceptable alternatives as outlined below:
+                                            <ul>
+                                                <li>Permanent Resident Card (Form I-551) issued by DHS (or INS)</li>
+                                                <li>Employment authorization document (EAD) issued by DHS, Form I-766 or Form I-688B</li>
+                                                <li>Certificate of Naturalization issued by DHS, Form N-550 or Form N-570</li>
+                                                <li>Certificate of Citizenship, Form N-560 or Form N-561, issued by DHS</li>
+                                                <li>Consular Report of Birth Abroad (CRBA) issued by the U.S. Department of State, Form FS-240, DS-1350 or FS-545</li>
+                                                <li>Foreign passport with a valid, unexpired U.S. visa affixed accompanied by the approved I-94 form documenting the applicant’s most recent admittance into the United States</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-ssn" aria-expanded="false" aria-controls="sec-ssn">
+                                <span>Proof of Social Security Number Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-ssn" class="collapse">
+                                <div class="inner-section-body">
+                                    <ul>
+                                        <li>Social Security card</li>
+                                        <li>Original Wage and Tax Statement (W-2) or payroll stub with the applicant’s employer name and employer ID number, as well as the applicant’s name, address, and Social Security number (a photocopy of a W-2 is not acceptable) (You may use the same W-2 as one proof of WV residency, provided it is not more than 18 months old)</li>
+                                        <li>1099 form with applicant’s full Social Security number and name</li>
+                                    </ul>
+                                    <p>Please make sure your Social Security records reflect your full legal name, as reflected on your other documents. DMV must be able to establish a name connection between documents, therefore your full legal name must match your name on file with the Social Security Administration. If an applicant is not eligible for a social security number, then the applicant must submit a denial letter from the Social Security Administration. The Division checks every social security number with the SSA. If you have a problem with the SSA, such as name or date of birth does not match with records of the DMV, and SSA then you must have the problem corrected before you can be issued a permit, license, or identification card. <strong>Your documents will be scanned and returned to you, which will provide DMV with a historical record, and provide you with additional protection, per the Federal Real ID Act of 2005. Please visit the <a href="https://www.ssa.gov/" target="_blank">Social Security Administration website</a> for information about obtaining a Social Security number.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-namechange" aria-expanded="false" aria-controls="sec-namechange">
+                                <span>Proof of Legal Name Change Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-namechange" class="collapse">
+                                <div class="inner-section-body">
+                                    <p>DMV must be able to establish a link between any legal name changes - <strong>Please Call 1-800-642-9066 to clarify which proof of name change document(s) you will need to bring in to obtain your license or ID card</strong> (you may be required to provide all or some of the following proof below)</p>
+                                    <ul>
+                                        <li>
+                                            Certified marriage certificate (for each marriage if married more than once, Souvenir documents or Minister's copies are not acceptable)
+                                            <ul>
+                                                <li>If you need to obtain one, contact the county courthouse in the county and state in which you were married (<a href="https://wvbar.org/public-information/courthouses/" target="_blank">click here for a WV directory</a>);</li>
+                                            </ul>
+                                        </li>
+                                        <li>Original or certified copy of a birth certificate with amended legal name</li>
+                                        <ul>
+                                            <li>To obtain a birth certificate, if you were born in West Virginia, contact the Office of Vital Statistics. If you were born in another state, the National Center for Health Statistics has information on how to obtain a birth certificate.</li>
+                                        </ul>
+                                        <li>Court Order with legal name / name change</li>
+                                        <li>Certified divorce decree(s) with legal name / name change</li>
+                                        <li><strong>If you are age 50 or over</strong> and have satisfied all other documentation requirements, hold a current WV license or ID card in the name being verified, and have gone through at least one WV renewal cycle, a signed statement may be submitted in lieu of the name change document.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-residency" aria-expanded="false" aria-controls="sec-residency">
+                                <span>Proof of West Virginia Residency Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-residency" class="collapse">
+                                <div class="inner-section-body">
+                                    <p>You will be required to provide <strong>TWO</strong> proofs of West Virginia residency. Documents with a PO Box are not acceptable. Any recurring document cannot be more than 60 days old. You may not use more than one document issued by the same company.</p>
+                                    <ul>
+                                        <li>WV utility bills (not more than 60 days old)</li>
+                                        <li>Tax records with a WV street address</li>
+                                        <li>WV mortgage documents, homeowner insurance documents, or proof of WV home ownership</li>
+                                        <li>WV W-2 form not more than 18 months old</li>
+                                        <li>WV weapons permit</li>
+                                        <li>Valid WV vehicle registration card</li>
+                                        <li>WV Voter's Registration card</li>
+                                        <li>Driver's Eligibility Certificate (only if it has a WV street address)</li>
+                                        <li>WV Homestead Tax exemption</li>
+                                        <li>Proof of WV public assistance</li>
+                                        <li>Residential rental or lease agreement</li>
+                                        <li>WV DMV <a href="https://transportation.wv.gov/DMV/DMVFormSearch/Res-Aff_Affidavit%20of%20WV%20Residency-WF.pdf" target="_blank">Affidavit of West Virginia Residency</a></li>
+                                        <li>College admissions letter showing in-state residency</li>
+                                        <li>Pay check stub from any WV employer showing a current physical address (cannot be hand-written)</li>
+                                        <li>Social Security benefits letter</li>
+                                        <li>WV Professional License</li>
+                                        <li>WV bank statement</li>
+                                        <li>WV auto insurance card</li>
+                                        <li>WV hunting license</li>
+                                        <li>911 letter</li>
+                                        <li><a href="https://transportation.wv.gov/DMV/DMVFormSearch/DMV-AFR-22_Affidavit_of_WV_Facility_Residency.pdf" target="_blank">Affidavit of WV Facility Residency</a> (for those residing in a WV shelter, hotel, nursing home, or other similar facility)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-changes" aria-expanded="false" aria-controls="sec-changes">
+                                <span>Changes to Birth Date, Social Security Number</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-changes" class="collapse">
+                                <div class="inner-section-body">
+                                    <ul>
+                                        <li>Any change in the birth date requires a certified birth certificate.</li>
+                                        <li>Any change or correction of the Social Security number requires a Social Security card (non-metal and not a printout from SSA).</li>
+                                        <li>Any change of gender requires the submission of the <a href="https://transportation.wv.gov/DMV/DMVFormSearch/DMV-99-RO-GenderDesignationForm.pdf" target="_blank">Gender Designation Form</a>, which must be fully and accurately completed and signed by a licensed physician.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </div>

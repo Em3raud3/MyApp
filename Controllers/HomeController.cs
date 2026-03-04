@@ -15,6 +15,10 @@ namespace MyApp.Controllers
         {
             return View();
         }
+        public IActionResult BasicPageAlt()
+        {
+            return View();
+        }
 
         public IActionResult Table()
         {
