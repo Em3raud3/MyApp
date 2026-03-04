@@ -1,0 +1,973 @@
+﻿<style>
+    .resource-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+        transition: background-color 0.2s ease;
+    }
+
+        .resource-list .list-group-item:hover {
+            background-color: #dde4ef;
+        }
+
+        .resource-list .list-group-item h6 a {
+            color: #2d3748 !important;
+        }
+
+        .resource-list .list-group-item .small {
+            color: #637080 !important;
+        }
+
+    .info-block {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+    }
+
+    .info-block-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.38rem;
+    }
+
+    .info-block-body {
+        padding: 1.25rem;
+        color: #4a5568;
+        font-size: 1.26rem;
+        background-color: #fff;
+    }
+
+        .info-block-body p {
+            margin-bottom: 0.75rem;
+        }
+
+            .info-block-body p:last-child {
+                margin-bottom: 0;
+            }
+
+        .info-block-body ul {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-block-body a {
+            color: #2b6cb0;
+        }
+
+        .info-block-body strong {
+            color: #2d3748;
+        }
+
+    .section-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+    }
+
+        .section-list .list-group-item:hover {
+            background-color: #dde4ef;
+        }
+
+    .section-toggle {
+        color: #2d3748;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1.32rem;
+    }
+
+        .section-toggle:hover {
+            color: #1a202c;
+        }
+
+        .section-toggle .chevron {
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            color: #637080;
+        }
+
+        .section-toggle[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+        }
+
+    .section-body {
+        color: #4a5568;
+        padding: 0.75rem 1.5rem 0.75rem 1.5rem;
+        border-top: 1px solid #cfd8e3;
+        margin-top: 0;
+        font-size: 1.26rem;
+    }
+
+        .section-body p {
+            margin-bottom: 0.75rem;
+        }
+
+            .section-body p:last-child {
+                margin-bottom: 0;
+            }
+
+        .section-body ul, .section-body ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-body a {
+            color: #2b6cb0;
+            word-break: break-word;
+        }
+
+        .section-body h4 {
+            color: #2d3748;
+            font-size: 1.26rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-body blockquote {
+            border-left: 3px solid #cfd8e3;
+            padding-left: 1rem;
+            color: #637080;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+            .section-body table td, .section-body table th {
+                padding: 0.5rem 0.75rem;
+                border: 1px solid #cfd8e3;
+            }
+
+            .section-body table th {
+                background-color: #edf1f7;
+                font-weight: 600;
+                color: #2d3748;
+            }
+
+    .inner-section-list {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        margin-top: 0.75rem;
+    }
+
+    .inner-section-item {
+        background-color: #f7f9fc;
+        border-bottom: 1px solid #cfd8e3;
+        padding: 0;
+    }
+
+        .inner-section-item:last-child {
+            border-bottom: none;
+        }
+
+    .inner-section-toggle {
+        color: #2d3748;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0.6rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+
+        .inner-section-toggle:hover {
+            color: #1a202c;
+        }
+
+    .section-toggle span {
+        color: #EAAA00;
+    }
+
+    .inner-section-toggle .inner-chevron {
+        transition: transform 0.2s ease;
+        flex-shrink: 0;
+        margin-left: 1rem;
+        color: #637080;
+    }
+
+    .inner-section-toggle[aria-expanded="true"] .inner-chevron {
+        transform: rotate(180deg);
+    }
+
+    .inner-section-body {
+        color: #4a5568;
+        padding: 0.5rem 1rem 0.5rem 1rem;
+        border-top: 1px solid #e2e8f0;
+        margin-top: 0;
+        font-size: 1.2rem;
+    }
+
+        .inner-section-body p {
+            margin-bottom: 0.5rem;
+        }
+
+        .inner-section-body ul {
+            padding-left: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .inner-section-body a {
+            color: #2b6cb0;
+            word-break: break-word;
+        }
+</style>
+
+<div class="py-4">
+    <p class="text-secondary mb-4">Driver licensing resources, services, and information provided by the West Virginia DMV.</p>
+    <hr class="mb-4" style="border-color: #cfd8e3;" />
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-6 text-end">
+            <a href="https://apps.wv.gov/dmv/selfservice" target="_blank">
+                <drupal-media data-entity-type="media" data-entity-uuid="180fe282-210b-48f0-b85c-435d2363ef6e">&nbsp;</drupal-media>
+            </a>
+        </div>
+        <div class="col-md-6">
+            <a href="https://wv.accessgov.com/selfservice/Forms/Page/realid/headstart/1" target="_blank">
+                <drupal-media data-entity-type="media" data-entity-uuid="01999940-2910-4af4-9a3a-188b1f2eb824">&nbsp;</drupal-media>
+            </a>
+        </div>
+    </div>
+
+    <!-- Always expanded: Two Types -->
+    <div class="info-block mb-3">
+        <div class="info-block-header">There are TWO types of Driver's Licenses &amp; ID Cards</div>
+        <div class="info-block-body">
+            <p>You have the choice between a <strong>Not For Federal Use</strong> driver's license or ID card, or a <strong>REAL ID / For Federal Use</strong> card that contains a gold star, indicating that the card meets full federal requirements for future use at airports and other designated federal facilities and uses nationwide. Details of how Federal Government will implement this requirement have not been released.</p>
+            <p>Applicants applying for, renewing, or obtaining a duplicate driver's license or ID card are required to provide specific documents. The documents you need to bring to the DMV depends on what type of card you choose. Due to processing and shipping costs, an additional <strong>$10.00 fee</strong> is required to obtain a <strong>REAL ID / For Federal Use</strong> card.</p>
+        </div>
+    </div>
+
+    <!-- Always expanded: REAL ID / Central Issuance -->
+    <div class="info-block mb-4">
+        <div class="info-block-header">NOTE: REAL ID / Central Issuance</div>
+        <div class="info-block-body">
+            <p>In late 2020, DMV phased-in a new driver's license issuance program, in compliance with the Real ID Act of 2005. Customers renewing or applying for a driver's license or identification card credential, in the regional offices, at the kiosks, or online, now receive a temporary card/receipt, valid for <strong>60 days</strong>, and their permanent credential will be mailed to them as part of the central issuance requirement for REAL ID. Customers applying for duplicate credentials will also receive a temporary card and their permanent credential in the mail. All license and ID issuance is now done through the central print location, with no credentials being printed in the offices.</p>
+            <p>Central issuance involves mailing permanent license and ID cards from a secure facility. Additionally, the new program also includes a new design for licenses and IDs with several upgraded security features. These security features will reduce the risk of fraud and identity theft.</p>
+            <p>Customers that want a new driver's license are encouraged to make an appointment through the DMV website at <a href="https://dmv.wv.gov" target="_blank">dmv.wv.gov</a>. If you currently have an appointment for a driver's license transaction, you do not need to make a new one. The same documents are required as before — proof of identity, proof of social security number, and two proofs of physical residency.</p>
+        </div>
+    </div>
+
+    <!-- Accordion sections -->
+    <div class="list-group shadow-sm rounded section-list">
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-nffu" aria-expanded="false" aria-controls="sec-nffu">
+                <span>Not for Federal Identification Card Requirements</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-nffu" class="collapse">
+                <div class="section-body">
+                    <p><strong>Renewal Applicants</strong> for a driver's license or ID card with no changes are required to provide their current license or ID card OR the renewal application. Any changes in address since the last card will require two proof of WV residency documents with name and physical address. Any change of legal name requires proof of legal name change document(s).</p>
+                    <p><strong>Duplicate Applicants:</strong> If your license has been lost, stolen, or destroyed, you are required to provide one proof of identity document and one proof of WV residency document. Additionally, if your legal name has changed from what was listed on your previous license or ID card, you must also provide proof of legal name change document(s). If you have changed your address since the last card was issued, you must provide two proofs of WV residency documents.</p>
+                    <p><strong>New Applicants, Transfers, and Expired License Applicants</strong> are required to provide one proof of identity, one proof of Social Security number, two proofs of WV residency with name and physical address, and proof of legal name change document(s) if your name has changed or is different than the provided proof of identity document.</p>
+                    <ul>
+                        <li>Applicants who have never held a driver's license or ID card, who are transferring a license from out-of-state, or who have a West Virginia license that has been expired for more than three (3) years are considered first-time applicants.</li>
+                        <li>Applicants who are applying for a West Virginia driver's license and are transferring a license from another state must also submit their current license from the previous state or present a current certified driving record from their previous state, dated 30 days or less from the date of the application. New residents who want to drive in WV must apply for a WV driver's license within 30 days.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-realid" aria-expanded="false" aria-controls="sec-realid">
+                <span>For Federal Identification (REAL ID) Card Requirements</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-realid" class="collapse">
+                <div class="section-body">
+                    <p><strong>Renewal Applications</strong> for a REAL ID / For-Federal Identification driver's license or ID card with no changes are required to provide their current license or ID card OR the renewal application. Any changes in address since the last card will require two proof of WV residency documents with name and physical address. Any change of legal name requires proof of legal name change document(s) and one proof of Social Security number document.</p>
+                    <p><strong>Duplicate Applicants</strong> choosing a "For Federal Use" driver's license or ID card are required to provide one proof of identity document, one proof of Social Security number document, two proofs of WV residency documents with name and physical address, and proof of legal name change document(s) if their name has ever changed or is different than the provided proof of identity document.</p>
+                    <p><strong>New Applicants, Transfers, and Expired License Applicants</strong> are required to provide one proof of identity, one proof of Social Security number, two proofs of WV residency with name and physical address, and proof of legal name change document(s) if your name has ever changed.</p>
+                    <ul>
+                        <li>Applicants who have never held a driver's license or ID card, who are transferring a license from out-of-state, or who have a West Virginia license that has been expired for more than three (3) years are considered first-time applicants.</li>
+                        <li>Applicants who are applying for a West Virginia driver's license and are transferring a license from another state must also submit their current license from the previous state or present a current certified driving record from their previous state, dated 30 days or less from the date of the application. New residents who want to drive in WV must apply for a WV driver's license within 30 days.</li>
+                    </ul>
+                    <p><em>This card is sent to the applicant's address via USPS in 10–15 business days. A temporary license is issued at the time the application is accepted at DMV for use during the production and shipping of this card.</em></p>
+                    <h4>REAL ID Headstart</h4>
+                    <p><strong>*New –</strong> <a href="http://go.wv.gov/realidheadstart" target="_blank">REAL-ID Headstart PreEnrollment Service</a> is now available to West Virginians. The new service from the West Virginia Division of Motor Vehicles is the easiest and fastest way to upgrade a current "Not for Federal Identification" type WV Driver's License or State ID to a REAL ID. Enter your information, upload your documents, then book your appointment (once approved) — it's that easy! Spend up to 50% less time at the DMV during your in-person appointment! <a href="http://go.wv.gov/realidheadstart" target="_blank">http://go.wv.gov/realidheadstart</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-docs" aria-expanded="false" aria-controls="sec-docs">
+                <span>Acceptable Proof Documents</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-docs" class="collapse">
+                <div class="section-body">
+
+                    <div class="inner-section-list">
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-identity" aria-expanded="false" aria-controls="sec-identity">
+                                <span>Proof of Identity Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-identity" class="collapse">
+                                <div class="inner-section-body">
+                                    <ul>
+                                        <li>
+                                            An original or certified copy of a United States-issued birth certificate (U.S. Department of State and U.S. Military birth certificates ARE acceptable, hospital birth certificates and Bureau of Census records are NOT acceptable)
+                                            <ul>
+                                                <li>To obtain a birth certificate, if you were born in West Virginia, contact the Office of Vital Statistics or the County Clerk at the courthouse of the county in which you were born. If you were born in another state, the National Center for Health Statistics has information on how to obtain a birth certificate.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Valid, unexpired U.S. Passport or official U.S. Passport card</li>
+                                        <li>
+                                            If foreign born, valid, unexpired Department of Homeland Security (DHS) document(s) or acceptable alternatives as outlined below:
+                                            <ul>
+                                                <li>Permanent Resident Card (Form I-551) issued by DHS (or INS)</li>
+                                                <li>Employment authorization document (EAD) issued by DHS, Form I-766 or Form I-688B</li>
+                                                <li>Certificate of Naturalization issued by DHS, Form N-550 or Form N-570</li>
+                                                <li>Certificate of Citizenship, Form N-560 or Form N-561, issued by DHS</li>
+                                                <li>Consular Report of Birth Abroad (CRBA) issued by the U.S. Department of State, Form FS-240, DS-1350 or FS-545</li>
+                                                <li>Foreign passport with a valid, unexpired U.S. visa affixed accompanied by the approved I-94 form documenting the applicant's most recent admittance into the United States</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-ssn" aria-expanded="false" aria-controls="sec-ssn">
+                                <span>Proof of Social Security Number Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-ssn" class="collapse">
+                                <div class="inner-section-body">
+                                    <ul>
+                                        <li>Social Security card</li>
+                                        <li>Original Wage and Tax Statement (W-2) or payroll stub with the applicant's employer name and employer ID number, as well as the applicant's name, address, and Social Security number (a photocopy of a W-2 is not acceptable) (You may use the same W-2 as one proof of WV residency, provided it is not more than 18 months old)</li>
+                                        <li>1099 form with applicant's full Social Security number and name</li>
+                                    </ul>
+                                    <p>Please make sure your Social Security records reflect your full legal name, as reflected on your other documents. DMV must be able to establish a name connection between documents, therefore your full legal name must match your name on file with the Social Security Administration. If an applicant is not eligible for a social security number, then the applicant must submit a denial letter from the Social Security Administration. The Division checks every social security number with the SSA. If you have a problem with the SSA, such as name or date of birth does not match with records of the DMV, and SSA then you must have the problem corrected before you can be issued a permit, license, or identification card. <strong>Your documents will be scanned and returned to you, which will provide DMV with a historical record, and provide you with additional protection, per the Federal Real ID Act of 2005. Please visit the <a href="https://www.ssa.gov/" target="_blank">Social Security Administration website</a> for information about obtaining a Social Security number.</strong></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-namechange" aria-expanded="false" aria-controls="sec-namechange">
+                                <span>Proof of Legal Name Change Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-namechange" class="collapse">
+                                <div class="inner-section-body">
+                                    <p>DMV must be able to establish a link between any legal name changes — <strong>Please call 1-800-642-9066 to clarify which proof of name change document(s) you will need to bring in to obtain your license or ID card</strong> (you may be required to provide all or some of the following proof below)</p>
+                                    <ul>
+                                        <li>
+                                            Certified marriage certificate (for each marriage if married more than once, souvenir documents or Minister's copies are not acceptable)
+                                            <ul>
+                                                <li>If you need to obtain one, contact the county courthouse in the county and state in which you were married (<a href="https://wvbar.org/public-information/courthouses/" target="_blank">click here for a WV directory</a>);</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            Original or certified copy of a birth certificate with amended legal name
+                                            <ul>
+                                                <li>To obtain a birth certificate, if you were born in West Virginia, contact the Office of Vital Statistics. If you were born in another state, the National Center for Health Statistics has information on how to obtain a birth certificate.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Court Order with legal name / name change</li>
+                                        <li>Certified divorce decree(s) with legal name / name change</li>
+                                        <li><strong>If you are age 50 or over</strong> and have satisfied all other documentation requirements, hold a current WV license or ID card in the name being verified, and have gone through at least one WV renewal cycle, a signed statement may be submitted in lieu of the name change document.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-residency" aria-expanded="false" aria-controls="sec-residency">
+                                <span>Proof of West Virginia Residency Documents</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-residency" class="collapse">
+                                <div class="inner-section-body">
+                                    <p>You will be required to provide <strong>TWO</strong> proofs of West Virginia residency.</p>
+                                    <p>Documents with a PO Box are not acceptable.</p>
+                                    <p>Any recurring document cannot be more than 60 days old.</p>
+                                    <p>You may not use more than one document issued by the same company.</p>
+                                    <h3 style="text-align: center;">Acceptable Documents</h3>
+                                    <hr style="border: none; border-top: 3px solid #f9b400; opacity: 1; margin: 0.75rem 0;" />
+                                    <ul>
+                                        <li>WV utility bills (not more than 60 days old)</li>
+                                        <li>Tax records with a WV street address</li>
+                                        <li>WV mortgage documents, homeowner insurance documents, or proof of WV home ownership</li>
+                                        <li>WV W-2 form not more than 18 months old</li>
+                                        <li>WV weapons permit</li>
+                                        <li>Valid WV vehicle registration card</li>
+                                        <li>WV Voter's Registration card</li>
+                                        <li>Driver's Eligibility Certificate (only if it has a WV street address)</li>
+                                        <li>WV Homestead Tax exemption</li>
+                                        <li>Proof of WV public assistance</li>
+                                        <li>Residential rental or lease agreement</li>
+                                        <li>
+                                            WV DMV <a href="/media/56" target="_blank"
+                                                      data-entity-type="media"
+                                                      data-entity-uuid="8e42d43f-ac81-4dc6-97aa-23d795c15094"
+                                                      data-entity-substitution="media_download_inline">
+                                                Affidavit of West Virginia Residency
+                                            </a>
+                                        </li>
+                                        <li>College admissions letter showing in-state residency</li>
+                                        <li>Pay check stub from any WV employer showing a current physical address (cannot be hand-written)</li>
+                                        <li>Social Security benefits letter</li>
+                                        <li>WV Professional License</li>
+                                        <li>WV bank statement</li>
+                                        <li>WV auto insurance card</li>
+                                        <li>WV hunting license</li>
+                                        <li>911 letter</li>
+                                        <li>
+                                            <a href="/media/57"
+                                               target="_blank"
+                                               data-entity-type="media"
+                                               data-entity-uuid="0578496c-d0b4-4ae7-96c0-4d02638f4e9d"
+                                               data-entity-substitution="media_download_inline">
+                                                Affidavit of WV Facility Residency
+                                            </a> (for those residing in a WV shelter, hotel, nursing home, or other similar facility)
+                                        </li>
+                                    </ul>
+                                    <h4><a href="/media/58" data-entity-type="media" data-entity-uuid="96e172f5-5633-423f-907f-1598fe462797" data-entity-substitution="media_download_inline">Click here to open a copy of the brochure on the new driver's license and ID card requirements.&nbsp;</a></h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="inner-section-item">
+                            <button class="inner-section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-changes" aria-expanded="false" aria-controls="sec-changes">
+                                <span>Changes to Birth Date, Social Security Number</span>
+                                <svg class="inner-chevron" xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                                </svg>
+                            </button>
+                            <div id="sec-changes" class="collapse">
+                                <div class="inner-section-body">
+                                    <p>The license or identification card holder shall substantiate a change of name by marriage with a certified marriage certificate. The license or identification card holder may choose from the following options to display his or her name on the driver's license. However, a court order specifying a change of name supersedes a birth certificate and certified marriage certificate.</p>
+                                    <ul>
+                                        <li>Last name, first name then middle name as evidenced by the applicant's certified birth certificate</li>
+                                        <li>Last name of spouse, as evidenced by the applicant's certified marriage certificate, then the first name and middle name as evidenced by the applicant's birth certificate</li>
+                                        <li>Last name as evidenced by the applicant's marriage license, first name, then maiden name as evidenced by the applicant's birth certificate to stand in place of the middle name</li>
+                                        <li>Any change in the birth date requires a certified birth certificate.</li>
+                                        <li>Any change or correction of the Social Security number requires a Social Security card (non-metal and not a printout from SSA).</li>
+                                        <li>Any change of gender requires the submission of the <a href="/media/59" data-entity-type="media" data-entity-uuid="d21494a4-8107-481b-bd1f-a0f0a3b83184" data-entity-substitution="media_download_inline">Gender Designation Form</a>, which must be fully and accurately completed and signed by a licensed physician.</li>
+                                    </ul>
+                                    <p><a href="/node/87" data-entity-type="node" data-entity-uuid="5ff0abf3-10f2-429a-afc4-ce6d2981c518" data-entity-substitution="canonical">Click here to visit the Secure Licensing FAQ Section</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-sample-licenses" aria-expanded="false" aria-controls="sec-sample-licenses">
+                <span>Sample Licenses</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-sample-licenses" class="collapse">
+                <div class="section-body text-center">
+                    <div class="text-center">
+                        <drupal-media data-entity-type="media" data-entity-uuid="61cc9dd6-9eeb-4826-ae6f-aa28c4c4683a">&nbsp;</drupal-media>
+                    </div>
+                    <br />
+                    <h3>Licenses Issued July 2011 - December 2011</h3>
+                    <p>The Licenses below were issued July 2011 through December 2011 are currently in circulation, for details click on one of the images below:</p>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="f00c5756-3225-4bbb-a2b0-779268a7393e">&nbsp;</drupal-media>
+                        </div>
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="beb342e2-3f79-44ff-8a04-5243386efcce">&nbsp;</drupal-media>
+                        </div>
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="7a4325af-3d7e-432f-ac36-13a2f5f57945">&nbsp;</drupal-media>
+                        </div>
+                    </div>
+
+                    <br />
+                    <h3>Licenses Issued Prior to July 2011</h3>
+                    <p>The Licenses below were issued through July 2011 are currently in circulation and are valid until expiration:</p>
+                    <br />
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="0f33b248-f296-436f-9e55-e69762c11340">&nbsp;</drupal-media>
+                        </div>
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="27c2fe89-6124-43c4-b138-194a28bffec1">&nbsp;</drupal-media>
+                        </div>
+                        <div class="col-4 text-center">
+                            <drupal-media data-entity-type="media" data-entity-uuid="f9dcaf6e-fca2-4f56-9563-a7c5f9a53938">&nbsp;</drupal-media>
+                        </div>
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-procedures" aria-expanded="false" aria-controls="sec-procedures">
+                <span>Procedures on Driver's Licences</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-procedures" class="collapse">
+                <div class="section-body">
+                <p><a href="/media/68" target="_blank" data-entity-type="media" data-entity-uuid="5a4647c6-02a7-4627-aed5-4a51e782643f" data-entity-substitution="media_download_inline">If you are looking for a Driver's Licensing Handbook, click here.</a></p>
+
+                    <h4>Who Must Be Licensed?</h4>
+                    <p>If you live in West Virginia and want to drive a motor vehicle on the public roads, you must have a West Virginia driver's license, unless you are exempt. You must carry your license with you when you drive.</p>
+
+                    <h4>Who is Exempt?</h4>
+                    <ul>
+                        <li>Any person operating a motor vehicle in the armed services of the United States in the performance of official duties.</li>
+                        <li>A nonresident who is at least 16 years old and has a valid driver's license from another state or country (limited to 90 days in a calendar year).</li>
+                        <li>A nonresident who is attending a West Virginia college or university and has a valid license from another state.</li>
+                    </ul>
+
+                    <h4>Who Must Be Tested?</h4>
+                    <ul>
+                        <li>Individuals with Instruction Permits</li>
+                        <li>Individuals from other states if their Driver's License is expired</li>
+                        <li>West Virginia residents whose license has been expired for more than three (3) years</li>
+                        <li>Individuals who have obtained a WV Identification Card</li>
+                    </ul>
+
+                    <h4>Where to Apply?</h4>
+                    <p>All types of instruction permits and driving licenses may be obtained at one of the Division of Motor Vehicles Regional Offices or any Division of Motor Vehicles Exam Centers on a rotating schedule. <a href="/node/15" data-entity-type="node" data-entity-uuid="9d396bf7-f525-4eff-b53c-9de13f1344c8" data-entity-substitution="canonical">Click here for a list of locations with directions and information.</a></p>
+                    <p><strong>The WVDMV will make all reasonable modifications to policies and programs to ensure that people with disabilities have an equal opportunity to enjoy all of its programs, services, and activities.</strong> For example, individuals with service animals are welcomed in the WVDMV offices, even where pets are generally prohibited.</p>
+                    <p>Persons who require special assistance with sign language interpreters, hearing equipment, or visual aids — or anyone who requires an auxiliary aid or service for effective communication, or a modification of policies or procedures — should contact us as soon as possible but <strong>no later than 48 hours before the scheduled event</strong>.</p>
+
+                    <h4>Who Can Be Denied a License?</h4>
+                    <ul>
+                        <li>Any person who is a habitual user of alcoholic beverages or is addicted to the use of narcotic drugs.</li>
+                        <li>Any person whose license has been suspended or revoked by this state or any other state or foreign jurisdiction, until the expiration of the suspension or revocation period.</li>
+                        <li>Any person who the Commissioner of Division of Motor Vehicles has good cause to believe would be hazardous to the public safety or welfare when operating a motor vehicle.</li>
+                        <li>Any person who is under 18 years of age and not enrolled in or graduated from an approved educational institution.</li>
+                        <li>A person illegal in the U.S.</li>
+                        <li>Any person who cannot provide the required documentation as outlined in the following section.</li>
+                    </ul>
+
+                    <p>All types of instruction permits and driver's licenses may be obtained at most of the <a href="/node/15" data-entity-type="node" data-entity-uuid="9d396bf7-f525-4eff-b53c-9de13f1344c8" data-entity-substitution="canonical">DMV Regional Offices</a>.</p>
+                    <p>To obtain a birth certificate, if you were born in West Virginia, contact the <a href="http://www.wvdhhr.org/bph/hsc/vital/birthcert.asp" target="_blank">Office of Vital Statistics</a>. If you were born in another state, the <a href="http://www.cdc.gov/nchs/w2w.htm" target="_blank">National Center for Health Statistics</a> has information on how to obtain a birth certificate.</p>
+                    <p><strong>**Please note:</strong> If the motor vehicle you want to take the driver's skills examination in is under a <strong>safety recall</strong>, Regional Office personnel will not give the examination. The owner or operator must provide proof that the issue has been properly repaired and resolved prior to being allowed to use that vehicle for the examination.</p>
+                    <p><strong>You will be provided with the opportunity to obtain another vehicle not under any safety recall to proceed with the skills test, provided it is still on the same day of requested testing.</strong></p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-pdps" aria-expanded="false" aria-controls="sec-pdps">
+                <span>A Word about the Problem Driver Pointer System (PDPS)</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-pdps" class="collapse">
+                <div class="section-body">
+                    <p>All drivers' license applicants are subject to a review of their driving records through the <strong>Problem Driver Pointer System (PDPS)</strong>, a national driver registry designed to track violations and suspensions from state-to-state. If you have previously received a violation in another state, make sure to satisfy any citations and suspensions you may have pending before applying for a West Virginia driver's license.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-oos-transfers" aria-expanded="false" aria-controls="sec-oos-transfers">
+                <span>Out-of-State Transfers / New Residents</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-oos-transfers" class="collapse">
+                <div class="section-body">
+                    <p>If you have a valid non-expired out-of-state license, you are eligible to transfer the license. If the out-of-state license is expired, you are required to take all examination tests — vision, written, and road skills examination(s) — before making application for a driver's license. You are required to pass a vision screening, complete a brief alcohol awareness course, and surrender your out-of-state license before a WV license will be issued. A transfer applicant must present all documents that are required. If you have a motorcycle endorsement on your license, the Division will transfer the endorsement for an additional fee of <strong>$1.00 per year</strong>, for the length of time the driver's license is valid.</p>
+                    <p>A new resident who does not have possession of the out-of-state license, or if it has expired, must obtain a certified driving record — dated no more than 30 days from the date of the application — from the state in which they were previously licensed.</p>
+                    <p>If your out-of-state license is suspended or revoked, you will not be licensed in WV until you receive a "clearance" in the PDPS. It is illegal to drive in WV with a suspended or revoked license. All applicants for a WV driver's license must be verified with the PDPS. It is important to confirm that you are not under suspension in any other jurisdiction before attempting to obtain a license in WV.</p>
+
+                    <h4>Out-of-State Transfers for Applicants Under 18 Years of Age</h4>
+                    <p>Any applicant under 18 years of age who does not possess a graduated driver's license that either equals or exceeds WV's Level 2 GDL intermediate driver's license, or who was previously licensed in a state or jurisdiction which does not have a graduated driver's license program, must complete the road skills test and written examination as if they've never held a driver's license. However, if the applicant provides a current driving record from their previous state or jurisdiction when they come in to apply for their WV driver's license, they will be credited with the length of time they held their previous driver's license to be put towards the required time period for a Level 1 GDL instruction permit.</p>
+                    <p>Upon obtaining a WV graduated driver's license, the driving record from the applicant's previous state or jurisdiction becomes part of their WV driving record.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <a href="https://wv.accessgov.com/selfservice/Forms/Page/changeaddress2/start/1" target="_blank" class="section-toggle" style="text-decoration: none;">
+                <span>Change of Address</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="flex-shrink: 0; margin-left: 1rem; color: #637080;">
+                    <path fill-rule="evenodd" d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                    <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-immigrants" aria-expanded="false" aria-controls="sec-immigrants">
+                <span>Applicants who are Immigrants, Non-Immigrants, or Refugees</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-immigrants" class="collapse">
+                <div class="section-body">
+
+                    <h4>Immigrants</h4>
+                    <p>Immigrants who are applying for a learner's permit, driver's license, or identification card are required to provide the following documents:</p>
+                    <p><strong>One of the following:</strong></p>
+                    <ul>
+                        <li>An INS Form I-551 Alien Registration Receipt Card</li>
+                        <li>A valid Temporary I-551 stamp in a Foreign Passport (with English translation) or on INS Form I-94</li>
+                        <li>Valid re-entry permit INS Form I-327</li>
+                    </ul>
+                    <p><strong>All of the following:</strong></p>
+                    <ul>
+                        <li>Social Security Card</li>
+                        <li>Two proofs of WV residency</li>
+                    </ul>
+
+                    <h4>Non-Immigrants</h4>
+                    <p>Non-Immigrants applying for a learner's permit, driver's license, or identification card are required to provide the following documents:</p>
+                    <ul>
+                        <li>Social Security Card</li>
+                        <li>Two proofs of WV residency</li>
+                        <li>A valid foreign passport with English translation</li>
+                        <li>A Form I-94</li>
+                        <li>A visa issued by the United States, if the applicant is from a nation whose citizens are required by the United States to obtain a visa</li>
+                        <li>All original INS documents to verify status and length of authorized stay</li>
+                        <li>If the applicant's status is <strong>F-1 or F-2</strong>: a Form I-20 and written verification of attendance at the school listed on Form I-20 (not more than 20 days old) is required</li>
+                        <li>If the applicant's status is <strong>work-related</strong>: written verification (not more than 30 days old) from employer is required for the applicant as well as dependents</li>
+                        <li>If the applicant's status is <strong>J-1 or J-2</strong>: a Form DS-2019 and written verification of employment or attendance at the school listed on Form DS-2019 (not more than 30 days old) is also required</li>
+                    </ul>
+
+                    <h4>Refugees</h4>
+                    <p>Refugees applying for a learner's permit, driver's license, or identification card are required to provide the following documents:</p>
+                    <ul>
+                        <li>Social Security Card</li>
+                        <li>INS Form I-94 showing grant of refugee status</li>
+                        <li>A Reception and Placement Program Assurance Form</li>
+                        <li>Written verification of identity and WV residency presented by an employee of a sponsoring organization approved by the United States Department of State to resettle refugees in WV</li>
+                    </ul>
+                    <p>Applicants who are refugees who do not have an approved sponsoring organization, or an asylee, shall provide the following:</p>
+                    <ul>
+                        <li>Two proofs of WV residency</li>
+                        <li>Social Security Card</li>
+                        <li>Form INS I-94 stamped Refugee/Asylee</li>
+                        <li>Form I-688B and I-766 Employment Authorization Document</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-military-renewal" aria-expanded="false" aria-controls="sec-military-renewal">
+                <span>Military Renewal of Drivers License</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-military-renewal" class="collapse">
+                <div class="section-body">
+                    <p>Military personnel <strong>(17B-2-12)</strong> — the driver's license of any person in the armed forces is extended for a period of <strong>six (6) months</strong> from the date the person is separated under honorable circumstances from active duty in the armed forces.</p>
+                    <p>The Division may, upon request, renew the driving privileges of a licensee who is temporarily located out of state at the time their license expires. The Division shall not issue a new driver's license to the licensee. The Division will issue a <strong>certified driving record</strong> to the licensee indicating that the licensee has renewed his or her driving license with a notation of the new expiration date. The licensee shall obtain a new license upon returning to West Virginia.</p>
+                    <p>For further information call <strong>1-800-642-9066</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-youth-id" aria-expanded="false" aria-controls="sec-youth-id">
+                <span>Youth Identification Cards</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-youth-id" class="collapse">
+                <div class="section-body">
+                    <p>The Youth Identification card is for minors who are <strong>2 to 15 years of age</strong>. A parent or guardian must sign the application <strong>(DMV-DS-23P)</strong>, provide the minor's birth certificate, Social Security card, and two proofs of WV residency documents to be submitted with the application.</p>
+                    <p>These cards are in vertical format, as all minor ID cards, and have a yellow background. New and duplicate Youth ID cards cost <strong>$10.00</strong> and are valid for <strong>two (2) years</strong> from the date of issuance.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-regular-permit" aria-expanded="false" aria-controls="sec-regular-permit">
+                <span>Regular (non-GDL) Instruction Permit</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-regular-permit" class="collapse">
+                <div class="section-body">
+                    <p>If you are <strong>18 or older</strong> and have never obtained a driver's license (Level 2 or comparable), you must obtain a regular <strong>Class E Instruction Permit</strong>. When you have completed the application and presented the appropriate documents as a first-time applicant, you will be allowed to take the vision screening and knowledge test.</p>
+                    <p>When you pass the vision and knowledge tests, you will be issued a regular Class E Instruction Permit. The Instruction Permit allows you to operate a motor vehicle when a <strong>licensed driver 21 or older</strong> occupies the front passenger seat beside you.</p>
+                    <p>The Instruction Permit will be valid for a period of 180 days and is not to be renewed. After at least 30 days, you are eligible for a road skills test. After the expiration date, you must pass the vision screening, retake the Learner's test, and hold it for an additional 30 days.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-gdl" aria-expanded="false" aria-controls="sec-gdl">
+                <span>Graduated Driver's Licensing (GDL)</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-gdl" class="collapse">
+                <div class="section-body">
+
+                    <p><a href="/media/69" target="_blank" data-entity-type="media" data-entity-uuid="9e5cc8d3-4cc4-4b0d-ba06-48fbf4649a10" data-entity-substitution="media_download_inline">Click here to see the WV GDL Program Flyer.</a></p>
+
+                    <h4>Level 1 – Knowledge Test – Fee $7.50 per attempt</h4>
+                    <p>An instruction permit allows you to operate a motor vehicle in order to learn to drive.</p>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Take a knowledge test</li>
+                        <li>Be at least 15 years old and less than 18 years old</li>
+                    </ul>
+                    <p>If you are under the age of 18, a parent, single parent having custody, or legal guardian <strong>must sign your application</strong> before you can be tested. Married applicants under the age of 18 are not required to have parental consent; however, you must present a copy of your certified marriage certificate. This permit is not renewable.</p>
+                    <p><strong>Expiration Date:</strong> 18th Birthday with 30 Day Grace Period</p>
+                    <p><strong>Restrictions for Level 1:</strong></p>
+                    <ul>
+                        <li>Must have a licensed driver 21 or over in front seat</li>
+                        <li>May only drive between the hours of 5:00 am and 10:00 pm</li>
+                        <li>All occupants must use safety belts in accordance with state law</li>
+                        <li>Zero alcohol tolerance</li>
+                        <li>May only have two additional non-family member passengers in addition to supervising adult</li>
+                        <li>No cell phone usage/texting while operating a vehicle. You may be stopped by law enforcement as a primary offense.</li>
+                    </ul>
+
+                    <h4>Level 2 – Intermediate Driver's License – Fee $7.50 (road skill examination)</h4>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Take a road skills test</li>
+                        <li>Be at least 16 years of age</li>
+                        <li>Held a Level I permit for six (6) months</li>
+                        <li>Must be infraction free for six (6) months immediately preceding date of application for Level II</li>
+                        <li>Must have 50 hour certification form completed, with 10 of the hours being at night, and certified by parent or legal guardian or Driver Education Card</li>
+                    </ul>
+                    <p><strong>Expiration Date:</strong> 18th Birthday with 30 Day Grace Period</p>
+                    <blockquote>
+                        <p><em>**Parents and Caregivers — WV DMV has partnered with a national initiative called the Parent's Supervised Driving Program, which gives you the tools to help teach your teens to drive in an easy to understand and follow format.</em></p>
+                        <p><a href="https://www.theparentssuperviseddrivingprogram.com/" target="_blank"><em>Download the digital curriculum here.</em></a></p>
+                        <p><em>And, download the free app from your phone's App Store by searching RoadReady. The RoadReady app logs and manages hours spent behind the wheel so families can easily keep track before testing!</em></p>
+                    </blockquote>
+                    <p>If you receive two violations on a Level II, your license will be revoked until your 18th birthday. Once you have turned 18, you will be required to pay a reinstatement fee; once processed, the revocation will be closed and the license will be cancelled. You will receive a re-test letter by mail from the division and will be prompted to go to your local DMV to begin the re-testing process as a first time applicant. Married applicants under the age of 18 are not required to have parental consent; however, you must present a copy of your certified marriage certificate.</p>
+                    <p><strong>Restrictions for Level 2:</strong></p>
+                    <ul>
+                        <li>May not operate a motor vehicle during his or her first six months of Level II status with any (0) non-family member passengers under the age of 20. May not operate a motor vehicle with more than one (1) non-family member under the age of 20 as a passenger during the second six months of Level II</li>
+                        <li>May drive without supervising adult between 5:00 am and 10:00 pm</li>
+                        <li>
+                            Must be accompanied by a supervising adult driver between the hours of 10:00 pm and 5:00 am <strong>EXCEPT</strong> when the licensee is participating in or returning from:
+                            <ul>
+                                <li>Employment</li>
+                                <li>A school sanctioned activity</li>
+                                <li>A religious activity</li>
+                                <li>An emergency situation requiring the licensee to operate a motor vehicle to prevent bodily injury or death of another</li>
+                            </ul>
+                        </li>
+                        <li>All occupants must use safety belts in accordance with state law</li>
+                        <li>Zero alcohol tolerance</li>
+                        <li>No cell phone usage/texting while operating a vehicle. You may be stopped by law enforcement as a primary offense.</li>
+                    </ul>
+
+                    <h4>Level 3 – Full Class E License Fee – $5.00 for each year until 21st birthday</h4>
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>Must have at least 1 year with Level II</li>
+                        <li>Must be infraction free for 1 year (excludes headlamp violation and improper backing violation)</li>
+                        <li>Must be at least 17 years of age</li>
+                    </ul>
+                    <p><strong>Expiration Date:</strong> 21st birthday with 30 day grace period</p>
+                    <p><strong>Restrictions for Level 3:</strong></p>
+                    <ul>
+                        <li>Points will now be applied for any tickets received</li>
+                        <li>Zero alcohol tolerance</li>
+                        <li>All occupants must use safety belts in accordance with state law</li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-license-restrictions" aria-expanded="false" aria-controls="sec-license-restrictions">
+                <span>License Restrictions</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-license-restrictions" class="collapse">
+                <div class="section-body">
+                    <p>The DMV is authorized to impose license restrictions to assure the safe operation of motor vehicles. The DMV may issue you a restricted license with the restriction indicated on the driver's license. Operating a motor vehicle in violation of the restriction is a serious offense and could result in the <strong>suspension or revocation</strong> of your driving privilege. Once suspended, the DMV does not offer a restricted license for work purposes.</p>
+                    <p>Whenever a student at least 15 but less than 17 years of age withdraws from school, or a student at least 15 but less than 17 years of age is enrolled in a secondary school and fails to maintain satisfactory academic progress, the attendance director or chief administrator shall notify the Division of Motor Vehicles and a restriction will be placed on the student's license. The Division of Motor Vehicles shall send notice to the student that the student's instruction permit or license will be <strong>restricted to driving for work or medical purposes or educational or religious pursuits</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-carry-license" aria-expanded="false" aria-controls="sec-carry-license">
+                <span>Carry Your License</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-carry-license" class="collapse">
+                <div class="section-body">
+                    <p>Be sure you have your driver's license with you when you drive. If stopped, you are required to display this license upon demand to any law enforcement officer, magistrate, or official of the Division of Motor Vehicles. Violation of this requirement is a misdemeanor.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-fraudulent-use" aria-expanded="false" aria-controls="sec-fraudulent-use">
+                <span>Fraudulent Use of Driver's Licenses</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-fraudulent-use" class="collapse">
+                <div class="section-body">
+                    <p>The information you provide when you apply for your driver's license, or apply for a duplicate license, must be true and accurate. It is against the law to:</p>
+                    <ul>
+                        <li>Provide false information when you apply for any type of driving license or identification card</li>
+                        <li>Change or alter your license in any way</li>
+                        <li>Use someone else's license as your own</li>
+                        <li>Permit someone else to use your driver's license</li>
+                    </ul>
+                    <p>The penalty for these offenses is a <strong>90-day suspension</strong> of your driver's license.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-suspension-revocation" aria-expanded="false" aria-controls="sec-suspension-revocation">
+                <span>Suspension or Revocation of Your License</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-suspension-revocation" class="collapse">
+                <div class="section-body">
+                    <p>There are many ways you can lose your privilege to drive. Driving while under the influence of alcohol or any other drug — even if it is an over-the-counter cold remedy or a doctor's prescription — subjects you to the DUI laws. You must not drive while your ability to think and act clearly is impaired. <a href="#">Click here for more information on impaired driving.</a></p>
+                    <p>Accumulation of too many citations in a short period of time, driving without insurance, failure to pay any type of court action, failure to supply DMV with current insurance information, and fraudulent checks are just a few of the actions which may result in the <strong>loss of your driving privileges</strong>. The penalties for driving while suspended or revoked include <strong>mandatory jail time</strong> and an additional period of suspension or revocation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="list-group-item p-0">
+            <button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#sec-classifications" aria-expanded="false" aria-controls="sec-classifications">
+                <span>Classifications and Endorsements of Licenses and ID Cards</span>
+                <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+            <div id="sec-classifications" class="collapse">
+                <div class="section-body">
+                    <div class="table-wrapper">
+                        <table class="table table-bordered table-striped mb-0">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th style="width: 12%;">Class</th>
+                                    <th>Classification or Endorsement</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Class A</strong></td>
+                                    <td>Combination of vehicles with a GCWR of 26,001 pounds or more, provided the GVWR of the unit being towed is 10,001 pounds or greater</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class B</strong></td>
+                                    <td>Single vehicles with a GVWR of 26,001 pounds or more and towing any such unit with a GVWR less than 10,001 pounds</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class C</strong></td>
+                                    <td>Vehicles with a GVWR or a GCWR less than 26,001 pounds and designed to transport 16 or more passengers including the driver, or vehicles used in the transportation of hazardous materials which requires the vehicle to be placarded under 49 C.F.R.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class D</strong></td>
+                                    <td>Non-CDL Vehicle for Hire</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class E</strong></td>
+                                    <td>Passenger Vehicles</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class F</strong></td>
+                                    <td>Motorcycle Only</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class G</strong></td>
+                                    <td>Biopic Lens-Wearing Drivers</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Class X</strong></td>
+                                    <td>Identification Cards (Non-Driving/Non-Driver)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4>Class D License – Non-CDL for Hire</h4>
+                    <p>A Class D License is a Non-CDL for hire. Every person who is employed by another for the purpose of driving a motor vehicle when in use for the transportation of property for compensation and who does not meet the requirements for Class A, B, or C for the commercial driving license needs a Class D license. Exempt from the Class D licenses are vehicles with Class A license plates (regular passenger vehicles).</p>
+
+                    <h4>Class F License – Motorcycles</h4>
+                    <p>If you want to operate a motorcycle on the public roads, you must obtain either a motorcycle endorsement (F) on your driver's license or a Class F motorcycle only driver's license.</p>
+                    <p>First, you must take a knowledge test at your local DMV office in order to obtain your learner's permit. A Motorcycle Driver Handbook has been prepared to help you pass the tests. The permit is valid during daylight hours only and does not permit a passenger.</p>
+                    <p>After you have had your learner's permit for <strong>seven (7) days</strong>, you can make an appointment to return to the DMV to take an on-cycle skills test which must be successfully completed before an endorsement can be added to your license or before a motorcycle only license can be issued.</p>
+                    <p>The Division of Motor Vehicles also offers a Basic or Experienced Rider Course through the <strong>Motorcycle Safety Program</strong>. If you take the Motorcycle Safety Course, it waives the on-cycle skills test. To enroll in a Basic or Experienced Rider Course, please <a href="#">click here</a>.</p>
+                    <p>If you are under the age of 18, you must complete Level II GDL before you can be eligible for a motorcycle instruction permit.</p>
+                    <p>If you have questions about the Motorcycle Safety Program, contact the Motorcycle Safety Program Training Coordinator. Call <strong>(304) 932-8862</strong> or <strong>(304) 352-5890</strong> or email <a href="mailto:Mary.B.Jarrell@wv.gov">Mary.B.Jarrell@wv.gov</a>.</p>
+
+                    <h4>Endorsements: Organ Donor Program / Diabetic / Hearing Impaired Program</h4>
+                    <p>If you wish to be an organ donor, you must check the appropriate box on the application. To sign up as an organ donor or to remove yourself from the WV organ donor registry, <a href="#">click here</a>. <a href="#">Click here for more information on becoming an organ donor or to order a Donate Life license plate.</a></p>
+                    <p>If you wish to have the diabetic or hearing impaired symbol on your driver's license, you must take a driver's license application <strong>(DMV-DS-23P)</strong> to your doctor or audiologist for certification of the medical endorsement.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</div>

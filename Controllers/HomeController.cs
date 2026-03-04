@@ -29,6 +29,11 @@ namespace MyApp.Controllers
         {
             return View();
         }
+
+        public IActionResult TableAccordion()
+        {
+            return View();
+        }
         public IActionResult WIP()
         {
             return View();
