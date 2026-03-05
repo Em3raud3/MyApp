@@ -20,6 +20,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult BasicPageList()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();
@@ -34,6 +39,7 @@ namespace MyApp.Controllers
         {
             return View();
         }
+
         public IActionResult WIP()
         {
             return View();
