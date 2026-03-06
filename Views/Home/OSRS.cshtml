@@ -1,0 +1,253 @@
+﻿@{
+    ViewData["Title"] = "Farming Patch Routes";
+}
+
+<style>
+    .patch-table th {
+        white-space: nowrap;
+    }
+
+    .patch-table td ul {
+        margin-bottom: 0;
+        padding-left: 1.15rem;
+    }
+
+    .patch-table td li + li {
+        margin-top: 0.35rem;
+    }
+
+    .patch-table .highlight-red {
+        background-color: #dc3545 !important;
+        color: #fff;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container py-4">
+    <h2 class="mb-3">Farming Patch Travel Options</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle patch-table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="width: 20%;">Patch</th>
+                    <th scope="col" style="width: 20%;">Requirement</th>
+                    <th scope="col" style="width: 60%;">Travel Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Falador patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Explorer's ring 2, 3, or 4 and run north.</li>
+                            <li>Use the spirit tree teleport to Port Sarim and run north.</li>
+                            <li>Draynor Manor Teleport from the Arceuus spellbook or Draynor Manor Teleport (tablet) and run south-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Port Phasmatys patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Empty the ectophial and run west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ardougne patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Ardougne cloak 2, 3, or 4 to teleport to the farming patches.</li>
+                            <li>Teleport to the Fishing Guild with a skills necklace or Fishing cape and run east.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Catherby patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Catherby Teleport from the lunar spellbook.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Hosidius patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Xeric's talisman, select the Xeric's glade option and run south-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Farming Guild patch</td>
+                    <td>Requires 65 Farming (boostable)</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the Farming Guild with either the Farming cape or a skills necklace and run west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ortus Farm/Civitas illa Fortis patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use a quetzal whistle to teleport to the Hunter Guild and run north.</li>
+                            <li>Teleport to the Hunter Guild with the Hunter cape and run north-east.</li>
+                            <li>Use the Civitas illa Fortis Teleport then use the nearby Quetzal Transport System to teleport to the Hunter Guild and run north.</li>
+                            <li>Use the fairy ring AJP and run north-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="highlight-red">Troll Stronghold patch</td>
+                    <td>Requires My Arm's Big Adventure</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the roof using a stony basalt with at least the hard Fremennik Diary and Agility 73.</li>
+                            <li>Teleport using a stony basalt and use the Rocks shortcut to the roof with Agility 73 (can be boosted).</li>
+                            <li>Teleport using a stony basalt and run through the troll stronghold to the roof.</li>
+                            <li>Teleport to Trollheim and use the Agility shortcuts to the west. Continue through the aggressive trolls and into the stronghold. Run south to a door, and then north to a ladder. Climb up and run north to the patch.</li>
+                            <li>Use a Troll Stronghold Portal built in your Played Owned House.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="highlight-red">Weiss patch</td>
+                    <td>Requires Making Friends With My Arm</td>
+                    <td>
+                        <ul>
+                            <li>Teleport using an icy basalt.</li>
+                            <li>Use the fairy ring DKS, run west to take Larry's boat to Weiss, and enter the cave entrance.</li>
+                            <li>Use a Weiss teleport built in your Player Owned House.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="highlight-red">Harmony Island patch</td>
+                    <td>Requires the elite Morytania Diary</td>
+                    <td>
+                        <ul>
+                            <li>Harmony Island Teleport from the Arceuus spellbook and run south.</li>
+                            <li>Use a Mos le'harmless teleport scroll and run south-west to take the "Transport" option on Brother Tranquility.</li>
+                            <li>(very slow) Empty the ectophial, run to Bill Teach and use the right-click "Travel" option, then use the right-click "Transport" option on Brother Tranquility.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container py-4">
+    <h2 class="mb-2">Example Tree Run Sequence</h2>
+    <p class="text-muted mb-4">
+        The patches can be harvested in any order. Teleport options are ordered from quickest to slowest.
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle patch-table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="width: 22%;">Patch</th>
+                    <th scope="col" style="width: 18%;">Requirement</th>
+                    <th scope="col" style="width: 60%;">Travel Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lumbridge patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to Lumbridge and run west through the castle to arrive at the tree patch.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Varrock Palace patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the centre of Varrock and run north to enter the palace's courtyard with the tree patch.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Falador Park patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to Falador Park with a ring of wealth to arrive next to the tree patch.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Taverley patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to Taverley's house portal, using the Teleport to House spell or a Taverley teleport tablet, and run south-east to arrive at the tree patch.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Gnome Stronghold patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the Stronghold Slayer Cave with a slayer ring to arrive next to the tree patch.</li>
+                            <li>Use the spirit tree network to teleport to the spirit tree in the Gnome Stronghold and run south-west.</li>
+                            <li>Use the royal seed pod to teleport to the Grand tree and run south-west.</li>
+                            <li>Teleport to the Outpost using a necklace of passage, then run north.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Farming Guild patch</td>
+                    <td>85 Farming (for spirit tree route)</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the Farming Guild with either the Farming cape or a skills necklace and run west.</li>
+                            <li>Use a Spirit tree teleport to the Farming Guild and run south-west (requires 85 Farming).</li>
+                            <li>Lovakengj Minecart Network to the Farming Guild and run East. Rada's blessing teleport to the Kourend Woodland gives quick access to the Minecart Network, north-east.</li>
+                            <li>Use the fairy ring code CIR and run south-west to enter the guild.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Auburn Valley tree patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use a pendant of ates to teleport to Nemus Retreat, and run north to the tree patch.</li>
+                            <li>Alternatively, use the Quetzal transport system to Quetzacalli Gorge. Run west and follow the Mountain Guide to Auburn Valley. Run north towards the tree patch.</li>
+                            <li>Alternatively, use the fairy ring code AIS and run south-west, cross the river, then run north-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
