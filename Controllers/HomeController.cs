@@ -30,6 +30,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult BasicPagePretty()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();
@@ -41,6 +46,11 @@ namespace MyApp.Controllers
         }
 
         public IActionResult TableAccordion()
+        {
+            return View();
+        }
+
+        public IActionResult TableFilters()
         {
             return View();
         }

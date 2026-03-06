@@ -1,0 +1,2098 @@
+﻿<style>
+    .forms-table-wrapper {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .forms-table td,
+    .forms-table th {
+        vertical-align: middle;
+    }
+
+    .forms-table tbody tr {
+        transition: background-color 0.15s ease;
+    }
+
+        .forms-table tbody tr:hover {
+            background-color: #dde4ef;
+        }
+
+    .forms-table tbody td.form-number {
+        font-family: monospace;
+        font-weight: 600;
+        color: #0d6efd;
+        white-space: nowrap;
+    }
+
+    .forms-table tbody td.form-description {
+        color: #4a5568;
+        font-size: 0.92rem;
+    }
+
+    .missing {
+        color: #adb5bd;
+        font-style: italic;
+    }
+
+    .filter-panel {
+        background-color: #edf1f7;
+        border: 1px solid #cfd8e3;
+        border-radius: 8px;
+        padding: 1.25rem 1.5rem;
+    }
+
+        .filter-panel label {
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #4a5568;
+            margin-bottom: 0.3rem;
+        }
+
+    .results-count {
+        font-size: 0.875rem;
+        color: #637080;
+    }
+
+    .no-results-row td {
+        text-align: center;
+        color: #637080;
+        font-style: italic;
+        padding: 1.5rem;
+    }
+
+    .page-intro-header hr {
+        border-color: #cfd8e3;
+    }
+
+    .info-card {
+        background-color: #edf1f7;
+        border: 1px solid #cfd8e3;
+        border-radius: 10px;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .info-card-icon {
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-card h6 {
+        font-size: 0.95rem;
+    }
+
+    .notice-banner {
+        background-color: #fff8e1;
+        border: 1px solid #ffe082;
+        border-left: 4px solid #ffc107;
+        border-radius: 8px;
+        padding: 0.85rem 1.25rem;
+        font-size: 0.875rem;
+        color: #5a4500;
+    }
+</style>
+
+<div class="container py-4">
+
+    <div class="page-intro-header mb-4">
+        <h2 class="fw-bold text-dark text-center mb-1">West Virginia DMV Forms</h2>
+        <p class="text-secondary text-center mb-3">
+            Access, download, and print official DMV applications and forms online.
+        </p>
+        <hr class="mt-0" />
+    </div>
+
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="info-card h-100">
+                <div class="info-card-icon">📋</div>
+                <h6 class="fw-semibold text-dark mb-1">Available Forms</h6>
+                <p class="text-secondary small mb-0">
+                    West Virginia residents may view, print, and save applications and forms for
+                    driver's licenses, vehicle titles, registrations, address changes, and other
+                    DMV services. Forms are also available at any
+                    <strong>DMV Regional Office</strong>.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card h-100">
+                <div class="info-card-icon">🔍</div>
+                <h6 class="fw-semibold text-dark mb-1">Searching for a Form</h6>
+                <p class="text-secondary small mb-0">
+                    Use the search tool below to find forms by <strong>title</strong>,
+                    <strong>form number</strong>, or <strong>category</strong>. If you cannot
+                    locate a form, try a partial keyword. Filtering by category can help narrow
+                    your results further.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="info-card h-100">
+                <div class="info-card-icon">📥</div>
+                <h6 class="fw-semibold text-dark mb-1">Viewing &amp; Printing</h6>
+                <p class="text-secondary small mb-0">
+                    Click any form title to open it in your browser. All forms are in
+                    <strong>Adobe Acrobat PDF</strong> format. You may view, print, or save them
+                    using the free
+                    <a href="https://get.adobe.com/reader/" target="_blank" rel="noopener noreferrer">
+                        Adobe Acrobat Reader
+                    </a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="notice-banner mb-4">
+        <strong>&#9432; Note:</strong> A PDF viewer such as
+        <a href="https://get.adobe.com/reader/" target="_blank" rel="noopener noreferrer">Adobe Acrobat Reader</a>
+        is required to open these forms. It is available as a free download from Adobe's website.
+    </div>
+
+</div>
+
+<div class="filter-panel mb-3">
+    <div class="row g-3 align-items-end">
+        <div class="col-md-4">
+            <label for="filterTitle">Form Title</label>
+            <input type="text" id="filterTitle" class="form-control form-control-sm" placeholder="Search by title..." />
+        </div>
+        <div class="col-md-2">
+            <label for="filterNumber">Form Number</label>
+            <input type="text" id="filterNumber" class="form-control form-control-sm" placeholder="e.g. DMV-101" />
+        </div>
+        <div class="col-md-4">
+            <label for="filterCategory">Form Category</label>
+            <select id="filterCategory" class="form-select form-select-sm">
+                <option value="">— All Categories —</option>
+                <option value="Applications for New License Plate Designs">Applications for New License Plate Designs</option>
+                <option value="Associations and Organizations License Plates">Associations and Organizations License Plates</option>
+                <option value="Colleges and Universities License Plates">Colleges and Universities License Plates</option>
+                <option value="Commercial Drivers License">Commercial Driver's License</option>
+                <option value="Dealers">Dealers</option>
+                <option value="DMV Annual Reports">DMV Annual Reports</option>
+                <option value="Drivers">Drivers</option>
+                <option value="General Interest License Plates">General Interest License Plates</option>
+                <option value="GHSP Administrative Manuals">GHSP Administrative Manuals</option>
+                <option value="GHSP Annual Reports">GHSP Annual Reports</option>
+                <option value="GHSP Driver and Awareness Survey">GHSP Driver and Awareness Survey</option>
+                <option value="GHSP Monthly Calendar of Events">GHSP Monthly Calendar of Events</option>
+                <option value="GHSP NHTSA Analysis of Crash Data">GHSP NHTSA Analysis of Crash Data</option>
+                <option value="GHSP Performance Plans">GHSP Performance Plans</option>
+                <option value="GHSP Seatbelt Survey Reports">GHSP Seatbelt Survey Reports</option>
+                <option value="GHSP Traffic Records Assessment">GHSP Traffic Records Assessment</option>
+                <option value="Insurance">Insurance</option>
+                <option value="Medical and Disability">Medical and Disability</option>
+                <option value="Military License Plates">Military License Plates</option>
+                <option value="Motor Boats">Motor Boats</option>
+                <option value="Motor Carriers">Motor Carriers</option>
+                <option value="Safety">Safety</option>
+                <option value="Vehicles">Vehicles</option>
+            </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button id="clearFilters" class="btn btn-sm btn-outline-secondary w-100">Clear Filters</button>
+        </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end mb-2">
+    <span class="results-count" id="resultsCount"></span>
+</div>
+
+<div class="forms-table-wrapper">
+    <table class="table table-bordered table-striped mb-0 forms-table" id="formsTable">
+        <thead class="table-dark">
+            <tr>
+                <th style="width: 25%;">Form Title</th>
+                <th style="width: 35%;">Form Description</th>
+                <th style="width: 15%;">Form Number</th>
+                <th style="width: 25%;">Form Category</th>
+            </tr>
+        </thead>
+        <tbody id="formsTableBody">
+            <tr>
+                <td>WV Commercial Driver Licensee (CDL) Medical Self-Certification Affidavit</td>
+                <td class="form-description">This form is for the CDL Holder to provide Medical Status Self-Certification.</td>
+                <td class="form-number">DMV-CDL-3</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Buy Here - Pay Here Dealer Affidavit</td>
+                <td class="form-description">Buy here / pay here affidavit. Used when the dealership and lienholder are the same. Must be submitted by the dealer anytime they serve as both the lienholder and the seller of a vehicle.</td>
+                <td class="form-number">DMV-86-TR</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>NHTSA Analysis of Fatal Crash Data - WV 2007 - 2001</td>
+                <td class="form-description">Crash Data</td>
+                <td class="form-number">NHTSA Form</td>
+                <td>Safety</td>
+            </tr>
+            <tr>
+                <td>IRP Affidavit of Renewal Procedures</td>
+                <td class="form-description">This form explains the rules of renewing an IRP account and when the plates must be returned if not renewing.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Medical Report Form</td>
+                <td class="form-description">This form is used to determine whether an applicant is medically clear to drive. Both the applicant and the physician must sign this form.</td>
+                <td class="form-number">DLAB-1</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Vision Specialist's Exam Results and Certification</td>
+                <td class="form-description">This form is used to determine whether an applicant's eyesight is sufficient to safely drive. An examination must be done by a licensed opthalmologist or optometrist, and both the applicant and physician must sign the form.</td>
+                <td class="form-number">DLAB-II</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Medical Report Form</td>
+                <td class="form-description">This form is used to determine whether a CDL applicant meets federal medical guidelines. Both the applicant and the physician must sign this form.</td>
+                <td class="form-number">DLAB-CDL-1</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Information Release Waiver</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-100A</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2020</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2020</td>
+                <td class="form-number">DMV-AR-FY2020</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Message Forwarding Service (Vehicles)</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-102</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Message Forwarding Service to a WV Driver's Licensee or ID Card Holder</td>
+                <td class="form-description">Message Forwarding Service for a WV Driver's Licensee or ID Card Holder</td>
+                <td class="form-number">DMV-102-DL</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Driving Record Release Authorization</td>
+                <td class="form-description">This is the Release Authorization form used if you are requesting DMV to release your driving record to anyone other than yourself.</td>
+                <td class="form-number">DMV-101-PS2</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Driving Record Release Authorization</td>
+                <td class="form-description">This form is used to request a Driving Record and includes the DMV-101-PS2, which is the release authorization form. You must complete form DMV-101-PS2 if you are requesting your driving record be released to anyone other than yourself.</td>
+                <td class="form-number">DMV-101-PS1 and PS2</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Request for Vehicle Information</td>
+                <td class="form-description">Record Request Form. Completed by a customer and submitted to the Records department to obtain specific information.</td>
+                <td class="form-number">DMV-100-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Request for Driving Record</td>
+                <td class="form-description">This is the Request for Driving Record form by itself.</td>
+                <td class="form-number">DMV-101-PS1</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Application for Farm-Related Services Industries</td>
+                <td class="form-description">This form is used to apply for a Farm Use Class B CMV</td>
+                <td class="form-number">DMV-123-CDL</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Voluntary Surrender Letter of a Driver's License or ID</td>
+                <td class="form-description">This form is used when a person chooses to voluntarily surrender their CDL, Driver's License, or ID Card</td>
+                <td class="form-number">DMV-123-VSL</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Dealer Vehicle Liability and Property Damage Certificate of Insurance</td>
+                <td class="form-description">Statement of insurance for use with Dealer License Application</td>
+                <td class="form-number">DMV-126-DS-J</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Driver's License Certified Translation</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-10-DLT</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Expired Commercial Driver's License (CDL) Voluntary Surrender Letter</td>
+                <td class="form-description">This form is used for Expired CDL Voluntary Surrender</td>
+                <td class="form-number">DMV-123-CVSL</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Notice of Cancellation of Vehicle Dealer Liability Insurance</td>
+                <td class="form-description">Statement from Insurance Carrier that a Dealer Policy has been cancelled or no longer in effect.</td>
+                <td class="form-number">DMV-126-DS-K</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for Additional Dealer License Plates</td>
+                <td class="form-description">Application for a Dealer to apply for additional dealer plates based on sales.</td>
+                <td class="form-number">DMV-126-DS-O</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Dealer Renewal Application</td>
+                <td class="form-description">Application to be used by the various dealer types to renew license.</td>
+                <td class="form-number">DMV-126-E-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Notice of Change in Dealership</td>
+                <td class="form-description">Application to provide notice to DMV of change in the ownership or location of dealership</td>
+                <td class="form-number">DMV-126-M-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for a Nonprofit Research and Development License</td>
+                <td class="form-description">Application for Nonprofit Research and Development License</td>
+                <td class="form-number">DMV-126-NP-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Dealer Inquiry Form</td>
+                <td class="form-description">Form used by an individual or Dealer to make a complaint against a WV Dealer</td>
+                <td class="form-number">DMV-128-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Dealer Recovery Fund Complaint Form</td>
+                <td class="form-description">Application for individual or business to make a claim against a dealer for payment from the Dealer Recovery Fund.</td>
+                <td class="form-number">DMV-127-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Release of Lien</td>
+                <td class="form-description">Lien release. Used by a lienholder to release a lien.</td>
+                <td class="form-number">DMV-12-A-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Lienholder's Affidavit for Repossession</td>
+                <td class="form-description">Repossession affidavit/application. Used by a lienholder to repossess a vehicle when the terms of a lien are not upheld.</td>
+                <td class="form-number">DMV-129-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Non-West Virginia Residency Statement</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-12-IND</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Abandoned Motor Vehicle Notice</td>
+                <td class="form-description">Abandoned vehicle notice. Used by the DMV to inform an entity that their vehicle is currently considered abandoned and provides details and a timeline on what the next steps are.</td>
+                <td class="form-number">DMV-131-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Affidavit for Possession of a Junked or Abandoned Motor Vehicle</td>
+                <td class="form-description">Abandoned/Junk application. Used by a customer to obtain a title for a junked or abandoned vehicle.</td>
+                <td class="form-number">DMV-130-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Out-of-State DUI Education and Treatment Verification Form</td>
+                <td class="form-description">Used to evaluate a non-WV DUI Course</td>
+                <td class="form-number">DMV-13-IND</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Application for a Church Vehicle Registration</td>
+                <td class="form-description">Church vehicle registration. Used by a church declaring a vehicle as church use only and therefore not subject to normal registration fees.</td>
+                <td class="form-number">DMV-158-OB</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Boat Renewal, Duplicate Decal, Duplicate Registration, and Change of Address</td>
+                <td class="form-description">Boat renewal/duplicate application. Can be used to renew a boat registration, to request a duplicate registration card or decal, or to update an address in DMV records.</td>
+                <td class="form-number">DMV-14-TR</td>
+                <td>Motor Boats</td>
+            </tr>
+            <tr>
+                <td>Request to Increase Gross Vehicle Weight</td>
+                <td class="form-description">Vehicle weight increase form. Used to increase the carry weight for a Class B vehicle.</td>
+                <td class="form-number">DMV-15-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Owner's Affidavit of an Off-The-Highway Vehicle</td>
+                <td class="form-description">Owner's affidavit of an off-highway vehicle. Vehicle can only be moved from one job site to another without a load, or for repairs. Must include a picture of the front, side, and rear of vehicle.</td>
+                <td class="form-number">DMV-168-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Verification of Vehicle Identification Number (VIN)</td>
+                <td class="form-description">VIN Verification. Must be completed by law enforcement.</td>
+                <td class="form-number">DMV-1B</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Legal Heir Affidavit</td>
+                <td class="form-description">Legal Heir affidavit. Must include a copy of the death certificate. Can only be used when the deceased did not have a Will. Used to transfer the deceased individual's vehicles into the legal heir's name or to sign on behalf of the deceased individual.</td>
+                <td class="form-number">DMV-185-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Supplies Request Form</td>
+                <td class="form-description">Form used by WV Dealer or License Services to request DMV supplied items from the DMV Warehouse.</td>
+                <td class="form-number">DMV-18</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Application for Certificate of Abandoned Title</td>
+                <td class="form-description">Abandoned Vehicle Title Application. Must be included when attempting to title an abandoned vehicle. One of the documents required by the Abandoned Vehicle Checklist.</td>
+                <td class="form-number">DMV-1A-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Purchaser's Affidavit for Duplicate Title</td>
+                <td class="form-description">Purchaser's duplicate title application. Used by the purchaser to obtain a duplicate title when a vehicle is sold to them and the title is lost or destroyed. Must also be signed by the seller. Also provides the steps to take if a vehicle is listed as "SO</td>
+                <td class="form-number">DMV-1D-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Certificate of Title for a Rental Motor Vehicle</td>
+                <td class="form-description">Rental vehicle title application. Only to be used when titling a rental vehicle. Rental permit number required on application.</td>
+                <td class="form-number">DMV-1R-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Sold Vehicle or Watercraft Notice</td>
+                <td class="form-description">Sold vehicle notice. Can be used by a customer to change the status of their vehicle to "SOLD" in DMV records. Typically we ask that a customer wait 60 days before submitting the document after a sale to provide the purchaser with time to title the vehicl</td>
+                <td class="form-number">DMV-1-S</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Certificate of Title for an IRP Motor Vehicle</td>
+                <td class="form-description">This is the application form to obtain a WV title for an IRP Motor Vehicle.</td>
+                <td class="form-number">DMV-1-IRP</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Certificate of Inspection</td>
+                <td class="form-description">Certificate of Inspection. Must be completed by an authorized vehicle inspection station. Upon passing the inspection the vehicle must receive a new inspection decal. This form may be used for a variety of reasons, but it is often used as part of the proc</td>
+                <td class="form-number">DMV-202-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Certificate of Title</td>
+                <td class="form-description">Also known as "Form 1". This is a title application used anytime an out of state vehicle or any regular vehicle (not rental or lease) without a WV title is submitted.</td>
+                <td class="form-number">DMV-1-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Affidavit for Titling a Motor Home Vehicle Modified from a Passenger Bus</td>
+                <td class="form-description">This form is used during the process of titling a motor home created from a passenger bus. To make this conversion the customer is required to modify the passenger bus per WV code to meet motor home standards. They must also include pictures of the modifi</td>
+                <td class="form-number">DMV-215-A</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Certificate of Title for a Leased Motor Vehicle</td>
+                <td class="form-description">Leased vehicle title application. Must include a copy of the lease agreement when submitting. Cannot be used for non-leased vehicles.</td>
+                <td class="form-number">DMV-1L</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Cancellation of Title for a Mobile Home Affixed to Real Property</td>
+                <td class="form-description">Cancellation of mobile home title certificate. Used when a mobile home is affixed to real property.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application/Certificate for Cancellation of Title for a Mobile or Manufactured Home Affixed to Real Property</td>
+                <td class="form-description">Mobile home cancellation. Used to cancel a mobile home title after it is affixed to a permanent foundation.</td>
+                <td class="form-number">DMV-2-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Affidavit for Title for Mobile or Manufactured Home Severed from Real Property</td>
+                <td class="form-description">Used to create a title for a mobile home once it has been removed from a permanent foundation/real property.</td>
+                <td class="form-number">DMV-2R-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Trailer Inspection Affidavit</td>
+                <td class="form-description">Trailer inspection affidavit. Used when changing a Class T trailer to a Class C trailer.</td>
+                <td class="form-number">DMV-20-VS</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Alcohol Test and Lock Program - Revocation Interlock Info</td>
+                <td class="form-description">Informational insert for DUI Revocation notices</td>
+                <td class="form-number">DMV-308-SE</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>WV DUI Information Sheet</td>
+                <td class="form-description">Arresting Officer's Statement - DUI</td>
+                <td class="form-number">WVSP FORM 78 / DMV-314</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Blood Draw Affidavit</td>
+                <td class="form-description">This form is to be completed by the person conducting the blood draw, as the affiant. Also known as the Blood Draw Affidavit - DUI.</td>
+                <td class="form-number">DMV-314A</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Affidavit of Correction for a Title or Registration</td>
+                <td class="form-description">Dealer's affidavit of correction. Used when there is a mistake/discrepancy on a title. Must explain the mistake and provide the correct information. Must be notarized.</td>
+                <td class="form-number">DMV-35-DL</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Owner's Affidavit of Correction</td>
+                <td class="form-description">Owner's affidavit of correction. Used when there is a mistake/discrepancy on a title. Must explain the mistake and provide the correct information. Must be notarized.</td>
+                <td class="form-number">DMV-34-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Duplicate Registration/Decal/Plate</td>
+                <td class="form-description">Duplicate request form. Used to request a duplicate registration card, decal, or license plate.</td>
+                <td class="form-number">DMV-32-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for a 60 day Non-Resident Special Permit</td>
+                <td class="form-description">60-day special permit. May be used when an individual is temporarily stationed in WV due to work, etc.</td>
+                <td class="form-number">DMV-37-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Refund</td>
+                <td class="form-description">Completed by a citizen when requesting a refund from the Division for any reason.</td>
+                <td class="form-number">DMV-38-AB</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Certification of One and the Same Person</td>
+                <td class="form-description">One and the same form. Used when there is a discrepancy with a name on the titlework. Example: When a name is listed as a John Smith Jr/Sr/II, etc in one spot and only John Smith in another spot. Must include a copy of the individual in questions ID.</td>
+                <td class="form-number">DMV-39-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Parking for an Agency or Organization Transporting Persons with Disabilities</td>
+                <td class="form-description">Application for Mobility Impaired Placard for an Agency or Organization</td>
+                <td class="form-number">DMV-41a-TR</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>West Virginia Lease Sales Tax Return</td>
+                <td class="form-description">Lease sales tax return. Provided to the DMV from leasing companies. Must list the number of owned leased vehicles, leasing company info, and a check for tax on those vehicles.</td>
+                <td class="form-number">DMV-3L</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application To Be Included or Removed From Communication Disability List</td>
+                <td class="form-description">This application is filled out to be included or removed from the Communication Disability List.</td>
+                <td class="form-number">DMV-41-CD</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Safety Belt Waiver - Physician's Certification of Disability</td>
+                <td class="form-description">This form is a waiver for drivers with disabilities to have their physician fill out and sign/authorize so they do not have to wear a seat belt. Physician's Authorization - Seatbelt Waiver</td>
+                <td class="form-number">DMV-41-SB</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Parking Application for a Mobility Impaired Person</td>
+                <td class="form-description">This is the application for a mobility impaired person to receive a Mobility Impaired Placard or Plate - Individual. Also called a handicap or disability placard or plate.</td>
+                <td class="form-number">DMV-41-TR</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Odometer Disclosure Statement (Dealers)</td>
+                <td class="form-description">Dealer's odometer disclosure statement. Used by dealers to legally disclose a vehicle's odometer at time of sale.</td>
+                <td class="form-number">DMV-43</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for Issuance of a REPLICA License Plate</td>
+                <td class="form-description">Replica license plate request. Used by a customer to receive an exact replica of a lost/damaged/stolen plate. Different from a duplicate license plate which will only provide you with another plate with the same plate class and expiration month, but new p</td>
+                <td class="form-number">DMV-43-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Transfer of a License Plate</td>
+                <td class="form-description">Transfer request. Used to transfer a license plate from one vehicle to another.</td>
+                <td class="form-number">DMV-44A-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Registration Renewal Notice</td>
+                <td class="form-description">Registration renewal form. Used in lieu of the registration renewal which is mailed out to customers. Can also be used when a customer is getting a new plate on an already titled vehicle.</td>
+                <td class="form-number">DMV-44-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for an Amateur Radio License Plate</td>
+                <td class="form-description">Amateur radio license plate application. Individuals applying for this plate must include their FCC license number. This plate will display their FCC license number on it.</td>
+                <td class="form-number">DMV-42-LE</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Personalized License Plate</td>
+                <td class="form-description">Personalized plate application. Can be used to obtain a personalized version of the standard, patriotic, 9/11, deer wildlife, or standard motorcycle license plate.</td>
+                <td class="form-number">DMV-42-TR</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for Classic Car License Plate</td>
+                <td class="form-description">General use classic car plate application. Can be obtained for any vehicle which is more than 25 years old. Can be used like a regular license plate with no restrictions.</td>
+                <td class="form-number">DMV-46-CC</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Wounded in the Line of Duty License Plate</td>
+                <td class="form-description">Wounded in the line of duty license plate application. Used to obtain a wounded in the line of duty license plate by a law enforcement officer. Must be approved by a chief law enforcement official.</td>
+                <td class="form-number">DMV-47-A</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Veteran License Plate</td>
+                <td class="form-description">Veterans licence plate application. Used to obtain a class A or class G veteran's license plate. Must be authorized by the department of veteran assistance.</td>
+                <td class="form-number">DMV-48</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a National Guard or Armed Force Reserves License Plate</td>
+                <td class="form-description">National Guard/Armed Forces reserve license plate application. Used to obtain one of seven license plates, including army national guard, marine reserves, etc. A copy of the customer's active military ID must be included with the application.</td>
+                <td class="form-number">DMV-47-NGR</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a General Interest License Plate</td>
+                <td class="form-description">General interest license plate application. Used to obtain one of 15 different license plates, such as the pollinator, back the blue, wildlife, etc.</td>
+                <td class="form-number">DMV-46-TR</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Special Second Military License Plate</td>
+                <td class="form-description">Application for a second military license plate. The 2nd license plate must be the same as a currently owned plate.</td>
+                <td class="form-number">DMV-48-A</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Purple Heart License Plate</td>
+                <td class="form-description">Purple Heart license plate application. Used to obtain a purple heart license plate. Must be authorized by the department of veteran assistance.</td>
+                <td class="form-number">DMV-48-B</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Prisoner of War License Plate</td>
+                <td class="form-description">Prisoner of war license plate application. Must be authorized by the department of veteran assistance.</td>
+                <td class="form-number">DMV-48-E</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Pearl Harbor Survivor License Plate</td>
+                <td class="form-description">Pearl Harbor Survivor license plate application. Used to obtain a pearl harbor survivor license plate. Must be authorized by the department of veteran assistance.</td>
+                <td class="form-number">DMV-48-C</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Surviving Spouse Special Military License Plate</td>
+                <td class="form-description">Surviving spouse military plate application. The plate applied for must match the plate the deceased veteran owned.</td>
+                <td class="form-number">DMV-48F</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Disabled Veteran License Plate</td>
+                <td class="form-description">Disabled veteran license plate application. Must be authorized by the department of veteran assistance.</td>
+                <td class="form-number">DMV-48-D</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Disabled American Veterans (DAV) License Plate</td>
+                <td class="form-description">Disabled american veteran license plate application. Must be authorized by the disabled american veterans, department of WV. Application must be mailed to the disabled american veterans for approval.</td>
+                <td class="form-number">DMV-48H</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an American Legion License Plate</td>
+                <td class="form-description">American legion license plate application. Must be authorized by the American Legion. Application must be mailed to the American Legion organization.</td>
+                <td class="form-number">DMV-48-J</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Marine Corps League License Plate</td>
+                <td class="form-description">Marine corps league license plate application. Must be authorized by the marine corps league. Application must be mailed to the marine corps league.</td>
+                <td class="form-number">DMV-48G</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Gold Star Family License Plate</td>
+                <td class="form-description">Gold star family license plate application. Can only be applied for by a parent, spouse, or relative of a deceased service member. Service member information is required along with authorization from the department of veterans assistance.</td>
+                <td class="form-number">DMV-48-L</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Special Military Retiree Plate</td>
+                <td class="form-description">Special military retiree license plate application. This application is used for air force, army, coast guard, marine corps, and navy retirees to receive a plate. Must be authorized by the department of veterans assistance.</td>
+                <td class="form-number">DMV-48-MR</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Special Military Service Award Plate</td>
+                <td class="form-description">Special military service award license plate application. Can be used to obtain one of 5 license plates, including Air Medal, Bronze Star, Combat Infantry Badge, Combat Medic, and Silver Star. Must be authorized by the Department of Veterans Assistance.</td>
+                <td class="form-number">DMV-48-SA</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Special Veteran Service Plate</td>
+                <td class="form-description">Special veteran service license plate application. Used to obtain one of 7 license plates including WWII vet, women vet, and iraq campaign service. Must be authorized by the department of veterans assistance.</td>
+                <td class="form-number">DMV-48-VS</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an Emergency Medical Services License Plate</td>
+                <td class="form-description">EMS license plate application. Used to obtain an emergency medical services license plate. Form must be authorized by the squad chief.</td>
+                <td class="form-number">DMV-49</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an 82 Airborne Div. Association License Plate</td>
+                <td class="form-description">82nd airborne association license plate. Used to obtain the 82nd airborne div. association license plate. Must provide proof that you are a member of the 82nd airborne div. association wv chapter.</td>
+                <td class="form-number">DMV-49-AB</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Volunteer Fire Fighter License Plate</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-49A</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Certified Firefighter License Plate</td>
+                <td class="form-description">Certified firefighter license plate application. Used to obtain the certified firefighter license plate. Must be authorized by the WVU fire service extension office. Application and payment must be mailed to the WVU fire service extension office.</td>
+                <td class="form-number">DMV-49-B</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Medical Review Request Form</td>
+                <td class="form-description">Used by law enforcement, DMV employees, family members or caregivers to request a medical review</td>
+                <td class="form-number">DMV-50-CD</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Affidavit of Duplicate Title for a Vehicle or Watercraft</td>
+                <td class="form-description">Duplicate title application. Used to apply for a duplicate title when the title is lost, never received, etc. Must include a copy of the ID of the individual applying for the title.</td>
+                <td class="form-number">DMV-4-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for an Alderson-Broaddus License Plate</td>
+                <td class="form-description">Application for the Alderson-Broaddus license plate. This application along with payment must be sent to Alderson-Broaddus College for approval.</td>
+                <td class="form-number">DMV-54-AB</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Beni Kedem Temple License Plate</td>
+                <td class="form-description">Beni kedem temple license plate application. Used to obtain a beni kedem temple license plate. Applicant can choose numbers between 1001 and 9999 to appear on the license plate. Must be a good standing member of the Beni Kedem temple and must submit the a</td>
+                <td class="form-number">DMV-54-BK</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Concord College License Plate</td>
+                <td class="form-description">Concord college license plate application. Applicant can request any number between 1001 and 9999 to display on their license plate. Applicants must either be a graduate of concord college, or a friend of concord college. Application and fees must be mail</td>
+                <td class="form-number">DMV-54-CC</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Contractors Association License Plate</td>
+                <td class="form-description">WV contractors association license plate application. Available to anybody. Payment and application must be mailed to the CAWV Scholarship Foundation at the address provided on the form.</td>
+                <td class="form-number">DMV-54-CA</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Davis and Elkins College License Plate</td>
+                <td class="form-description">Davis and Elkins license plate application. Must be authorized by a Davis and Elkins representative. Application and fees must be mailed to Davis and Elkins College.</td>
+                <td class="form-number">DMV-54-DE</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Chiropractic Society Inc. License Plate</td>
+                <td class="form-description">WV chiropractic society license plate application. Applicant can request a number between 1001 and 9999 to be displayed on the license plate. Applicant must be a member of the WVCS, inc. Application and payment must be sent to WVCS, Inc.</td>
+                <td class="form-number">DMV-54-DC</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Back the Blue Wounded in the Line of Duty or Surviving Spouse License Plate</td>
+                <td class="form-description">Back the blue wounded in the line of duty/surviving spouse license plate application. Can only be obtained by those who have a spouse or who themselves were wounded in the line of duty. Must be authorized by an approving authority.</td>
+                <td class="form-number">DMV-54-BL</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Most Worshipful Prince Hall Grand Lodge License Plate</td>
+                <td class="form-description">Most worshipful prince hall grand lodge license plate application. Applicant can choose between 1001 and 9999 to display on the license plate. Applicant must be a member of a regular lodge under the Most Worshipful Prince Hall Grand Lodge. Application and</td>
+                <td class="form-number">DMV-54-GL</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Deputy Sheriff's Association License Plate</td>
+                <td class="form-description">WV Deputy Sheriff's Association license plate. Applicant can choose between 1001 and 9999 to display on the license plate. Applicant must be an active member of the WV Deputy Sheriff's Association. Application and fees must be mailed to WVDSA License plat</td>
+                <td class="form-number">DMV-54-DS</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Friends of Coal License Plate</td>
+                <td class="form-description">Friends of Coal license plate application. Can be used to obtain either a Class A or a Class G license plate. Anybody can apply for this license plate.</td>
+                <td class="form-number">DMV-54-FC/GF</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for In God We Trust Specialty Plate</td>
+                <td class="form-description">In God We Trust license plate application. Anybody is eligible for this license plate.</td>
+                <td class="form-number">DMV-54-IG</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Gas and Oil Association of WV License Plate</td>
+                <td class="form-description">Oil &amp; Gas Association license plate application. Anybody is eligible for this license plate. Application and fees must be sent to the Gas &amp; Oil Association of WV.</td>
+                <td class="form-number">DMV-54-GO</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an Ancient, Free, and Accepted Mason's License Plate</td>
+                <td class="form-description">Ancient, Free, and Accepted Mason's license plate application. Applicant must be a member of a regular lodge under jurisdiction of the Grand Lodge of WV. Application and fees must be sent to the Grand Lodge of WV.</td>
+                <td class="form-number">DMV-54-MM</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an Osiris Shrine License Plate</td>
+                <td class="form-description">Osiris Shrine license plate application. Applicant can choose a number between 1001 and 9999 to display on their plate. Applicant must be current on dues and must pay a $10.00 service fee each year to maintain the plate. Application and fees must be sent</td>
+                <td class="form-number">DMV-54-OS</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Marshall University License Plate</td>
+                <td class="form-description">Marshall University license plate application. Applicant must be an MU alumni, student, or friend of MU. Application and fees must be sent to the MUAA.</td>
+                <td class="form-number">DMV-54-MU</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Knights of Columbus License Plate</td>
+                <td class="form-description">Knights of Columbus license plate application. Must be authorized by a qualifying official from the Knights of Columbus. Application and fees must be sent to the address listed on the form.</td>
+                <td class="form-number">DMV-54-KC</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Lion's Club License Plate</td>
+                <td class="form-description">Lion's Club license plate application. Anybody is eligible for this license plate. Application and fees must be sent to the address listed on the form.</td>
+                <td class="form-number">DMV-54-LC</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Rotary International License Plate</td>
+                <td class="form-description">Rotary International license plate application. Applicant can choose a number between 1001 and 9999 to display on their license plate. Applicant must be a member or spouse of a member of the Rotary International. Application and fees must be sent to the R</td>
+                <td class="form-number">DMV-54-RI</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Professional Firefighters of WV License Plate</td>
+                <td class="form-description">Professional firefighters of WV license plate application. Must be authorized by an executive board member who signs the application stating that the applicant is a member in good standing of the IAFF Local. Applicant must be a member of the Professional</td>
+                <td class="form-number">DMV-54-PF</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Association of Pupil Transportation License Plate</td>
+                <td class="form-description">WV Association of Pupil Transportation license plate application. Applicant can choose a number between 1001 and 9999 to display on the license plate. The applicant must be a school bus driver, mechanic, or county or state school transportation administra</td>
+                <td class="form-number">DMV-54-PT</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Penn State Alumni Association License Plate</td>
+                <td class="form-description">Penn State Alumni Association license plate application. Applicant must be a member of the Penn State Alumni Association. Application and fees must be sent to the address listed on the form.</td>
+                <td class="form-number">DMV-54-PS</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV League of Postmasters License Plate</td>
+                <td class="form-description">WV League of Postmasters license plate application. Applicant can request a number between 1001 and 9999 to display on the license plate. Applicant must be an active or retired postmaster in good standing. Application and fees must be sent to the League o</td>
+                <td class="form-number">DMV-54-PM</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Square and Round Dance Federation License Plate</td>
+                <td class="form-description">WV Square and Round Dance Federation license plate application. Applicant can choose a number between 1001 and 9999 to display on their license plate. Applicant must be a West Virginia Dancer. Application and fees must be sent to the West Virginia Square</td>
+                <td class="form-number">DMV-54-SD</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a West Virginia State College License Plate</td>
+                <td class="form-description">WV State College license plate application. Application and fees must be sent to the WVSC Alumni Affairs Office.</td>
+                <td class="form-number">DMV-54-SC</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Virginia Tech Alumni Association License Plate</td>
+                <td class="form-description">Virginia Tech alumni association license plate application. Any virginia tech alumni, student, or booster is eligible to apply for the plate. Must send check and application to Kanawha Valley Chapter, Virginia Tech Alumni Association.</td>
+                <td class="form-number">DMV-54-VT</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a Benevolent Protective Order of Elks License Plate</td>
+                <td class="form-description">Benevolent protective order of elks license plate application. Applicant must be a lodge member or spouse of a member to be eligible for this license plate. Application and fees must be sent to Elks License Plate.</td>
+                <td class="form-number">DMV-54-WE</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for an Enhanced 9-1-1 Council License Plate</td>
+                <td class="form-description">911 council/telecommunicator license plate application. Applicant must be actively employed as a telecommunicator and in good standing. Application and fees must be submitted to the Treasurer, WV Enhanced 911 Council, Inc.</td>
+                <td class="form-number">DMV-54-TC</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a West Virginia Wesleyan License Plate</td>
+                <td class="form-description">WV Wesleyan license plate application. Applicant can choose between 1001 and 9999 to display on their license plate. Any graduate, employee, or friend of WV Wesleyan College is eligible for the license plate. Application and fees must be sent to WV Wesle</td>
+                <td class="form-number">DMV-54-WC</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a West Virginia Institute of Technology License Plate</td>
+                <td class="form-description">WV Tech license plate application. Applicant can request any number between 1001 and 9999 to display on the license plate. Applicant must be a graduate, employee, or friend of WV Tech. Fees and application must be submitted to Tech Golden Bear Alumni Asso</td>
+                <td class="form-number">DMV-54-WT</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Sample Plate Order Form</td>
+                <td class="form-description">Sample plate order form. This application is used when an entity would like to order a sample license plate. Currently we have 14 license plates available for samples.</td>
+                <td class="form-number">DMV-54-SMPL</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for a WV Bowler's Association License Plate</td>
+                <td class="form-description">WV Bowler's association license plate application. Applicant can choose between 1001 and 9999 to display on their license plate. Any WV resident is eligible to apply for this license plate. Application and fees must be submitted to WV Bowler's Association</td>
+                <td class="form-number">DMV-54-XX</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for a West Virginia University Alumni Association License Plate</td>
+                <td class="form-description">WVU alumni association license plate application. Applicant must be a current or lifetime member of the WVU alumni association. Non-members who wish to apply for this plate must include a $50.00 fee and designate it as an annual membership or contribution</td>
+                <td class="form-number">DMV-54-WV</td>
+                <td>Colleges and Universities License Plates</td>
+            </tr>
+            <tr>
+                <td>Affidavit of Transfer of Ownership Without Consideration</td>
+                <td class="form-description">Gift affidavit. Used when gifting a vehicle from one individual to another. Must be notarized.</td>
+                <td class="form-number">DMV-5-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Construction of an Assembled Trailer</td>
+                <td class="form-description">Assembled trailer certificate. Used when titling an assembled trailer. Must be completed and submitted along with a DMV-1-TR.</td>
+                <td class="form-number">DMV-62-TR</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Application for Farm Use Vehicle Exemption Certificate</td>
+                <td class="form-description">Used in Vehicle Services to declare a vehicle as "FARM USE" only, allowing the customer to bypass registering their vehicle.</td>
+                <td class="form-number">DMV-67</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Bill of Sale for a Motor Vehicle, Trailer, or Boat (Notary is Required)</td>
+                <td class="form-description">Bill of sale. Completed by both the buyer and seller. Must be notarized.</td>
+                <td class="form-number">DMV-7-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Voluntary Lien Created After Issuance of Original Title</td>
+                <td class="form-description">Used to add a new lien to an existing title.</td>
+                <td class="form-number">DMV-84-A</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Change in Ownership and Control</td>
+                <td class="form-description">Application for change of ownership. Used when a corporation, etc. has vehicles titled under their name and are transferring those vehicles to another corporation, etc. which is comprised of the same ownership members.</td>
+                <td class="form-number">DMV-71-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Individual Lienholder's Fact Sheet</td>
+                <td class="form-description">Individual lienholder notice. Completed when an individual holds a lien on a vehicle.</td>
+                <td class="form-number">DMV-85-A</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Extension of Lien Created After Issuance of Original Title</td>
+                <td class="form-description">Used when an existing lien on a title is being extended or updated. This form is not used when adding a new lien to a vehicle. That instead would be form DMV-84-A.</td>
+                <td class="form-number">DMV-84-A1</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Safety Inspection Checklist</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-8-S</td>
+                <td>Safety</td>
+            </tr>
+            <tr>
+                <td>Affidavit for a Sign Language Interpreter/Translator</td>
+                <td class="form-description">Affidavit for a Sign Language Interpreter / Translator</td>
+                <td class="form-number">DMV-8-SL</td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Affidavit for a Foreign Language Interpreter/Translator</td>
+                <td class="form-description">Affidavit for a Foreign Language Interpreter</td>
+                <td class="form-number">DMV-8-FL</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Power of Attorney (POA)</td>
+                <td class="form-description">Limited or restricted Power of Attorney. Can be used for an individual or entity to complete paperwork required for a specific vehicle. Cannot be used for multiple vehicles or any other business.</td>
+                <td class="form-number">DMV-9-TR</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Application for Farm Vehicle Driver Exemption</td>
+                <td class="form-description">Application for Farm Use Vehicle that exceeds 26,001 lbs</td>
+                <td class="form-number">DMV-CDL-8</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Gender Designation Form</td>
+                <td class="form-description">This form is used by an applicant to change the gender on their driver's license or identification card to something other than what is listed on the birth certificate or other document.</td>
+                <td class="form-number">DMV-99-RO</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Change of Address Form</td>
+                <td class="form-description">Change of address form. Can be used to update your address on a customer's vehicle records and driver's license records.</td>
+                <td class="form-number">DMV-98-TRB</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>EFT Authorization</td>
+                <td class="form-description">Form used to allow ETF authorization from Licensed WV Dealer to use the VRS System.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for Commercial Driver's License (CDL) and/or Endorsements</td>
+                <td class="form-description">CDL or Endorsement addition application</td>
+                <td class="form-number">DMV-CDL-1</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>50-Hour Certification Log for Driver's License Applicants Under Age 18</td>
+                <td class="form-description">Used to log driving hours for GDL holders</td>
+                <td class="form-number">DMV-10-GDL</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Application for a Driver's License or Identification Card</td>
+                <td class="form-description">This form is used to apply for a driver's license or identification card.</td>
+                <td class="form-number">DMV-DS-23P</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>"Not Intentionally" Allowing Operation of a Motor Vehicle Without Insurance</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-INS-2</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Ownership of a Motor Vehicle Involved in an Insurance Violation</td>
+                <td class="form-description">This form is for use in response to a pending or existing suspension that pertains to the Compulsory Insurance laws.</td>
+                <td class="form-number">DMV-INS-3</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>"Unknowingly" Operating a Motor Vehicle Without Insurance</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">DMV-INS-1</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Request for IRP System Access</td>
+                <td class="form-description">This form is used to request access (user ID and password) to the IRP system for the purpose of setting up an account and paying an IRP bill online. Customers must have a completed Authorized Signatures form in your file in the IRP office and the person</td>
+                <td class="form-number">DMV-IRP-006</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>IRP Vehicle Registration Form</td>
+                <td class="form-description">Application to add vehicle to account</td>
+                <td class="form-number">DMV-IRP-001</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Removal of IRP Service Provider</td>
+                <td class="form-description">This form is used to request the removal of an IRP service provider.</td>
+                <td class="form-number">DMV-IRP-008</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Authorized Signatures</td>
+                <td class="form-description">This form designates authorized persons to sign for a company.</td>
+                <td class="form-number">DMV-IRP-003</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Mileage and Weight Schedule</td>
+                <td class="form-description">This form establishes weight for each state.</td>
+                <td class="form-number">DMV-IRP-002</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>IRP Service Provider Application</td>
+                <td class="form-description">Form allowing service providers to sign or get information for a company</td>
+                <td class="form-number">DMV-IRP-007</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Application for Duplicate Cab Card, Decal, or License Plate</td>
+                <td class="form-description">This application is to be used when applying for a duplicate apportioned cab card, license plate, or decals.</td>
+                <td class="form-number">DMV-IRP-004</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Unlicensed Dealer Complaint Form</td>
+                <td class="form-description">Form used by an individual or dealer to make a complaint against a potential unlicensed dealer.</td>
+                <td class="form-number">DMV-IV-UDC</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Low Speed Motor Vehicle Safety Certification</td>
+                <td class="form-description">Low speed vehicle certification. Completed by those with a LSV when titling and plating or renewing an LSV.</td>
+                <td class="form-number">DMV-LSV1-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Special Purpose Vehicle (SPV) Certification</td>
+                <td class="form-description">Special purpose vehicle certification form. Completed by a customer when they would like for the ATV/UTV, etc. to be considered a special purpose vehicle. This form must be completed to obtain an SPV license plate.</td>
+                <td class="form-number">DMV-SPV1-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for a Certificate of Title for a Motorboat</td>
+                <td class="form-description">Boat title application. Normally used when titling a boat with an out of state title, certificate of origin, etc.</td>
+                <td class="form-number">DMV-MB-6</td>
+                <td>Motor Boats</td>
+            </tr>
+            <tr>
+                <td>Certification of Cosmetic Total Loss</td>
+                <td class="form-description">Cosmetic total loss certificate. Used when a vehicle is cosmetically damaged but does not need to be salvaged and is still able to be safely operated on the street.</td>
+                <td class="form-number">DMV-SV-5</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Salvage Certificate Application</td>
+                <td class="form-description">Salvage application. Can be used to create a salvage title in the insurance company or other entity name.</td>
+                <td class="form-number">DMV-SV-1</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Political Subdivision Affidavit</td>
+                <td class="form-description">Political subdivision affidavit which is completed by the entity declaring themselves a PSD. Must be signed by an authorized representative which differs depending on which status they are declaring.</td>
+                <td class="form-number">DMV-PSA-001</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Cancellation of Record - Only West Virginia Title</td>
+                <td class="form-description">Cancellation of record. Most often used to cancel a title for a mobile home.</td>
+                <td class="form-number">DMV-SV-14</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Salvage Certificate/Owner Retention</td>
+                <td class="form-description">Salvage certificate for owner retention. Can be used to create a salvage title for a vehicle with the current owner still listed on the title, rather than an insurance company.</td>
+                <td class="form-number">DMV-SV-6</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Vehicle Removal Certificate</td>
+                <td class="form-description">Vehicle removal certificate. Provides an applicant permission to remove a vehicle from another's property.</td>
+                <td class="form-number">DMV-VRC-1</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Odometer Certification</td>
+                <td class="form-description">Odometer disclosure. Legal document that can be completed by the seller to confirm a vehicle's odometer reading. Must be notarized.</td>
+                <td class="form-number">DMV-TM-1</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>WV Driver's Licenses and Identification Cards (REAL ID) Brochure</td>
+                <td class="form-description">Informational brochure for West Virginia Driver's Licenses, ID Cards, REAL ID, and residency and identification documents.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>State of WV Driver's Licensing Handbook</td>
+                <td class="form-description">Informational booklet for acquiring a driver's license or permit in West Virginia for first time applicants or out-of-state transfers. Includes traffic laws and testing information.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Formula for Issuance of Dealer Plates</td>
+                <td class="form-description">Informational Sheet used by Dealers to determine the number of Dealer plates they are able to have based on sales.</td>
+                <td class="form-number">DMV-99-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Fraternal Order of Police License Plate Application</td>
+                <td class="form-description">WV Fraternal Order of Police license plate application. Applicant must be an active dues paying member of the WV Fraternal Order of Police. Application and fees must be submitted to the address listed on the form.</td>
+                <td class="form-number">DMV-54-LE</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for International Fuel Tax Agreement (IFTA) Credentials</td>
+                <td class="form-description">Application for IFTA credentials/decals</td>
+                <td class="form-number">IFTA-APP-01</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>WV Graduated Driver's Licensing (GDL) Program Flyer</td>
+                <td class="form-description">This fact sheet gives all necessary information about the Graduated Driver's Licensing process.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Renewal Application for International Fuel Tax Agreement</td>
+                <td class="form-description">This application is used by customers to renew their IFTA agreement.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Titling Process for Salvage Vehicles and Reconstructed Vehicles</td>
+                <td class="form-description">Reconstructed brochure. Provided online and in person to individuals. Provides information on how to go through the reconstruct process for a vehicle that is salvaged.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Identification Card details for WV Citizens Over and Under 21</td>
+                <td class="form-description">WV Over and Under 21 Identification Card appearance details for Point of Sale establishment</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>WV Alcohol and Drug Test and Lock (D.U.I. INTERLOCK) Program Application and Information</td>
+                <td class="form-description">Application for the Interlock Program</td>
+                <td class="form-number">DMV-21-DU</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>WV Based IRP Distance Requirements - IRP Average Distance Form</td>
+                <td class="form-description">If the fleet was not opened during the renewal time frame and therefore would not have traveled any distance during the reporting period, applicants must use the Average Per Vehicle Distance as indicated on the form and fees will be calculated based on th</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>IRP Renewal Step-By-Step Instructions</td>
+                <td class="form-description">This form gives instructions on how to renew your IRP account.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>License Service Surety Bond</td>
+                <td class="form-description">Form used by License Service for the required surety bond.</td>
+                <td class="form-number">MV-126-DS-LS</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Renewal Application for Motor Carrier</td>
+                <td class="form-description">The form is the Motor Carrier Decal Renewal Form.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Affidavit of Builder (Assembled Motor Boats)</td>
+                <td class="form-description">Assembled boat form. Must be completed when an individual has assembled a motor boat. This form also lists the other forms necessary to title an assembled boat.</td>
+                <td class="form-number">MB-11-TR</td>
+                <td>Motor Boats</td>
+            </tr>
+            <tr>
+                <td>Owner and Purchasing Affidavit</td>
+                <td class="form-description">Owner and purchaser affidavit. Used when there is no previous title available. Must be notarized.</td>
+                <td class="form-number">MB-12/13</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>WV Driver's Licensing Brochure</td>
+                <td class="form-description">Informational leaflet about Driver Licenses</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>IRP Mileage Audit Record Information</td>
+                <td class="form-description">Provides the carrier with important information about keeping mileage records</td>
+                <td class="form-number">DMV-IRP-MA</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Military Skills Test Waiver</td>
+                <td class="form-description">Used for Even Exchange (MOS specific) CDL written and skills test waivers, as well as skills test waivers for qualified military CMV experience</td>
+                <td class="form-number">CDL-ST-WVR</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Mobility Impaired Plate and Placard Program Information</td>
+                <td class="form-description">Informational leaflet about Mobility Impaired Placards</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Application for Additional Fuel Decals</td>
+                <td class="form-description">This form allows the customer to apply for a duplicate decal for either IFTA or Motor Carrier.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Mission Statement of the Division of Motor Vehicles</td>
+                <td class="form-description">Describes the mission of the West Virginia Division of Motor Vehicles</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Surety Bond Form</td>
+                <td class="form-description">Form used by Licensed Dealers for Surety Bond</td>
+                <td class="form-number">MV-126-DS-P</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Motorcycle Operator Manual</td>
+                <td class="form-description">This manual is useful to study prior to testing to obtain a learner's permit.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Problem Driver Point System Brochure</td>
+                <td class="form-description">Informational leaflet about the Points System</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>West Virginia License Plates Posters</td>
+                <td class="form-description">Electronic version of the DMV posters which list all the currently available general, specialty, and military issue license plates.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Public Notice of Title VI Program Rights</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Preliminary Application and Eligibility Review for a Non-Profit License Plate</td>
+                <td class="form-description">Details the steps and code for a nonprofit organization to apply for a new plate design for their organization.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>Opening a New IRP Account</td>
+                <td class="form-description">This packet includes all the forms and information that the carrier must present in order to open a WV IRP account.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Reassignment Supplement Log Sheet</td>
+                <td class="form-description">Form used by Dealership to Log all used Dealer reassignments</td>
+                <td class="form-number">DMV-TM-5A</td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Affidavit of West Virginia Residency</td>
+                <td class="form-description">Used in lieu of residency documents when qualified person can attest to residency using their own documents</td>
+                <td class="form-number">Res/Aff</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Title VI Policy Poster</td>
+                <td class="form-description">Gives public notice of DMV's policy to uphold and assure full compliance with the non-discrimination requirements of Title VI of the Civil Rights Act of 1964 and related Nondiscrimination authorities.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Transportation Network Company (TNC) Memo and Application</td>
+                <td class="form-description">An internal memo explaining Transportation Network Companies (TNC) permits and what is required of them to provide prearranged rides.</td>
+                <td class="form-number">TNC</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>FMCSA Title VI Program 2021 Compliance Program</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Medical and Disability</td>
+            </tr>
+            <tr>
+                <td>Owner's Statement of Insurance</td>
+                <td class="form-description">Owner's Statement of Insurance</td>
+                <td class="form-number">WV-4A</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Seasonal Statement of Insurance</td>
+                <td class="form-description">Owner's Statement of Seasonal Insurance</td>
+                <td class="form-number">WV-4B</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Traffic Records Assessment 2016</td>
+                <td class="form-description">The traffic records assessment is a NHTSA-supported independent peer review of a State's traffic records system covering the collection, management, and analysis of the six core data systems: crash, driver, vehicle, roadway, citation and adjudication, and</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Traffic Records Assessment</td>
+            </tr>
+            <tr>
+                <td>Vehicle Registration Plate Surrender Form</td>
+                <td class="form-description">License Plate Surrender Form</td>
+                <td class="form-number">WV-4S</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>West Virginia Uniform Traffic Citation Order Form</td>
+                <td class="form-description">Uniform traffic citations booklets can be ordered through WV Correctional Industries, using this form.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Commercial Driver's License (CDL) Manual - WV &amp; Federal</td>
+                <td class="form-description">CDL License Manual</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Governor's Highway Safety Program Annual Report 2020</td>
+                <td class="form-description">West Virginia must submit an Annual Report to the National Highway Traffic Safety Administration (NHTSA) as prescribed in the federal Uniform Procedures for Highway Safety Programs. This report must include West Virginia's progress in meeting its highway</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Governor's Highway Safety Program Annual Report 2019</td>
+                <td class="form-description">West Virginia must submit an Annual Report to National Highway Traffic Safety Administration (NHTSA) as prescribed in the federal Uniform Procedures for Highway Safety Programs. This report must include West Virginia's progress in meeting its highway safe</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Annual Reports</td>
+            </tr>
+            <tr>
+                <td>West Virginia Highway Safety Plan FFY 2021</td>
+                <td class="form-description">The West Virginia Highway Safety Plan (HSP) is a statewide comprehensive traffic safety plan which establishes goals, objectives, and strategies as to how the state will reduce motor vehicle crashes, injuries, and fatalities in West Virginia.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Performance Plans</td>
+            </tr>
+            <tr>
+                <td>The Youth ID Card Program</td>
+                <td class="form-description">Youth ID card Informational Leaflet</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Abandoned Vehicle Checklist</td>
+                <td class="form-description">Abandoned Vehicle Checklist. Can be used by employees or customers to ensure that all documents necessary to process an abandoned vehicle are submitted.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Abandoned Vehicle Procedure</td>
+                <td class="form-description">Explains the abandoned vehicle process in detail.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>WVOLV - WV Online Insurance Verification</td>
+                <td class="form-description">Informational leaflet about the WV Online Verification process for insurance</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Minimum Requirements for a Motor Vehicle Dealer, W/D/R, and Automobile Auction</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>West Virginia Highway Safety Plan FFY 2022</td>
+                <td class="form-description">The West Virginia Highway Safety Plan (HSP) is a statewide comprehensive traffic safety plan which establishes goals, objectives, and strategies as to how the state will reduce motor vehicle crashes, injuries, and fatalities in West Virginia.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Performance Plans</td>
+            </tr>
+            <tr>
+                <td>Observational Survey of Seatbelt Use Report 2018</td>
+                <td class="form-description">The GHSP performs observational seat belt surveys throughout the state at scientifically chosen locations to determine West Virginia's seat belt use rate. This report is updated and presented to the federal government annually.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Seatbelt Survey Reports</td>
+            </tr>
+            <tr>
+                <td>Observational Survey of Seatbelt Use Report 2019</td>
+                <td class="form-description">The GHSP performs observational seat belt surveys throughout the state at scientifically chosen locations to determine West Virginia's seat belt use rate. This report is updated and presented to the federal government annually.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Seatbelt Survey Reports</td>
+            </tr>
+            <tr>
+                <td>Surety Bond Form - 100K</td>
+                <td class="form-description">Form used for License Service Surety Bond for 100 thousand Dollars</td>
+                <td class="form-number">MV-100-LS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for License Service to Process and Issue Registration Decals</td>
+                <td class="form-description">Application for a License Service to signup for the DMV Decal program to issue a decal to customers.</td>
+                <td class="form-number">DMV-101-LS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Salvage Inspection Schedule</td>
+                <td class="form-description">The 2024 salvage inspection schedule. Lists the locations, dates, and times of DMV salvage inspections.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for License Service License Certificate</td>
+                <td class="form-description">Application to apply for a license to open a License Service.</td>
+                <td class="form-number">DMV-126-I-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>WV County Sheriff Contact List</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>Application for License Service License Certificate Renewal</td>
+                <td class="form-description">Application to be used to renew License Service license.</td>
+                <td class="form-number">DMV-126-R-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Dept. of Veterans Assistance Office Locations</td>
+                <td class="form-description">Lists the addresses of all current department of veteran assistance offices.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for Self-Insurance</td>
+                <td class="form-description">Application for self-insurance for a person or business that has more than 25 vehicles and over 1 million dollars in total assets</td>
+                <td class="form-number">DMV-617-SR</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>Application for a Disabled Veteran Mobility Impaired License Plate</td>
+                <td class="form-description">Disabled Veteran Mobility Impaired license plate application. This license plate is only for those who are veterans and who qualify for a handicap plate/placard. Must be authorized by both the department of veteran assistance and a licensed physician.</td>
+                <td class="form-number">DMV-48-DI</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for Motor Vehicle Leasing Permit</td>
+                <td class="form-description">New Lease company application. Used by an entity to apply to engage in leasing vehicles in WV.</td>
+                <td class="form-number">DMV-4L</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for a Former Legislator License Plate</td>
+                <td class="form-description">Former legislature license plate application. Must be authorized by House or Senate clerk.</td>
+                <td class="form-number">DMV-55-FL</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for a Legislative/Judicial/Board of Public Works License Plate</td>
+                <td class="form-description">Judicial, public works, or legislative license plate application. Can be personalized.</td>
+                <td class="form-number">DMV-55-LJPW</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for a Silver Haired Legislature License Plate</td>
+                <td class="form-description">Silver haired legislator license plate application. Plate can be personalized. Must be authorized by the Bureau of Senior Services.</td>
+                <td class="form-number">DMV-55-SHL</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Observational Survey of Seatbelt Use Report 2021</td>
+                <td class="form-description">The GHSP performs observational seat belt surveys throughout the state at scientifically chosen locations to determine West Virginia's seat belt use rate. This report is updated and presented to the federal government annually.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Seatbelt Survey Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2021</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2021</td>
+                <td class="form-number">DMV-AR-FY2021</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Dealer's Notice of Lien</td>
+                <td class="form-description">Dealer's notice of lien. Completed by a dealer to inform the DMV of a lien on a vehicle they have sold.</td>
+                <td class="form-number">DMV-85-TR</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>ELDT Applicability</td>
+                <td class="form-description">FMCSA ELDT Flow Chart</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Surety Bond</td>
+                <td class="form-description">Form used by Lease Company for Surety bond</td>
+                <td class="form-number">MV-1LB</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Monthly Motor Vehicle Rental Tax Return</td>
+                <td class="form-description">Monthly Notice of Rental Tax submission. To be completed monthly by all rental companies.</td>
+                <td class="form-number">DMV-126-MR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Affidavit of WV Facility Residency</td>
+                <td class="form-description">This form is used to establish residency by homeless persons who live in a dedicated shelter.</td>
+                <td class="form-number">DMV-AFR-22</td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>Governor's Highway Safety Program Annual Report 2021</td>
+                <td class="form-description">West Virginia must submit an Annual Report to National Highway Traffic Safety Administration (NHTSA) as prescribed in the federal Uniform Procedures for Highway Safety Programs. This report must include West Virginia's progress in meeting its highway safe</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Annual Reports</td>
+            </tr>
+            <tr>
+                <td>West Virginia Highway Safety Plan FFY 2023</td>
+                <td class="form-description">The West Virginia Highway Safety Plan (HSP) is a statewide comprehensive traffic safety plan which establishes goals, objectives, and strategies as to how the state will reduce motor vehicle crashes, injuries, and fatalities in West Virginia.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Performance Plans</td>
+            </tr>
+            <tr>
+                <td>Preliminary Interest Application for Special Plate - Generic</td>
+                <td class="form-description">New organization/special interest license plate application. Used in the Special Plate department. This application is used when an entity would like to begin the process of creating a new special interest/organization license plate.</td>
+                <td class="form-number">DMV-54</td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>Motor Vehicles Titling Seminar Manual</td>
+                <td class="form-description">An in-depth training presentation. Used to train employees on correct titling procedures.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Observational Survey of Seatbelt Use Report 2022</td>
+                <td class="form-description">The Governor's Highway Safety Program performs observational seat belt surveys at scientifically chosen locations. These results are compiled in a report each year.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Seatbelt Survey Reports</td>
+            </tr>
+            <tr>
+                <td>ELDT Process - WV DMV</td>
+                <td class="form-description">WV DMV ELDT insert at Test Card issuance</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2022</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2022</td>
+                <td class="form-number">DMV-AR-FY2022</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Medical Examination Report Form</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">MCSA-5875</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Medical Examiner's Certificate Form</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number">MCSA-5876</td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>Application for Relinquishment of Specialty License Plate</td>
+                <td class="form-description">Application to relinquish a specialty license plate when there is an "and" between the owners. Both owners must sign.</td>
+                <td class="form-number">DMV-45-TR</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>Application for Use of Antique Military Registration</td>
+                <td class="form-description">Application for Use of Antique Military Registration</td>
+                <td class="form-number">DMV-54-AM</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Region 1</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 3</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 2</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 5</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 7</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 4</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Region 8</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Monthly Calendar of Events</td>
+            </tr>
+            <tr>
+                <td>Governor's Highway Safety Program Annual Report 2022</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Sample Plate Order Form</td>
+                <td class="form-description">Sample plate order form. This application is used when an entity would like to order a sample license plate. Currently we have 14 license plates available for samples.</td>
+                <td class="form-number">DMV-54-SMPL</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2019</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2019</td>
+                <td class="form-number">DMV-AR-FY2019</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2018</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2018</td>
+                <td class="form-number">DMV-AR-FY2018</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2017</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2017</td>
+                <td class="form-number">DMV-AR-FY2017</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2016</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2016</td>
+                <td class="form-number">DMV-AR-FY2016</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2015</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2015</td>
+                <td class="form-number">DMV-AR-FY2015</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2014</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2014</td>
+                <td class="form-number">DMV-AR-FY2014</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2013</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2013</td>
+                <td class="form-number">DMV-AR-FY2013</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Application for a Special Honorary Military Service Award Plate</td>
+                <td class="form-description">Special military Honorary Service Award license plate application. Can be used to obtain 4 different plates including, Air Force Cross, Distinguished Flying Cross, Distinguished Service Cross, and Navy Cross.</td>
+                <td class="form-number">DMV-48-HA</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr>
+                <td>Motor Vehicle Rental Agency Certificate</td>
+                <td class="form-description">An application or renewal form for certification for an agency to rent motor vehicles in WV</td>
+                <td class="form-number">DMV-126-F-DS</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Application for the Use of an Antique Fleet License Plate</td>
+                <td class="form-description">For the use of an antique license plate on a fleet of at least 5 antique vehicles. One registration plate will be issued and an individual registration card will be issued for each vehicle.</td>
+                <td class="form-number">DMV-52-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>WV American Legion Riders' Motorcycle Plate Preliminary Interest Form</td>
+                <td class="form-description">Preliminary Interest Application for Specialty Issue Motorcycle License Plate: WV American Legion Riders</td>
+                <td class="form-number">DMV-54-PIA-ALR</td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>Application for WV Association of Realtors License Plate</td>
+                <td class="form-description">Preliminary Interest Application for Specialty Issue License Plate: WV Assoc. of Realtors</td>
+                <td class="form-number">DMV-54-PIA-WVAR</td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>GSBDC License Plate Preliminary Interest Application</td>
+                <td class="form-description">Application for Specialty Issue License Plate: Girl Scouts</td>
+                <td class="form-number">DMV-54-PIA-GS</td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>Non-Resident Business Title Assignment</td>
+                <td class="form-description">Clearinghouse form for non-resident business title assignment</td>
+                <td class="form-number">MV-102-CH</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Clearinghouse 250K Surety Bond</td>
+                <td class="form-description">Clearinghouse form for $250,000 surety bond</td>
+                <td class="form-number">MV-100-CH</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for Clearinghouse Non-Resident Business Participation</td>
+                <td class="form-description">Clearinghouse form for non-resident business participation</td>
+                <td class="form-number">MV-101-CH</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Traffic Records Assessment 2022</td>
+                <td class="form-description">The traffic records assessment is a NHTSA-supported independent peer review of a State's traffic records system covering the collection, management, and analysis of the six core data systems: crash, driver, vehicle, roadway, citation and adjudication ...</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Traffic Records Assessment</td>
+            </tr>
+            <tr>
+                <td>Traffic Records Assessment 2012</td>
+                <td class="form-description">The traffic records assessment is a NHTSA-supported independent peer review of a State's traffic records system covering the collection, management, and analysis of the six core data systems: crash, driver, vehicle, roadway, citation and adjudication ...</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Traffic Records Assessment</td>
+            </tr>
+            <tr>
+                <td>WV Certificate of Insurance Sample and Specifications</td>
+                <td class="form-description">West Virginia Certificate of Insurance Sample and Specifications</td>
+                <td class="form-number">WV-1B</td>
+                <td>Insurance</td>
+            </tr>
+            <tr>
+                <td>NIST Level 2 Letter of Attestation</td>
+                <td class="form-description">Letter of Attestation</td>
+                <td class="form-number">MV-104-CH</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>InfoSec Questionnaire</td>
+                <td class="form-description">Clearinghouse Information Security Questionnaire</td>
+                <td class="form-number">MV-105-CH</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Preliminary Interest Application for Hoops Family Children's Hospital</td>
+                <td class="form-description">Preliminary interest application for Hoops Family Children's Hospital</td>
+                <td class="form-number">DMV-54</td>
+                <td>Applications for New License Plate Designs</td>
+            </tr>
+            <tr>
+                <td>West Virginia Highway Safety Plan FFY 2024-2026</td>
+                <td class="form-description">The West Virginia Triennial Highway Safety Plan (HSP) is a statewide comprehensive traffic safety plan which establishes goals, objectives, and strategies as to how the state will reduce motor vehicle crashes, injuries, and fatalities in West Virginia.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Performance Plans</td>
+            </tr>
+            <tr>
+                <td>Observational Survey of Seatbelt Use Report 2023</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Seatbelt Survey Reports</td>
+            </tr>
+            <tr>
+                <td>Governor's Highway Safety Program Annual Report 2023</td>
+                <td class="form-description">West Virginia must submit an Annual Report to National Highway Traffic Safety Administration (NHTSA) as prescribed in the federal Uniform Procedures for Highway Safety Programs. This report must include West Virginia's progress in meeting its highway safe</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Annual Reports</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2023</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2023</td>
+                <td class="form-number">DMV-AR-FY2023</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>GHSP Administrative Manual 2023</td>
+                <td class="form-description">The mission of the WVGHSP is to reduce crashes, injuries and fatalities on West Virginia's roadways by encouraging, promoting and supporting highway safety throughout the state.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Administrative Manuals</td>
+            </tr>
+            <tr>
+                <td>WV GHSP Driver Attitude and Awareness Survey 2022</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>GHSP Driver and Awareness Survey</td>
+            </tr>
+            <tr>
+                <td>Application for an Antique Motorcycle License Plate</td>
+                <td class="form-description">Antique motorcycle license plate application. Can only be used for motorcycles which are more than 35 years old. Applicant must choose whether they would like a restricted or general use plate. Customer can provide their own license plate, provided the is</td>
+                <td class="form-number">DMV-56-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Registration Fees Brochure</td>
+                <td class="form-description">The registration fees brochure. This brochure is provided to customers online and in person and details the fees for the most common license plates, including breakdowns of what each plate is used for and if the fee is prorated based on time of issuance.</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Application for the Use of an Antique License Plate</td>
+                <td class="form-description">Application which allows an individual to use an already owned antique license plate on their vehicle. The applicant can choose for the plate to either be a restricted use plate or a general use plate. The plate's year of issuance must match the year of t</td>
+                <td class="form-number">DMV-53-TR</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Surety Bond Form Rental Agency</td>
+                <td class="form-description">Form used by rental agencies for surety bond</td>
+                <td class="form-number">MV-126-DS-R</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Vehicle Removal Certificate</td>
+                <td class="form-description">Vehicle removal certificate. Provides an applicant permission to remove a vehicle from another's property.</td>
+                <td class="form-number">DMV-VRC-1A</td>
+                <td>Vehicles</td>
+            </tr>
+            <tr>
+                <td>Facts Sheet on mCDL</td>
+                <td class="form-description">Use of mCDL promotion for CDL testing</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Commercial Drivers License</td>
+            </tr>
+            <tr>
+                <td>2024 Commercial Vehicle Manual</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td><span class="missing">—</span></td>
+            </tr>
+            <tr>
+                <td>WV Current Driver's License Samples</td>
+                <td class="form-description">Comparison of current WV driver's licenses and ID cards</td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Drivers</td>
+            </tr>
+            <tr>
+                <td>DMV-54-HC Hoops Hospital License Plate Application</td>
+                <td class="form-description">DMV-54-HC_hoops hospital-License-Plate-Application-wf</td>
+                <td class="form-number">DMV-54-HC</td>
+                <td>General Interest License Plates</td>
+            </tr>
+            <tr>
+                <td>DMV-54-RA WV Realtors Association License Plate Application</td>
+                <td class="form-description">DMV-54-RA_WV-realtors-association-License-Plate-Application-wf</td>
+                <td class="form-number">DMV-54-RA</td>
+                <td>Associations and Organizations License Plates</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2024</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2024</td>
+                <td class="form-number">DMV-AR-FY2024</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>2025 Commercial Vehicle Manual</td>
+                <td class="form-description"><span class="missing">No description available</span></td>
+                <td class="form-number"><span class="missing">—</span></td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>Dealer Verification of VIN</td>
+                <td class="form-description">VIN Verification for Dealers</td>
+                <td class="form-number">DMV-90-TR</td>
+                <td>Dealers</td>
+            </tr>
+            <tr>
+                <td>Motor Carrier Road Tax (MCRT) Registration Application</td>
+                <td class="form-description">IRP Motor Carrier Road Tax Reg.pdf</td>
+                <td class="form-number">DMV100</td>
+                <td>Motor Carriers</td>
+            </tr>
+            <tr>
+                <td>DMV Annual Report 2025</td>
+                <td class="form-description">Annual Report for DMV, Fiscal Year 2025</td>
+                <td class="form-number">DMV-AR-FY2025</td>
+                <td>DMV Annual Reports</td>
+            </tr>
+            <tr>
+                <td>Application for a Distinguished Medal of Valor License Plate</td>
+                <td class="form-description">Distinguished Medal of Valor license plate application. Must be authorized by the WV First Responders Honor Board.</td>
+                <td class="form-number">DMV-48-M</td>
+                <td>Military License Plates</td>
+            </tr>
+            <tr class="no-results-row" id="noResultsRow" style="display: none;">
+                <td colspan="4">No forms match your search criteria.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterTitle    = document.getElementById('filterTitle');
+        const filterNumber   = document.getElementById('filterNumber');
+        const filterCategory = document.getElementById('filterCategory');
+        const clearBtn       = document.getElementById('clearFilters');
+        const noResultsRow   = document.getElementById('noResultsRow');
+        const resultsCount   = document.getElementById('resultsCount');
+        const rows           = Array.from(document.querySelectorAll('#formsTableBody tr:not(#noResultsRow)'));
+        const totalRows      = rows.length;
+
+        function applyFilters() {
+            const title    = filterTitle.value.trim().toLowerCase();
+            const number   = filterNumber.value.trim().toLowerCase();
+            const category = filterCategory.value;
+
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const cells       = row.querySelectorAll('td');
+                const rowTitle    = cells[0].textContent.trim().toLowerCase();
+                const rowNumber   = cells[2].textContent.trim().toLowerCase();
+                const rowCategory = cells[3].textContent.trim();
+
+                const matchesTitle    = !title    || rowTitle.includes(title);
+                const matchesNumber   = !number   || rowNumber.includes(number);
+                const matchesCategory = !category || rowCategory === category;
+
+                const visible = matchesTitle && matchesNumber && matchesCategory;
+                row.style.display = visible ? '' : 'none';
+                if (visible) visibleCount++;
+            });
+
+            noResultsRow.style.display = visibleCount === 0 ? '' : 'none';
+            resultsCount.textContent = `Showing ${visibleCount} of ${totalRows} result${totalRows !== 1 ? 's' : ''}`;
+        }
+
+        function clearFilters() {
+            filterTitle.value    = '';
+            filterNumber.value   = '';
+            filterCategory.value = '';
+            applyFilters();
+        }
+
+        filterTitle.addEventListener('input', applyFilters);
+        filterNumber.addEventListener('input', applyFilters);
+        filterCategory.addEventListener('change', applyFilters);
+        clearBtn.addEventListener('click', clearFilters);
+
+        applyFilters();
+    });
+</script>
