@@ -1,0 +1,193 @@
+﻿<style>
+    .elt-program-page {
+        color: #2d3748;
+    }
+
+        .elt-program-page .page-title {
+            color: #497da8;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+
+        .elt-program-page .intro-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            margin-bottom: 0;
+        }
+
+        .elt-program-page .section-label {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+        }
+
+        .elt-program-page .reminder-panel {
+            background-color: #edf1f7;
+            border: 1px solid #cfd8e3;
+            border-left: 4px solid #5a6e82;
+            border-radius: 0.375rem;
+            padding: 0.85rem 1.25rem;
+        }
+
+            .elt-program-page .reminder-panel ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .elt-program-page .reminder-panel ul li {
+                    position: relative;
+                    padding: 0.55rem 0 0.55rem 1.25rem;
+                    color: #4a5568;
+                    font-size: 1.05rem;
+                    border-bottom: 1px solid #cfd8e3;
+                    line-height: 1.4;
+                }
+
+                    .elt-program-page .reminder-panel ul li:last-child {
+                        border-bottom: none;
+                        padding-bottom: 0;
+                    }
+
+                    .elt-program-page .reminder-panel ul li::before {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        top: 1rem;
+                        width: 0.4rem;
+                        height: 0.4rem;
+                        background-color: #5a6e82;
+                        border-radius: 50%;
+                    }
+
+        .elt-program-page .content-block {
+            font-size: 1.1rem;
+            color: #2d3748;
+            line-height: 1.55;
+            margin-bottom: 1rem;
+        }
+
+        .elt-program-page .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.25rem;
+            margin-top: 1.5rem;
+        }
+
+        .elt-program-page .service-card {
+            background: #fff;
+            border-radius: 0.25rem;
+        }
+
+        .elt-program-page .service-header-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .elt-program-page .service-card-header {
+            background-color: #e7a81e;
+            color: #fff;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 0.25rem;
+            padding: 0.4rem 0.75rem;
+            font-size: 1.75rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .elt-program-page .service-header-link:hover .service-card-header,
+        .elt-program-page .service-header-link:focus-visible .service-card-header {
+            filter: brightness(1.08);
+            box-shadow: 0 0 0 2px rgba(231, 168, 30, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .elt-program-page .service-card-body {
+            color: #2d3748;
+            font-size: 2rem;
+            line-height: 1.45;
+        }
+
+    @@media (max-width: 991.98px) {
+        .elt-program-page .page-title {
+            font-size: 1.75rem;
+        }
+
+        .elt-program-page .service-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .elt-program-page .service-card-header {
+            font-size: 1.05rem;
+        }
+
+        .elt-program-page .service-card-body {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+<div class="elt-program-page py-4">
+    <h1 class="page-title">West Virginia ELT Program for Lenders and ELT Service Providers</h1>
+
+    <p class="intro-text mb-4">
+        West Virginia is excited to announce to launch of our Electronic Lien and Title program.
+        Electronic Lien and Title, also known as ELT, is a paperless way for lienholders to file, release,
+        correct or transfer liens. The benefits of ELT for both lienholders and the DMV include:
+    </p>
+
+    <p class="section-label">Program Benefits</p>
+    <div class="reminder-panel mb-4">
+        <ul>
+            <li>Reduce errors due to the elimination of manual entry</li>
+            <li>Improved efficiency and reduced costs due to the elimination of the need to print, handle, manage and mail paper forms associated with your lien portfolio</li>
+            <li>Dramatically reduce the opportunities for fraud associated with titles and liens</li>
+            <li>Eliminate the need to store physical titles, all lienholder titles are electronic</li>
+            <li>Titles can't be lost as the e-titles have replaced the secure paper title</li>
+            <li>Increased visibility into title status and necessary actions</li>
+            <li>Fast and secure lien releases provide improved customer service for vehicle owners</li>
+            <li>Digital processes improve efficiency by reducing redundant steps</li>
+        </ul>
+    </div>
+
+    <p class="content-block">
+        West Virginia’s ELT program allows all lienholders to easily file, confirm, manage, and release liens they fund for West Virginian Citizens.
+        West Virginia is the first state in the US to implement an ELT solution with 4 different levels of service, providing a solution that will
+        provide extraordinary benefits to any lienholder lending in the state, regardless of size or volume of transactions.
+    </p>
+
+    <p class="content-block mb-0">
+        As mentioned above, there are 4 classes of ELT services available for lenders. Two of these service offerings are provided by Lender Service
+        Providers, and two are delivered via a direct lender facing web portal (ELT Lender Portal).
+    </p>
+
+    <div class="service-grid">
+        <div class="service-card">
+            <a class="service-header-link" href="/node/137" data-entity-type="node" data-entity-uuid="b15bcae7-cded-41bb-ba01-9fc02d24c423" data-entity-substitution="canonical" " target="_blank" rel="noopener noreferrer">
+                <div class="service-card-header">ELT Lender Portal</div>
+            </a>
+            <div class="service-card-body">
+                For lienholders who want to participate in ELT directly to manage your electronic liens.
+                Services are offered through a Standard Service, or an enhanced Premium Service.
+            </div>
+        </div>
+
+        <div class="service-card">
+            <a class="service-header-link" href="/node/138" data-entity-type="node" data-entity-uuid="6b094aa3-56f6-4bdf-a836-bd929e23e92a" data-entity-substitution="canonical target="_blank" rel="noopener noreferrer">
+                <div class="service-card-header">ELT Service Providers</div>
+            </a>
+            <div class="service-card-body">
+                For lienholders with higher volumes and / or those involved with multi-state lending and want to leverage an ELT Service Provider.
+                Our service offering includes a Batch Service, as well as a real time API Service.
+            </div>
+        </div>
+    </div>
+</div>
