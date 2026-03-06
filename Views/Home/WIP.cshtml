@@ -1,723 +1,168 @@
-﻿<style>
-    .dui-page a {
-        color: #0d6efd;
-        text-decoration: underline;
+﻿@{
+    ViewData["Title"] = "Farming Patch Routes";
+}
+
+<style>
+    .patch-table th {
+        white-space: nowrap;
     }
 
-        .dui-page a:hover {
-            color: #0a58ca;
-        }
-
-    .provider-badge {
-        display: inline-block;
-        background-color: #637080;
-        color: #fff;
-        font-size: 0.65rem;
-        font-weight: 700;
-        padding: 0.15rem 0.45rem;
-        border-radius: 0.25rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        vertical-align: middle;
-        margin-left: 0.35rem;
+    .patch-table td ul {
+        margin-bottom: 0;
+        padding-left: 1.15rem;
     }
 
-    .location-block + .location-block {
-        margin-top: 0.6rem;
-        padding-top: 0.6rem;
-        border-top: 1px dashed #cfd8e3;
-    }
-
-    .satellite-section {
-        margin-top: 0.6rem;
-        padding-top: 0.6rem;
-        border-top: 1px dashed #cfd8e3;
+    .patch-table td li + li {
+        margin-top: 0.35rem;
     }
 </style>
 
-<div class="py-4 px-3 px-md-4 dui-page">
+<div class="container py-4">
+    <h2 class="mb-3">Farming Patch Travel Options</h2>
 
-    <h3 class="fw-semibold mb-1">DUI Safety and Treatment Program</h3>
-    <hr class="mb-4" style="border-color: #cfd8e3;" />
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle patch-table">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col" style="width: 20%;">Patch</th>
+                    <th scope="col" style="width: 20%;">Requirement</th>
+                    <th scope="col" style="width: 60%;">Travel Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Falador patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Explorer's ring 2, 3, or 4 and run north.</li>
+                            <li>Use the spirit tree teleport to Port Sarim and run north.</li>
+                            <li>Draynor Manor Teleport from the Arceuus spellbook or Draynor Manor Teleport (tablet) and run south-west.</li>
+                            <li>Use the Ring of the elements Air Altar Teleport and run north-east.</li>
+                            <li>Teleport to Draynor Village with an amulet of glory and run north-west.</li>
+                            <li>Teleport to Falador and run south-east of Falador.</li>
+                        </ul>
+                    </td>
+                </tr>
 
-    <div class="p-3 mb-4" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-        <p class="mb-2"><strong>If you received a DUI in the state of West Virginia, you will need to complete the Safety and Treatment Program through one of the authorized West Virginia Providers. The West Virginia Program Curriculum is comprised of two components:</strong></p>
-        <ul class="mb-0">
-            <li><strong>18 hours of DUI education</strong></li>
-            <li>
-                <strong>A substance abuse evaluation/assessment</strong>
-                <ul>
-                    <li>If the treatment assessment indicates a need for further treatment, the client must complete any recommended treatment to fulfill the West Virginia requirements. (considered Level II or III treatment with in-state providers)</li>
-                </ul>
-            </li>
-        </ul>
+                <tr>
+                    <td>Port Phasmatys patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the fairy ring ALQ and run north.</li>
+                            <li>Empty the ectophial and run west.</li>
+                            <li>Teleport to Fenkenstrain's Castle and run east.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ardougne patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Ardougne cloak 2, 3, or 4 to teleport to the farming patches.</li>
+                            <li>Teleport to the Fishing Guild with a skills necklace or Fishing cape and run east.</li>
+                            <li>Teleport to the Legends' Guild with the Quest point cape and run north-west.</li>
+                            <li>Teleport to the Ranging Guild with a combat bracelet and run south-east.</li>
+                            <li>Teleport to Ardougne and run north-east.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Catherby patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Catherby Teleport from the lunar spellbook.</li>
+                            <li>Teleport using a Catherby teleport tablet.</li>
+                            <li>Teleport to Camelot and run east until reaching the patch north of Catherby.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Hosidius patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use the teleport option on the Xeric's talisman, select the Xeric's glade option and run south-west.</li>
+                            <li>Teleport to the Hosidius player-owned house portal with the Construction cape and run north.</li>
+                            <li>Teleport to Hosidius using Kharedst's memoirs or the Book of the dead and run south-east.</li>
+                            <li>Use a Spirit tree teleport to Hosidius and run east, jumping across the stepping stones (level Agility 45 required).</li>
+                            <li>Teleport to the Woodcutting Guild with a skills necklace, run north-east and jump across the stepping stones (level Agility 45 required).</li>
+                            <li>Use the Tithe Farm Grouping teleport and run north-west</li>
+                            <li>Use the fairy ring AKR and run west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Farming Guild patch</td>
+                    <td>Requires 65 Farming (boostable)</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the Farming Guild with either the Farming cape or a skills necklace and run west.</li>
+                            <li>Use a Spirit tree teleport to the Farming Guild and run south-west (requires 85 Farming).</li>
+                            <li>Lovakengj Minecart Network to the Farming Guild and run east. Run west across the stepping stones (Agility 45) from the previous step or use Rada's blessing teleport to the Kourend Woodland to get quick access to the Minecart Network, north-east.</li>
+                            <li>Use the fairy ring CIR and run south-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Ortus Farm/Civitas illa Fortis patch</td>
+                    <td>None</td>
+                    <td>
+                        <ul>
+                            <li>Use a quetzal whistle to teleport to the Hunter Guild and run north.</li>
+                            <li>Teleport to the Hunter Guild with the Hunter cape and run north-east.</li>
+                            <li>Use the Civitas illa Fortis Teleport then use the nearby Quetzal Transport System to teleport to the Hunter Guild and run north.</li>
+                            <li>Use the fairy ring AJP and run north-west.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Troll Stronghold patch</td>
+                    <td>Requires My Arm's Big Adventure</td>
+                    <td>
+                        <ul>
+                            <li>Teleport to the roof using a stony basalt with at least the hard Fremennik Diary and Agility 73.</li>
+                            <li>Teleport using a stony basalt and use the Rocks shortcut to the roof with Agility 73 (can be boosted).</li>
+                            <li>Teleport using a stony basalt and run through the troll stronghold to the roof.</li>
+                            <li>Teleport to Trollheim and use the Agility shortcuts to the west. Continue through the aggressive trolls and into the stronghold. Run south to a door, and then north to a ladder. Climb up and run north to the patch.</li>
+                            <li>Use a Troll Stronghold Portal built in your Played Owned House.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Weiss patch</td>
+                    <td>Requires Making Friends With My Arm</td>
+                    <td>
+                        <ul>
+                            <li>Teleport using an icy basalt.</li>
+                            <li>Use the fairy ring DKS, run west to take Larry's boat to Weiss, and enter the cave entrance.</li>
+                            <li>Use a Weiss teleport built in your Player Owned House.</li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Harmony Island patch</td>
+                    <td>Requires the elite Morytania Diary</td>
+                    <td>
+                        <ul>
+                            <li>Harmony Island Teleport from the Arceuus spellbook and run south.</li>
+                            <li>Use a Mos le'harmless teleport scroll and run south-west to take the "Transport" option on Brother Tranquility.</li>
+                            <li>(very slow) Empty the ectophial, run to Bill Teach and use the right-click "Travel" option, then use the right-click "Transport" option on Brother Tranquility.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <h5 class="fw-semibold mb-3" style="color: #EAAA00;">Current Authorized Providers in WV</h5>
-
-    <div class="row g-3 mb-5">
-
-        <!-- Appalachian Community Mental Health Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">
-                    Appalachian Community Mental Health Center
-                    <span class="provider-badge">On Hold</span>
-                </p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Barbour, Randolph, Tucker and Upshur</p>
-                <a href="http://www.achcinc.org/" target="_blank">www.achcinc.org</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    725 Yokum Street<br />
-                    Elkins, WV 26241<br />
-                    <strong>304-636-3232</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Berkeley County Day Report Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Berkeley County Day Report Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Berkeley</p>
-                <a href="https://wv-berkeleycounty.civicplus.com/445/Day-Report-Center" target="_blank">wv-berkeleycounty.civicplus.com/445/Day-Report-Center</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    520 South Raleigh St<br />
-                    Martinsburg, WV 25401<br />
-                    <strong>304-262-9831</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Bluestone Health Association, INC. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Bluestone Health Association, INC.</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Mercer, McDowell, Summers</p>
-                <a href="https://www.bluestonehealth.net/" target="_blank">www.bluestonehealth.net</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    106 Thorn Street<br />
-                    Princeton, WV 24740<br />
-                    <strong>304-314-7501</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Bright Life Mental Health & Recovery Services, PLLC -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Bright Life Mental Health &amp; Recovery Services, PLLC</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Fayette, Greenbrier, McDowell, Mercer, Monroe, Nicholas, Pocahontas, Raleigh, Summers, Webster and Wyoming</p>
-                <a href="https://brightlifemhs.com/" target="_blank">info@brightlifemhs.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    221 George Street<br />
-                    Beckley, WV 25801<br />
-                    <strong>681-238-6634</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Brighter Futures -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Brighter Futures</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Boone, Logan, Lincoln and Mingo</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    467 Main Street, 3rd Floor<br />
-                    Madison, WV 25130<br />
-                    <strong>304-369-7876</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Callahan Counseling Services -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Callahan Counseling Services</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Berkeley, Jefferson and Morgan</p>
-                <a href="http://www.callahancounselingservices.com/" target="_blank">www.callahancounselingservices.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    1020 Winchester Avenue<br />
-                    Martinsburg, WV 25401<br />
-                    <strong>304-886-4118</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Coalfield Family Services, Inc. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Coalfield Family Services, Inc.</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Boone, Braxton, Cabell, Clay, Elkins, Lewis, Lincoln, Kanawha, Mason, Putnam, Randolph, Upshur, and Wayne</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    20824 Rt. 52<br />
-                    Fort Gay, WV 25514<br />
-                    <strong>304-648-7100</strong>
-                </address>
-                <div class="satellite-section small">
-                    <p class="fw-semibold mb-1">Satellite Location:</p>
-                    <address style="font-style: normal;" class="mb-1">
-                        142 Robert E. Lee Ext.<br />
-                        Elkins, WV 26241
-                    </address>
-                    <em>*clients will need to contact the main office location at 304-648-7100 for class information*</em>
-                </div>
-            </div>
-        </div>
-
-        <!-- Diverse Counseling Solutions, LLC -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Diverse Counseling Solutions, LLC</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Berkley, Jefferson, Morgan</p>
-                <a href="http://www.beheardbeyou.com/" target="_blank">www.beheardbeyou.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    142 North Queen Street<br />
-                    Martinsburg, WV 25401<br />
-                    <strong>304-839-8074</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Eastridge Health Systems -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Eastridge Health Systems</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Berkeley, Jefferson and Morgan</p>
-                <a href="http://www.eastridgehealthsystems.org/" target="_blank">www.eastridgehealthsystems.org</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    235 South Water Street<br />
-                    Martinsburg, WV 25401<br />
-                    <strong>304-263-8954</strong> ext. <strong>7069</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Family Options Providers Inc -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Family Options Providers Inc</p>
-                <p class="mb-1" style="font-size: 0.875rem;"><strong>Lifeline Addiction, Psychiatric and Wellness Center</strong></p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Nicholas and Webster</p>
-                <a href="http://familyoptionsproviders.com/" target="_blank">www.familyoptionsproviders.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    830 Northside Drive, Suite 107<br />
-                    Summersville, WV 26651<br />
-                    <strong>681-355-0215</strong> (Summerville Office)<br />
-                    <strong>304-254-9610</strong> (Beckley Office)
-                </address>
-            </div>
-        </div>
-
-        <!-- FMRS Health Systems, Inc. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">FMRS Health Systems, Inc.</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Fayette, Monroe, Raleigh, and Summers</p>
-                <a href="http://www.fmrs.org/" target="_blank">www.fmrs.org</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        101 South Eisenhower Drive<br />
-                        Beckley, WV 25801<br />
-                        <strong>304-256-7100</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        209 W. Main Street<br />
-                        Fayetteville, WV 25840<br />
-                        <strong>304-574-2100</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Harrison County Day Report Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Harrison County Day Report Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Harrison</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    215 South 3rd Street<br />
-                    Clarksburg, WV 26301<br />
-                    <strong>304-624-8556</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Healthways, Inc. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">
-                    Healthways, Inc.
-                    <span class="provider-badge">On Hold</span>
-                </p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Brooke and Hancock</p>
-                <a href="http://www.healthwaysinc.com/" target="_blank">www.healthwaysinc.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    501 Colliers Way<br />
-                    Weirton, WV 26062<br />
-                    <strong>304-723-5440</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Holistic, Inc. Medical Services and Counseling -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Holistic, Inc. Medical Services and Counseling</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Boone, Kanawha and Putnam</p>
-                <a href="http://www.holistic-inc.com/" target="_blank">www.holistic-Inc.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    4815 MacCorkle Ave., SE<br />
-                    Charleston, WV 25304<br />
-                    <strong>681-265-1693</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Lee Day Report Center – Weirton -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Lee Day Report Center – Weirton</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Brooke and Hancock</p>
-                <a href="https://leedayreportcenter.com/" target="_blank">www.leedayreportcenter.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    3828 Main Street<br />
-                    Weirton, WV 26062<br />
-                    <strong>304-748-8043</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Lee Day Report Center – Wheeling -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Lee Day Report Center – Wheeling</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Ohio</p>
-                <a href="https://leedayreportcenter.com/" target="_blank">www.leedayreportcenter.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    123 16th Street, PO Box 6333<br />
-                    Wheeling, WV 26003<br />
-                    <strong>304-905-0105</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Lee Day Report Center – Moundsville -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Lee Day Report Center – Moundsville</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Marshall and Wetzel</p>
-                <a href="https://leedayreportcenter.com/" target="_blank">www.leedayreportcenter.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    324 7th Street<br />
-                    Moundsville, WV 26041<br />
-                    <strong>304-845-6951</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Logan-Mingo Area Mental Health, Inc. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Logan-Mingo Area Mental Health, Inc.</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Logan and Mingo</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    174 LMAMH Center Road<br />
-                    Logan, WV 25601<br />
-                    <strong>304-792-7130</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Mason County Family Resource Network -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Mason County Family Resource Network</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Mason</p>
-                <a href="https://www.masoncountyfrn.com/" target="_blank">www.masoncountyfrn.com</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        624 Main Street<br />
-                        Point Pleasant, WV 25550<br />
-                        <strong>304-812-5102</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        10822 Winfield Road<br />
-                        Winfield, WV 25213<br />
-                        <strong>304-936-1048</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mid-Ohio Valley Regional Day Report Center -->
-        <div class="col-12">
-            <div class="p-3" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Mid-Ohio Valley Regional Day Report Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Calhoun, Jackson, Pleasants, Ritchie, Roane, Wirt, and Wood</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    1531 Garfield Ave<br />
-                    Parkersburg, WV 26101<br />
-                    Telephone: <strong>304-422-8570</strong> &nbsp;|&nbsp; Fax: 304-422-8579
-                </address>
-                <div class="satellite-section">
-                    <p class="fw-semibold mb-2 small"><em>Satellite Locations:</em></p>
-                    <div class="row g-2">
-                        <div class="col-md-4 small">
-                            <p class="fw-semibold mb-1" style="color: #637080;">Jackson County Day Report Center</p>
-                            <address style="font-style: normal;" class="mb-0">
-                                222 Main Street<br />
-                                Ripley, WV 25271<br />
-                                Telephone: <strong>304-514-2268</strong><br />
-                                Fax: 304-514-2270
-                            </address>
-                        </div>
-                        <div class="col-md-4 small">
-                            <p class="fw-semibold mb-1" style="color: #637080;">Pleasants County Day Report Center</p>
-                            <address style="font-style: normal;" class="mb-0">
-                                213 Second St., Ste. 201<br />
-                                St. Marys, WV 26170<br />
-                                Telephone: <strong>304-684-3785</strong>
-                            </address>
-                        </div>
-                        <div class="col-md-4 small">
-                            <p class="fw-semibold mb-1" style="color: #637080;">Ritchie County Day Report Center</p>
-                            <address style="font-style: normal;" class="mb-0">
-                                115 E. Main Street Room 104<br />
-                                Harrisville, WV 26362<br />
-                                Telephone: <strong>304-643-2164</strong><br />
-                                Fax: 304-643-5784
-                            </address>
-                        </div>
-                        <div class="col-md-4 small">
-                            <p class="fw-semibold mb-1" style="color: #637080;">Roane County Day Report Center</p>
-                            <address style="font-style: normal;" class="mb-0">
-                                325 Main Street<br />
-                                Spencer, WV 25276<br />
-                                Telephone: <strong>304-519-5898</strong><br />
-                                Fax: 304-519-5900
-                            </address>
-                        </div>
-                        <div class="col-md-4 small">
-                            <p class="fw-semibold mb-1" style="color: #637080;">Wood County Day Report Center</p>
-                            <address style="font-style: normal;" class="mb-0">
-                                1531 Garfield Ave<br />
-                                Parkersburg, WV 26101<br />
-                                Telephone: <strong>304-422-8570</strong><br />
-                                Fax: 304-422-8579
-                            </address>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Minnie Hamilton Health System -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Minnie Hamilton Health System</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Braxton, Calhoun, Doddridge, Glimer, Lewis, Richie, Roane and Wirt</p>
-                <a href="https://www.mhhs.healthcare/" target="_blank">www.mhhs.healthcare</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    186 Hospital Drive<br />
-                    Grantsville, WV 26147<br />
-                    <strong>304-462-3411</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- New Perspective Counseling Services, LLC -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">New Perspective Counseling Services, LLC</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Mercer, McDowell, Raleigh, Wyoming</p>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    300 Front Street<br />
-                    Mullens, WV 25882<br />
-                    <strong>681-532-0009</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Northwood Health Systems -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Northwood Health Systems</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Brooke, Hancock, Marshall, Ohio, and Wetzel</p>
-                <a href="http://www.northwoodhealth.com/" target="_blank">www.northwoodhealth.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    111 Nineteenth Street<br />
-                    Wheeling, WV 26003<br />
-                    <strong>304-234-3500</strong> ext. <strong>3233</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Potomac Highlands Guild, Inc. -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Potomac Highlands Guild, Inc.</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Grant, Hampshire, Hardy, Mineral, and Pendleton</p>
-                <a href="http://www.thephg.org/" target="_blank">www.thephg.org</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        7 Mountain View St. Suite 1<br />
-                        Petersburg, WV 26847<br />
-                        <strong>304-257-1155</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        3334 New Creek Highway<br />
-                        New Creek, WV 26743<br />
-                        <strong>304-788-2241</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Prestera Health Services -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Prestera Health Services</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Boone, Cabell, Clay, Kanawha, Lincoln, Mason, Putnam, and Wayne</p>
-                <a href="https://www.prestera.org/" target="_blank">www.prestera.org</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    55 Donohoe Drive<br />
-                    Huntington, WV 25705<br />
-                    <strong>304-525-7851</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Pyramid Counseling, LLC -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Pyramid Counseling, LLC</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Greenbrier, Kanawha, and Raleigh</p>
-                <a href="http://www.pyramidcounselingllc.com/" target="_blank">www.pyramidcounselingllc.com</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        130 George Street Box 6 Suite EF<br />
-                        Beckley, WV 25801<br />
-                        <strong>304-256-0200</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-2">
-                        3738 Davis Stuart Rd<br />
-                        Lewisburg, WV 24901<br />
-                        <strong>304-645-5558</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        808 B St., Suite D<br />
-                        St. Albans, WV 25177<br />
-                        <strong>304-721-8766</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- RGB Behavioral Health -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">RGB Behavioral Health</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Barbour, Cabell, Lincoln, Randolph, Putnam, Upshur and Wayne</p>
-                <a href="https://www.rrgwv.com/" target="_blank">www.rrgwv.com</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        900 20th Street<br />
-                        Huntington, WV 25703<br />
-                        <strong>681-378-3908</strong> option 1
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        1123 S. Davis Ave<br />
-                        Elkins, WV 26241<br />
-                        <strong>681-378-3908</strong> option 2
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Seneca Health Services -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Seneca Health Services</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Greenbrier, Nicholas, Pocahontas, and Webster</p>
-                <a href="http://www.shsinc.org/" target="_blank">www.shsinc.org</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        <strong>Regional Office / Nicholas County</strong><br />
-                        131 Wellness Drive<br />
-                        Summersville, WV 26651-5402<br />
-                        <strong>888-736-3229</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-2">
-                        <strong>Pocahontas County Office</strong><br />
-                        704 Third Avenue<br />
-                        Marlinton, WV 24954
-                    </address>
-                    <address style="font-style: normal;" class="mb-2">
-                        <strong>Webster County Office</strong><br />
-                        70 Parcoal Road<br />
-                        Webster Spring, WV 26288
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        <strong>Greenbrier County Office</strong><br />
-                        804 Industrial Park Road<br />
-                        Maxwelton, WV 24957
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Southern Highlands Community Mental Health Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Southern Highlands Community Mental Health Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: McDowell, Mercer, and Wyoming</p>
-                <a href="http://www.shcmhc.com/" target="_blank">www.shcmhc.com</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        200 12th Street Extension<br />
-                        Princeton, WV 24740<br />
-                        <strong>304-425-9541</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        19805 Coal Heritage Road<br />
-                        Welch, WV 24801<br />
-                        <strong>304-436-2106</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tucker Day Report -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Tucker Day Report</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Jefferson and Tucker</p>
-                <a href="https://www.tuckerdayreport.com/" target="_blank">https://www.tuckerdayreport.com</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    213 First Street<br />
-                    Parsons, WV 26287<br />
-                    <strong>304-478-2833</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Union Mission Behavioral Health Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Union Mission Behavioral Health Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Boone, Clay, Kanawha, Lincoln &amp; Putnam</p>
-                <a href="https://www.umbhc.org/" target="_blank">www.umbhc.org</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    705 S. Park Rd.<br />
-                    Charleston, WV 25304<br />
-                    <strong>304-446-2336</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- United Summit Center -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">United Summit Center</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Braxton, Doddridge, Gilmer, Harrison, and Lewis</p>
-                <a href="https://rni.wvumedicine.org/dui-classes/" target="_blank">https://rni.wvumedicine.org/dui-classes/</a>
-                <address style="font-style: normal;" class="mt-2 mb-0 small">
-                    6 Hospital Plaza<br />
-                    Clarksburg, WV 26301<br />
-                    <strong>304-974-5000</strong> ext. <strong>181343</strong>
-                </address>
-            </div>
-        </div>
-
-        <!-- Valley Healthcare System -->
-        <div class="col-md-6">
-            <div class="p-3 h-100" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Valley Healthcare System</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Marion, Monongalia, Preston, and Taylor</p>
-                <a href="http://www.valleyhealthcare.org/" target="_blank">www.valleyhealthcare.org</a>
-                <div class="mt-2 small">
-                    <address style="font-style: normal;" class="mb-2">
-                        301 Scott Avenue<br />
-                        Morgantown, WV 26508<br />
-                        <strong>304-296-1731</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-2">
-                        100 Crosswind Drive<br />
-                        Fairmont, WV 26554<br />
-                        <strong>304-366-7174</strong>
-                    </address>
-                    <address style="font-style: normal;" class="mb-0">
-                        202 Tunnelton Street <em>(Classes on hold indefinitely)</em><br />
-                        Kingwood, WV 26537<br />
-                        <strong>304-329-1059</strong>
-                    </address>
-                </div>
-            </div>
-        </div>
-
-        <!-- Westbrook Health Services -->
-        <div class="col-12">
-            <div class="p-3" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-                <p class="fw-semibold mb-1" style="color: #EAAA00;">Westbrook Health Services</p>
-                <p class="mb-1 small" style="color: #637080;">Counties Served: Calhoun, Jackson, Pleasants, Ritchie, Roane, Tyler, Wirt, and Wood</p>
-                <a href="http://www.westbrookhealth.com/" target="_blank">www.westbrookhealth.com</a>
-                <div class="row g-3 mt-1 small">
-                    <div class="col-md-3">
-                        <address style="font-style: normal;" class="mb-0">
-                            2121 7th St<br />
-                            Parkersburg, WV 26101<br />
-                            <strong>304-485-1721</strong> ext <strong>269</strong><br />
-                            Fax: 304-865-4700
-                        </address>
-                    </div>
-                    <div class="col-md-3">
-                        <address style="font-style: normal;" class="mb-0">
-                            3066 Charleston Road<br />
-                            Ripley, WV 25271<br />
-                            <strong>304-372-6833</strong>
-                        </address>
-                    </div>
-                    <div class="col-md-3">
-                        <address style="font-style: normal;" class="mb-0">
-                            227 Clay Road<br />
-                            Spencer, WV 25276<br />
-                            <strong>304-927-5200</strong>
-                        </address>
-                    </div>
-                    <div class="col-md-3">
-                        <address style="font-style: normal;" class="mb-0">
-                            210 2nd St<br />
-                            St. Marys, WV 26170<br />
-                            <strong>304-684-2656</strong>
-                        </address>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="p-3 mb-3" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-        <p>The Division of Motor Vehicles Safety and Treatment Unit is responsible for establishing and providing oversight for a comprehensive safety and treatment program for driver's convicted of or revoked for driving under the influence of legal or illicit substances. WV Legislative Code states that Community Behavioral Health Centers and other providers shall offer and operate the Program under agreement with the DMV and must meet all <em>State of West Virginia DUI Safety and Treatment Program Standards for Educational Curriculum, Treatment Services and Quality Assurance.</em></p>
-        <p class="mb-0"><strong>For more information regarding becoming an authorized Safety &amp; Treatment Provider, please contact <a href="mailto:wvdui@wv.gov">wvdui@wv.gov</a> or 1-877-215-2522.</strong></p>
-    </div>
-
-    <div class="p-3 mb-3" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-        <p class="fw-semibold mb-2" style="color: #EAAA00;">Program Fees</p>
-        <p>Legislative Rule requires the enrollment fee for Level I services be set at $400. This fee shall cover the provision of the Education Component (Level I) services. There may be additional costs for materials and testing/screening. This $400 fee does not cover the financial requirements of Level II and Level III services.</p>
-        <p class="mb-0">If you are experiencing financial difficulties, all WV Safety and Treatment Program Providers offer the State Indigent Program for those clients who are deemed eligible and meet the Federal Poverty Guidelines. Clients will need to inquire about Indigent Determination with their Safety and Treatment Provider.</p>
-    </div>
-
-    <div class="p-3" style="background-color: #f7f9fc; border: 1px solid #cfd8e3; border-radius: 0.375rem;">
-        <p class="fw-semibold mb-2" style="color: #EAAA00;">Veterans Services</p>
-        <p class="mb-2"><strong>If you are a Veteran and in need of services, please contact:</strong></p>
-        <address style="font-style: normal;" class="mb-0">
-            The Department of Veterans Affairs<br />
-            West Virginia Homeless Programs<br />
-            Veterans Justice Outreach<br />
-            Kim White, VAMC Point of Contact<br />
-            <strong>304-429-6755, ext. 4617</strong>
-        </address>
-    </div>
-
 </div>
