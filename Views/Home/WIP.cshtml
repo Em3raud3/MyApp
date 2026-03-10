@@ -1,12 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Governor's Highway Safety Program";
-}
-
-<style>
+﻿<style>
     .ghsp-page {
         color: #2d3748;
-        padding-left: 4rem;
-        padding-right: 4rem;
+        padding-left: 10rem;
+        padding-right: 10rem;
     }
 
         .ghsp-page .page-title {
@@ -15,12 +11,6 @@
             font-size: 2rem;
             line-height: 1.2;
             margin-bottom: 0.75rem;
-        }
-
-        .ghsp-page .intro-text {
-            font-size: 1.1rem;
-            color: #4a5568;
-            margin-bottom: 0;
         }
 
         .ghsp-page .section-label {
@@ -32,212 +22,198 @@
             margin-bottom: 0.5rem;
         }
 
-        .ghsp-page .reminder-panel {
-            background-color: #edf1f7;
-            border: 1px solid #cfd8e3;
-            border-left: 4px solid #5a6e82;
-            border-radius: 0.375rem;
-            padding: 0.85rem 1.25rem;
-        }
-
-            .ghsp-page .reminder-panel ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
-
-                .ghsp-page .reminder-panel ul li {
-                    position: relative;
-                    padding: 0.55rem 0 0.55rem 1.25rem;
-                    color: #4a5568;
-                    font-size: 1rem;
-                    border-bottom: 1px solid #cfd8e3;
-                    line-height: 1.4;
-                }
-
-                    .ghsp-page .reminder-panel ul li:last-child {
-                        border-bottom: none;
-                        padding-bottom: 0;
-                    }
-
-                    .ghsp-page .reminder-panel ul li::before {
-                        content: '';
-                        position: absolute;
-                        left: 0;
-                        top: 1rem;
-                        width: 0.4rem;
-                        height: 0.4rem;
-                        background-color: #5a6e82;
-                        border-radius: 50%;
-                    }
-
-                    .ghsp-page .reminder-panel ul li a {
-                        color: #2b6cb0;
-                        text-decoration: none;
-                    }
-
-                        .ghsp-page .reminder-panel ul li a:hover {
-                            text-decoration: underline;
-                        }
-
         .ghsp-page .content-block {
             font-size: 1.05rem;
-            color: #2d3748;
-            line-height: 1.6;
+            color: #4a5568;
+            line-height: 1.75;
             margin-bottom: 1rem;
         }
 
-        .ghsp-page .program-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.25rem;
-            margin-top: 1rem;
-            margin-bottom: 2rem;
-        }
+            .ghsp-page .content-block a {
+                color: #2b6cb0;
+                text-decoration: none;
+            }
 
-        .ghsp-page .program-card {
-            background: #fff;
-            border-radius: 0.25rem;
-            border: 2px solid #000;
-        }
+                .ghsp-page .content-block a:hover {
+                    text-decoration: underline;
+                }
 
-        .ghsp-page .program-link {
+        .ghsp-page .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: #f7f9fc;
+            border: 1px solid #cfd8e3;
+            border-radius: 0.375rem;
+            padding: 0.45rem 1rem;
+            font-size: 0.97rem;
+            font-weight: 600;
+            color: #2b6cb0;
             text-decoration: none;
-            color: inherit;
-            display: block;
+            margin-bottom: 1rem;
         }
 
-        .ghsp-page .program-card-header {
-            background-color: #e7a81e;
-            color: #fff;
+            .ghsp-page .resource-link:hover {
+                background-color: #edf1f7;
+                color: #1a4a8a;
+                text-decoration: none;
+            }
+
+        .ghsp-page .doc-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+            .ghsp-page .doc-list li {
+                border-top: 1px solid #e2e8f0;
+                padding: 0.5rem 0;
+            }
+
+                .ghsp-page .doc-list li:first-child {
+                    border-top: none;
+                    padding-top: 0;
+                }
+
+            .ghsp-page .doc-list a {
+                color: #2b6cb0;
+                text-decoration: none;
+                font-size: 0.97rem;
+                font-weight: 500;
+            }
+
+                .ghsp-page .doc-list a:hover {
+                    color: #1a4a8a;
+                    text-decoration: underline;
+                }
+
+        .ghsp-page .course-block {
+            background-color: #f7f9fc;
+            border: 1px solid #cfd8e3;
+            border-left: 4px solid #497da8;
+            border-radius: 0.375rem;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .ghsp-page .course-title {
+            font-size: 1.08rem;
             font-weight: 700;
-            text-align: center;
-            border-radius: 0.25rem;
-            padding: 0.85rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.2;
-            transition: filter 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+            color: #1a202c;
+            margin-bottom: 0.5rem;
         }
 
-        .ghsp-page .program-link:hover .program-card-header,
-        .ghsp-page .program-link:focus-visible .program-card-header {
-            filter: brightness(1.08);
-            box-shadow: 0 0 0 2px rgba(231, 168, 30, 0.35);
-            transform: translateY(-2px);
+        .ghsp-page .course-block em,
+        .ghsp-page .course-block strong {
+            color: #497da8;
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .ghsp-page .note-block {
+            background-color: #edf1f7;
+            border: 1px solid #cfd8e3;
+            border-radius: 0.375rem;
+            padding: 0.85rem 1.25rem;
+            font-size: 1rem;
+            color: #4a5568;
+            margin-bottom: 1.25rem;
+            line-height: 1.6;
         }
 
     @@media (max-width: 991.98px) {
-        .ghsp-page .page-title {
-            font-size: 1.75rem;
+        .ghsp-page {
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
 
-        .ghsp-page .program-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @@media (max-width: 575.98px) {
-        .ghsp-page .program-grid {
-            grid-template-columns: 1fr;
-        }
+            .ghsp-page .page-title {
+                font-size: 1.75rem;
+            }
     }
 </style>
 
 <div class="ghsp-page py-4">
 
-    <h1 class="page-title">Governor's Highway Safety Program (GHSP)</h1>
-
-    <p class="intro-text mb-4">
-        The Governor's Highway Safety Program (GHSP) is the lead agency for West Virginia's participation
-        in federally mandated and funded behavioral highway safety improvement measures. The mission of the
-        WV GHSP is to reduce crashes, injuries, and fatalities on West Virginia's roadways by encouraging,
-        promoting, and supporting highway safety throughout the state.
+    <!-- Overview -->
+    <p class="content-block">
+        This page provides resources for West Virginia Law Enforcement Officers on Highway Safety Training Courses and documentation or forms used in compliance with Highway Safety-related law enforcement procedures.
+    </p>
+    <p class="content-block">
+        The following provides a summary of available courses in occupant protection for law enforcement officers. Please note that all courses can be modified to fit your agency’s needs and time constraints. Highway Safety training will be scheduled periodically throughout the year in the various regions.
+        Contact your regional community coordinator
+        <a href="https://transportation.wv.gov/DMV/Safety/Regions" target="_blank">(</a>
+        <a href="/node/158" data-entity-type="node" data-entity-uuid="89ce456f-bf08-4767-9563-de292b49ad93" data-entity-substitution="canonical">Click HERE for Regional Map</a>
+        <a href="https://transportation.wv.gov/DMV/Safety/Regions" target="_blank">)</a>
+        or
+        <a href="mailto:dtasp.wvlifesavers@gmail.com">Tiffany Hart</a>
+        for information on training in your area or to schedule training for your agency.
     </p>
 
-    <!-- Program Tiles -->
-    <p class="section-label mt-4">Programs &amp; Focus Areas</p>
-    <div class="program-grid">
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/dmv/safety/cps/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Child Passenger Safety</div>
+    <!-- Law Enforcement Forms -->
+    <p class="section-label mt-2">Law Enforcement Forms</p>
+    <ul class="doc-list">
+        <li>
+            <a href="/media/241" target="_blank" data-entity-type="media" data-entity-uuid="8b0f3846-6070-46cb-8d61-4325ba5da4d9" data-entity-substitution="media_download_inline">
+                WV DUI Information Sheet (WVSP Form 78 / DMV 314)
             </a>
-        </div>
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/DMV/Safety/Pages/Distracted-Driving.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Distracted Driving</div>
-            </a>
-        </div>
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/DMV/Safety/Pages/Impaired-Driving.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Impaired Driving</div>
-            </a>
-        </div>
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/DMV/Safety/MSP/Pages/default.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Motorcycle Safety</div>
-            </a>
-        </div>
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/DMV/Safety/Pages/Occupant-Protection.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Occupant Protection</div>
-            </a>
-        </div>
-        <div class="program-card">
-            <a class="program-link" href="https://transportation.wv.gov/DMV/Safety/Pages/Speed-Enforcement.aspx" target="_blank" rel="noopener noreferrer">
-                <div class="program-card-header">Speed Enforcement</div>
+        </li>
+    </ul>
+
+    <!-- Upcoming Training -->
+    <p class="section-label mt-2">Upcoming Law Enforcement Training</p>
+    <div class="course-block">
+        <p class="course-title">Law Enforcement Professional Standards Information System (LEPSIS)</p>
+        <p class="content-block mb-0">
+            For a complete listing, visit the
+            <a href="https://wvdjcs-portal.acadisonline.com/AcadisViewer/Registration/PublicTrainingList.aspx" target="_blank">LEPSIS training page</a>.
+        </p>
+    </div>
+    <div class="note-block">
+        <em><strong>Training options are being updated, and those updates will be reflected soon.</strong></em>
+    </div>
+
+    <!-- Courses -->
+    <div class="course-block">
+        <p class="course-title">West Virginia's Drug Evaluation Classification (DEC) Program</p>
+        <p class="content-block mb-0">
+            Developed in partnership with the National Highway Traffic Safety Administration and The International Association of Chiefs of Police (IACP), West Virginia's DEC Program provides training for law enforcement officers as Drug Recognition Experts, as well as educating prosecutors and judges in the prosecution of drugged drivers.
+        </p>
+        <div>
+            <a class="resource-link" href="/node/220" data-entity-type="node" data-entity-uuid="530cca96-0c9b-4123-9ef9-985df971419a" data-entity-substitution="canonical">
+                More about the WV DRE Program
             </a>
         </div>
     </div>
 
-    <!-- Regional Programs -->
-    <p class="section-label">Regional Programs</p>
-    <p class="content-block">
-        The state is divided into regional traffic safety programs that cover all fifty-five counties.
-        Each region has a designated regional coordinator to develop and implement the counter-measures
-        that their regions require to lower the total crashes, injuries, and fatalities on the roadways
-        in West Virginia.
-    </p>
-
-    <!-- About the Programs -->
-    <p class="section-label">About the Programs</p>
-    <p class="content-block">
-        The GHSP, along with our highway safety partners and advocates, works to prevent crashes, fatalities,
-        and injuries and make West Virginia roads safer by focusing on Occupant Protection, Child Passenger
-        Safety, Impaired Driving prevention, Distracted Driving prevention, and Speed Enforcement.
-    </p>
-    <p class="content-block">
-        The Motorcycle Safety Program (MSP) promotes awareness of motorcycle safety practices and laws and
-        encourages riders to obtain their Class F Endorsement. The ATV Safety and Awareness Program fosters
-        all-terrain vehicle safety, as well as awareness of West Virginia's laws governing proper and safe
-        use of ATVs. Target Red is a campaign that regional traffic safety programs use to spread awareness
-        of the dangers of red light and stop sign violations.
-    </p>
-
-    <!-- Resources -->
-    <p class="section-label mt-4">Resources</p>
-    <div class="reminder-panel mb-4">
-        <ul>
-            <li><a href="https://transportation.wv.gov/DMV/Safety/Pages/GHSP-R-D-M.aspx" target="_blank" rel="noopener noreferrer">GHSP Reports, Data, and Manuals</a></li>
-            <li><a href="https://transportation.wv.gov/DMV/Safety/Pages/Law-Enforcement-Officers.aspx" target="_blank" rel="noopener noreferrer">Law Enforcement Officer Training</a></li>
-            <li><a href="https://transportation.wv.gov/DMV/Safety/Regions/Pages/default.aspx" target="_blank" rel="noopener noreferrer">Highway Safety Program Regions</a></li>
-            <li><a href="https://transportation.wv.gov/DMV/Safety/Pages/Highway-Safety-Staff-Directory.aspx" target="_blank" rel="noopener noreferrer">Highway Safety Staff Directory</a></li>
-            <li><a href="https://transportation.wv.gov/DMV/Safety/Pages/Uniform-Traffic-Citations.aspx" target="_blank" rel="noopener noreferrer">Uniform Traffic Citations</a></li>
-        </ul>
+    <div class="course-block">
+        <p class="course-title">Traffic Occupant Protection Strategies (TOPS)</p>
+        <p class="content-block mb-0">
+            TOPS is an updated law enforcement course that replaces the National Highway Traffic Safety Administration’s (NHTSA) Occupant Protection Usage and Enforcement (OPUE) course. The TOPS course covers a wide range of information addressing education, reporting, and enforcement issues related to occupant protection and includes the dynamics of vehicle crashes and the risks faced by law enforcement officers. It also instructs law enforcement officers how to conduct an initial evaluation of a crash scene, and how to assist in crash reconstruction. Other course modules include subjects such as “looking beyond the ticket” for criminal infractions, management of resources, public information, outreach techniques, working with community advocacy groups and the media, and air bag rescue guidelines. Course participants will also receive a videotape containing 50 clips. The full course can run 2-days (7 modules), however, it can be shorter based on the number of modules selected.
+        </p>
+        <p class="content-block mb-0">
+            <strong>Outcome:</strong> Participants who complete this course will have the knowledge and resources to confidently provide outreach to their communities on a variety of occupant protection issues.
+        </p>
     </div>
 
-    <!-- Highway Safety-Related Links -->
-    <p class="section-label">Highway Safety-Related Links</p>
-    <div class="reminder-panel">
-        <ul>
-            <li><a href="http://ghsa.org/" target="_blank" rel="noopener noreferrer">Governor's Highway Safety Association</a></li>
-            <li><a href="http://www.nhtsa.dot.gov/" target="_blank" rel="noopener noreferrer">National Highway Traffic Safety Administration</a></li>
-            <li><a href="https://cdan.dot.gov/STSI/stsi.htm#" target="_blank" rel="noopener noreferrer">Traffic Safety Info — Quick, easy access to data</a></li>
-            <li><a href="https://das.wv.gov/JCS/law-enforcement/Pages/default.aspx" target="_blank" rel="noopener noreferrer">West Virginia Law Enforcement Professional Standards (LEPS) Training</a></li>
-            <li><a href="http://www.wvsp.gov/" target="_blank" rel="noopener noreferrer">West Virginia State Police</a></li>
-            <li><a href="http://wvlifesavers.com/" target="_blank" rel="noopener noreferrer">WV Data Tracking and Agency Support (DTASP) Program</a></li>
-            <li><a href="https://www.strongcommunities.org/" target="_blank" rel="noopener noreferrer">WV SADD</a></li>
-            <li><a href="https://ourdrivingconcern.org/" target="_blank" rel="noopener noreferrer">National Safety Council</a></li>
-        </ul>
+    <div class="course-block">
+        <p class="course-title">TOPS Curriculum Orientation Workshop</p>
+        <p class="content-block mb-0">
+            This workshop is primarily for law enforcement officers who were previously trained as OPUE instructors, and/or those with teaching/instructing experience, and/or those with interest in traffic safety, in particular occupant protection. The purpose of this workshop is to familiarize participants with the new TOPS curriculum. This workshop, developed by NHTSA Region III staff, is only offered in this Region. When all TOPS modules are reviewed, the workshop is 1½ days.
+        </p>
+        <p class="content-block mb-0">
+            <strong>Outcome:</strong> Participants who complete this workshop will have the knowledge, skills, and resources to provide TOPS training to their fellow officers.
+        </p>
+    </div>
+
+    <div class="course-block">
+        <p class="course-title">Presentation of Evidence at DMV Administrative Hearings</p>
+        <p class="content-block mb-0">
+            This class is designed for law enforcement officers within West Virginia who will be involved in the administrative hearing process for the review of a DMV revocation action as the Arresting Officer for a DUI-related charge from Chapter 17C-5-2 or applicable municipal DUI ordinance. Because of the nature of the administrative hearing process within West Virginia, law enforcement officers generally appear without legal representation and as such are responsible for seeing the “state’s case” involving their DUI-related arrest is properly and fully presented. This class will provide training to the officers as to the standards of evidence at such hearings, the statutory requirements DMV is required to follow to uphold DUI-related revocations, the format of such hearings, the presentation of testimony and cross examination at administrative hearings and techniques to minimize the impact of the defense attorney at such hearings. To make the officer feel more comfortable in the presentation of DUI-related cases, there will be a mock trial to familiarize them more directly with the conduct of an administrative hearing. The course will also seek to address misconceptions that are prevalent within the State concerning such hearings by causing the officer to become more informed about the administrative hearing process.
+        </p>
+        <p class="content-block mb-0">
+            <em><strong>All Highway Safety training is certified for 8-hour law enforcement training credit non-supervisory in-service.</strong></em>
+        </p>
     </div>
 
 </div>

@@ -35,6 +35,16 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult RegionPage()
+        {
+            return View();
+        }
+
+        public IActionResult WVLawPage()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();

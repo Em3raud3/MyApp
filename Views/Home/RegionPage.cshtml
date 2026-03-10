@@ -1,0 +1,177 @@
+﻿<style>
+    .region-page {
+        color: #2d3748;
+    }
+
+        .region-page .page-title {
+            color: #497da8;
+            font-weight: 700;
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 0.25rem;
+        }
+
+        .region-page .page-subtitle {
+            font-size: 1rem;
+            color: #637080;
+            margin-bottom: 0;
+        }
+
+        .region-page .contact-card {
+            background-color: #fff;
+            border: 1px solid #cfd8e3;
+            border-top: 4px solid #497da8;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+            padding: 1.75rem 2rem;
+        }
+
+        .region-page .contact-name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.1rem;
+        }
+
+        .region-page .contact-org {
+            font-size: 0.9rem;
+            color: #637080;
+            margin-bottom: 1.25rem;
+        }
+
+        .region-page .contact-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            margin-bottom: 0.65rem;
+            font-size: 0.925rem;
+            color: #4a5568;
+        }
+
+        .region-page .contact-icon {
+            font-size: 1rem;
+            color: #497da8;
+            margin-top: 0.05rem;
+            flex-shrink: 0;
+        }
+
+        .region-page .contact-row a {
+            color: #2b6cb0;
+            text-decoration: none;
+        }
+
+            .region-page .contact-row a:hover {
+                text-decoration: underline;
+            }
+
+        .region-page .card-divider {
+            border-color: #cfd8e3;
+            margin: 1.25rem 0;
+        }
+
+        .region-page .calendar-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: #edf1f7;
+            border: 1px solid #cfd8e3;
+            border-radius: 0.375rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #2d3748;
+            text-decoration: none;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+            .region-page .calendar-btn:hover {
+                background-color: #dde4ef;
+                border-color: #b0bed0;
+                color: #2d3748;
+                text-decoration: none;
+            }
+
+        .region-page .region-map-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+            display: block;
+            transition: opacity 0.15s ease;
+        }
+
+            .region-page .region-map-img:hover {
+                opacity: 0.9;
+            }
+
+        .region-page .image-caption {
+            font-size: 0.8rem;
+            color: #637080;
+            margin-top: 0.5rem;
+        }
+</style>
+
+<div class="region-page py-4">
+
+    <!-- Page Header -->
+    <div class="mb-4">
+        <h1 class="page-title">Region 1 Highway Safety Program</h1>
+        <p class="page-subtitle">Metro Valley Highway Safety Program — Regional Coordinator</p>
+        <hr class="mt-3" style="border-color: #cfd8e3;" />
+    </div>
+
+    <!-- Contact Card + Map -->
+    <div class="row g-4 align-items-start">
+
+        <!-- Contact Card -->
+        <div class="col-md-5">
+            <div class="contact-card">
+
+                <p class="contact-name">Roberta Meadows</p>
+                <p class="contact-org">Metro Valley Highway Safety Program</p>
+
+                <div class="contact-row">
+                    <span class="contact-icon">📍</span>
+                    <span>
+                        P.O. Box 2749<br />
+                        Charleston, WV 25330
+                    </span>
+                </div>
+
+                <div class="contact-row">
+                    <span class="contact-icon">📧</span>
+                    <a href="mailto:robertameadows@charlestonwvpolice.org">
+                        robertameadows@charlestonwvpolice.org
+                    </a>
+                </div>
+
+                <div class="contact-row">
+                    <span class="contact-icon">📞</span>
+                    <span>(304) 348-6470, ext. 4934</span>
+                </div>
+
+                <div class="contact-row">
+                    <span class="contact-icon">🖷</span>
+                    <span>Fax: (304) 348-6805</span>
+                </div>
+
+                <hr class="card-divider" />
+
+                <a href="/media/139" target="_blank" rel="noopener noreferrer" class="calendar-btn">
+                    📅 View Current Calendar of Events
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Map Image -->
+        <div class="col-md-7">
+            <a href="https://cdan.dot.gov/STSI/stsi.htm" target="_blank" rel="noopener noreferrer">
+                <drupal-media data-entity-type="media" data-entity-uuid="aeb67262-46e8-400f-bf39-fd6c0ff0471c" class="region-map-img">&nbsp;</drupal-media>
+            </a>
+            <p class="image-caption">Click the map to access Traffic Safety Info &amp; crash data.</p>
+        </div>
+
+    </div>
+
+</div>
