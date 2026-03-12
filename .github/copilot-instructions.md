@@ -1,0 +1,1 @@
+Always return the entire code

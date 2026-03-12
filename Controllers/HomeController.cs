@@ -45,6 +45,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult NewsPage()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();
