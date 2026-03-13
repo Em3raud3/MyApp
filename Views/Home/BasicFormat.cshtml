@@ -1,0 +1,381 @@
+﻿<style>
+    /* ── Page wrapper ── */
+    .pr-wrapper {
+        padding-left: 15rem;
+        padding-right: 15rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .pr-wrapper {
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .pr-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    /* ── Page meta ── */
+    .pr-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #2d3748;
+        color: #fff;
+        font-size: 1.01rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+        .pr-badge svg {
+            color: #EAAA00;
+        }
+
+    /* ── Lead ── */
+    .pr-lead {
+        font-size: 1.43rem;
+        color: #4a5568;
+        line-height: 1.8;
+        border-left: 4px solid #EAAA00;
+        padding: 0.85rem 1.25rem;
+        background-color: #fffdf0;
+        border-radius: 0 0.375rem 0.375rem 0;
+        margin-bottom: 1.25rem;
+    }
+
+        .pr-lead strong {
+            color: #2d3748;
+        }
+
+    /* ── Shared card ── */
+    .pr-card {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-card-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.43rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+        .pr-card-header svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+        }
+
+    .pr-card-body {
+        padding: 1.25rem;
+        background-color: #fff;
+        color: #4a5568;
+        font-size: 1.37rem;
+        line-height: 1.75;
+    }
+
+        .pr-card-body a {
+            color: #2b6cb0;
+            font-weight: 500;
+        }
+
+            .pr-card-body a:hover {
+                color: #1a4a80;
+            }
+
+        .pr-card-body strong {
+            color: #2d3748;
+        }
+
+    /* ── FAQ items ── */
+    .faq-item {
+        padding: 1.1rem 0;
+        border-bottom: 1px solid #edf1f7;
+    }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-item:first-child {
+            padding-top: 0;
+        }
+
+    .faq-q {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        font-weight: 700;
+        color: #2d3748;
+        font-size: 1.37rem;
+        margin-bottom: 0.6rem;
+        line-height: 1.5;
+    }
+
+        .faq-q::before {
+            content: "Q";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.9rem;
+            height: 1.9rem;
+            background-color: #EAAA00;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 800;
+            border-radius: 0.25rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+    .faq-a {
+        padding-left: 2.65rem;
+        color: #4a5568;
+        font-size: 1.3rem;
+        line-height: 1.75;
+    }
+
+        .faq-a a {
+            color: #2b6cb0;
+            font-weight: 500;
+        }
+
+            .faq-a a:hover {
+                color: #1a4a80;
+            }
+
+    /* ── Credit note ── */
+    .pr-credit {
+        margin-top: 0.85rem;
+        padding: 0.6rem 0.9rem;
+        background-color: #f8f9fc;
+        border-left: 3px solid #5a6e82;
+        border-radius: 0 0.25rem 0.25rem 0;
+        font-size: 1.21rem;
+        color: #5a6e82;
+    }
+
+        .pr-credit a {
+            color: #2b6cb0;
+            font-weight: 500;
+        }
+
+    /* ── Contact bar ── */
+    .pr-contact {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.85rem;
+        padding: 1rem 1.25rem;
+        background-color: #f4f6fb;
+        border: 1px solid #cfd8e3;
+        border-left: 4px solid #EAAA00;
+        border-radius: 0 0.375rem 0.375rem 0;
+        max-width: 33%;
+        margin: 0 auto;
+    }
+
+        .pr-contact svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+        }
+
+        .pr-contact strong {
+            display: block;
+            font-size: 0.98rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #5a6e82;
+            margin-bottom: 0.15rem;
+        }
+
+        .pr-contact a {
+            color: #2b6cb0;
+            font-weight: 600;
+            font-size: 1.3rem;
+            text-decoration: none;
+        }
+
+            .pr-contact a:hover {
+                text-decoration: underline;
+            }
+
+    .pr-contact-divider {
+        width: 1px;
+        height: 2rem;
+        background-color: #cfd8e3;
+        flex-shrink: 0;
+    }
+
+    @@media (max-width: 576px) {
+        .pr-contact {
+            max-width: 100%;
+        }
+    }
+</style>
+
+<div class="pr-wrapper">
+
+    <!-- Page meta -->
+    <div class="pr-meta">
+        <span class="pr-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.061-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286m1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94" />
+                <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1M2 8a6 6 0 1 1 12 0A6 6 0 0 1 2 8" />
+            </svg>
+            FAQ
+        </span>
+    </div>
+
+    <!-- Lead -->
+    <p class="pr-lead">
+        Frequently asked questions about <strong>REAL ID compliance</strong>, documentation requirements, and identity verification for WV DMV driver's licenses and ID cards.
+    </p>
+
+    <!-- REAL ID & Document Requirements -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3 4.5a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 1 1 0 1h-6a.5.5 0 0 1-.5-.5M11.5 4a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1z" />
+                <path d="M2.354.646a.5.5 0 0 0-.801.13l-.5 1A.5.5 0 0 0 1 2v13H.5a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1H15V2a.5.5 0 0 0-.053-.224l-.5-1a.5.5 0 0 0-.8-.13L13 1.293l-.646-.647a.5.5 0 0 0-.708 0L11 1.293l-.646-.647a.5.5 0 0 0-.708 0L9 1.293 8.354.646a.5.5 0 0 0-.708 0L7 1.293 6.354.646a.5.5 0 0 0-.708 0L5 1.293 4.354.646a.5.5 0 0 0-.708 0L3 1.293zm-.354 1.83.646-.647a.5.5 0 0 1 .708 0L3.5 2.122l.646-.647a.5.5 0 0 1 .708 0L5.5 2.122l.646-.647a.5.5 0 0 1 .708 0L7.5 2.122l.646-.647a.5.5 0 0 1 .708 0L9.5 2.122l.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.646.647.646-.647a.5.5 0 0 1 .708 0l.405.406V15H2V2.476z" />
+            </svg>
+            REAL ID &amp; Document Requirements
+        </div>
+        <div class="pr-card-body">
+
+            <div class="faq-item">
+                <div class="faq-q">Why do I need to bring in new documents to DMV when I am just renewing my license (or ID card)?</div>
+                <div class="faq-a">
+                    DMV has always required these documents when you first obtain a license or photo ID card. However, due to the passage of the <strong>REAL ID Act of 2005</strong>, a new level of security is required for a <strong>FOR FEDERAL IDENTIFICATION</strong> license or ID card. DMV is compliant with the new federal standards. To obtain the <strong>NOT FOR FEDERAL IDENTIFICATION</strong> license or ID card upon renewal, simply bring in your current card, the renewal form, and one proof of physical address — unless your address or name has changed, in which case you would need two proofs of physical residency for an address change and/or name change document(s) for a legal name change. Acceptable proof documents can be found on the <a href="https://transportation.wv.gov/DMV/Drivers/Pages/Drivers-Licenses.aspx">licensing page</a>.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">What is the difference between a "Federal Identification Use" card and a "Not for Federal Identification Use" card?</div>
+                <div class="faq-a">
+                    The <strong>For Federal Identification</strong> card may make it easier in the future to get through security at airports and gain access to other federal buildings and resources in accordance with the REAL ID Act of 2005. With either choice, you will leave the DMV with a 60-day temporary card and your new card will arrive by first class mail in approximately <strong>15 business days</strong>. After <strong>October 1, 2021</strong>, a Not for Federal Identification license or ID card is no longer adequate for air travel or access to select federal buildings.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Obtaining Vital Documents -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1M4.5 9a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zm0 2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zm0 2a.5.5 0 0 1 0-1h4a.5.5 0 0 1 0 1z" />
+            </svg>
+            Obtaining Vital Documents
+        </div>
+        <div class="pr-card-body">
+
+            <div class="faq-item">
+                <div class="faq-q">Where do I get my Certified Birth Certificate, Marriage Certificate, or Divorce Decree?</div>
+                <div class="faq-a">
+                    Call the county clerk's office (<a href="http://www.sos.wv.gov/public-services/contacts/Pages/ClerkCountyComm.aspx" target="_blank">WV directory</a>) in the courthouse of the county where you were born, applied for your Marriage Certificate, or finalized your Divorce. If you were born in WV, certified copies can also be obtained through the <a href="http://www.wvdhhr.org/bph/hsc/vital/birthcert.asp" target="_blank">WV DHHR Office of Vital Statistics</a>. If you were born in another state, the <a href="http://www.cdc.gov/nchs/w2w.htm" target="_blank">National Center for Health Statistics</a> has information on how to obtain a birth certificate.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">I have a Marriage License that does not say "Certified Marriage Certificate" across the top. Can I use it in place of a Certified Marriage Certificate?</div>
+                <div class="faq-a">
+                    If you have a document that certifies your marriage took place and that the issuing agency has recorded it, it <em>may</em> be acceptable. To be sure, call ahead at <a href="tel:18006429066">1-800-642-9066</a> for clarification.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Name Changes & Identity Documentation -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.029 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+            </svg>
+            Name Changes &amp; Identity Documentation
+        </div>
+        <div class="pr-card-body">
+
+            <div class="faq-item">
+                <div class="faq-q">I have changed my name. My new name is on my U.S. Passport, Social Security card, and all proofs of WV residency. Do I still need to provide proof of name change documents?</div>
+                <div class="faq-a">
+                    As long as you have a <strong>valid Passport or Passport card</strong> and all documentation matches, you do not. If you use your birth certificate as your proof of identity and it does not match all of your documentation, you would need to provide legal name change documents that provide the "link" between your birth name and your current legal name.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">My full legal name is John Quincy Public, but I prefer to have John Q. Public on my license. Is that acceptable?</div>
+                <div class="faq-a">
+                    You may only use an initial on your license if it is part of your legal name. Abbreviations and initials are not accepted otherwise. If your full legal name is <strong>John Q. Public</strong> and it appears that way on your birth certificate or legal name change document, you would be required to use the initial, as it is your full legal name.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">I'm using my birth certificate as my identity document and I have been divorced more than once. The last time I was divorced I went back to my maiden name. What name change documentation do I need?</div>
+                <div class="faq-a">
+                    If you were issued a Divorce Decree that included the legal name change back to your maiden name, you don't need any additional name change documents — unless you had another name change since then (e.g., remarried). All of your documents must still match.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">I'm using my birth certificate as my identity document, have been divorced more than once, and did not change my legal name after my last divorce. What documentation do I need?</div>
+                <div class="faq-a">
+                    You have more than one option. If you bring your <strong>Birth Certificate</strong>, you will need all Marriage Certificates and Divorce Decrees that show the chain of names back to your birth name. If you bring a <strong>valid U.S. Passport</strong> with your current legal name matching your Social Security number and proof of WV residency, you would not be required to provide all the paperwork linking back to your birth name.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-q">I have an amended birth certificate to present to DMV. Will this be a problem?</div>
+                <div class="faq-a">
+                    As long as it indicates it is a <strong>Certified Birth Certificate</strong>, it is acceptable. DMV will not require the original birth certificate, as in some cases (e.g., adoption) they are not available.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pr-credit">
+        <a href="https://transportation.wv.gov/DMV/Drivers/Pages/Drivers-Licenses.aspx">Go to Driver's Licenses and ID Cards →</a>
+    </div>
+
+    <!-- Contact -->
+    <div class="pr-contact" style="margin-top: 1.25rem;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.6 17.6 0 0 0 4.168 6.608 17.6 17.6 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.68.68 0 0 0-.58-.122l-2.19.547a1.75 1.75 0 0 1-1.657-.459L5.482 8.062a1.75 1.75 0 0 1-.46-1.657l.548-2.19a.68.68 0 0 0-.122-.58z" />
+        </svg>
+        <div>
+            <strong>Contact</strong>
+            <a href="tel:18006429066">1-800-642-9066</a>
+        </div>
+        <div class="pr-contact-divider"></div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z" />
+        </svg>
+        <div>
+            <strong>More Information</strong>
+            <a href="https://dmv.wv.gov" target="_blank">dmv.wv.gov</a>
+        </div>
+    </div>
+
+</div>

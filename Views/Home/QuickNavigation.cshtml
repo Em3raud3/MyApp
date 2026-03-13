@@ -1,0 +1,342 @@
+﻿<style>
+    .info-block {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+    }
+
+    .info-block-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.38rem;
+    }
+
+    .info-block-body {
+        padding: 1.25rem;
+        color: #4a5568;
+        font-size: 1.26rem;
+        background-color: #fff;
+    }
+
+        .info-block-body p {
+            margin-bottom: 0.75rem;
+        }
+
+            .info-block-body p:last-child {
+                margin-bottom: 0;
+            }
+
+        .info-block-body ul {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-block-body ol {
+            padding-left: 1.25rem;
+            margin-bottom: 0.75rem;
+        }
+
+            .info-block-body ol li {
+                margin-bottom: 0.6rem;
+            }
+
+        .info-block-body a {
+            color: #2b6cb0;
+        }
+
+        .info-block-body strong {
+            color: #2d3748;
+        }
+
+    .section-list .list-group-item {
+        background-color: #edf1f7;
+        border-color: #cfd8e3;
+    }
+
+        .section-list .list-group-item:hover {
+            background-color: #dde4ef;
+        }
+
+    .section-toggle {
+        color: #2d3748;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 1.32rem;
+    }
+
+        .section-toggle:hover {
+            color: #1a202c;
+        }
+
+        .section-toggle span {
+            color: #EAAA00;
+        }
+
+        .section-toggle .chevron {
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+            color: #637080;
+        }
+
+        .section-toggle[aria-expanded="true"] .chevron {
+            transform: rotate(180deg);
+        }
+
+    .section-body {
+        color: #4a5568;
+        padding: 0.75rem 1.5rem;
+        border-top: 1px solid #cfd8e3;
+        margin-top: 0;
+        font-size: 1.26rem;
+    }
+
+        .section-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+            .section-body table td,
+            .section-body table th {
+                padding: 0.5rem 0.75rem;
+                border: 1px solid #cfd8e3;
+            }
+
+            .section-body table th {
+                background-color: #edf1f7;
+                font-weight: 600;
+                color: #2d3748;
+            }
+
+    /* Step badges */
+    .steps-list .step-item {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid #cfd8e3;
+        font-size: 1.1rem;
+        color: #4a5568;
+    }
+
+        .steps-list .step-item:last-child {
+            border-bottom: none;
+        }
+
+        .steps-list .step-item p {
+            margin: 0;
+        }
+
+    .step-badge {
+        min-width: 1.9rem;
+        height: 1.9rem;
+        font-size: 0.95rem;
+        background-color: #5a6e82;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: #fff;
+        font-weight: 600;
+    }
+
+    /* Notes block */
+    .notes-block {
+        margin-top: 1rem;
+        padding: 0.75rem 1rem;
+        background-color: #f8f9fc;
+        border-left: 3px solid #cfd8e3;
+        border-radius: 0 0.25rem 0.25rem 0;
+        font-size: 0.95rem;
+        color: #637080;
+    }
+
+        .notes-block p {
+            margin-bottom: 0.5rem;
+        }
+
+            .notes-block p:last-child {
+                margin-bottom: 0;
+            }
+
+        .notes-block a {
+            color: #2b6cb0;
+        }
+
+        .notes-block strong {
+            color: #4a5568;
+        }
+
+    /* Examiner table county grouping */
+    .county-cell {
+        background-color: #edf1f7;
+        font-weight: 600;
+        color: #2d3748;
+        vertical-align: middle;
+    }
+
+    /* CDL Third Party Examiner table */
+    .examiner-table {
+        width: auto;
+        margin: 0 auto;
+    }
+
+        .examiner-table td,
+        .examiner-table th {
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .examiner-table tbody tr {
+            transition: background-color 0.15s ease;
+        }
+
+            .examiner-table tbody tr:hover td {
+                background-color: #dde8ff;
+                cursor: default;
+            }
+
+        .examiner-table tbody td:last-child {
+            font-family: monospace;
+            font-weight: 600;
+            color: #0d6efd;
+        }
+
+        .examiner-table tbody tr:has(.county-cell) td {
+            border-top: 2px solid #5a6e82;
+        }
+
+    /* Quick Navigation Panel */
+    .page-toc {
+        border: 1px solid #cfd8e3;
+        border-top: 4px solid #EAAA00;
+        border-radius: 0.375rem;
+        background-color: #fdfefe;
+        overflow: hidden;
+        max-width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-toc-header {
+        padding: 0.7rem 1.25rem 0.45rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #5a6e82;
+        border-bottom: 1px solid #edf1f7;
+        background-color: #fdfefe;
+    }
+
+    .page-toc-body {
+        padding: 0.75rem 1.5rem 0.9rem;
+        background-color: #fdfefe;
+        columns: 2;
+        column-gap: 2.5rem;
+    }
+
+        .page-toc-body ol {
+            margin: 0;
+            padding-left: 1.1rem;
+            list-style: decimal;
+        }
+
+        .page-toc-body li {
+            margin-bottom: 0.4rem;
+            break-inside: avoid;
+            font-size: 0.93rem;
+            color: #4a5568;
+        }
+
+        .page-toc-body a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.15s ease;
+        }
+
+            .page-toc-body a:hover {
+                color: #1a4a80;
+                text-decoration: underline;
+            }
+
+    @@media (max-width: 576px) {
+        .page-toc {
+            max-width: 100%;
+        }
+
+        .page-toc-body {
+            columns: 1;
+        }
+    }
+
+    /* Back to Top button */
+    .back-to-top {
+        position: fixed;
+        bottom: 1.75rem;
+        right: 1.75rem;
+        width: 2.75rem;
+        height: 2.75rem;
+        background-color: #2d3748;
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, background-color 0.15s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        z-index: 1000;
+    }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            background-color: #1a202c;
+        }
+</style><!-- Quick Navigation Panel --><div class="page-toc mb-4"><div class="page-toc-header">On This Page</div><div class="page-toc-body"><ol><li data-list-item-id="eec6b32f0615e9de3e2cdbeb61f58839f"><a href="#section-classifications">Classifications, Endorsements &amp; Restrictions</a></li><li data-list-item-id="e5997e51bb68e69c0eb57f589affbdc9f"><a href="#section-permit">Commercial Driver's Instruction Permit</a></li><li data-list-item-id="ea36c689ce6a191e160f0060b99bca67f"><a href="#section-age">Age &amp; Fitness Requirements</a></li><li data-list-item-id="e5f7ecc41e3daed4c40e1765e262ced55"><a href="#section-procedures">CDL Licensing Procedures &amp; Requirements</a></li><li data-list-item-id="ebf88d42d986e1512bf405fe6931f4f61"><a href="#section-apply">How To Apply for a CDL</a></li><li data-list-item-id="e629c21733ba2e9d2fae7ccf2115a013f"><a href="#section-change-class">Changing a Class of License</a></li><li data-list-item-id="e4039a770eeae35f61e1e3d9c37ff70c4"><a href="#section-endorsement">Adding An Endorsement</a></li><li data-list-item-id="eb1f68877ce106cfa20b3f7e13555f975"><a href="#section-renewals">CDL Renewals</a></li><li data-list-item-id="e1960aabf68fee89eaaf308737b3e8578"><a href="#section-transfers">CDL Transfers</a></li><li data-list-item-id="e15e6a5870b94310d7774000485484b27"><a href="#section-expired">Expired CDLs</a></li><li data-list-item-id="ece7282bf3a693721b28473d6c7012e6f"><a href="#section-surrendered">Voluntarily Surrendered CDLs</a></li><li data-list-item-id="eef644ea842632c205c202fb956cf59f8"><a href="#section-examiners">Third Party Examiners</a></li><li data-list-item-id="eb04efcc430a9e7e3b73a055fcd0d592a"><a href="#section-mec">DOT Physical – MEC</a></li></ol></div></div><!-- Classifications, Endorsements, and Restrictions --><div class="info-block mb-3" id="section-classifications"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseOne">Classifications, Endorsements, and Restrictions&nbsp;</a></div><div class="info-block-body"><p>A Commercial Driver's License may be issued, with the following classifications, endorsements, and restrictions; the holder of a valid commercial driver's license may drive all vehicles in the class for which that license is issued, all lesser classes of vehicles, and vehicles which require an endorsement, if the proper endorsement appears on the license.</p><div class="list-group shadow-sm rounded section-list mt-3"><!-- CDL Classes --><div class="list-group-item p-0"><p><button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#cdl-classes" aria-expanded="false" aria-controls="cdl-classes">
+                    <span>CDL Classes</span>
+                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                    </svg>
+                </button></p><div class="collapse" id="cdl-classes"><div class="section-body"><table class="table table-bordered table-striped mb-0"><thead class="table-dark"><tr><th style="width:10%;">Class</th><th>Description</th></tr></thead><tbody><tr><td><strong>A</strong></td><td>Any combination of vehicles with a gross vehicle weight rating of 26,001 pounds or more, provided the gross vehicle weight rating of the vehicles being towed is in excess of 10,000 pounds.</td></tr><tr><td><strong>B</strong></td><td>Any single vehicle with the gross vehicle weight rating of 26,001 pounds or more, any such vehicle towing a vehicle not in excess of 10,000 pounds.</td></tr><tr><td><strong>C</strong></td><td>Any single vehicle with a gross vehicle weight rating of less than 26,001 pounds or any such vehicle towing a vehicle with a gross weight not in excess of 10,000 pounds comprising: a.) Vehicles designed to transport 16 or more passengers including the driver; and b.) Vehicles used in the transportation of hazardous materials which the vehicle is to be placarded under 49 CFR, Part 172, sub-part F. (Class C must have either passenger or hazardous material endorsement or both.)</td></tr><tr><td><strong>D</strong></td><td>Non Commercial Vehicles for Hire</td></tr></tbody></table></div></div></div><!-- CDL Endorsements --><div class="list-group-item p-0"><p><button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#cdl-endorsements" aria-expanded="false" aria-controls="cdl-endorsements">
+                    <span>CDL Endorsements</span>
+                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                    </svg>
+                </button></p><div class="collapse" id="cdl-endorsements"><div class="section-body"><table class="table table-bordered table-striped mb-0"><thead class="table-dark"><tr><th style="width:10%;">Code</th><th>Description</th></tr></thead><tbody><tr><td><strong>F</strong></td><td>Motorcycle</td></tr><tr><td><strong>H</strong></td><td>Hazardous Materials (Retest Required at Renewal &amp; Transfer)</td></tr><tr><td><strong>N</strong></td><td>Tank</td></tr><tr><td><strong>P</strong></td><td>Passenger (Road Skills Test Required)</td></tr><tr><td><strong>S</strong></td><td>School Bus (Road Skills Test Required)</td></tr><tr><td><strong>T</strong></td><td>Doubles and Triples</td></tr><tr><td><strong>X</strong></td><td>Hazardous Materials and Tank</td></tr></tbody></table></div></div></div><!-- CDL Restrictions --><div class="list-group-item p-0"><p><button class="section-toggle" data-bs-toggle="collapse" data-bs-target="#cdl-restrictions" aria-expanded="false" aria-controls="cdl-restrictions">
+                    <span>CDL Restrictions</span>
+                    <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"></path>
+                    </svg>
+                </button></p><div class="collapse" id="cdl-restrictions"><div class="section-body"><table class="table table-bordered table-striped mb-0"><thead class="table-dark"><tr><th style="width:10%;">Code</th><th>Description</th></tr></thead><tbody><tr><td><strong>E</strong></td><td>No Manual Transmission (CMV Only)</td></tr><tr><td><strong>K</strong></td><td>Intrastate Driving - Driving in WV Only (Under 21 Driver or Medical Waiver)</td></tr><tr><td><strong>L</strong></td><td>Restricts the Driver to Vehicles Not Equipped with Air Brakes</td></tr><tr><td><strong>M</strong></td><td>Restricts Driver to Class B &amp; C Buses Only</td></tr><tr><td><strong>N</strong></td><td>Restricts Driver to buses 26,000 pounds and Under (Class C Buses)</td></tr><tr><td><strong>O</strong></td><td>No Tractor Trailer CMV</td></tr><tr><td><strong>P</strong></td><td>No Passengers in CMV bus</td></tr><tr><td><strong>V</strong></td><td>Medical Variance</td></tr><tr><td><strong>X</strong></td><td>No Cargo in CMV Tank Vehicle</td></tr><tr><td><strong>Z</strong></td><td>No Full Air Equipped CMV</td></tr></tbody></table></div></div></div></div></div></div><!-- Commercial Driver's Instruction Permit --><div class="info-block mb-3" id="section-permit"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseTwo">Commercial Driver's Instruction Permit&nbsp;</a></div><div class="info-block-body"><p><a href="/media/391" target="_blank" data-entity-type="media" data-entity-uuid="73256d73-14b8-4aa0-a080-e2838cc4f960" data-entity-substitution="media_download_inline">Entry Level Driver Training (ELDT) Applicability for CDL Applicants&nbsp;</a></p><p>A commercial driver's instruction permit (CDL instruction permit) may be issued to an applicant who holds a valid operator's or class D license who has passed the vision and/or physical standards, and knowledge tests required for issuance of a CDL.</p><p>The CDL instruction permit may not be issued for a period to exceed one year. A one-year CDL Instruction Permit cannot be renewed.</p><p>The holder of a CDL instruction permit may drive a commercial motor vehicle on the highway only when accompanied by the holder of a commercial driver's license valid for the type of vehicle who occupies a seat beside the individual for the purpose of giving instruction or testing. The permit must be valid for the type of vehicle being driven also.</p><p>A CDL instruction permit may only be issued to an applicant who is at least <strong>18 years of age</strong> and has previously held a Level 3 Graduated Driver's License, or a Class E license.</p><p>Upon completion of all tests, the person will receive a CDL instruction permit. When operating a commercial vehicle you must have your CDL instruction permit and regular operator's license.</p><p>Applicants must hold a CDL instruction permit for a minimum of <strong>14 days</strong> before they are eligible to take the road skills test. Applicants who are ready to take the road skills test must contact a Third-Party Examiner to schedule an appointment.</p></div></div><!-- Age & Fitness Requirements --><div class="info-block mb-3" id="section-age"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseThree">Age &amp; Fitness Requirements&nbsp;</a></div><div class="info-block-body"><p>You must be at least <strong>18 years of age</strong> and have at least <strong>one (1) year</strong> driving experience to qualify for a CDL or CDL instruction permit. Federal Motor Carrier Rules requires that drivers subject to those rules meet specific physical qualification standards and carry evidence of such qualification in the form of a medical certificate.</p><p>All drivers who operate a commercial motor vehicle (CMV) in <strong>NON-EXCEPTED INTERSTATE (NI)</strong> commerce are subject to having a DOT physical completed by a certified medical examiner listed on the Federal Motor Carrier Safety Administration's National Registry website, located at: <a href="https://nationalregistry.fmcsa.dot.gov/" target="_blank">nationalregistry.fmcsa.dot.gov</a>.</p><p>School bus drivers or applicants who work for a city, state, or federal government agency, in which a CDL is required for their employment, are considered operating in <strong>EXCEPTED INTRASTATE</strong> or <strong>EXCEPTED INTERSTATE</strong> and are exempt from meeting the FMCSA requirements. School bus drivers will be required to present their current School Bus Certification card. Applicants who work for a city, county, state, or federal government agency must provide written verification, on agency letterhead, verifying employment with their city, state, or federal government agency.</p><p>If you cannot be medically certified, you may be eligible for a medical waiver.</p><p>If you wish to be able to operate a commercial motor vehicle <strong>interstate (all 50 states)</strong> you must apply and be granted a waiver from the Federal Highway Administration. Contact <strong>(304) 347-5935</strong> for further information.</p><p>If you wish to operate a commercial motor vehicle in <strong>WV only</strong>, please call <strong>(304) 926-3801</strong> for information on obtaining a medical waiver.</p></div></div><!-- CDL Licensing Procedures & Requirements --><div class="info-block mb-3" id="section-procedures"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseFour">CDL Licensing Procedures &amp; Requirements&nbsp;</a></div><div class="info-block-body"><p>Applications and study manuals are available at any DMV Exam Centers, Regional Office, or on the <a href="/node/140" data-entity-type="node" data-entity-uuid="7148a203-31c6-485b-bda6-9b0de996ee3c" data-entity-substitution="canonical">Forms page </a>of this website.</p><p><a href="/media/73" target="_blank" data-entity-type="media" data-entity-uuid="8c3798d5-359c-422b-9ba6-47909f25a33f" data-entity-substitution="media_download_inline">The CDL Manual (State and Federal) is available for download here.&nbsp;</a></p><p><a href="/media/391" data-entity-type="media" data-entity-uuid="73256d73-14b8-4aa0-a080-e2838cc4f960" data-entity-substitution="media_download_inline">Entry Level Driver Training (ELDT) Applicability for CDL Applicants&nbsp;</a></p></div></div><!-- How To Apply for a CDL --><div class="info-block mb-3" id="section-apply"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseFive">How To Apply for a CDL&nbsp;</a></div><div class="info-block-body"><div class="steps-list"><div class="step-item"><div class="step-badge">1</div><p>Visit the Licensing page to see all required documentation for all first time, duplicate, and renewal license applicants.</p></div><div class="step-item"><div class="step-badge">2</div><p>First time applicants will need Entry Level Driver Training (ELDT) to obtain a CDL. A first time CDL applicant is a driver who has <strong>NEVER held a CDL prior to February 7, 2022</strong>. If you are a first time CDL applicant or a first time <strong>P (Passenger)</strong>, <strong>S (School Bus)</strong>, or <strong>H (Hazmat)</strong> endorsement applicant you will need to complete ELDT. For additional information on the ELDT requirements and the process, <a href="/media/398" data-entity-type="media" data-entity-uuid="6cac0218-437a-45ed-957f-6472411a66a0" data-entity-substitution="media_download_inline">click here.</a></p></div><div class="step-item"><div class="step-badge">3</div><p>Complete in full, front and back, of the <strong>Application for Commercial Driver's License and/or Endorsements (CDL-1)</strong>.</p></div><div class="step-item"><div class="step-badge">4</div><p>A <strong>Medical Examiner Certificate (MEC)</strong> must be submitted electronically by your medical provider, or for city, county, state, or federal government agency employees a verification of employment on agency letterhead.*</p></div><div class="step-item"><div class="step-badge">5</div><p><strong>Pay Applicable Fees:</strong> CDL testing fee is <strong>$25.00</strong> + driver's licensing fees. The CDL testing fee allows testing for general knowledge, air brakes and combination. Commercial Driver's Licenses fees are non-refundable. Endorsement fees are <strong>$10.00 each</strong> at the time of application.</p></div><div class="step-item"><div class="step-badge">6</div><p>Submit the application, a copy of your current MEC will be submitted electronically by the medical provider or for city, state, or federal government agency employees a verification of employment on agency letterhead, and required fees to: <strong>DMV, PO Box 17010, Charleston WV 25317</strong>.</p></div><div class="step-item"><div class="step-badge">7</div><p>Upon receipt of the application and fees, a <strong>test card</strong> will be mailed to the applicant which will include the regional CDL testing sites.</p></div><div class="step-item"><div class="step-badge">8</div><p>Once all tests are successfully completed a CDL instruction permit will be issued. The CDL instruction permit may not be issued for a period to exceed one year. A one-year CDL Instruction Permit cannot be renewed. When the applicant is ready to take the road skills test, they should contact one of the <strong>third party examiners</strong> (names and telephone numbers in front of the CDL manual) to schedule an appointment. Most skills tests are given on weekends and evenings. The cost of the skills test is <strong>$100.00</strong> (as of January 1, 2017), which should be paid to the Third Party Examiner at the time of the test.</p></div><div class="step-item"><div class="step-badge">9</div><p>The applicant must provide the vehicle in which the test will be given. The vehicle must be representative of the <strong>class of license</strong> for which the applicant is testing.</p></div></div><div class="notes-block"><p>* FMCSA granted a waiver allowing interstate commercial driver's license (CDL) holders, commercial learner's permit (CLP) holders, and motor carriers to continue relying on paper copies of medical examiner's certificates as proof of drivers' medical certification for up to 15 days after the date the medical examiner's certificate is issued. The waiver is in effect until <strong>April 10, 2026</strong>, and a copy of the waiver is available <a href="/media/401" data-entity-type="media" data-entity-uuid="6f2dc5b9-a76a-40cf-96bd-d8f6a4bfcdf1" data-entity-substitution="media_download_inline">here.</a></p><p><strong>NOTE:</strong> To retain a Hazardous Material Endorsement, you must first complete a fingerprint and background check from the <strong>Transportation Security Administration</strong>. Contact the Universal Enrollment Services (UES) Help Desk at <strong>1-855-347-8371</strong> or visit <a href="https://universalenroll.dhs.gov/" target="_blank">universalenroll.dhs.gov</a> to pay the <strong>$86.50 fee</strong> to start the fingerprint/background check process. All fees are non-refundable. After scheduling with UES, visit one of the fingerprinting locations listed on their website with proof of identity and citizenship. Once you receive your TSA approval letter, return to a DMV office to test for HAZMAT and renew your CDL — bring your approval letter. If you do not wish to maintain your HAZMAT endorsement, you may go directly to a DMV office to renew and complete a surrender form. All WV CDL issuances, renewals, and transfers wishing to retain or obtain a HAZMAT endorsement must also pass the HAZMAT knowledge test.</p><p>A HAZMAT endorsement holder renewing their CDL will receive <strong>3 attempts</strong> to pass the HAZMAT endorsement test on a valid, unexpired license. If your CDL is expired, you must obtain a HAZMAT test card from the CDL office in Charleston before testing for HAZMAT.</p></div></div></div><!-- Changing a Class of License --><div class="info-block mb-3" id="section-change-class"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseSix">Changing a Class of License&nbsp;</a></div><div class="info-block-body"><div class="steps-list"><div class="step-item"><div class="step-badge">1</div><p>Complete in full, front and back, of the <strong>Application for Commercial Driver's License and/or Endorsements (CDL-1)</strong>.</p></div><div class="step-item"><div class="step-badge">2</div><p>You must have previously taken all required tests.</p></div><div class="step-item"><div class="step-badge">3</div><p>Indicate in the transaction area that you are applying for a license update. The fee required for upgrading your license is <strong>$7.50</strong>.</p></div><div class="step-item"><div class="step-badge">4</div><p>Upon receipt, the Division will then issue a CDL instruction permit. A skills test is required to upgrade from one class to another.</p></div><div class="step-item"><div class="step-badge">5</div><p>If combination or air brakes tests are needed, you must complete these tests before you can take the road skills test.</p></div></div></div></div><!-- Adding An Endorsement --><div class="info-block mb-3" id="section-endorsement"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseSeven">Adding An Endorsement&nbsp;</a></div><div class="info-block-body"><p>Complete in full, front and back, of the <strong>Application for Commercial Driver's License and/or Endorsements (CDL-1) </strong>and pay appropriate fees:</p><div class="steps-list"><div class="step-item"><div class="step-badge">1</div><p><strong>Required fees are $10.00 for each endorsement and $7.50 for the duplicate license.</strong><br>(For one endorsement the fee would be $17.50. For two endorsements the fee would be $27.50. etc.)</p></div><div class="step-item"><div class="step-badge">2</div><div><p><strong>To add air brakes or combination after</strong> you have been issued your commercial driver's license, which will require a road skills test, the fee is:</p><table class="table table-bordered mb-0 mt-2" style="font-size:1rem;width:auto;"><tbody><tr><td>Air Brakes / Combination</td><td><strong>$25.00</strong></td></tr><tr><td>Duplicate Fee</td><td><strong>$7.50</strong></td></tr><tr><td><strong>Total Fee</strong></td><td><strong>$32.50</strong></td></tr></tbody></table></div></div><div class="step-item"><div class="step-badge">3</div><p><strong>When a person already has a CDL license in the system and they are only updating or adding a passenger endorsement </strong>and must take the road skills test, when the CDL is updated, it is done as a duplicate issuance. We are only updating the system, not changing the expiration date.</p></div></div><div class="notes-block"><p><strong>NOTE:</strong> To retain a Hazardous Material Endorsement, you must first complete a fingerprint and background check from the <strong>Transportation Security Administration</strong>. Contact the Universal Enrollment Services (UES) Help Desk at <strong>1-855-347-8371</strong> or visit <a href="https://universalenroll.dhs.gov/" target="_blank">universalenroll.dhs.gov</a> to pay the <strong>$86.50 fee</strong> to start the fingerprint/background check process. All fees are non-refundable. After scheduling with UES, visit one of the fingerprinting locations listed on their website with proof of identity and citizenship. Once you receive your TSA approval letter, return to a DMV office to test for HAZMAT and renew your CDL — bring your approval letter. If you do not wish to maintain your HAZMAT endorsement, you may go directly to a DMV office to renew and complete a surrender form.</p><p>A HAZMAT endorsement holder renewing their CDL will receive <strong>3 attempts</strong> to pass the HAZMAT endorsement test on a valid, unexpired license. If your CDL is expired, you must obtain a HAZMAT test card from the CDL office in Charleston before testing for HAZMAT.</p></div></div></div><!-- CDL Renewals --><div class="info-block mb-3" id="section-renewals"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseEight">CDL Renewals&nbsp;</a></div><div class="info-block-body"><p>Once you have received your CDL renewal notice form, you should visit the DMV office to start the renewal process. You must bring the required documents to renew your CDL. <a href="/media/73" target="_blank" data-entity-type="media" data-entity-uuid="8c3798d5-359c-422b-9ba6-47909f25a33f" data-entity-substitution="media_download_inline">For information on documents required to renew, click here.&nbsp;</a></p><p>If you are currently employed by a city, county, state, or federal government and your job requires a valid CDL, you are exempt from the DOT physical requirements; however, you must provide a letter from your employer stating you are currently employed and exempt from the DOT physical requirements. If you did not receive a renewal notice in the mail, you must complete a <strong>CDL-1 application</strong> at the Regional office, plus pay an additional fee of <strong>$5.00</strong> for an expired license. If your license has been expired for more than <strong>3 years</strong>, you must pass the written and road skills tests for both a regular Class E license and all examination requirements for a commercial driver's license.</p><div class="notes-block"><p>To retain a Hazardous Material Endorsement, you must first complete a fingerprint and background check from the <strong>Transportation Security Administration</strong>. Contact the Universal Enrollment Services (UES) Help Desk at <strong>1-855-347-8371</strong> or visit <a href="https://universalenroll.dhs.gov/" target="_blank">universalenroll.dhs.gov</a> to pay the <strong>$86.50 fee</strong> to start the fingerprint/background check process. All fees are non-refundable. After scheduling with UES, visit one of the fingerprinting locations listed on their website with proof of identity and citizenship. Once you receive your TSA approval letter, return to a DMV office to test for HAZMAT and renew your CDL — bring your approval letter. If you do not wish to maintain your HAZMAT endorsement, you may go directly to a DMV office to renew and complete a surrender form.</p><p>A HAZMAT endorsement holder renewing their CDL will receive <strong>3 attempts</strong> to pass the HAZMAT endorsement test on a valid, unexpired license. If your CDL is expired, you must obtain a HAZMAT test card from the CDL office in Charleston before testing for HAZMAT.</p></div></div></div><!-- CDL Transfers --><div class="info-block mb-3" id="section-transfers"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseNine">CDL Transfers&nbsp;</a></div><div class="info-block-body"><p>To drive a commercial vehicle in West Virginia, you must apply to transfer your CDL within <strong>30 days</strong> of establishing residence. The DMV will obtain driving information through the Commercial Driver's License System (CDLIS), the National Driver Register (NDR) and from each state in which you have been licensed to drive. You must surrender your out-of-state driver's license in order to be issued a WV CDL.</p><p>You must bring the following documents to be issued a WV CDL:</p><div class="steps-list"><div class="step-item"><div class="step-badge">1</div><p>Visit the <a href="/node/86" data-entity-type="node" data-entity-uuid="a97dc6f2-124c-409a-956e-ddcdcf1089ae" data-entity-substitution="canonical">New Licensing Requirements</a> page for details on new required documentation.</p></div><div class="step-item"><div class="step-badge">2</div><p>Valid MEC must have been submitted electronically by the medical provider.* If you work for a city, county, state or federal government and your job requires a CDL, then you are exempt from the DOT physical requirements. You must submit a letter from your employer on agency letterhead indicating your exempt status.</p></div><div class="step-item"><div class="step-badge">3</div><p>Your out-of-state license or a certified driving record.</p></div></div><div class="notes-block"><p>If you have a HAZMAT endorsement on your out-of-state license you must pass the TSA background check before you can transfer. Contact the Universal Enrollment Services (UES) Help Desk at <strong>1-855-347-8371</strong> or visit <a href="https://universalenroll.dhs.gov/" target="_blank">universalenroll.dhs.gov</a> to pay the <strong>$86.50 fee</strong> to start the fingerprint/background check process. All fees are non-refundable. After contacting UES, schedule an appointment at a fingerprinting location listed on the UES website. When visiting the UES office, provide proof of identity and citizenship. Once you receive your TSA approval letter, return to a DMV office to test for HAZMAT and transfer your out-of-state CDL — bring your approval letter. If you do not wish to maintain your HAZMAT endorsement, you may go directly to a DMV office to transfer your license.</p><p>* FMCSA granted a waiver allowing interstate commercial driver's license (CDL) holders, commercial learner's permit (CLP) holders, and motor carriers to continue relying on paper copies of medical examiner's certificates as proof of drivers' medical certification for up to 15 days after the date the medical examiner's certificate is issued. The waiver is in effect until <strong>October 12, 2025</strong>, and a copy of the waiver is available on <a href="https://nationalregistry.fmcsa.dot.gov/assets/resource-center/FINAL%20NRII%20Waiver%207-14-2025.pdf" target="_blank">FMCSA's website</a>.</p></div></div></div><!-- Expired CDLs --><div class="info-block mb-3" id="section-expired"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseEleven">Expired CDLs&nbsp;</a></div><div class="info-block-body"><p>Any person applying to renew a CDL which has been expired for <strong>3 years or more</strong> must follow the procedures for an initial issuance of a CDL license, including the knowledge and skills testing.</p><p>If not expired over 3 years, the person can renew and pay an additional <strong>$5.00</strong>.</p></div></div><!-- Voluntarily Surrendered CDLs --><div class="info-block mb-3" id="section-surrendered"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseTweleve">Voluntarily Surrendered CDLs&nbsp;</a></div><div class="info-block-body"><p>When a person wishes to voluntarily surrender his/her CDL license, he/she must complete a voluntarily surrendered letter. By signing this letter, the applicant acknowledges that he/she will have to start all over with knowledge and skills testing before receiving a CDL license again.</p></div></div><!-- CDL Third Party Examiners and Test Site Locations --><div class="info-block mb-3" id="section-examiners"><div class="info-block-header">CDL Third Party Examiners &amp; Test Site Locations</div><div class="info-block-body"><table class="table table-bordered mb-0 examiner-table"><thead class="table-dark"><tr><th style="width:1%;">County</th><th style="width:1%;">Examiner</th><th style="width:1%;">Contact</th></tr></thead><tbody><tr><td class="county-cell" rowspan="2">Berkeley</td><td>Janet Nesselerodt</td><td>Cell (304) 279-5578</td></tr><tr><td>Anita Trout</td><td>Cell (304) 279-9289</td></tr><tr><td class="county-cell" rowspan="3">Boone</td><td>Mike Horan</td><td>Cell (304) 482-7732</td></tr><tr><td>Steven Horan</td><td>Home (304) 925-8010</td></tr><tr><td>Russell Hoover, Jr.</td><td>Home (304) 989-3913</td></tr><tr><td class="county-cell">Brooke</td><td>Roseanna Finney</td><td>Cell (304) 650-0766</td></tr><tr><td class="county-cell" rowspan="2">Cabell</td><td>George Colgrove</td><td>Cell (304) 633-2613</td></tr><tr><td>Alan Midkiff</td><td>Cell (304) 972-7402</td></tr><tr><td class="county-cell" rowspan="2">Greenbrier</td><td>Christopher Berry</td><td>Cell (304) 661-3695</td></tr><tr><td>David Taylor</td><td>Cell (304) 628-4646</td></tr><tr><td class="county-cell">Hancock</td><td>Roseanna Finney</td><td>Cell (304) 650-0766</td></tr><tr><td class="county-cell" rowspan="2">Hardy</td><td>Rodney Taylor</td><td>Cell (304) 668-3411</td></tr><tr><td>Deven Barron</td><td>Cell (304) 886-2320</td></tr><tr><td class="county-cell" rowspan="2">Harrison</td><td>Ed Rollins Jr.</td><td>Home (304) 842-8984 / Cell (304) 669-2081</td></tr><tr><td>Blain Bowmar</td><td>Cell (304) 892-4649</td></tr><tr><td class="county-cell">Jackson</td><td>Ronnie Anderson, II</td><td>Cell (304) 532-5032</td></tr><tr><td class="county-cell" rowspan="2">Jefferson</td><td>Janet Nesselerodt</td><td>Cell (304) 279-5578</td></tr><tr><td>Anita Trout</td><td>Cell (304) 279-9289</td></tr><tr><td class="county-cell" rowspan="4">Kanawha</td><td>Mike Horan</td><td>Cell (304) 482-7732</td></tr><tr><td>Steven Horan</td><td>Home (304) 925-8010</td></tr><tr><td>Ryan Powers</td><td>Cell (304) 205-3944</td></tr><tr><td>Russell Hoover, Jr.</td><td>Cell (304) 989-3913</td></tr><tr><td class="county-cell">Lewis</td><td>Sam Criss</td><td>Cell (304) 476-0819</td></tr><tr><td class="county-cell">Marion</td><td>Mike Foley</td><td>Cell (304) 612-1304</td></tr><tr><td class="county-cell">Mason</td><td>Ronnie Anderson, II</td><td>Cell (304) 532-5032</td></tr><tr><td class="county-cell">McDowell</td><td>Thomas Bell</td><td>Home (304) 436-6976 / Cell (304) 888-1546</td></tr><tr><td class="county-cell" rowspan="2">Mineral</td><td>Rodney Taylor</td><td>Cell (304) 668-3411</td></tr><tr><td>Deven Barron</td><td>Cell (304) 886-2320</td></tr><tr><td class="county-cell">Monongalia</td><td>Mike Foley</td><td>Cell (304) 612-1304</td></tr><tr><td class="county-cell" rowspan="2">Morgan</td><td>Janet Nesselerodt</td><td>Cell (304) 279-5578</td></tr><tr><td>Anita Trout</td><td>Cell (304) 279-9289</td></tr><tr><td class="county-cell" rowspan="4">Nicholas</td><td>Fred Hart</td><td>Home (304) 640-1230</td></tr><tr><td>Ricky Moye</td><td>Cell (304) 228-3684</td></tr><tr><td>Michael Peck</td><td>Cell (304) 573-3935</td></tr><tr><td>Dave Shrader</td><td>Cell (304) 719-3811</td></tr><tr><td class="county-cell" rowspan="2">Ohio</td><td>Arthur Lightner</td><td>Home (304) 639-1866</td></tr><tr><td>Mark Cain</td><td>Cell (304) 4672 or (304) 281-6909</td></tr><tr><td class="county-cell" rowspan="2">Pendleton</td><td>Rodney Taylor</td><td>Cell (304) 668-3411</td></tr><tr><td>Deven Barron</td><td>Cell (304) 886-2320</td></tr><tr><td class="county-cell">Pleasants</td><td>Wayne Nichols</td><td>Home (304) 684-9502 / Cell (304) 917-5112</td></tr><tr><td class="county-cell" rowspan="2">Preston</td><td>Mike Foley</td><td>Cell (304) 612-1304</td></tr><tr><td>Blain Bowmar</td><td>Cell (304) 892-4649</td></tr><tr><td class="county-cell" rowspan="4">Raleigh</td><td>Fred Hart</td><td>Cell (304) 640-1230</td></tr><tr><td>Ricky Moye</td><td>Cell (304) 228-3684</td></tr><tr><td>Michael Peck</td><td>Cell (304) 573-3935</td></tr><tr><td>Dave Shrader</td><td>Cell (304) 719-3811</td></tr><tr><td class="county-cell" rowspan="2">Randolph</td><td>Tim Myers</td><td>Home (304) 478-4420 / Cell (304) 642-4424</td></tr><tr><td>Wesley Mole</td><td>Cell (304) 516-9844</td></tr><tr><td class="county-cell" rowspan="2">Upshur</td><td>Sam Criss</td><td>Cell (304) 476-0819</td></tr><tr><td>Tim Myers</td><td>Home (304) 478-4420 / Cell (304) 642-4424</td></tr><tr><td class="county-cell" rowspan="2">Wood</td><td>Wayne Nichols</td><td>Home (304) 684-9502 / Cell (304) 917-5112</td></tr><tr><td>Daniel Taylor</td><td>Home (304) 863-8806</td></tr></tbody><!-- Wood --><!-- Upshur --><!-- Randolph --><!-- Raleigh --><!-- Preston --><!-- Pleasants --><!-- Pendleton --><!-- Ohio --><!-- Nicholas --><!-- Morgan --><!-- Monongalia --><!-- Mineral --><!-- McDowell --><!-- Mason --><!-- Marion --><!-- Lewis --><!-- Kanawha --><!-- Jefferson --><!-- Jackson --><!-- Harrison --><!-- Hardy --><!-- Hancock --><!-- Greenbrier --><!-- Cabell --><!-- Brooke --><!-- Boone --><!-- Berkeley --></table></div></div><!-- DOT Physical – Medical Examiner's Certificate (MEC) --><div class="info-block mb-3" id="section-mec"><div class="info-block-header"><a style="color:inherit;text-decoration:none;" href="https://transportation.wv.gov/DMV/Motor-Carriers/CDL/Pages/default.aspx#collapseFourteen">DOT Physical – Medical Examiner's Certificate (MEC)&nbsp;</a></div><div class="info-block-body"><p>A licensee who lists their self-certification status as a non-excepted status (NI or NA) must maintain a valid FMCSA <a href="https://www.fmcsa.dot.gov/regulations/medical/medical-examiners-certificate-commercial-driver-medical-certification" target="_blank">Medical Examiner's Certificate (MEC)</a> on file with the DMV. The DOT physical must be completed by a certified medical examiner listed on the <a href="https://nationalregistry.fmcsa.dot.gov/home" target="_blank">FMCSA's National Registry website</a>.</p><p>Any West Virginia CDL holder who fails to maintain proof of a valid MEC with the DMV will have their CDL medical status downgraded to <strong>NOT-CERTIFIED</strong> ten (<strong>10</strong>) days after the current MEC expires. Federal guidelines mandate that if a valid MEC is not provided to the DMV within <strong>30 days</strong> after expiration, the CDL license will be downgraded to a <strong>Class E Driver's License</strong>, which is a non-CDL and allows for the operation of non-commercial vehicles only.</p><p>All MECs must be submitted electronically by the medical provider conducting the physical.*</p><p>We request that you verify the certificate has been provided by the medical examiner and updated by contacting the CDL Unit at <strong>(304) 926-3801</strong> or by using the online services to <a href="https://apps.wv.gov/DMV/SelfService/DrivingRecord" target="_blank">check the CDL status</a>.</p><p>Any certificate more than <strong>two (2) years</strong> old is not current. Any certificate that is valid less than <strong>30 days</strong> cannot be accepted.</p><div class="notes-block"><p>* FMCSA granted a waiver allowing interstate commercial driver's license (CDL) holders, commercial learner's permit (CLP) holders, and motor carriers to continue relying on paper copies of medical examiner's certificates as proof of drivers' medical certification for up to 15 days after the date the medical examiner's certificate is issued. The waiver is in effect until <strong>October 12, 2025</strong>, and a copy of the waiver is available on <a href="https://nationalregistry.fmcsa.dot.gov/assets/resource-center/FINAL%20NRII%20Waiver%207-14-2025.pdf" target="_blank">FMCSA's website</a>.</p></div></div></div><!-- Back to Top Button --><p><button class="back-to-top" id="backToTop" title="Back to top" onclick="window.scrollTo({ top: 0, behavior: &apos;smooth&apos; })">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"></path>
+    </svg>
+</button>&nbsp;<script>
+    (function () {
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', function () {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        });
+    })();
+</script></p>

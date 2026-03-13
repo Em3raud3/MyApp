@@ -11,6 +11,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult BasicFormat()
+        {
+            return View();
+        }
+
         public IActionResult BasicPage()
         {
             return View();
@@ -50,6 +55,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult LicensePage()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();
@@ -66,6 +76,11 @@ namespace MyApp.Controllers
         }
 
         public IActionResult TableFilters()
+        {
+            return View();
+        }
+
+        public IActionResult QuickNavigation()
         {
             return View();
         }
