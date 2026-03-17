@@ -1,0 +1,438 @@
+﻿<style>
+    /* ── Page wrapper ── */
+    .wip-wrapper {
+        padding-left: 15rem;
+        padding-right: 15rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .wip-wrapper {
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .wip-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    /* ── Page meta ── */
+    .wip-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .wip-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #2d3748;
+        color: #fff;
+        font-size: 1.01rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+        .wip-badge svg {
+            color: #EAAA00;
+        }
+
+    /* ── Grid ── */
+    .wip-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    @@media (max-width: 768px) {
+        .wip-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @@media (max-width: 480px) {
+        .wip-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* ── Plate card ── */
+    .wip-card {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+        .wip-card:hover {
+            box-shadow: 0 4px 16px rgba(45, 55, 72, 0.13);
+            transform: translateY(-2px);
+        }
+
+    /* ── Inner link wraps image + title ── */
+    .wip-card-link {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        text-decoration: none;
+        color: inherit;
+    }
+
+        .wip-card-link:hover {
+            text-decoration: none;
+        }
+
+            .wip-card-link:hover .wip-card-title {
+                color: #1a4a80;
+                text-decoration: underline;
+            }
+
+    .wip-card-img {
+        background-color: #f4f6fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        border-bottom: 1px solid #cfd8e3;
+        min-height: 100px;
+    }
+
+    .wip-card-title {
+        padding: 0.65rem 0.85rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2b6cb0;
+        line-height: 1.4;
+        flex-grow: 1;
+        text-align: center;
+    }
+
+    /* ── No-link variant ── */
+    .wip-card-nolink .wip-card-title {
+        color: #4a5568;
+    }
+
+    .wip-card-nolink:hover {
+        box-shadow: none;
+        transform: none;
+    }
+</style>
+
+<div class="wip-wrapper">
+
+    <!-- Page meta -->
+    <div class="wip-meta">
+        <span class="wip-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3h16v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z" />
+            </svg>
+            Special Plates
+        </span>
+    </div>
+
+    <!-- Plate grid -->
+    <div class="wip-grid">
+
+        <!-- 911-Enhanced Council -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/288" data-entity-type="node" data-entity-uuid="2e904f4b-9934-46ec-97a7-abd00848b660" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="ec36542f-4455-4ddc-abbc-e078197a0421">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">911-Enhanced Council</div>
+            </a>
+        </div>
+
+        <!-- A.F. & A.M. -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/289" data-entity-type="node" data-entity-uuid="deaa6103-55c5-4986-ab29-9621a9c46122" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="254dbdf2-a73a-4a0d-96da-9fcb272e9c90">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">A.F. &amp; A.M.</div>
+            </a>
+        </div>
+
+        <!-- Amateur-Radio (no link) -->
+        <div class="wip-card wip-card-nolink">
+            <div class="wip-card-img">
+                <drupal-media data-entity-type="media" data-entity-uuid="74334fb5-d66c-4f17-a125-31026002885b">&nbsp;</drupal-media>
+            </div>
+            <div class="wip-card-title">Amateur-Radio</div>
+        </div>
+
+        <!-- Back the Blue -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/291" data-entity-type="node" data-entity-uuid="fa21cd92-a878-42c5-8d83-b8c38f37a375" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="acafd6f8-d385-4ad7-ad51-e021a7b21b9e">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Back the Blue Wounded in the Line of Duty or Surviving Spouse</div>
+            </a>
+        </div>
+
+        <!-- Benevolent Protective Order of Elks -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/292" data-entity-type="node" data-entity-uuid="5be2fe9b-757a-4704-bb4b-b6d1c0237f6e" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="199e068f-613d-421f-8f11-a284cdb6d918">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Benevolent Protective Order of Elks</div>
+            </a>
+        </div>
+
+        <!-- Beni Kedem Temple -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/293" data-entity-type="node" data-entity-uuid="f4d1cfd4-d71b-4a8e-82aa-3b74459fed8c" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="e3321f3e-5145-43c0-8af1-3006746f151c">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Beni Kedem Temple</div>
+            </a>
+        </div>
+
+        <!-- Bowlers -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/note/294">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="aeb9e7de-7b74-40b1-8791-1941410753c3">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Bowlers</div>
+            </a>
+        </div>
+
+        <!-- Certified Firefighters -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/295" data-entity-type="node" data-entity-uuid="948e68e5-7c7e-4f66-b634-c8eccc2cfae3" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="20f81f25-64a6-4744-b890-54ef2586e567">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Certified Firefighters</div>
+            </a>
+        </div>
+
+        <!-- Contractors Association of WV -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/296" data-entity-type="node" data-entity-uuid="6e86e9ea-d4fb-4338-a2a0-80cb093cda52" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="b620b951-14fa-4fe7-a286-6e57ecb674e8">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Contractors Association of WV</div>
+            </a>
+        </div>
+
+        <!-- Deputy Sheriffs Association -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/297" data-entity-type="node" data-entity-uuid="c124589f-59c4-433e-ba36-ccda7610db0d" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="4f4bd524-a799-41ac-8e2d-14716752e378">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Deputy Sheriffs Association</div>
+            </a>
+        </div>
+
+        <!-- Distinguished Medal of Valor -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/298" data-entity-type="node" data-entity-uuid="582b2a9a-d96e-44a5-8922-9b1030e09109" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="5500b156-01ec-49db-b8cf-a6fa4e2e4dee">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Distinguished Medal of Valor</div>
+            </a>
+        </div>
+
+        <!-- Emergency Medical Services -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/299" data-entity-type="node" data-entity-uuid="5e1f627a-80b8-4679-8789-d2dec43cc303" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="196edb3a-1f24-48a5-9a6f-e2422237f2a7">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Emergency Medical Services</div>
+            </a>
+        </div>
+
+        <!-- F. & A.M. P.H.A. -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/300" data-entity-type="node" data-entity-uuid="94d13d05-87a1-41ff-8b76-3ad379d37889" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="d8635cfa-5366-44af-80b6-40093b6e4ae2">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">F. &amp; A.M. P.H.A.</div>
+            </a>
+        </div>
+
+        <!-- Fire Fighter -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/301" data-entity-type="node" data-entity-uuid="39ca836f-bd9c-4966-9741-7186c796d299" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="f8b3a718-c6d4-4f69-943c-e68e69d6f0b3">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Fire Fighter</div>
+            </a>
+        </div>
+
+        <!-- Fraternal Order of Police -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/302" data-entity-type="node" data-entity-uuid="e42039ce-51a0-4b31-af1e-cd5ed65fa395" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="5dd889f6-1dec-4d90-af11-876493c4cf33">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Fraternal Order of Police</div>
+            </a>
+        </div>
+
+        <!-- Gas & Oil Association of WV -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/303" data-entity-type="node" data-entity-uuid="bc14df02-12b8-4ae6-8b65-78fa24ff4438" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="456c7203-ae61-4fae-a09f-aa2b1766d46b">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Gas &amp; Oil Association of WV</div>
+            </a>
+        </div>
+
+        <!-- Hoops Children's Family Hospital -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/304" data-entity-type="node" data-entity-uuid="b172a1eb-cdb1-44be-92e2-8a2c91d3f430" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="1f3dacde-403e-4925-8d4b-3d1e8a88a5f7">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Hoops Children's Family Hospital</div>
+            </a>
+        </div>
+
+        <!-- Knights of Columbus -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/305" data-entity-type="node" data-entity-uuid="ae51a504-6486-4429-bd9b-ed831c56f506" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="07a55a10-db5d-4492-a6cc-ba04012be7da">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Knights of Columbus</div>
+            </a>
+        </div>
+
+        <!-- League of Postmasters -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/306" data-entity-type="node" data-entity-uuid="063a82be-8ba5-43c8-b0d0-dee42f987e5a" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="6310587e-20c3-48ba-8277-62217052017b">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">League of Postmasters</div>
+            </a>
+        </div>
+
+        <!-- Lions International -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/307" data-entity-type="node" data-entity-uuid="9bf1fbb0-076c-43ec-8eb8-1aeee6094b13" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="abee968d-60a7-4c1d-ba69-a781f71a73ed">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Lions International</div>
+            </a>
+        </div>
+
+        <!-- Osiris Shriner -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/308" data-entity-type="node" data-entity-uuid="e2ecd736-4ccc-4f02-9653-9861fb9bbf4b" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="87b2e806-5bd2-4b2e-9e50-a4608ab8f5fd">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Osiris Shriner</div>
+            </a>
+        </div>
+
+        <!-- Professional Firefighter -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/309" data-entity-type="node" data-entity-uuid="1ed5d9ab-a1ad-443c-9d6e-cc7366bfdf74" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="41e557d3-55a2-4a66-beda-cc93a2d149ba">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Professional Firefighter</div>
+            </a>
+        </div>
+
+        <!-- Pupil Transportation -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/310" data-entity-type="node" data-entity-uuid="f2a33ab6-021f-4219-a939-2fb9edb677f1" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="103ef2fe-eb26-4711-a156-f8ee604aa602">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Pupil Transportation</div>
+            </a>
+        </div>
+
+        <!-- Rotary International -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/311" data-entity-type="node" data-entity-uuid="e82c5608-d3e8-41d7-a1d1-d8faa3a0c1cc" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="29dc930c-8c8c-4e1c-8a9f-f6489de529e2">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Rotary International</div>
+            </a>
+        </div>
+
+        <!-- Volunteer Firefighter -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/312" data-entity-type="node" data-entity-uuid="a143efda-e947-4bee-9107-63f5eba98357" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="732a6416-be81-4fe3-ae25-9176eafca566">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Volunteer Firefighter</div>
+            </a>
+        </div>
+
+        <!-- West Virginia Realtor's Association Plate -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/313" data-entity-type="node" data-entity-uuid="75b82596-4af3-43da-96d1-210fdb6a88b0" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="2fd2d4b9-8273-4bc3-b1bf-15270d55e2f6">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">West Virginia Realtor's Association Plate</div>
+            </a>
+        </div>
+
+        <!-- Wounded in the Line of Duty -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/314" data-entity-type="node" data-entity-uuid="3b1f7b61-e969-460b-9cd8-e6f0dc85a5e4" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="5682e2f1-29b7-418f-9d97-10b700816e60">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">Wounded in the Line of Duty</div>
+            </a>
+        </div>
+
+        <!-- WV Chiropractic Society -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/315" data-entity-type="node" data-entity-uuid="18076a11-30a2-4c8c-999b-b2a1155e6a29" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="2a4f485f-bcbc-4884-b4c2-e2d4e15f1a48">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">WV Chiropractic Society</div>
+            </a>
+        </div>
+
+        <!-- WV Square and Round Dance Federation -->
+        <div class="wip-card">
+            <a class="wip-card-link" href="/node/316" data-entity-type="node" data-entity-uuid="70bb93d8-1864-40d0-aab8-83b8f6c367c7" data-entity-substitution="canonical">
+                <div class="wip-card-img">
+                    <drupal-media data-entity-type="media" data-entity-uuid="bf0d81cd-cde3-4793-91bc-6b881dd7f307">&nbsp;</drupal-media>
+                </div>
+                <div class="wip-card-title">WV Square and Round Dance Federation</div>
+            </a>
+        </div>
+
+    </div>
+
+</div>

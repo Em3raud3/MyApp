@@ -60,6 +60,11 @@ namespace MyApp.Controllers
             return View();
         }
 
+        public IActionResult LicenseGallery()
+        {
+            return View();
+        }
+
         public IActionResult Table()
         {
             return View();

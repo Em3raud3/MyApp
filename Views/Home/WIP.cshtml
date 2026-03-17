@@ -19,14 +19,7 @@
         }
     }
 
-    /* ── Page meta ── */
-    .pr-meta {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.25rem;
-    }
-
+    /* ── Badge ── */
     .pr-badge {
         display: inline-flex;
         align-items: center;
@@ -39,34 +32,31 @@
         text-transform: uppercase;
         padding: 0.3rem 0.75rem;
         border-radius: 0.25rem;
+        margin-bottom: 1.25rem;
     }
 
         .pr-badge svg {
             color: #EAAA00;
         }
 
-    /* ── Card ── */
+    /* ── Lead ── */
+    .pr-lead {
+        font-size: 1.43rem;
+        color: #4a5568;
+        line-height: 1.8;
+        border-left: 4px solid #EAAA00;
+        padding: 0.85rem 1.25rem;
+        background-color: #fffdf0;
+        border-radius: 0 0.375rem 0.375rem 0;
+        margin-bottom: 1.25rem;
+    }
+
+    /* ── Shared card ── */
     .pr-card {
         border: 1px solid #cfd8e3;
         border-radius: 0.375rem;
         overflow: hidden;
         margin-bottom: 1.25rem;
-        max-width: 42%;
-    }
-
-    @@media (max-width: 768px) {
-        .pr-card {
-            max-width: 100%;
-        }
-    }
-
-    .pr-card-img-top {
-        background-color: #f4f6fb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
-        border-bottom: 1px solid #cfd8e3;
     }
 
     .pr-card-header {
@@ -106,108 +96,132 @@
             color: #2d3748;
         }
 
-    /* ── Plate detail table ── */
-    .plate-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 1.3rem;
-    }
-
-        .plate-table tr {
-            border-bottom: 1px solid #edf1f7;
-        }
-
-            .plate-table tr:last-of-type {
-                border-bottom: none;
-            }
-
-        .plate-table td {
-            padding: 0.6rem 0.5rem;
-            vertical-align: top;
-            color: #4a5568;
-        }
-
-            .plate-table td:first-child {
-                font-weight: 700;
-                color: #2d3748;
-                white-space: nowrap;
-                padding-right: 1.25rem;
-                width: 1%;
-            }
-
-    /* ── Back button ── */
-    .pr-back-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background-color: #EAAA00 !important;
-        color: #2d3748 !important;
-        font-weight: 600;
+    /* ── Notice callout ── */
+    .pr-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        background-color: #fffdf0;
+        border-left: 4px solid #EAAA00;
+        border-radius: 0 0.375rem 0.375rem 0;
+        padding: 0.85rem 1.1rem;
+        margin: 1rem 0;
         font-size: 1.2rem;
-        text-decoration: none;
-        padding: 0.45rem 1rem;
-        border-radius: 0.25rem;
-        border: none;
-        cursor: pointer;
-        margin-top: 0.25rem;
+        color: #4a5568;
+        line-height: 1.7;
     }
 
-        .pr-back-btn:hover {
-            background-color: #2d3748 !important;
-            color: #EAAA00 !important;
-            text-decoration: none;
+        .pr-note svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
         }
+
+        .pr-note strong {
+            color: #2d3748;
+        }
+
+    /* ── Contact bar ── */
+    .pr-contact {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        background-color: #f4f6fb;
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        padding: 1rem 1.25rem;
+        font-size: 1.2rem;
+        color: #4a5568;
+        margin-top: 1.5rem;
+    }
+
+        .pr-contact svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+        }
+
+        .pr-contact a {
+            color: #2b6cb0;
+            font-weight: 600;
+        }
+
+            .pr-contact a:hover {
+                color: #1a4a80;
+            }
 </style>
 
 <div class="pr-wrapper">
 
-    <!-- Page meta -->
-    <div class="pr-meta">
-        <span class="pr-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3h16v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z" />
-            </svg>
-            Special Plates
-        </span>
+    <!-- Badge -->
+    <div class="pr-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56z" />
+            <path d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z" />
+        </svg>
+        ADA Compliance
     </div>
 
-    <!-- Plate card -->
+    <!-- Lead paragraph -->
+    <div class="pr-lead">
+        In accordance with the requirements of title II of the Americans with Disabilities Act of 1990 ("ADA"), the West Virginia Division of Motor Vehicles (WVDMV) will not discriminate against qualified individuals with disabilities on the basis of disability in its services, programs, or activities.
+    </div>
+
+    <!-- Employment -->
     <div class="pr-card">
-
-        <!-- Image -->
-        <div class="pr-card-img-top">
-            <drupal-media data-entity-type="media" data-entity-uuid="e8bf3af4-180f-48a1-9a79-0c6a2995ef15">&nbsp;</drupal-media>
-        </div>
-
-        <!-- Header -->
         <div class="pr-card-header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0zm0 3h16v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2z" />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
             </svg>
-            WV Contractors Association Special Plate
+            Employment
         </div>
-
-        <!-- Details -->
         <div class="pr-card-body">
-            <table class="plate-table">
-                <tr><td>For Vehicle Class:</td><td>A</td></tr>
-                <tr><td>Who is eligible to apply?:</td><td>Anyone is eligible to apply for a WV Contractors Association license plate</td></tr>
-                <tr><td>Renewal Fee:</td><td>$66.50</td></tr>
-                <tr><td>Registration Terms:</td><td>1 year</td></tr>
-                <tr><td>Plate Expires:</td><td>July 1st</td></tr>
-                <tr><td>Is Personalization Available?:</td><td>No</td></tr>
-                <tr><td>Characters:</td><td>4 numerics followed by CA</td></tr>
-                <tr><td>Available as a SAMPLE plate?:</td><td>No</td></tr>
-            </table>
-            <p style="margin-top: 1rem; margin-bottom: 0;">
-                For exchange pricing or to apply for this plate, click <a href="/media/346" target="_blank">here</a> for the application.
-            </p>
+            <p>The WVDMV does not discriminate on the basis of disability in its hiring or employment practices and complies with all regulations promulgated by the U.S. Equal Employment Opportunity Commission under title I of the ADA.</p>
         </div>
-
     </div>
 
-    <a href="/node/287" class="pr-back-btn">
-        &#8592; Back to Special Plates
-    </a>
+    <!-- Effective Communication -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M2 1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h9.586a2 2 0 0 1 1.414.586l2 2V2a1 1 0 0 0-1-1zm12-1a2 2 0 0 1 2 2v12.793a.5.5 0 0 1-.854.353l-2.853-2.853a1 1 0 0 0-.707-.293H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2z" />
+            </svg>
+            Effective Communication
+        </div>
+        <div class="pr-card-body">
+            <p>Generally, upon request, WV DMV will provide appropriate aids and services leading to effective communication for qualified persons with disabilities so they can participate equally in the WVDMV's programs, services, and activities, including assistance in locating&nbsp;qualified sign language interpreters, providing&nbsp;documents in Braille, and other ways of making information and communications accessible to people who have speech, hearing, or vision impairments, when requested in advance.</p>
+        </div>
+    </div>
+
+    <!-- Modifications to Policies and Procedures -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+            </svg>
+            Modifications to Policies and Procedures
+        </div>
+        <div class="pr-card-body">
+            <p>The WVDMV will make all reasonable modifications to policies and programs to ensure that people with disabilities have an equal opportunity to enjoy all of its programs, services, and activities. For example, individuals with service animals are welcomed in the WVDMV offices, even where pets are generally prohibited.</p>
+
+            <div class="pr-note">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2" />
+                </svg>
+                <span>Persons who require special assistance with sign language interpreters, hearing equipment, or visual aids or anyone who requires an auxiliary aid or service for effective communication, or a modification of policies or procedures to participate in a program, service, or activity of the WVDMV should contact us as soon as possible but no later than <strong>48 hours before the scheduled event</strong>.</span>
+            </div>
+
+            <p>The ADA does not require that the West Virginia Division of Motor Vehicles take any action that would fundamentally alter the nature of its programs or services, or impose an undue financial or administrative burden.</p>
+            <p>The West Virginia Division of Motor Vehicles will not place a surcharge on a particular individual with a disability or any group of individuals with disabilities to cover the cost of providing auxiliary aids/services or reasonable modifications of policy, such as retrieving items from locations that are open to the public but are not accessible to persons who use wheelchairs.</p>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="pr-contact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+        </svg>
+        <span>For any ADA questions or concerns, please <a href="mailto:DOT.DMVCOMMISSIONER@WV.GOV">contact the WVDMV by clicking here</a>.</span>
+    </div>
 
 </div>
