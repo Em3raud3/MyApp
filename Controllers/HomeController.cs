@@ -95,7 +95,7 @@ namespace MyApp.Controllers
             return View();
         }
 
-        public IActionResult OSRS()
+        public IActionResult ADA_Compliance()
         {
             return View();
         }

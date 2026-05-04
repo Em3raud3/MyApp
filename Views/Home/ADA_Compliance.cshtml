@@ -1,0 +1,770 @@
+﻿<style>
+
+    @@media (max-width: 1200px) {
+        .pr-wrapper {
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .pr-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    /* ── Page meta ── */
+    .pr-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #2d3748;
+        color: #fff;
+        font-size: 0.71rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+        .pr-badge svg {
+            color: #EAAA00;
+        }
+
+    /* ── Lead ── */
+    .pr-lead {
+        font-size: 1.00rem;
+        color: #4a5568;
+        line-height: 1.8;
+        border-left: 4px solid #EAAA00;
+        padding: 0.85rem 1.25rem;
+        background-color: #fffdf0;
+        border-radius: 0 0.375rem 0.375rem 0;
+        margin-bottom: 1.25rem;
+    }
+
+        .pr-lead strong {
+            color: #2d3748;
+        }
+
+        .pr-lead p:first-child {
+            margin-top: 0;
+        }
+
+        .pr-lead p:last-of-type {
+            margin-bottom: 0;
+        }
+
+    /* ── Lead stats ── */
+    .pr-lead-stats {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+    }
+
+    .pr-stat {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        background-color: #fff;
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        border-top: 3px solid #EAAA00;
+        padding: 0.65rem 1rem;
+        flex: 1;
+    }
+
+    .pr-stat-number {
+        font-size: 1.54rem;
+        font-weight: 800;
+        color: #2d3748;
+        line-height: 1;
+    }
+
+    .pr-stat-label {
+        font-size: 0.63rem;
+        color: #4a5568;
+        line-height: 1.5;
+    }
+
+        .pr-stat-label strong {
+            display: block;
+            color: #2d3748;
+            font-size: 0.70rem;
+        }
+
+    @@media (max-width: 576px) {
+        .pr-lead-stats {
+            flex-direction: column;
+        }
+    }
+
+    /* ── Shared card ── */
+    .pr-card {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-card-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.00rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+        .pr-card-header svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+        }
+
+    .pr-card-body {
+        padding: 1.25rem;
+        background-color: #fff;
+        color: #4a5568;
+        font-size: 0.96rem;
+        line-height: 1.75;
+    }
+
+    /* ── Checklist items ── */
+    .ada-item {
+        padding: 1.1rem 0;
+        border-bottom: 1px solid #edf1f7;
+    }
+
+        .ada-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .ada-item:first-child {
+            padding-top: 0;
+        }
+
+    .ada-item-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .ada-criterion {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        height: 1.9rem;
+        background-color: #EAAA00;
+        color: #fff;
+        font-size: 0.60rem;
+        font-weight: 800;
+        border-radius: 0.25rem;
+        flex-shrink: 0;
+        padding: 0 0.4rem;
+        margin-top: 0.1rem;
+        letter-spacing: 0.02em;
+    }
+
+    .ada-title {
+        font-weight: 700;
+        color: #2d3748;
+        font-size: 0.96rem;
+        line-height: 1.5;
+    }
+
+    .ada-desc {
+        padding-left: 3.75rem;
+        color: #4a5568;
+        font-size: 0.91rem;
+        line-height: 1.75;
+        margin-bottom: 0.5rem;
+    }
+
+    .ada-roles {
+        padding-left: 3.75rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    .ada-role {
+        font-size: 0.56rem;
+        font-weight: 600;
+        padding: 0.15rem 0.55rem;
+        border-radius: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .ada-role-dev {
+        background-color: #ebf4ff;
+        color: #2b6cb0;
+        border: 1px solid #bee3f8;
+    }
+
+    .ada-role-content {
+        background-color: #f0fff4;
+        color: #276749;
+        border: 1px solid #9ae6b4;
+    }
+
+    .ada-role-designer {
+        background-color: #faf5ff;
+        color: #6b46c1;
+        border: 1px solid #d6bcfa;
+    }
+</style>
+
+<div class="pr-wrapper">
+
+    <!-- Page meta -->
+    <div class="pr-meta">
+        <span class="pr-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4.143A1.071 1.071 0 1 0 8 2a1.071 1.071 0 0 0 0 2.143m-4.668 6.922a.571.571 0 1 0 0-1.143.571.571 0 0 0 0 1.143m9.336 0a.571.571 0 1 0 0-1.143.571.571 0 0 0 0 1.143M8 13.714a.571.571 0 1 0 0-1.142.571.571 0 0 0 0 1.142M8 1a3.071 3.071 0 0 1 1.557 5.734v.838l2.433 1.46-.872 1.453-1.561-.938V10.5a1.571 1.571 0 0 1-3.114 0v-.953l-1.561.938-.872-1.454 2.433-1.46V6.734A3.071 3.071 0 0 1 8 1" />
+            </svg>
+            ADA Compliance
+        </span>
+    </div>
+
+    <!-- Lead -->
+    <div class="pr-lead">
+        <p>
+            At a basic level, an <strong>ADA-compliant PDF</strong> must meet the same accessibility standards as web content under <strong>WCAG 2.1 AA</strong>. That means text must be searchable, images need alternative text descriptions, headings should follow a logical structure, the reading order must make sense for screen readers, and more.
+        </p>
+
+        <div class="pr-lead-stats">
+            <div class="pr-stat">
+                <span class="pr-stat-number">38</span>
+                <div class="pr-stat-label">
+                    <strong>WCAG 2.0 AA</strong>
+                    Success Criteria
+                </div>
+            </div>
+            <div class="pr-stat">
+                <span class="pr-stat-number">50</span>
+                <div class="pr-stat-label">
+                    <strong>WCAG 2.1 AA</strong>
+                    Success Criteria
+                </div>
+            </div>
+        </div>
+
+        <p>
+            <strong>WCAG 2.1 does not replace or invalidate WCAG 2.0.</strong> Instead, WCAG 2.1 includes every success criterion from WCAG 2.0, plus additional requirements. If a website meets WCAG 2.1, it also meets WCAG 2.0 by default.
+        </p>
+
+        <small><em>Items shown as struck through are not applicable to PDF documents.</em></small>
+    </div>
+
+    <!-- Section 1: Alternatives -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
+                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z" />
+            </svg>
+            Section 1 &mdash; Alternatives
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.1.1</span>
+                    <span class="ada-title">Alt Text</span>
+                </div>
+                <div class="ada-desc">All images and non-text content that conveys necessary meaning or information needs a text alternative.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.2.1</span>
+                    <span class="ada-title">Video &amp; Audio Alternatives</span>
+                </div>
+                <div class="ada-desc">All video-only and audio-only content has a text transcript. Transcripts are clearly labeled and available near the media.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.2.2</span>
+                    <span class="ada-title">Closed Captioning</span>
+                </div>
+                <div class="ada-desc">All video with sound has closed captioning.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.2.3</span>
+                    <span class="ada-title">Audio Description (Level A)</span>
+                </div>
+                <div class="ada-desc">For any video where meaningful information is not available audibly, add a transcript or an audio description describing that information.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.2.4</span>
+                    <span class="ada-title">Live Captions</span>
+                </div>
+                <div class="ada-desc">More formal, live presentations must have closed captions.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.2.5</span>
+                    <span class="ada-title">Audio Description (Level AA)</span>
+                </div>
+                <div class="ada-desc">An audio description is optional under 1.2.3 Level A but required at 1.2.5 AA. The best route is to provide both a transcript (optional) and an audio description.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 2: Presentation -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+            </svg>
+            Section 2 &mdash; Presentation
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.3.1</span>
+                    <span class="ada-title">Website Structure</span>
+                </div>
+                <div class="ada-desc">Use proper HTML markup techniques to structure your website's content so that meaning and information presented visually and audibly is available programmatically.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.3.2</span>
+                    <span class="ada-title">Meaningful Order</span>
+                </div>
+                <div class="ada-desc">Make sure that content is ordered in a way that preserves meaning programmatically.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.3.3</span>
+                    <span class="ada-title">Sensory Characteristics</span>
+                </div>
+                <div class="ada-desc">When providing detailed instructions, make it so they aren't reliant on a single sensory ability.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.4.1</span>
+                    <span class="ada-title">Use of Color</span>
+                </div>
+                <div class="ada-desc">Do not rely on color alone to convey information.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.4.2</span>
+                    <span class="ada-title">Audio Control</span>
+                </div>
+                <div class="ada-desc">Any audio must be able to be paused, stopped, or muted.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.4.3</span>
+                    <span class="ada-title">Color Contrast</span>
+                </div>
+                <div class="ada-desc">There must be a color contrast ratio of at least <strong>4.5:1</strong> between regular text and background, and <strong>3:1</strong> for large text.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.4.4</span>
+                    <span class="ada-title">Text Resize</span>
+                </div>
+                <div class="ada-desc">Text must be able to be resized up to <strong>200%</strong> without negatively affecting the ability to read content or use functions.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1.4.5</span>
+                    <span class="ada-title">Images of Text</span>
+                </div>
+                <div class="ada-desc">Do not use images of text unless necessary (e.g., a logo).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 3: User Control -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z" />
+            </svg>
+            Section 3 &mdash; User Control
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.1.1</span>
+                    <span class="ada-title">Keyboard Only</span>
+                </div>
+                <div class="ada-desc">All functionality on a website must be accessible by keyboard only (i.e., no mouse required).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.1.2</span>
+                    <span class="ada-title">No Keyboard Trap</span>
+                </div>
+                <div class="ada-desc">Keyboard-only users must never get stuck on any part of the website; they must be able to navigate forwards and backwards.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.2.1</span>
+                    <span class="ada-title">Adjustable Time</span>
+                </div>
+                <div class="ada-desc">If there are any time limits on a website, users have the ability to turn it off, adjust it, or extend it.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.2.2</span>
+                    <span class="ada-title">Pause, Stop, Hide</span>
+                </div>
+                <div class="ada-desc">If there is content that blinks, scrolls, or moves, users must have the ability to pause, stop, or hide it.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.3.1</span>
+                    <span class="ada-title">Three Flashes or Below</span>
+                </div>
+                <div class="ada-desc">Web pages must not contain anything that flashes more than three times in any one-second period.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.1</span>
+                    <span class="ada-title">Bypass Blocks</span>
+                </div>
+                <div class="ada-desc">A "Skip to Content" link or other mechanism allows users to bypass repeated blocks of content (e.g., the header/menu) and go straight to the main content. Other mechanisms include headings and landmarks.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 4: Understandable -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
+            </svg>
+            Section 4 &mdash; Understandable
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.2</span>
+                    <span class="ada-title">Page Titles</span>
+                </div>
+                <div class="ada-desc">Each page of a website needs to have a unique and descriptive page title.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.3</span>
+                    <span class="ada-title">Focus Order</span>
+                </div>
+                <div class="ada-desc">Users must be able to navigate through focusable (interactive) elements in a logical, sequential order that preserves meaning.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.4</span>
+                    <span class="ada-title">Link Anchor Text</span>
+                </div>
+                <div class="ada-desc">The purpose of each link should be clear based on its anchor text (e.g., avoid "click here") and/or within programmatic context.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.5</span>
+                    <span class="ada-title">Multiple Ways</span>
+                </div>
+                <div class="ada-desc">There are multiple ways to access content/pages on a website (e.g., search bar, nav menus, sitemap, breadcrumbs, etc.).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.6</span>
+                    <span class="ada-title">Descriptive Headings and Labels</span>
+                </div>
+                <div class="ada-desc">Headings and labels must be clear and descriptive. They do not need to be lengthy.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2.4.7</span>
+                    <span class="ada-title">Focus Indicator</span>
+                </div>
+                <div class="ada-desc">Any user interface control that receives keyboard focus should have a visible focus indicator.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.1.1</span>
+                    <span class="ada-title">Website Language</span>
+                </div>
+                <div class="ada-desc">Set the default language for your website programmatically (e.g., <code>lang="en"</code> on the <code>&lt;html&gt;</code> element).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.1.2</span>
+                    <span class="ada-title">Language Changes</span>
+                </div>
+                <div class="ada-desc">Indicate any language changes for an entire page or within the content using the appropriate markup.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-content">Content Editor</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Section 5: Predictability & Robustness -->
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5V6H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V7H6a.5.5 0 0 1 0-1h1.5V4.5A.5.5 0 0 1 8 4M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z" />
+                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
+            </svg>
+            Section 5 &mdash; Predictability &amp; Robustness
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.2.1</span>
+                    <span class="ada-title">No Focus Change</span>
+                </div>
+                <div class="ada-desc">No context changes and nothing is activated merely because an item receives focus.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.2.2</span>
+                    <span class="ada-title">No Input Change</span>
+                </div>
+                <div class="ada-desc">User interface changes or actions shouldn't automatically occur due to input alone (e.g., a form should not auto-submit once all fields are filled out).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.2.3</span>
+                    <span class="ada-title">Consistent Navigation</span>
+                </div>
+                <div class="ada-desc">Keep navigation links and layout consistent throughout all pages of the website (e.g., links remain in the same relative order).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.2.4</span>
+                    <span class="ada-title">Consistent Identification</span>
+                </div>
+                <div class="ada-desc">Components that have the same function within a website are identified consistently (but not necessarily identically).</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.3.1</span>
+                    <span class="ada-title">Error Identification</span>
+                </div>
+                <div class="ada-desc">Make any form errors easy to identify, understand, and correct.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                    <span class="ada-role ada-role-designer">Designer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.3.2</span>
+                    <span class="ada-title">Form Labels and Instructions</span>
+                </div>
+                <div class="ada-desc">Provide clear visual and programmatic labels or instructions for user input fields, ensuring users understand what information is required and how to input it.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.3.3</span>
+                    <span class="ada-title">Error Suggestions</span>
+                </div>
+                <div class="ada-desc">If an input error is automatically detected, suggestions for correcting the error should be provided.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3.3.4</span>
+                    <span class="ada-title">Error Prevention on Important Forms</span>
+                </div>
+                <div class="ada-desc">For pages that create legal commitments, financial transactions, or other critical data submissions, at least one of the following must be true: submissions are reversible, the user can correct errors, or a confirmation step is available before final submission.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">4.1.1</span>
+                    <span class="ada-title">Parsing</span>
+                </div>
+                <div class="ada-desc">Make sure HTML code is clean and free of errors, particularly missing closing brackets. Ensure all HTML elements are properly nested.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">4.1.2</span>
+                    <span class="ada-title">Name, Role, Value</span>
+                </div>
+                <div class="ada-desc">For all user interface components (including forms, links, and script-generated components), the name, role, state, and/or value should be programmatically determinable and settable.</div>
+                <div class="ada-roles">
+                    <span class="ada-role ada-role-dev">Developer</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
