@@ -1,0 +1,330 @@
+@{
+    ViewData["Title"] = "PDF & Document Remediation";
+}
+
+<style>
+
+    .pr-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .pr-wrapper {
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .pr-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    /* ── Page meta ── */
+    .pr-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: #2d3748;
+        color: #fff;
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+        border-radius: 0.25rem;
+    }
+
+        .pr-badge svg {
+            color: #EAAA00;
+        }
+
+    /* ── Lead ── */
+    .pr-lead {
+        font-size: 1.30rem;
+        color: #4a5568;
+        line-height: 1.8;
+        border-left: 4px solid #EAAA00;
+        padding: 0.85rem 1.25rem;
+        background-color: #fffdf0;
+        border-radius: 0 0.375rem 0.375rem 0;
+        margin-bottom: 1.25rem;
+    }
+
+        .pr-lead strong {
+            color: #2d3748;
+        }
+
+        .pr-lead p:first-child {
+            margin-top: 0;
+        }
+
+        .pr-lead p:last-of-type {
+            margin-bottom: 0;
+        }
+
+    /* ── Shared card ── */
+    .pr-card {
+        border: 1px solid #cfd8e3;
+        border-radius: 0.375rem;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+    }
+
+    .pr-card-header {
+        background-color: #2d3748;
+        color: #fff;
+        padding: 0.75rem 1.25rem;
+        font-weight: 600;
+        font-size: 1.30rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+    }
+
+        .pr-card-header svg {
+            color: #EAAA00;
+            flex-shrink: 0;
+        }
+
+    .pr-card-body {
+        padding: 1.25rem;
+        background-color: #fff;
+        color: #4a5568;
+        font-size: 1.37rem;
+        line-height: 1.75;
+    }
+
+    /* ── Items ── */
+    .ada-item {
+        padding: 1.1rem 0;
+        border-bottom: 1px solid #edf1f7;
+    }
+
+        .ada-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .ada-item:first-child {
+            padding-top: 0;
+        }
+
+    .ada-item-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .ada-criterion {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 3rem;
+        height: 1.9rem;
+        background-color: #EAAA00;
+        color: #fff;
+        font-size: 0.78rem;
+        font-weight: 800;
+        border-radius: 0.25rem;
+        flex-shrink: 0;
+        padding: 0 0.4rem;
+        margin-top: 0.1rem;
+        letter-spacing: 0.02em;
+    }
+
+    .ada-title {
+        font-weight: 700;
+        color: #2d3748;
+        font-size: 1.37rem;
+        line-height: 1.5;
+    }
+
+    .ada-desc {
+        padding-left: 3.75rem;
+        color: #4a5568;
+        font-size: 1.30rem;
+        line-height: 1.75;
+        margin-bottom: 0.5rem;
+    }
+
+    .ada-desc-noindent {
+        color: #4a5568;
+        font-size: 1.30rem;
+        line-height: 1.75;
+        margin-bottom: 0.5rem;
+    }
+
+    .pr-page-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin: 0.5rem 0 1rem;
+        line-height: 1.3;
+    }
+
+    .pr-card-intro {
+        margin-bottom: 1rem;
+    }
+
+</style>
+
+<div class="pr-wrapper py-4">
+
+    <div class="pr-meta">
+        <span class="pr-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1L14 5.5z"/>
+            </svg>
+            PDF &amp; Document Remediation
+        </span>
+    </div>
+
+    <h1 class="pr-page-title">PDF &amp; Document Remediation</h1>
+
+    <div class="pr-lead">
+        <p>This document was prepared by the West Virginia Office of Technology and is for guidance purposes only. This is not a legal opinion and individual agencies/departments should rely on their own judgement for a final determination.</p>
+        <p>To effectively manage our upcoming <strong>WCAG 2.1 AA</strong> compliance efforts, we must establish a clear, common agreement on which legacy PDF documents are exempt from mandatory remediation. The core challenge lies in defining the criteria for the <strong>Archived Web Content Exception</strong>, particularly the phrase "No Current Use."</p>
+    </div>
+
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1L14 5.5z"/>
+            </svg>
+            Archiving Guidelines
+        </div>
+        <div class="pr-card-body">
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Overview</span>
+                </div>
+                <div class="ada-desc-noindent">WCAG and federal standards allow older, inactive content to remain online as Archived Content without full remediation, provided it is kept solely for record retention, legal, or historical purposes.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Common Archived Assets</span>
+                </div>
+                <div class="ada-desc-noindent">Outdated PDFs, historical reports, old meeting minutes, financial statements, legacy webpages, and inactive multimedia (training videos/audio).</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Compliance Requirements</span>
+                </div>
+                <div class="ada-desc-noindent">For a file to be exempt as "archived," it must meet all four of the following conditions:</div>
+                <ul class="ada-desc-noindent mt-1" style="padding-left: 1.25rem;">
+                    <li><strong>Inactive</strong> — the content is no longer updated or actively used.</li>
+                    <li><strong>Labeled</strong> — it is clearly identified as archived on the page.</li>
+                    <li><strong>On-Demand Access</strong> — it remains available for reference when requested.</li>
+                    <li><strong>Non-Interference</strong> — it does not block or disrupt access to other content.</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+            </svg>
+            Key Legal Criteria (Per DOJ ADA Title II Guidance)
+        </div>
+        <div class="pr-card-body">
+            <div class="ada-desc-noindent pr-card-intro">
+                To be considered exempt, a PDF must meet <strong>all four</strong> of the following criteria as they relate to the compliance deadlines (e.g., April 24, 2026 for larger public entities):
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">1</span>
+                    <span class="ada-title">Created Before Compliance Date</span>
+                </div>
+                <div class="ada-desc">Document was created, or is a scanned reproduction of an item created, before the mandated compliance deadline.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">2</span>
+                    <span class="ada-title">Limited Purpose</span>
+                </div>
+                <div class="ada-desc">Retained exclusively for reference, research, or recordkeeping.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">3</span>
+                    <span class="ada-title">No Current Use</span>
+                </div>
+                <div class="ada-desc">NOT currently used to apply for, gain access to, or participate in any current service, program, or activity. <strong>Requires clear, common definition.</strong></div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-criterion">4</span>
+                    <span class="ada-title">Not Altered</span>
+                </div>
+                <div class="ada-desc">Has not been altered or updated since the date of archiving.</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="pr-card">
+        <div class="pr-card-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3A1.5 1.5 0 0 1 15 10.5v3A1.5 1.5 0 0 1 13.5 15h-3A1.5 1.5 0 0 1 9 13.5z"/>
+            </svg>
+            Proposed "Current Use" Definition
+        </div>
+        <div class="pr-card-body">
+            <div class="ada-desc-noindent pr-card-intro">
+                The following constitutes <strong>"Current Use"</strong> for a PDF, which would immediately remove its exemption status and require remediation:
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Forms</span>
+                </div>
+                <div class="ada-desc-noindent">Any PDF required to be printed, completed, and submitted for any current enrollment, permit, or service.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Instructional Materials</span>
+                </div>
+                <div class="ada-desc-noindent">A PDF that is required reading or a required reference for an active course, training program, or employee on-boarding process.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Active Links</span>
+                </div>
+                <div class="ada-desc-noindent">Any PDF that is prominently linked or referenced from a current, high-traffic page — regardless of its age — suggesting it is a current resource.</div>
+            </div>
+
+            <div class="ada-item">
+                <div class="ada-item-header">
+                    <span class="ada-title">Active Policies</span>
+                </div>
+                <div class="ada-desc-noindent">Any policy, handbook, or organizational chart that is actively in effect or referenced for current operations.</div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
