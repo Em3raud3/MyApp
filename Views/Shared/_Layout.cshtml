@@ -5,116 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - MyApp</title>
     <script type="importmap"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/MyApp.styles.css" asp-append-version="true" />
     <style>
-        .navbar-brand {
-            transition: transform 0.2s ease, opacity 0.2s ease;
+        /* ── Navbar ── */
+        .nb-navbar {
+            background-color: var(--nb-surface-low);
+            border-bottom: 2px solid var(--nb-primary);
+            padding: 0.6rem 0;
         }
 
-            .navbar-brand:hover {
-                transform: scale(1.08);
-                opacity: 0.85;
-            }
+        .nb-navbar .navbar-brand {
+            font-family: var(--nb-font-display);
+            font-weight: 800;
+            font-size: 1.15em;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--nb-primary);
+            transition: color 0.2s ease;
+        }
 
-        .navbar-nav .nav-link {
+        .nb-navbar .navbar-brand:hover {
+            color: #fff;
+        }
+
+        .nb-navbar .nav-link {
+            font-family: var(--nb-font-display);
+            font-weight: 600;
+            font-size: 0.8em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--nb-on-surface) !important;
             position: relative;
-            transition: opacity 0.2s ease;
             padding-bottom: 0.4rem;
+            transition: color 0.2s ease;
         }
 
-            .navbar-nav .nav-link::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 0;
-                height: 2px;
-                background-color: #fff;
-                transition: width 0.3s ease;
-            }
-
-            .navbar-nav .nav-link:hover {
-                opacity: 0.8;
-            }
-
-                .navbar-nav .nav-link:hover::after {
-                    width: 100%;
-                }
-
-        /* Suppress Bootstrap's built-in caret — we use .nav-caret instead */
-        .navbar-nav .dropdown-toggle::after {
-            display: none;
+        .nb-navbar .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--nb-primary);
+            transition: width 0.25s ease;
         }
 
-        /* Chevron icon next to dropdown labels */
+        .nb-navbar .nav-link:hover {
+            color: var(--nb-primary) !important;
+        }
+
+        .nb-navbar .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Suppress Bootstrap caret */
+        .nb-navbar .dropdown-toggle::after { display: none; }
+
         .nav-caret {
             display: inline-block;
-            margin-left: 0.3rem;
-            font-size: 1.1rem;
+            margin-left: 0.25rem;
+            font-size: 0.9em;
             vertical-align: middle;
             transition: transform 0.2s ease;
-            opacity: 0.85;
+            color: var(--nb-secondary);
         }
 
-        .navbar-nav .dropdown:hover .nav-caret {
+        .nb-navbar .dropdown:hover .nav-caret {
             transform: rotate(180deg);
         }
 
-        /* Open dropdown on hover */
-        .navbar-nav .dropdown:hover > .dropdown-menu {
+        /* Hover-open dropdown */
+        .nb-navbar .dropdown:hover > .dropdown-menu {
             display: block;
             margin-top: 0;
         }
 
-        /* Dropdown menu styling */
+        .nb-navbar .dropdown-toggle {
+            color: var(--nb-secondary) !important;
+        }
+
+        .nb-navbar .dropdown-toggle:hover {
+            color: var(--nb-primary) !important;
+        }
+
+        /* Dropdown menu */
         .dropdown-menu {
-            background-color: #166a39;
-            border: 1px solid #125c31;
-            border-radius: 0.375rem;
+            background-color: var(--nb-surface-low);
+            border: 1px solid var(--nb-outline);
+            border-top: 2px solid var(--nb-primary);
+            border-radius: 0;
             padding: 0.25rem 0;
-            min-width: 13rem;
+            min-width: 14rem;
         }
 
         .dropdown-item {
-            color: #fff;
-            font-size: 0.9rem;
+            font-family: var(--nb-font-display);
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--nb-on-surface-muted);
             padding: 0.5rem 1.1rem;
-            transition: background-color 0.15s ease;
+            transition: background-color 0.15s ease, color 0.15s ease;
         }
 
-            .dropdown-item:hover,
-            .dropdown-item:focus {
-                background-color: #125c31;
-                color: #fff;
-            }
-
-        .nav-link.dropdown-toggle {
-            padding-right: 1.25rem;
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: rgba(252, 249, 1, 0.07);
+            color: var(--nb-primary);
         }
 
-            /* Vertical divider */
-            .nav-divider {
-                width: 2px;
-                height: 1.4rem;
-                background-color: rgba(255, 255, 255, 0.4);
-                border-radius: 1px;
-            }
+        /* Vertical divider */
+        .nav-divider {
+            width: 1px;
+            height: 1.2rem;
+            background-color: var(--nb-outline);
+        }
 
-            /* Bootstrap's .dropdown-menu-end rule normally requires [data-bs-popper],
-                       which is only added by JS. Since dropdowns here open via CSS hover,
-                       JS never runs and the attribute is never set. This override ensures
-                       right-aligned menus work without JavaScript involvement. */
-            .dropdown-menu-end {
-                right: 0;
-                left: auto;
-            }
+        .dropdown-menu-end {
+            right: 0;
+            left: auto;
+        }
+
+        /* ── Page container ── */
+        .nb-page-container {
+            background-color: var(--nb-bg);
+            min-height: calc(100vh - 60px);
+        }
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style="background-color: #1E8449;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm nb-navbar mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MyApp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -207,7 +235,7 @@
                         </li>
 
                          <li class="nav-item ms-sm-auto">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
+                            <a class="nav-link" style="color: #E50914 !important;" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
                         </li>
 
                     </ul>
@@ -216,10 +244,12 @@
         </nav>
     </header>
 
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="nb-page-container">
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

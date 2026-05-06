@@ -1,4 +1,13 @@
-﻿<style>
+﻿@{
+    ViewData["Title"] = "ADA Compliance";
+}
+
+<style>
+
+    .pr-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
 
     @@media (max-width: 1200px) {
         .pr-wrapper {
@@ -26,34 +35,49 @@
         display: inline-flex;
         align-items: center;
         gap: 0.4rem;
-        background-color: #2d3748;
-        color: #fff;
-        font-size: 0.71rem;
+        background-color: var(--nb-surface-high);
+        color: var(--nb-on-surface);
+        border: 1px solid var(--nb-outline);
+        font-size: 0.71em;
         font-weight: 700;
         letter-spacing: 0.08em;
         text-transform: uppercase;
         padding: 0.3rem 0.75rem;
-        border-radius: 0.25rem;
     }
 
         .pr-badge svg {
-            color: #EAAA00;
+            color: var(--nb-primary);
+        }
+
+    /* ── Page title ── */
+    .pr-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1rem;
+        line-height: 1.2;
+    }
+
+        .pr-page-title span {
+            color: var(--nb-primary);
         }
 
     /* ── Lead ── */
     .pr-lead {
-        font-size: 1.00rem;
-        color: #4a5568;
+        font-size: 0.96em;
+        color: #c0c0c0;
         line-height: 1.8;
-        border-left: 4px solid #EAAA00;
+        border-left: 4px solid var(--nb-primary);
         padding: 0.85rem 1.25rem;
-        background-color: #fffdf0;
-        border-radius: 0 0.375rem 0.375rem 0;
+        background-color: #161600;
         margin-bottom: 1.25rem;
     }
 
         .pr-lead strong {
-            color: #2d3748;
+            color: var(--nb-on-surface);
         }
 
         .pr-lead p:first-child {
@@ -75,31 +99,31 @@
         display: flex;
         align-items: center;
         gap: 0.85rem;
-        background-color: #fff;
-        border: 1px solid #cfd8e3;
-        border-radius: 0.375rem;
-        border-top: 3px solid #EAAA00;
+        background-color: #272727;
+        border: 1px solid #484848;
+        border-top: 3px solid var(--nb-primary);
         padding: 0.65rem 1rem;
         flex: 1;
     }
 
     .pr-stat-number {
-        font-size: 1.54rem;
-        font-weight: 800;
-        color: #2d3748;
+        font-family: var(--nb-font-display);
+        font-size: 1.54em;
+        font-weight: 900;
+        color: var(--nb-primary);
         line-height: 1;
     }
 
     .pr-stat-label {
-        font-size: 0.63rem;
-        color: #4a5568;
+        font-size: 0.7em;
+        color: #c0c0c0;
         line-height: 1.5;
     }
 
         .pr-stat-label strong {
             display: block;
-            color: #2d3748;
-            font-size: 0.70rem;
+            color: var(--nb-on-surface);
+            font-size: 0.78em;
         }
 
     @@media (max-width: 576px) {
@@ -110,40 +134,44 @@
 
     /* ── Shared card ── */
     .pr-card {
-        border: 1px solid #cfd8e3;
-        border-radius: 0.375rem;
+        border: 1px solid #484848;
+        border-top: 3px solid var(--nb-primary);
         overflow: hidden;
         margin-bottom: 1.25rem;
     }
 
     .pr-card-header {
-        background-color: #2d3748;
-        color: #fff;
+        background-color: var(--nb-surface-high);
+        color: var(--nb-on-surface);
         padding: 0.75rem 1.25rem;
-        font-weight: 600;
-        font-size: 1.00rem;
+        font-family: var(--nb-font-display);
+        font-weight: 700;
+        font-size: 0.875em;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
         display: flex;
         align-items: center;
         gap: 0.6rem;
+        border-bottom: 2px solid var(--nb-primary);
     }
 
         .pr-card-header svg {
-            color: #EAAA00;
+            color: var(--nb-primary);
             flex-shrink: 0;
         }
 
     .pr-card-body {
         padding: 1.25rem;
-        background-color: #fff;
-        color: #4a5568;
-        font-size: 0.96rem;
+        background-color: #272727;
+        color: #c0c0c0;
+        font-size: 0.875em;
         line-height: 1.75;
     }
 
-    /* ── Checklist items ── */
+    /* ── Items ── */
     .ada-item {
         padding: 1.1rem 0;
-        border-bottom: 1px solid #edf1f7;
+        border-bottom: 1px solid #353535;
     }
 
         .ada-item:last-child {
@@ -168,11 +196,11 @@
         justify-content: center;
         min-width: 3rem;
         height: 1.9rem;
-        background-color: #EAAA00;
-        color: #fff;
-        font-size: 0.60rem;
+        background-color: var(--nb-primary);
+        color: var(--nb-on-primary);
+        font-family: var(--nb-font-display);
+        font-size: 0.65em;
         font-weight: 800;
-        border-radius: 0.25rem;
         flex-shrink: 0;
         padding: 0 0.4rem;
         margin-top: 0.1rem;
@@ -180,16 +208,19 @@
     }
 
     .ada-title {
+        font-family: var(--nb-font-display);
         font-weight: 700;
-        color: #2d3748;
-        font-size: 0.96rem;
+        color: var(--nb-primary);
+        font-size: 0.875em;
         line-height: 1.5;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
     }
 
     .ada-desc {
         padding-left: 3.75rem;
-        color: #4a5568;
-        font-size: 0.91rem;
+        color: #c0c0c0;
+        font-size: 0.875em;
         line-height: 1.75;
         margin-bottom: 0.5rem;
     }
@@ -202,36 +233,36 @@
     }
 
     .ada-role {
-        font-size: 0.56rem;
-        font-weight: 600;
+        font-family: var(--nb-font-display);
+        font-size: 0.6em;
+        font-weight: 700;
         padding: 0.15rem 0.55rem;
-        border-radius: 1rem;
         text-transform: uppercase;
         letter-spacing: 0.05em;
     }
 
     .ada-role-dev {
-        background-color: #ebf4ff;
-        color: #2b6cb0;
-        border: 1px solid #bee3f8;
+        background-color: rgba(0, 238, 252, 0.08);
+        color: var(--nb-secondary);
+        border: 1px solid rgba(0, 238, 252, 0.35);
     }
 
     .ada-role-content {
-        background-color: #f0fff4;
-        color: #276749;
-        border: 1px solid #9ae6b4;
+        background-color: rgba(74, 222, 128, 0.08);
+        color: #4ade80;
+        border: 1px solid rgba(74, 222, 128, 0.35);
     }
 
     .ada-role-designer {
-        background-color: #faf5ff;
-        color: #6b46c1;
-        border: 1px solid #d6bcfa;
+        background-color: rgba(192, 132, 252, 0.08);
+        color: #c084fc;
+        border: 1px solid rgba(192, 132, 252, 0.35);
     }
+
 </style>
 
-<div class="pr-wrapper">
+<div class="pr-wrapper py-4">
 
-    <!-- Page meta -->
     <div class="pr-meta">
         <span class="pr-badge">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
@@ -241,7 +272,7 @@
         </span>
     </div>
 
-    <!-- Lead -->
+    <h1 class="pr-page-title">ADA <span>Compliance</span></h1>
     <div class="pr-lead">
         <p>
             At a basic level, an <strong>ADA-compliant PDF</strong> must meet the same accessibility standards as web content under <strong>WCAG 2.1 AA</strong>. That means text must be searchable, images need alternative text descriptions, headings should follow a logical structure, the reading order must make sense for screen readers, and more.

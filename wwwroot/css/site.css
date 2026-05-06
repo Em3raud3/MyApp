@@ -1,31 +1,214 @@
+/* ═══════════════════════════════════════════════
+   NEON BRUTALIST — GLOBAL DESIGN TOKENS
+   ═══════════════════════════════════════════════ */
+:root {
+    --nb-primary:            #FCF901;
+    --nb-primary-dim:        #d4d000;
+    --nb-on-primary:         #1d1d00;
+    --nb-secondary:          #00eefc;
+    --nb-tertiary:           #FF0044;
+    --nb-bg:                 #0e0e0e;
+    --nb-surface-low:        #131313;
+    --nb-surface:            #1c1c1c;
+    --nb-surface-mid:        #242424;
+    --nb-surface-high:       #2e2e2e;
+    --nb-surface-highest:    #353535;
+    --nb-on-surface:         #e8e8e8;
+    --nb-on-surface-muted:   #888888;
+    --nb-outline:            #3a3a3a;
+    --nb-glitch-bar:         var(--nb-primary);
+    --nb-font-display:       'Space Grotesk', sans-serif;
+    --nb-font-body:          'Inter', sans-serif;
+}
+
+/* ─── Base ─── */
 html {
-  font-size: 14px;
+    font-size: 14px;
+    background-color: var(--nb-bg);
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+    html { font-size: 16px; }
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: var(--nb-bg);
+    color: var(--nb-on-surface);
+    font-family: var(--nb-font-body);
+    -webkit-font-smoothing: antialiased;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* ─── Typography ─── */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--nb-font-display);
+    font-weight: 700;
+    color: var(--nb-on-surface);
+    letter-spacing: -0.01em;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* ─── Focus rings ─── */
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus,
+.form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 2px var(--nb-secondary);
+    outline: none;
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--nb-surface-low); }
+::-webkit-scrollbar-thumb { background: var(--nb-surface-highest); }
+::-webkit-scrollbar-thumb:hover { background: var(--nb-primary); }
+
+/* ─── Links ─── */
+a { color: var(--nb-secondary); text-decoration: none; }
+a:hover { color: var(--nb-primary); }
+
+/* ─── Glitch bar divider ─── */
+.nb-divider {
+    height: 3px;
+    background-color: var(--nb-primary);
+    border: none;
+    margin: 1.5rem 0;
+}
+
+/* ─── Section labels ─── */
+.nb-section-label {
+    font-family: var(--nb-font-display);
+    font-size: 0.75em;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--nb-on-primary);
+    background-color: var(--nb-primary);
+    display: inline-block;
+    padding: 0.2em 0.7em;
+    margin-bottom: 0.9rem;
+}
+
+/* ─── Cards ─── */
+.nb-card {
+    background-color: var(--nb-surface);
+    border: 1px solid var(--nb-surface-highest);
+    border-top: 3px solid var(--nb-primary);
+    border-radius: 0;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+}
+
+.nb-card:hover {
+    background-color: var(--nb-surface-mid);
+}
+
+.nb-card-header {
+    background-color: var(--nb-surface-high);
+    color: var(--nb-on-surface);
+    font-family: var(--nb-font-display);
+    font-weight: 700;
+    font-size: 0.8em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid var(--nb-primary);
+}
+
+.nb-card-body {
+    padding: 1rem;
+    color: var(--nb-on-surface-muted);
+    font-size: 0.875em;
+    line-height: 1.7;
+}
+
+.nb-card-footer {
+    padding: 0.75rem 1rem;
+    background-color: var(--nb-surface-low);
+    border-top: 1px solid var(--nb-outline);
+}
+
+/* ─── Buttons ─── */
+.btn-nb-primary {
+    font-family: var(--nb-font-display);
+    font-weight: 700;
+    font-size: 0.8em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background-color: var(--nb-primary);
+    color: var(--nb-on-primary);
+    border: none;
+    border-radius: 0;
+    padding: 0.45rem 1.1rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    transition: background-color 0.15s ease;
+}
+
+.btn-nb-primary:hover {
+    background-color: var(--nb-primary-dim);
+    color: var(--nb-on-primary);
+}
+
+.btn-nb-ghost {
+    font-family: var(--nb-font-display);
+    font-weight: 600;
+    font-size: 0.8em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: var(--nb-secondary);
+    border: none;
+    border-radius: 0;
+    padding: 0.45rem 1.1rem;
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    background-image:
+        linear-gradient(225deg, transparent 47%, var(--nb-secondary) 47%, var(--nb-secondary) 53%, transparent 53%),
+        linear-gradient(var(--nb-secondary), var(--nb-secondary)),
+        linear-gradient(var(--nb-secondary), var(--nb-secondary)),
+        linear-gradient(var(--nb-secondary), var(--nb-secondary)),
+        linear-gradient(var(--nb-secondary), var(--nb-secondary));
+    background-size:
+        11.31px 11.31px,
+        calc(100% - 8px) 1px,
+        1px calc(100% - 8px),
+        100% 1px,
+        1px 100%;
+    background-position:
+        top right,
+        top left,
+        bottom right,
+        bottom left,
+        top left;
+    background-repeat: no-repeat;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-nb-ghost:hover {
+    background-color: rgba(0, 238, 252, 0.12);
+    color: #fff;
+}
+
+/* ─── Bootstrap overrides for dark surface ─── */
+.card {
+    background-color: var(--nb-surface);
+    border: 1px solid var(--nb-surface-highest);
+    border-top: 3px solid var(--nb-primary);
+    border-radius: 0;
+    color: var(--nb-on-surface);
+}
+
+.card-footer {
+    background-color: var(--nb-surface-low);
+    border-top: 1px solid var(--nb-surface-highest);
+}
+
+.text-secondary { color: var(--nb-on-surface-muted) !important; }
+.text-dark      { color: var(--nb-on-surface) !important; }
+
+.form-floating > .form-control-plaintext::placeholder,
+.form-floating > .form-control::placeholder {
+    color: var(--nb-on-surface-muted);
+    text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder,
+.form-floating > .form-control:focus::placeholder {
+    text-align: start;
 }

@@ -2,282 +2,377 @@
     ViewData["Title"] = "Home";
 }
 
+<style>
+    .nb-home-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+    }
+
+    .nb-home-title span {
+        color: #E50914;
+    }
+
+    .nb-home-title .nb-home-sub-title {
+        color: var(--nb-primary);
+    }
+
+    .nb-home-sub {
+        color: var(--nb-on-surface-muted);
+        font-size: 0.875em;
+        line-height: 1.7;
+    }
+
+    .nb-ref-card {
+        background-color: #272727;
+        border: 1px solid #484848;
+        border-top: 3px solid var(--nb-primary);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        transition: background-color 0.2s ease;
+    }
+
+    .nb-ref-card.accent-cyan {
+        border-top-color: var(--nb-secondary);
+    }
+
+    .nb-ref-card:hover {
+        background-color: #303030;
+    }
+
+    .nb-ref-card-body {
+        padding: 1rem 1.1rem 0.75rem;
+        flex: 1;
+    }
+
+    .nb-ref-card-title {
+        font-family: var(--nb-font-display);
+        font-weight: 700;
+        font-size: 0.875em;
+        letter-spacing: 0.04em;
+        color: var(--nb-primary);
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+    }
+
+    .nb-ref-card.accent-cyan .nb-ref-card-title {
+        color: var(--nb-secondary);
+    }
+
+    .nb-ref-card-desc {
+        font-size: 0.8em;
+        color: #c0c0c0;
+        line-height: 1.65;
+        margin: 0;
+    }
+
+    .nb-ref-card-footer {
+        padding: 0.65rem 1.1rem;
+        background-color: #1e1e1e;
+        border-top: 1px solid #484848;
+    }
+
+    .nb-ref-card-footer .btn-nb-ghost {
+        color: var(--nb-primary) !important;
+    }
+
+    .nb-section-block {
+        padding: 1.5rem 0 2rem;
+    }
+
+    .nb-section-block.alt {
+        background-color: var(--nb-surface-low);
+        padding: 1.5rem 1rem 2rem;
+        margin: 0 -1rem;
+    }
+</style>
+
 <div class="py-4">
     <div class="mb-4">
-        <h2 class="fw-semibold text-dark mb-1">MyApp Reference Library</h2>
-        <p class="text-secondary">
+        <h2 class="nb-home-title mb-1"><span>MyApp</span> <span class="nb-home-sub-title">Reference Library</span></h2>
+        <p class="nb-home-sub">
             A personal reference for reusable HTML and UI elements — use these pages to copy consistent
             styles, layouts, and components across projects.
         </p>
     </div>
 
-    <hr class="mb-4" />
+    <hr class="nb-divider mb-4" />
 
-    <p class="section-heading text-uppercase fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #5a6e82;">Pages</p>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+    <p class="nb-section-label">Pages</p>
+    <div class="nb-section-block">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mb-2">
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Format</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Format</div>
+                    <p class="nb-ref-card-desc">
                         A base formatting reference page for consistent typography, spacing,
                         and structural conventions used across layouts.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicFormat" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicFormat" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Page</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Page</div>
+                    <p class="nb-ref-card-desc">
                         A resource list layout using Bootstrap list-groups with hover effects,
                         stretched links, and a contact block.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicPage" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicPage" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Page Simple</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Page Simple</div>
+                    <p class="nb-ref-card-desc">
                         A simplified basic page layout for lightweight content and quick reference formatting.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicPageSimple" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicPageSimple" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Page Alt</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Page Alt</div>
+                    <p class="nb-ref-card-desc">
                         A sectioned content layout with a reminder panel, numbered application steps,
                         and a clickable forms list-group.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicPageAlt" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicPageAlt" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Page List</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Page List</div>
+                    <p class="nb-ref-card-desc">
                         A numbered card list layout with circular badge indicators, bold colored
                         headings, and body text — suited for ordered tips or step-by-step content.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicPageList" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicPageList" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Basic Page Pretty</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Basic Page Pretty</div>
+                    <p class="nb-ref-card-desc">
                         An enhanced page layout with polished styling, structured sections,
                         and refined visual presentation for production-ready content.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="BasicPagePretty" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="BasicPagePretty" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Region Page</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Region Page</div>
+                    <p class="nb-ref-card-desc">
                         A regional coordinator contact card layout with an icon-led contact block
                         and a side-by-side map image — suited for highway safety region pages.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="RegionPage" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="RegionPage" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">WV Law Page</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">WV Law Page</div>
+                    <p class="nb-ref-card-desc">
                         A formal statute layout with a citation header, justified legal body text,
                         and a legislative breadcrumb footer — suited for WV code references.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="WVLawPage" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="WVLawPage" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">News Page</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">News Page</div>
+                    <p class="nb-ref-card-desc">
                         A press release layout with a badge, lead paragraph, styled quote blocks,
                         a pricing grid, and a centered contact bar — suited for DMV news and announcements.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="NewsPage" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="NewsPage" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">License Page</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">License Page</div>
+                    <p class="nb-ref-card-desc">
                         A special plate detail layout with an image card, two-column info table,
                         and a styled back button — suited for individual DMV special plate pages.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="LicensePage" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="LicensePage" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">License Gallery</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">License Gallery</div>
+                    <p class="nb-ref-card-desc">
                         A responsive grid gallery of special license plates with fully clickable
                         cards, plate images, and centered titles — suited for DMV special plate listing pages.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="LicenseGallery" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="LicenseGallery" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
     </div>
+    </div>
 
-    <p class="section-heading text-uppercase fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #5a6e82;">Tables</p>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+    <p class="nb-section-label">Tables</p>
+    <div class="nb-section-block alt">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mb-2">
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Table</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Table</div>
+                    <p class="nb-ref-card-desc">
                         A styled data table with a dark header, striped rows, row hover highlight,
                         left-border accent on the first column, and monospace formatting on data columns.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="Table" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="Table" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Table (No Highlight)</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Table (No Highlight)</div>
+                    <p class="nb-ref-card-desc">
                         The same styled table layout without the first-column hover accent —
                         suited for non-clickable data rows.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="TableNoHighlight" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="TableNoHighlight" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Table Accordion</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Table Accordion</div>
+                    <p class="nb-ref-card-desc">
                         A collapsible accordion layout with expandable sections and nested inner sections,
                         suited for structured content with multiple levels of detail.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="TableAccordion" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="TableAccordion" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Table Filters</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Table Filters</div>
+                    <p class="nb-ref-card-desc">
                         A filterable data table with text and dropdown filter inputs, live result
                         count, and a clear filters button — suited for searchable reference data.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="TableFilters" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="TableFilters" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">Quick Navigation</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">Quick Navigation</div>
+                    <p class="nb-ref-card-desc">
                         A quick navigation layout with anchor-linked section jumps and a sticky
                         nav bar — suited for long pages with multiple distinct content sections.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Website" asp-action="QuickNavigation" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Website" asp-action="QuickNavigation" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
     </div>
+    </div>
 
-    <p class="section-heading text-uppercase fw-bold mb-2" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #5a6e82;">Work in Progress</p>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <p class="nb-section-label">Work in Progress</p>
+    <div class="nb-section-block">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
 
         <div class="col">
-            <div class="card h-100 shadow-sm border-0" style="background-color: #edf1f7;">
-                <div class="card-body px-4 py-3">
-                    <h5 class="card-title fw-semibold text-dark mb-1">WIP</h5>
-                    <p class="card-text text-secondary small">
+            <div class="nb-ref-card">
+                <div class="nb-ref-card-body">
+                    <div class="nb-ref-card-title">WIP</div>
+                    <p class="nb-ref-card-desc">
                         A placeholder for whatever page I am currently working on that works as a sandbox to text changes.
                     </p>
                 </div>
-                <div class="card-footer border-0 px-4 pb-3" style="background-color: #edf1f7;">
-                    <a asp-controller="Home" asp-action="WIP" class="btn btn-sm btn-outline-secondary">View Page</a>
+                <div class="nb-ref-card-footer">
+                    <a asp-controller="Home" asp-action="WIP" class="btn btn-nb-ghost btn-sm">View Page</a>
                 </div>
             </div>
         </div>
 
+    </div>
     </div>
 </div>
