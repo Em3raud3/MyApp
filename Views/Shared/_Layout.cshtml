@@ -133,6 +133,33 @@
             left: auto;
         }
 
+        /* ── Food dropdown (purple) ── */
+        .nav-food > .nav-link {
+            color: #a855f7 !important;
+        }
+
+        .nav-food > .nav-link:hover {
+            color: #c084fc !important;
+        }
+
+        .nav-food > .nav-link::after {
+            background-color: #a855f7;
+        }
+
+        .nav-food .nav-caret {
+            color: #a855f7;
+        }
+
+        .nav-food .dropdown-menu {
+            border-top-color: #a855f7;
+        }
+
+        .nav-food .dropdown-item:hover,
+        .nav-food .dropdown-item:focus {
+            background-color: rgba(168, 85, 247, 0.1);
+            color: #c084fc;
+        }
+
         /* ── Page container ── */
         .nb-page-container {
             background-color: var(--nb-bg);
@@ -234,7 +261,26 @@
                             </ul>
                         </li>
 
-                         <li class="nav-item ms-sm-auto">
+                         <li class="nav-item px-2 d-flex align-items-center"><span class="nav-divider"></span></li>
+
+                         <li class="nav-item dropdown nav-food">
+                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                 Food <span class="nav-caret">▾</span>
+                             </a>
+                             <ul class="dropdown-menu">
+                                 <li>
+                                     <a class="dropdown-item" asp-area="" asp-controller="Food" asp-action="Recipes">Recipes</a>
+                                 </li>
+                                 <li>
+                                     <a class="dropdown-item" asp-area="" asp-controller="Food" asp-action="Ingredients">Ingredients</a>
+                                 </li>
+                                 <li>
+                                     <a class="dropdown-item" asp-area="" asp-controller="Food" asp-action="ShoppingList">Shopping List</a>
+                                 </li>
+                             </ul>
+                         </li>
+
+                          <li class="nav-item ms-sm-auto">
                             <a class="nav-link" style="color: #E50914 !important;" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
                         </li>
 
