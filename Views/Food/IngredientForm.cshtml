@@ -1,0 +1,217 @@
+@model MyApp.Models.Ingredient
+@{
+    var isEdit = Model.Id != 0;
+    ViewData["Title"] = isEdit ? "Edit Ingredient" : "Add Ingredient";
+}
+
+<style>
+    .food-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .food-wrapper {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .food-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    .food-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .food-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: var(--nb-surface-high);
+        color: var(--nb-on-surface);
+        border: 1px solid var(--nb-outline);
+        font-size: 0.71em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+    }
+
+    .food-badge svg { color: #a855f7; }
+
+    .food-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.2;
+    }
+
+    .food-page-title span { color: #a855f7; }
+
+    .ing-form-card {
+        background-color: #272727;
+        border: 1px solid #484848;
+        border-top: 3px solid #a855f7;
+        padding: 1.5rem;
+        max-width: 480px;
+    }
+
+    .ing-form-group {
+        margin-bottom: 1.1rem;
+    }
+
+    .ing-form-label {
+        display: block;
+        font-family: var(--nb-font-display);
+        font-size: 0.72em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #a855f7;
+        margin-bottom: 0.4rem;
+    }
+
+    .ing-form-control {
+        width: 100%;
+        background-color: #1a1a1a;
+        border: 1px solid #484848;
+        color: var(--nb-on-surface);
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875em;
+        outline: none;
+        transition: border-color 0.15s ease;
+    }
+
+    .ing-form-control:focus {
+        border-color: #a855f7;
+    }
+
+    .ing-form-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .ing-btn {
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 1.1rem;
+        border: 1px solid #a855f7;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .ing-btn-primary {
+        background-color: #a855f7;
+        color: #000;
+    }
+
+    .ing-btn-primary:hover {
+        background-color: #c084fc;
+        border-color: #c084fc;
+    }
+
+    .ing-btn-secondary {
+        background-color: transparent;
+        color: #a855f7;
+    }
+
+    .ing-btn-secondary:hover {
+        background-color: rgba(168, 85, 247, 0.1);
+        color: #c084fc;
+    }
+
+    .field-validation-error {
+        font-size: 0.75em;
+        color: #E50914;
+        display: block;
+        margin-top: 0.25rem;
+    }
+</style>
+
+<div class="food-wrapper py-4">
+
+    <div class="food-meta">
+        <span class="food-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 1a.5.5 0 0 1 .5.5v6.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 8.293V1.5A.5.5 0 0 1 8 1m-5 9h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1 0-1"/>
+            </svg>
+            Food
+        </span>
+    </div>
+
+    <h1 class="food-page-title">
+        @if (isEdit) { <text><span>Edit</span> Ingredient</text> }
+        else { <text><span>Add</span> Ingredient</text> }
+    </h1>
+
+    <form asp-controller="Food"
+          asp-action="@(isEdit ? "EditIngredient" : "CreateIngredient")"
+          asp-route-id="@(isEdit ? Model.Id : null)"
+          method="post">
+        @Html.AntiForgeryToken()
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="ing-form-card">
+
+            <div class="ing-form-group">
+                <label class="ing-form-label" asp-for="Name">Name</label>
+                <input class="ing-form-control" asp-for="Name" placeholder="e.g. Chicken Breast" />
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+            </div>
+
+            <div class="ing-form-group">
+                <label class="ing-form-label" asp-for="Category">Category</label>
+                <select class="ing-form-control" asp-for="Category">
+                    <option value="">-- Select a category --</option>
+                    <option>Produce</option>
+                    <option>Proteins</option>
+                    <option>Dairy &amp; Alternatives</option>
+                    <option>Dry &amp; Canned Goods</option>
+                    <option>Condiments &amp; Flavor</option>
+                    <option>Frozen</option>
+                    <option>Beverages</option>
+                    <option>Baking</option>
+                    <option>Snacks</option>
+                    <option>Others</option>
+                </select>
+                <span asp-validation-for="Category" class="field-validation-error"></span>
+            </div>
+
+            <div class="ing-form-actions">
+                <button class="ing-btn ing-btn-primary" type="submit">
+                    @(isEdit ? "Save Changes" : "Add Ingredient")
+                </button>
+                <a class="ing-btn ing-btn-secondary"
+                   asp-controller="Food" asp-action="Ingredients">Cancel</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
