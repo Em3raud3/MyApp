@@ -1,0 +1,287 @@
+@model MyApp.Models.Recipe
+@{
+    var isEdit = Model.Id != 0;
+    ViewData["Title"] = isEdit ? "Edit Recipe" : "Add Recipe";
+    var allIngredients = ViewBag.AllIngredients as IEnumerable<MyApp.Models.Ingredient> ?? [];
+    var selectedIds = Model.Ingredients.Select(i => i.Id).ToHashSet();
+}
+
+<style>
+    .food-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .food-wrapper {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .food-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    .food-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.2;
+    }
+
+    .food-page-title span { color: #a855f7; }
+
+    .recipe-form-card {
+        background-color: #272727;
+        border: 1px solid #484848;
+        border-top: 3px solid #a855f7;
+        padding: 1.5rem;
+        max-width: 640px;
+    }
+
+    .rf-group {
+        margin-bottom: 1.1rem;
+    }
+
+    .rf-label {
+        display: block;
+        font-family: var(--nb-font-display);
+        font-size: 0.72em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #a855f7;
+        margin-bottom: 0.4rem;
+    }
+
+    .rf-control {
+        width: 100%;
+        background-color: #1a1a1a;
+        border: 1px solid #484848;
+        color: var(--nb-on-surface);
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875em;
+        outline: none;
+        transition: border-color 0.15s ease;
+        resize: vertical;
+    }
+
+    .rf-control:focus { border-color: #a855f7; }
+
+    .rf-img-preview {
+        margin-top: 0.6rem;
+        max-width: 100%;
+        max-height: 180px;
+        object-fit: cover;
+        display: none;
+        border: 1px solid #484848;
+    }
+
+    .rf-ingredients-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 0.4rem;
+        max-height: 220px;
+        overflow-y: auto;
+        padding: 0.5rem;
+        background-color: #1a1a1a;
+        border: 1px solid #484848;
+    }
+
+    .rf-ingredients-grid:focus-within { border-color: #a855f7; }
+
+    .rf-ing-check {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8em;
+        color: #c0c0c0;
+        cursor: pointer;
+    }
+
+    .rf-ing-check input[type="checkbox"] {
+        accent-color: #a855f7;
+        cursor: pointer;
+    }
+
+    .rf-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .rf-btn {
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 1.1rem;
+        border: 1px solid #a855f7;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .rf-btn-primary {
+        background-color: #a855f7;
+        color: #000;
+    }
+
+    .rf-btn-primary:hover {
+        background-color: #c084fc;
+        border-color: #c084fc;
+    }
+
+    .rf-btn-secondary {
+        background-color: transparent;
+        color: #a855f7;
+    }
+
+    .rf-btn-secondary:hover {
+        background-color: rgba(168, 85, 247, 0.1);
+        color: #c084fc;
+    }
+
+    .rf-ing-category-label {
+        font-family: var(--nb-font-display);
+        font-size: 0.65em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #a855f7;
+        padding: 0.4rem 0.5rem 0.2rem;
+        border-bottom: 1px solid #333;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    .rf-ing-category-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .field-validation-error {
+        font-size: 0.75em;
+        color: #E50914;
+        display: block;
+        margin-top: 0.25rem;
+    }
+</style>
+
+<div class="food-wrapper py-4">
+
+    <h1 class="food-page-title">
+        @if (isEdit) { <text><span>Edit</span> Recipe</text> }
+        else { <text><span>Add</span> Recipe</text> }
+    </h1>
+
+    <form asp-controller="Food"
+          asp-action="@(isEdit ? "EditRecipe" : "CreateRecipe")"
+          asp-route-id="@(isEdit ? Model.Id : null)"
+          method="post">
+        @Html.AntiForgeryToken()
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="recipe-form-card">
+
+            <div class="rf-group">
+                <label class="rf-label" asp-for="Name">Name</label>
+                <input class="rf-control" asp-for="Name" placeholder="e.g. Chicken Alfredo" />
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+            </div>
+
+            <div class="rf-group">
+                <label class="rf-label" asp-for="Description">Description</label>
+                <textarea class="rf-control" asp-for="Description" rows="3"
+                          placeholder="A short summary of the recipe..."></textarea>
+            </div>
+
+            <div class="rf-group">
+                <label class="rf-label" asp-for="ImageUrl">Image URL</label>
+                <input class="rf-control" asp-for="ImageUrl" id="imageUrlInput"
+                       placeholder="https://example.com/image.jpg"
+                       oninput="previewImage(this.value)" />
+                <img id="imgPreview" class="rf-img-preview" alt="Preview" />
+            </div>
+
+            <div class="rf-group">
+                <label class="rf-label" asp-for="Instructions">Instructions</label>
+                <textarea class="rf-control" asp-for="Instructions" rows="5"
+                          placeholder="Step-by-step instructions..."></textarea>
+            </div>
+
+            @if (allIngredients.Any())
+            {
+                var categoryOrder = new[] { "Produce", "Proteins", "Dairy & Alternatives", "Dry & Canned Goods", "Condiments & Flavor", "Frozen", "Beverages", "Baking", "Snacks", "Others" };
+                var groupedIngredients = allIngredients
+                    .GroupBy(i => i.Category ?? "Others")
+                    .OrderBy(g => { var idx = Array.IndexOf(categoryOrder, g.Key); return idx == -1 ? 99 : idx; });
+                <div class="rf-group">
+                    <label class="rf-label">Ingredients</label>
+                    <div class="rf-ingredients-grid">
+                        @foreach (var group in groupedIngredients)
+                        {
+                            <div class="rf-ing-category-group" style="grid-column: 1 / -1;">
+                                <span class="rf-ing-category-label">@group.Key</span>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.4rem; padding: 0.25rem 0;">
+                                    @foreach (var ingredient in group)
+                                    {
+                                        <label class="rf-ing-check">
+                                            <input type="checkbox" name="selectedIngredients" value="@ingredient.Id"
+                                                   @(selectedIds.Contains(ingredient.Id) ? "checked" : "") />
+                                            @ingredient.Name
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="rf-actions">
+                <button class="rf-btn rf-btn-primary" type="submit">
+                    @(isEdit ? "Save Changes" : "Add Recipe")
+                </button>
+                <a class="rf-btn rf-btn-secondary"
+                   asp-controller="Food" asp-action="Recipes">Cancel</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function previewImage(url) {
+            const img = document.getElementById('imgPreview');
+            if (url && url.startsWith('http')) {
+                img.src = url;
+                img.style.display = 'block';
+            } else {
+                img.style.display = 'none';
+            }
+        }
+
+        // Show preview on page load when editing
+        window.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('imageUrlInput');
+            if (input && input.value) previewImage(input.value);
+        });
+    </script>
+}

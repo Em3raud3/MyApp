@@ -23,6 +23,29 @@
         }
     }
 
+    .food-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .food-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background-color: var(--nb-surface-high);
+        color: var(--nb-on-surface);
+        border: 1px solid var(--nb-outline);
+        font-size: 0.71em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.75rem;
+    }
+
+    .food-badge svg { color: #a855f7; }
+
     .food-page-title {
         font-family: var(--nb-font-display);
         font-size: 2em;
@@ -34,29 +57,64 @@
         line-height: 1.2;
     }
 
-    .food-page-title span {
+    .food-page-title span { color: #a855f7; }
+
+    .recipe-add-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
         color: #a855f7;
+        border: 1px solid #a855f7;
+        background: none;
+        padding: 0.35rem 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        margin-bottom: 1.5rem;
     }
 
-    .recipe-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 1.25rem;
-        margin-bottom: 2rem;
+    .recipe-add-btn:hover {
+        background-color: rgba(168, 85, 247, 0.1);
+        color: #c084fc;
     }
 
     .recipe-card {
-        border: 1px solid #484848;
+        background-color: #1e1e1e;
+        border: 3px solid #a855f7;
         border-top: 3px solid #a855f7;
-        background-color: #272727;
+        border-bottom: 3px solid #a855f7;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        height: 100%;
+    }
+
+    .recipe-card-img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .recipe-card-img-placeholder {
+        width: 100%;
+        height: 180px;
+        background-color: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #484848;
     }
 
     .recipe-card-body {
-        padding: 1.1rem 1.25rem;
+        padding: 1rem 1.1rem;
         flex: 1;
+        display: flex;
+        flex-direction: column;
     }
 
     .recipe-name {
@@ -72,25 +130,77 @@
     .recipe-desc {
         font-size: 0.825em;
         color: #c0c0c0;
-        line-height: 1.65;
+        line-height: 1.6;
         margin-bottom: 0.75rem;
+        flex: 1;
     }
 
     .recipe-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.35rem;
+        gap: 0.3rem;
+        margin-bottom: 0.85rem;
     }
 
     .recipe-tag {
-        font-size: 0.68em;
+        font-size: 0.65em;
         font-weight: 700;
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: var(--nb-on-surface);
         background-color: var(--nb-surface-high);
         border: 1px solid #484848;
-        padding: 0.2rem 0.55rem;
+        padding: 0.15rem 0.5rem;
+    }
+
+    .recipe-card-footer {
+        display: flex;
+        gap: 0.5rem;
+        padding: 0.75rem 1.1rem;
+        border-top: 1px solid #353535;
+        background-color: #1a1a1a;
+    }
+
+    .recipe-btn {
+        flex: 1;
+        font-family: var(--nb-font-display);
+        font-size: 0.7em;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        padding: 0.4rem 0.5rem;
+        border: 1px solid #a855f7;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.3rem;
+    }
+
+    .recipe-btn-edit {
+        background: none;
+        color: #a855f7;
+    }
+
+    .recipe-btn-edit:hover {
+        background-color: rgba(168, 85, 247, 0.12);
+        color: #c084fc;
+    }
+
+    .recipe-btn-delete {
+        background: none;
+        color: #E50914;
+        border-color: #E50914;
+        width: auto;
+        flex: none;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .recipe-btn-delete:hover {
+        background-color: rgba(229, 9, 20, 0.1);
     }
 
     .food-empty {
@@ -102,7 +212,23 @@
 
 <div class="food-wrapper py-4">
 
+    <div class="food-meta">
+        <span class="food-badge">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 1a.5.5 0 0 1 .5.5v6.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 8.293V1.5A.5.5 0 0 1 8 1m-5 9h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1 0-1"/>
+            </svg>
+            Food
+        </span>
+    </div>
+
     <h1 class="food-page-title">My <span>Recipes</span></h1>
+
+    <a class="recipe-add-btn" asp-controller="Food" asp-action="CreateRecipe">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+        Add Recipe
+    </a>
 
     @if (!Model.Any())
     {
@@ -110,25 +236,60 @@
     }
     else
     {
-        <div class="recipe-grid">
+        <div class="row g-3">
             @foreach (var recipe in Model)
             {
-                <div class="recipe-card">
-                    <div class="recipe-card-body">
-                        <div class="recipe-name">@recipe.Name</div>
-                        @if (!string.IsNullOrWhiteSpace(recipe.Description))
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="recipe-card">
+                        @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
                         {
-                            <div class="recipe-desc">@recipe.Description</div>
+                            <img src="@recipe.ImageUrl" class="recipe-card-img" alt="@recipe.Name" />
                         }
-                        @if (recipe.Ingredients.Any())
+                        else
                         {
-                            <div class="recipe-tags">
-                                @foreach (var ingredient in recipe.Ingredients)
-                                {
-                                    <span class="recipe-tag">@ingredient.Name</span>
-                                }
+                            <div class="recipe-card-img-placeholder">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                                </svg>
                             </div>
                         }
+                        <div class="recipe-card-body">
+                            <div class="recipe-name">@recipe.Name</div>
+                            @if (!string.IsNullOrWhiteSpace(recipe.Description))
+                            {
+                                <div class="recipe-desc">@recipe.Description</div>
+                            }
+                            @if (recipe.Ingredients.Any())
+                            {
+                                <div class="recipe-tags">
+                                    @foreach (var ingredient in recipe.Ingredients)
+                                    {
+                                        <span class="recipe-tag">@ingredient.Name</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <div class="recipe-card-footer">
+                            <a class="recipe-btn recipe-btn-edit"
+                               asp-controller="Food" asp-action="EditRecipe" asp-route-id="@recipe.Id">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg>
+                                Edit
+                            </a>
+                            <form asp-controller="Food" asp-action="DeleteRecipe" asp-route-id="@recipe.Id"
+                                  method="post" style="display:contents"
+                                  onsubmit="return confirm('Delete @recipe.Name?')">
+                                @Html.AntiForgeryToken()
+                                <button class="recipe-btn recipe-btn-delete" type="submit" title="Delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             }
