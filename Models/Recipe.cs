@@ -9,4 +9,5 @@ public class Recipe
     public string? Instructions { get; set; }
 
     public ICollection<Ingredient> Ingredients { get; set; } = [];
+    public ICollection<MealPlan> MealPlans { get; set; } = [];
 }

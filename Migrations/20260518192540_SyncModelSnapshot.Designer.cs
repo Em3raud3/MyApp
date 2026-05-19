@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApp.Data;
 
@@ -11,9 +12,11 @@ using MyApp.Data;
 namespace MyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260518192540_SyncModelSnapshot")]
+    partial class SyncModelSnapshot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace MyApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MealPlanRecipe", b =>
-                {
-                    b.Property<int>("MealPlansId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RecipesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MealPlansId", "RecipesId");
-
-                    b.HasIndex("RecipesId");
-
-                    b.ToTable("MealPlanRecipe");
-                });
 
             modelBuilder.Entity("MyApp.Models.Ingredient", b =>
                 {
@@ -103,28 +91,18 @@ namespace MyApp.Migrations
                     b.Property<string>("Instructions")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("MealPlanId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MealPlanId");
+
                     b.ToTable("Recipes");
-                });
-
-            modelBuilder.Entity("MealPlanRecipe", b =>
-                {
-                    b.HasOne("MyApp.Models.MealPlan", null)
-                        .WithMany()
-                        .HasForeignKey("MealPlansId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("MyApp.Models.Recipe", null)
-                        .WithMany()
-                        .HasForeignKey("RecipesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyApp.Models.Ingredient", b =>
@@ -132,6 +110,18 @@ namespace MyApp.Migrations
                     b.HasOne("MyApp.Models.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId");
+                });
+
+            modelBuilder.Entity("MyApp.Models.Recipe", b =>
+                {
+                    b.HasOne("MyApp.Models.MealPlan", null)
+                        .WithMany("Recipes")
+                        .HasForeignKey("MealPlanId");
+                });
+
+            modelBuilder.Entity("MyApp.Models.MealPlan", b =>
+                {
+                    b.Navigation("Recipes");
                 });
 
             modelBuilder.Entity("MyApp.Models.Recipe", b =>

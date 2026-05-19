@@ -1,0 +1,389 @@
+@model IEnumerable<MyApp.Models.MealPlan>
+@{
+    ViewData["Title"] = "Meal Plans";
+    var allRecipes = ViewBag.AllRecipes as IEnumerable<MyApp.Models.Recipe> ?? [];
+}
+
+<style>
+    .food-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .food-wrapper {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .food-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    .food-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.2;
+    }
+
+    .food-page-title span {
+        color: #a855f7;
+    }
+
+    .mp-section-label {
+        font-family: var(--nb-font-display);
+        font-size: 0.7em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #a855f7;
+        border-bottom: 1px solid #484848;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+    }
+
+    /* ── Create form ─────────────────────────────────────── */
+    .mp-form-card {
+        background: #1e1e1e;
+        border: 1px solid #333;
+        border-top: 3px solid #a855f7;
+        border-radius: 6px;
+        padding: 1.25rem 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .mp-form-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+    }
+
+    .mp-form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+        flex: 1;
+        min-width: 160px;
+    }
+
+    .mp-form-group label {
+        font-size: 0.75em;
+        font-weight: 600;
+        color: #888;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+    }
+
+    .mp-form-group input[type="text"],
+    .mp-form-group select {
+        background: #141414;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #e0e0e0;
+        padding: 0.45rem 0.65rem;
+        font-size: 0.875em;
+        height: 2.25rem;
+        box-sizing: border-box;
+    }
+
+    .mp-form-group input:focus,
+    .mp-form-group select:focus {
+        outline: none;
+        border-color: #a855f7;
+    }
+
+    .mp-recipe-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .mp-recipe-chip {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: #141414;
+        border: 1px solid #444;
+        border-radius: 20px;
+        padding: 0.3rem 0.75rem;
+        font-size: 0.8em;
+        color: #c0c0c0;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s;
+        user-select: none;
+    }
+
+    .mp-recipe-chip input[type="checkbox"] {
+        accent-color: #a855f7;
+    }
+
+    .mp-recipe-chip:has(input:checked) {
+        border-color: #a855f7;
+        color: #e0e0e0;
+        background: #2a1a3a;
+    }
+
+    .mp-submit-btn {
+        background: #a855f7;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1.25rem;
+        font-size: 0.875em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s;
+    }
+
+    .mp-submit-btn:hover {
+        background: #9333ea;
+    }
+
+    /* ── History list ────────────────────────────────────── */
+    .mp-history-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .mp-history-card {
+        background: #1e1e1e;
+        border: 1px solid #333;
+        border-left: 3px solid #a855f7;
+        border-radius: 6px;
+        padding: 0.9rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .mp-history-info {
+        flex: 1;
+    }
+
+    .mp-history-name {
+        font-size: 0.9em;
+        font-weight: 700;
+        color: #e0e0e0;
+        margin-bottom: 0.25rem;
+    }
+
+    .mp-history-date {
+        font-size: 0.75em;
+        color: #666;
+        margin-bottom: 0.5rem;
+    }
+
+    .mp-history-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+    }
+
+    .mp-history-tag {
+        font-size: 0.72em;
+        background: #2a2a2a;
+        border: 1px solid #444;
+        border-radius: 12px;
+        padding: 0.15rem 0.55rem;
+        color: #a0a0a0;
+    }
+
+    .mp-history-actions {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .mp-btn-shop {
+        font-size: 0.8em;
+        padding: 0.35rem 0.85rem;
+        background: transparent;
+        border: 1px solid #a855f7;
+        color: #a855f7;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background 0.15s, color 0.15s;
+    }
+
+    .mp-btn-shop:hover {
+        background: #a855f7;
+        color: #fff;
+    }
+
+    .mp-btn-delete {
+        font-size: 0.8em;
+        padding: 0.35rem 0.75rem;
+        background: transparent;
+        border: 1px solid #555;
+        color: #777;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: border-color 0.15s, color 0.15s;
+    }
+
+    .mp-btn-delete:hover {
+        border-color: #e53e3e;
+        color: #e53e3e;
+    }
+
+    .food-empty {
+        color: #666;
+        font-size: 0.875em;
+        padding: 1.5rem 0;
+    }
+</style>
+
+<div class="food-wrapper py-4">
+    <h1 class="food-page-title">Meal <span>Plans</span></h1>
+
+    <!-- ── Create new plan ──────────────────────────────── -->
+    <div class="mp-section-label">New Plan</div>
+    <div class="mp-form-card">
+        <form method="post" asp-action="CreateMealPlan">
+            @Html.AntiForgeryToken()
+            <div class="mp-form-row">
+                <div class="mp-form-group">
+                    <label for="mp-name">Plan name</label>
+                    <input id="mp-name" type="text" name="name" placeholder="e.g. Week of May 19" required />
+                </div>
+                <div class="mp-form-group">
+                    <label for="mp-week">Week of</label>
+                    <select id="mp-week" name="weekOf" required>
+                        <option value="" disabled selected>— pick a week —</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mp-section-label" style="margin-top:0.25rem;">Pick recipes</div>
+            @if (!allRecipes.Any())
+            {
+                <p class="food-empty">No recipes yet — add some first.</p>
+            }
+            else
+            {
+                <div class="mp-recipe-grid">
+                    @foreach (var recipe in allRecipes)
+                    {
+                        <label class="mp-recipe-chip">
+                            <input type="checkbox" name="selectedRecipes" value="@recipe.Id" />
+                            @recipe.Name
+                        </label>
+                    }
+                </div>
+            }
+
+            <button type="submit" class="mp-submit-btn">Save Plan</button>
+        </form>
+    </div>
+
+    <!-- ── History ──────────────────────────────────────── -->
+    <div class="mp-section-label">History</div>
+
+    @if (!Model.Any())
+    {
+        <p class="food-empty">No meal plans yet.</p>
+    }
+    else
+    {
+        <div class="mp-history-list">
+            @foreach (var plan in Model)
+            {
+                <div class="mp-history-card">
+                    <div class="mp-history-info">
+                        <div class="mp-history-name">@plan.Name</div>
+                        <div class="mp-history-date">Week of @plan.WeekOf.ToString("MMMM d, yyyy")</div>
+                        <div class="mp-history-tags">
+                            @foreach (var r in plan.Recipes)
+                            {
+                                <span class="mp-history-tag">@r.Name</span>
+                            }
+                        </div>
+                    </div>
+                    <div class="mp-history-actions">
+                        <a class="mp-btn-shop" asp-action="ShoppingList" asp-route-planId="@plan.Id">
+                            Shopping List
+                        </a>
+                        <form method="post" asp-action="DeleteMealPlan" style="margin:0">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@plan.Id" />
+                            <button type="submit" class="mp-btn-delete"
+                                    onclick="return confirm('Delete this plan?')">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        (function () {
+            const select = document.getElementById('mp-week');
+            const nameInput = document.getElementById('mp-name');
+
+            // Find the Monday on or before a given date
+            function getMondayOf(date) {
+                const d = new Date(date);
+                const day = d.getDay(); // 0=Sun … 6=Sat
+                const diff = (day === 0) ? -6 : 1 - day;
+                d.setDate(d.getDate() + diff);
+                d.setHours(0, 0, 0, 0);
+                return d;
+            }
+
+            function toISODate(d) {
+                const y = d.getFullYear();
+                const m = String(d.getMonth() + 1).padStart(2, '0');
+                const dd = String(d.getDate()).padStart(2, '0');
+                return `${y}-${m}-${dd}`;
+            }
+
+            function formatLabel(d) {
+                return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+            }
+
+            // Populate 8 weeks: current week + 7 ahead
+            const baseMonday = getMondayOf(new Date());
+            for (let i = 0; i < 8; i++) {
+                const monday = new Date(baseMonday);
+                monday.setDate(baseMonday.getDate() + i * 7);
+                const opt = document.createElement('option');
+                opt.value = toISODate(monday);
+                opt.textContent = `Week of ${formatLabel(monday)}`;
+                if (i === 0) opt.textContent += ' (this week)';
+                select.appendChild(opt);
+            }
+
+            // Auto-fill plan name when a week is chosen
+            select.addEventListener('change', function () {
+                if (!nameInput.value || nameInput.dataset.autofilled === 'true') {
+                    const chosen = select.options[select.selectedIndex];
+                    nameInput.value = chosen.textContent.replace(' (this week)', '');
+                    nameInput.dataset.autofilled = 'true';
+                }
+            });
+
+            // If user edits name manually, stop overwriting it
+            nameInput.addEventListener('input', function () {
+                nameInput.dataset.autofilled = 'false';
+            });
+        })();
+    </script>
+}

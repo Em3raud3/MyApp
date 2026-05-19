@@ -1,7 +1,17 @@
-@model IEnumerable<MyApp.Models.Ingredient>
+@model MyApp.Models.MealPlan?
 @{
     ViewData["Title"] = "Shopping List";
-    var grouped = Model.GroupBy(i => i.Category ?? "Uncategorized").OrderBy(g => g.Key);
+    var plans = ViewBag.Plans as IEnumerable<MyApp.Models.MealPlan> ?? [];
+    var selected = ViewBag.SelectedPlan as MyApp.Models.MealPlan;
+
+    var ingredients = selected?.Recipes
+        .SelectMany(r => r.Ingredients)
+        .DistinctBy(i => i.Id)
+        .OrderBy(i => i.Category)
+        .ThenBy(i => i.Name)
+        .ToList() ?? [];
+
+    var grouped = ingredients.GroupBy(i => i.Category ?? "Uncategorized").OrderBy(g => g.Key);
 }
 
 <style>
@@ -39,6 +49,48 @@
         color: #a855f7;
     }
 
+    /* ── Plan picker ─────────────────────────────────────── */
+    .sl-plan-bar {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.75rem;
+        flex-wrap: wrap;
+    }
+
+    .sl-plan-label {
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #666;
+        white-space: nowrap;
+    }
+
+    .sl-plan-select {
+        background: #1e1e1e;
+        border: 1px solid #444;
+        border-radius: 4px;
+        color: #e0e0e0;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.875em;
+        cursor: pointer;
+        flex: 1;
+        max-width: 360px;
+    }
+
+    .sl-plan-select:focus {
+        outline: none;
+        border-color: #a855f7;
+    }
+
+    .sl-plan-name {
+        font-size: 0.8em;
+        color: #a855f7;
+        font-weight: 600;
+    }
+
+    /* ── List ────────────────────────────────────────────── */
     .sl-category {
         margin-bottom: 1.5rem;
     }
@@ -93,37 +145,111 @@
         font-size: 0.875em;
         padding: 2rem 0;
     }
-</style>
+
+    .sl-recipe-source {
+        font-size: 0.7em;
+        color: #555;
+        margin-left: auto;
+    }
+
+    .sl-email-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.8em;
+        font-weight: 600;
+        padding: 0.4rem 1rem;
+        background: transparent;
+        border: 1px solid #a855f7;
+        color: #a855f7;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+        margin-left: auto;
+    }
+
+    .sl-email-btn:hover {
+        background: #a855f7;
+        color: #fff;
+    }
+
+    .sl-toast {
+        background: #1a3a1a;
+        border: 1px solid #2d6a2d;
+        color: #7fcf7f;
+        border-radius: 4px;
+        padding: 0.6rem 1rem;
+        font-size: 0.825em;
+        margin-bottom: 1rem;
+    }
+
+    </style>
 
 <div class="food-wrapper py-4">
-
-
     <h1 class="food-page-title">Shopping <span>List</span></h1>
 
-    @if (!Model.Any())
+    @if (TempData["EmailSent"] is string msg)
     {
-        <p class="food-empty">Your shopping list is empty.</p>
+        <div class="sl-toast">✓ @msg</div>
+    }
+
+    @if (!plans.Any())
+    {
+        <p class="food-empty">
+            No meal plans yet. <a href="/Food/MealPlan" style="color:#a855f7;">Create one first.</a>
+        </p>
     }
     else
     {
-        @foreach (var group in grouped)
-        {
-            <div class="sl-category">
-                <div class="sl-category-header">@group.Key</div>
-                <ul class="sl-list">
-                    @foreach (var ingredient in group)
+        <div class="sl-plan-bar">
+            <span class="sl-plan-label">Plan:</span>
+            <select class="sl-plan-select" onchange="location.href='/Food/ShoppingList?planId='+this.value">
+                @foreach (var plan in plans)
+                {
+                    if (selected != null && plan.Id == selected.Id)
                     {
-                        <li class="sl-item" id="sl-item-@ingredient.Id">
-                            <input class="sl-checkbox" type="checkbox" id="chk-@ingredient.Id"
-                                   onchange="toggleItem(@ingredient.Id, this)" />
-                            <label class="sl-label" for="chk-@ingredient.Id">@ingredient.Name</label>
-                        </li>
+                        <option value="@plan.Id" selected>@plan.Name — @plan.WeekOf.ToString("MMM d, yyyy")</option>
                     }
-                </ul>
+                    else
+                    {
+                        <option value="@plan.Id">@plan.Name — @plan.WeekOf.ToString("MMM d, yyyy")</option>
+                    }
+                }
+            </select>
+            @if (ingredients.Any())
+            {
+                <form method="post" asp-action="EmailShoppingList" style="margin:0;display:inline;">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="planId" value="@selected!.Id" />
+                    <button type="submit" class="sl-email-btn">&#9993; Email me this list</button>
+                </form>
+            }
             </div>
+
+        @if (!ingredients.Any())
+        {
+            <p class="food-empty">This plan has no recipes yet.</p>
+        }
+        else
+        {
+            @foreach (var group in grouped)
+            {
+                <div class="sl-category">
+                    <div class="sl-category-header">@group.Key</div>
+                    <ul class="sl-list">
+                        @foreach (var ingredient in group)
+                        {
+                            <li class="sl-item" id="sl-item-@ingredient.Id">
+                                <input class="sl-checkbox" type="checkbox" id="chk-@ingredient.Id"
+                                       onchange="toggleItem(@ingredient.Id, this)" />
+                                <label class="sl-label" for="chk-@ingredient.Id">@ingredient.Name</label>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
         }
     }
-
 </div>
 
 @section Scripts {
@@ -134,3 +260,4 @@
         }
     </script>
 }
+

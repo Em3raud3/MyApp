@@ -2,10 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Data;
 using MyApp.Models;
+using MyApp.Services;
 
 namespace MyApp.Controllers;
 
-public class FoodController(AppDbContext db) : Controller
+public class FoodController(AppDbContext db, EmailService email) : Controller
 {
     public async Task<IActionResult> Recipes()
     {
@@ -125,11 +126,99 @@ public class FoodController(AppDbContext db) : Controller
         return RedirectToAction(nameof(Ingredients));
     }
 
+    // ── Meal Plan ─────────────────────────────────────────────────
+
+    public async Task<IActionResult> MealPlan()
+    {
+        var plans = await db.MealPlans
+            .Include(p => p.Recipes)
+            .OrderByDescending(p => p.WeekOf)
+            .ToListAsync();
+        ViewBag.AllRecipes = await db.Recipes.OrderBy(r => r.Name).ToListAsync();
+        return View(plans);
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateMealPlan(string name, DateOnly weekOf, int[] selectedRecipes)
+    {
+        var plan = new MealPlan { Name = name, WeekOf = weekOf };
+        plan.Recipes = await db.Recipes.Where(r => selectedRecipes.Contains(r.Id)).ToListAsync();
+        db.MealPlans.Add(plan);
+        await db.SaveChangesAsync();
+        return RedirectToAction(nameof(MealPlan));
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteMealPlan(int id)
+    {
+        var plan = await db.MealPlans.FindAsync(id);
+        if (plan is not null)
+        {
+            db.MealPlans.Remove(plan);
+            await db.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(MealPlan));
+    }
+
     // ── Shopping List ─────────────────────────────────────────────
 
-    public async Task<IActionResult> ShoppingList()
+    public async Task<IActionResult> ShoppingList(int? planId)
     {
-        var ingredients = await db.Ingredients.OrderBy(i => i.Category).ThenBy(i => i.Name).ToListAsync();
-        return View(ingredients);
+        var plans = await db.MealPlans.OrderByDescending(p => p.WeekOf).ToListAsync();
+        MealPlan? selected = null;
+
+        if (planId.HasValue)
+        {
+            selected = await db.MealPlans
+                .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
+                .FirstOrDefaultAsync(p => p.Id == planId.Value);
+        }
+        else if (plans.Count > 0)
+        {
+            selected = await db.MealPlans
+                .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
+                .FirstOrDefaultAsync(p => p.Id == plans[0].Id);
+        }
+
+        ViewBag.Plans = plans;
+        ViewBag.SelectedPlan = selected;
+        return View(selected);
+    }
+
+    // ── Email Shopping List ───────────────────────────────────────
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> EmailShoppingList(int planId)
+    {
+        var plan = await db.MealPlans
+            .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
+            .FirstOrDefaultAsync(p => p.Id == planId);
+
+        if (plan is null) return NotFound();
+
+        var ingredients = plan.Recipes
+            .SelectMany(r => r.Ingredients)
+            .DistinctBy(i => i.Id)
+            .OrderBy(i => i.Category)
+            .ThenBy(i => i.Name)
+            .GroupBy(i => i.Category ?? "Uncategorized");
+
+        var lines = new System.Text.StringBuilder();
+        lines.AppendLine($"Shopping list for: {plan.Name}");
+        lines.AppendLine($"Week of {plan.WeekOf:MMMM d, yyyy}");
+        lines.AppendLine();
+
+        foreach (var group in ingredients)
+        {
+            lines.AppendLine(group.Key.ToUpper());
+            foreach (var ingredient in group)
+                lines.AppendLine($"  - {ingredient.Name}");
+            lines.AppendLine();
+        }
+
+        await email.SendAsync($"🛒 Shopping List — {plan.Name}", lines.ToString());
+
+        TempData["EmailSent"] = "Shopping list sent to your email!";
+        return RedirectToAction(nameof(ShoppingList), new { planId });
     }
 }
