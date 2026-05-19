@@ -116,6 +116,21 @@
         line-height: 1.6;
         margin-bottom: 0.75rem;
         flex: 1;
+        max-height: 17em;
+        overflow-y: auto;
+        padding-right: 0.25rem;
+    }
+
+    .recipe-desc::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .recipe-desc::-webkit-scrollbar-thumb {
+        background-color: #a855f7;
+    }
+
+    .recipe-desc::-webkit-scrollbar-track {
+        background-color: #2a2a2a;
     }
 
     .recipe-desc p {
@@ -221,6 +236,26 @@
 
     .recipe-viewport {
         overflow: hidden;
+        cursor: grab;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: pan-y;
+    }
+
+    .recipe-viewport:active {
+        cursor: grabbing;
+    }
+
+    .recipe-card-img,
+    .recipe-card-img-placeholder svg {
+        -webkit-user-drag: none;
+        user-drag: none;
+        pointer-events: none;
+    }
+
+    .recipe-card-footer,
+    .recipe-card-footer * {
+        pointer-events: auto;
     }
 
     .recipe-track {
@@ -370,46 +405,60 @@
             (function () {
                 document.querySelectorAll('.recipe-carousel').forEach(function (carousel) {
                     var track = carousel.querySelector('.recipe-track');
+                    var viewport = carousel.querySelector('.recipe-viewport');
                     var prevBtn = carousel.querySelector('.recipe-nav-prev');
                     var nextBtn = carousel.querySelector('.recipe-nav-next');
                     if (!track || track.children.length === 0) return;
 
+                    var TRANSITION = 'transform 0.4s ease';
+                    var DRAG_THRESHOLD = 5;
                     var animating = false;
+                    var dragging = false;
+                    var startX = 0;
+                    var deltaX = 0;
+                    var pointerId = null;
+                    var suppressClick = false;
 
                     function slideWidth() {
                         return track.children[0].getBoundingClientRect().width;
                     }
 
+                    function rotateForward(n) {
+                        for (var i = 0; i < n; i++) track.appendChild(track.firstElementChild);
+                    }
+
+                    function rotateBackward(n) {
+                        for (var i = 0; i < n; i++) track.insertBefore(track.lastElementChild, track.firstElementChild);
+                    }
+
                     function next() {
-                        if (animating) return;
+                        if (animating || dragging) return;
                         animating = true;
                         var w = slideWidth();
-                        track.style.transition = 'transform 0.4s ease';
+                        track.style.transition = TRANSITION;
                         track.style.transform = 'translateX(' + (-w) + 'px)';
-
                         var onEnd = function () {
                             track.removeEventListener('transitionend', onEnd);
                             track.style.transition = 'none';
-                            track.appendChild(track.firstElementChild);
+                            rotateForward(1);
                             track.style.transform = 'translateX(0)';
                             void track.offsetWidth;
-                            track.style.transition = 'transform 0.4s ease';
+                            track.style.transition = TRANSITION;
                             animating = false;
                         };
                         track.addEventListener('transitionend', onEnd);
                     }
 
                     function prev() {
-                        if (animating) return;
+                        if (animating || dragging) return;
                         animating = true;
                         var w = slideWidth();
                         track.style.transition = 'none';
-                        track.insertBefore(track.lastElementChild, track.firstElementChild);
+                        rotateBackward(1);
                         track.style.transform = 'translateX(' + (-w) + 'px)';
                         void track.offsetWidth;
-                        track.style.transition = 'transform 0.4s ease';
+                        track.style.transition = TRANSITION;
                         track.style.transform = 'translateX(0)';
-
                         var onEnd = function () {
                             track.removeEventListener('transitionend', onEnd);
                             animating = false;
@@ -417,8 +466,87 @@
                         track.addEventListener('transitionend', onEnd);
                     }
 
+                    function onPointerDown(e) {
+                        if (animating) return;
+                        if (e.pointerType === 'mouse' && e.button !== 0) return;
+                        dragging = true;
+                        suppressClick = false;
+                        startX = e.clientX;
+                        deltaX = 0;
+                        pointerId = e.pointerId;
+                    }
+
+                    function onPointerMove(e) {
+                        if (!dragging) return;
+                        deltaX = e.clientX - startX;
+                        if (!suppressClick && Math.abs(deltaX) > DRAG_THRESHOLD) {
+                            suppressClick = true;
+                            track.style.transition = 'none';
+                            try { viewport.setPointerCapture(pointerId); } catch (err) { }
+                        }
+                        if (suppressClick) {
+                            track.style.transform = 'translateX(' + deltaX + 'px)';
+                        }
+                    }
+
+                    function onPointerUp() {
+                        if (!dragging) return;
+                        var wasDrag = suppressClick;
+                        dragging = false;
+                        if (pointerId !== null && viewport.hasPointerCapture && viewport.hasPointerCapture(pointerId)) {
+                            viewport.releasePointerCapture(pointerId);
+                        }
+                        pointerId = null;
+
+                        if (!wasDrag) {
+                            return;
+                        }
+
+                        var w = slideWidth();
+                        var raw = -deltaX / w;
+                        var steps = raw > 0 ? Math.floor(raw + 0.5) : Math.ceil(raw - 0.5);
+
+                        if (steps === 0) {
+                            track.style.transition = TRANSITION;
+                            track.style.transform = 'translateX(0)';
+                            return;
+                        }
+
+                        animating = true;
+                        var target = -steps * w;
+                        track.style.transition = TRANSITION;
+                        track.style.transform = 'translateX(' + target + 'px)';
+
+                        var onEnd = function () {
+                            track.removeEventListener('transitionend', onEnd);
+                            track.style.transition = 'none';
+                            if (steps > 0) rotateForward(steps);
+                            else rotateBackward(-steps);
+                            track.style.transform = 'translateX(0)';
+                            void track.offsetWidth;
+                            track.style.transition = TRANSITION;
+                            animating = false;
+                        };
+                        track.addEventListener('transitionend', onEnd);
+                    }
+
+                    function onClickCapture(e) {
+                        if (suppressClick) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            suppressClick = false;
+                        }
+                    }
+
                     if (prevBtn) prevBtn.addEventListener('click', prev);
                     if (nextBtn) nextBtn.addEventListener('click', next);
+
+                    viewport.addEventListener('pointerdown', onPointerDown);
+                    viewport.addEventListener('pointermove', onPointerMove);
+                    viewport.addEventListener('pointerup', onPointerUp);
+                    viewport.addEventListener('pointercancel', onPointerUp);
+                    viewport.addEventListener('click', onClickCapture, true);
+                    viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
                 });
             })();
         </script>
