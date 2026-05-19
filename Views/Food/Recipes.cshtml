@@ -30,11 +30,18 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
         color: var(--nb-on-surface);
-        margin: 0.5rem 0 1.5rem;
+        margin: 0;
         line-height: 1.2;
     }
 
     .food-page-title span { color: #a855f7; }
+
+    .recipe-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0.5rem 0 1.5rem;
+    }
 
     .recipe-add-btn {
         display: inline-flex;
@@ -51,7 +58,6 @@
         padding: 0.35rem 0.9rem;
         text-decoration: none;
         transition: background-color 0.15s ease, color 0.15s ease;
-        margin-bottom: 1.5rem;
     }
 
     .recipe-add-btn:hover {
@@ -207,18 +213,79 @@
         font-size: 0.875em;
         padding: 2rem 0;
     }
+
+    .recipe-carousel {
+        position: relative;
+        padding: 0 3.5rem;
+    }
+
+    .recipe-viewport {
+        overflow: hidden;
+    }
+
+    .recipe-track {
+        display: flex;
+        transition: transform 0.4s ease;
+        will-change: transform;
+    }
+
+    .recipe-slide {
+        flex: 0 0 25%;
+        max-width: 25%;
+        padding: 0 0.5rem;
+        box-sizing: border-box;
+    }
+
+    @@media (max-width: 992px) {
+        .recipe-slide { flex: 0 0 50%; max-width: 50%; }
+    }
+
+    @@media (max-width: 576px) {
+        .recipe-slide { flex: 0 0 100%; max-width: 100%; }
+    }
+
+    .recipe-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.5rem;
+        height: 3rem;
+        background: rgba(30, 30, 30, 0.85);
+        border: 1px solid #a855f7;
+        color: #a855f7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 2;
+        transition: background-color 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .recipe-nav-btn:hover:not(:disabled) {
+        background: rgba(168, 85, 247, 0.2);
+        color: #c084fc;
+    }
+
+    .recipe-nav-btn:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    .recipe-nav-prev { left: 0; }
+    .recipe-nav-next { right: 0; }
 </style>
 
 <div class="food-wrapper py-4">
 
-    <h1 class="food-page-title">My <span>Recipes</span></h1>
-
-    <a class="recipe-add-btn" asp-controller="Food" asp-action="CreateRecipe">
-        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-        </svg>
-        Add Recipe
-    </a>
+    <div class="recipe-header">
+        <h1 class="food-page-title">My <span>Recipes</span></h1>
+        <a class="recipe-add-btn" asp-controller="Food" asp-action="CreateRecipe">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+            </svg>
+            Add Recipe
+        </a>
+    </div>
 
     @if (!Model.Any())
     {
@@ -226,64 +293,135 @@
     }
     else
     {
-        <div class="row g-3">
-            @foreach (var recipe in Model)
-            {
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="recipe-card">
-                        @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
-                        {
-                            <img src="@recipe.ImageUrl" class="recipe-card-img" alt="@recipe.Name" />
-                        }
-                        else
-                        {
-                            <div class="recipe-card-img-placeholder">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                                    <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
-                                </svg>
-                            </div>
-                        }
-                        <div class="recipe-card-body">
-                            <div class="recipe-name">@recipe.Name</div>
-                            @if (!string.IsNullOrWhiteSpace(recipe.Description))
-                            {
-                                <div class="recipe-desc">@MarkdownHelper.ToHtml(recipe.Description)</div>
-                            }
-                            @if (recipe.Ingredients.Any())
-                            {
-                                <div class="recipe-tags">
-                                    @foreach (var ingredient in recipe.Ingredients)
+        <div class="recipe-carousel" data-visible="4">
+            <button type="button" class="recipe-nav-btn recipe-nav-prev" aria-label="Previous">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/>
+                </svg>
+            </button>
+            <div class="recipe-viewport">
+                <div class="recipe-track">
+                    @foreach (var recipe in Model)
+                    {
+                        <div class="recipe-slide">
+                            <div class="recipe-card">
+                                @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
+                                {
+                                    <img src="@recipe.ImageUrl" class="recipe-card-img" alt="@recipe.Name" />
+                                }
+                                else
+                                {
+                                    <div class="recipe-card-img-placeholder">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                                        </svg>
+                                    </div>
+                                }
+                                <div class="recipe-card-body">
+                                    <div class="recipe-name">@recipe.Name</div>
+                                    @if (!string.IsNullOrWhiteSpace(recipe.Description))
                                     {
-                                        <span class="recipe-tag">@ingredient.Name</span>
+                                        <div class="recipe-desc">@MarkdownHelper.ToHtml(recipe.Description)</div>
+                                    }
+                                    @if (recipe.Ingredients.Any())
+                                    {
+                                        <div class="recipe-tags">
+                                            @foreach (var ingredient in recipe.Ingredients)
+                                            {
+                                                <span class="recipe-tag">@ingredient.Name</span>
+                                            }
+                                        </div>
                                     }
                                 </div>
-                            }
+                                <div class="recipe-card-footer">
+                                    <a class="recipe-btn recipe-btn-edit"
+                                       asp-controller="Food" asp-action="EditRecipe" asp-route-id="@recipe.Id">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
+                                            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                        </svg>
+                                        Edit
+                                    </a>
+                                    <form asp-controller="Food" asp-action="DeleteRecipe" asp-route-id="@recipe.Id"
+                                          method="post" style="display:contents"
+                                          onsubmit="return confirm('Delete @recipe.Name?')">
+                                        @Html.AntiForgeryToken()
+                                        <button class="recipe-btn recipe-btn-delete" type="submit" title="Delete">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                        <div class="recipe-card-footer">
-                            <a class="recipe-btn recipe-btn-edit"
-                               asp-controller="Food" asp-action="EditRecipe" asp-route-id="@recipe.Id">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                </svg>
-                                Edit
-                            </a>
-                            <form asp-controller="Food" asp-action="DeleteRecipe" asp-route-id="@recipe.Id"
-                                  method="post" style="display:contents"
-                                  onsubmit="return confirm('Delete @recipe.Name?')">
-                                @Html.AntiForgeryToken()
-                                <button class="recipe-btn recipe-btn-delete" type="submit" title="Delete">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                                    </svg>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
+                    }
                 </div>
-            }
+            </div>
+            <button type="button" class="recipe-nav-btn recipe-nav-next" aria-label="Next">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+                </svg>
+            </button>
         </div>
+
+        <script>
+            (function () {
+                document.querySelectorAll('.recipe-carousel').forEach(function (carousel) {
+                    var track = carousel.querySelector('.recipe-track');
+                    var prevBtn = carousel.querySelector('.recipe-nav-prev');
+                    var nextBtn = carousel.querySelector('.recipe-nav-next');
+                    if (!track || track.children.length === 0) return;
+
+                    var animating = false;
+
+                    function slideWidth() {
+                        return track.children[0].getBoundingClientRect().width;
+                    }
+
+                    function next() {
+                        if (animating) return;
+                        animating = true;
+                        var w = slideWidth();
+                        track.style.transition = 'transform 0.4s ease';
+                        track.style.transform = 'translateX(' + (-w) + 'px)';
+
+                        var onEnd = function () {
+                            track.removeEventListener('transitionend', onEnd);
+                            track.style.transition = 'none';
+                            track.appendChild(track.firstElementChild);
+                            track.style.transform = 'translateX(0)';
+                            void track.offsetWidth;
+                            track.style.transition = 'transform 0.4s ease';
+                            animating = false;
+                        };
+                        track.addEventListener('transitionend', onEnd);
+                    }
+
+                    function prev() {
+                        if (animating) return;
+                        animating = true;
+                        var w = slideWidth();
+                        track.style.transition = 'none';
+                        track.insertBefore(track.lastElementChild, track.firstElementChild);
+                        track.style.transform = 'translateX(' + (-w) + 'px)';
+                        void track.offsetWidth;
+                        track.style.transition = 'transform 0.4s ease';
+                        track.style.transform = 'translateX(0)';
+
+                        var onEnd = function () {
+                            track.removeEventListener('transitionend', onEnd);
+                            animating = false;
+                        };
+                        track.addEventListener('transitionend', onEnd);
+                    }
+
+                    if (prevBtn) prevBtn.addEventListener('click', prev);
+                    if (nextBtn) nextBtn.addEventListener('click', next);
+                });
+            })();
+        </script>
     }
 
 </div>

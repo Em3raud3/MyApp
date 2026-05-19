@@ -24,29 +24,6 @@
         }
     }
 
-    .food-meta {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-bottom: 1.25rem;
-    }
-
-    .food-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        background-color: var(--nb-surface-high);
-        color: var(--nb-on-surface);
-        border: 1px solid var(--nb-outline);
-        font-size: 0.71em;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        padding: 0.3rem 0.75rem;
-    }
-
-    .food-badge svg { color: #a855f7; }
-
     .food-page-title {
         font-family: var(--nb-font-display);
         font-size: 2em;
@@ -148,15 +125,6 @@
 </style>
 
 <div class="food-wrapper py-4">
-
-    <div class="food-meta">
-        <span class="food-badge">
-            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
-                <path d="M8 1a.5.5 0 0 1 .5.5v6.793l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 8.293V1.5A.5.5 0 0 1 8 1m-5 9h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1 0-1"/>
-            </svg>
-            Food
-        </span>
-    </div>
 
     <h1 class="food-page-title">
         @if (isEdit) { <text><span>Edit</span> Ingredient</text> }

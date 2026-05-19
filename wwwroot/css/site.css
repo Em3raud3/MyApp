@@ -99,6 +99,57 @@ html::after {
     html::before, html::after { width: 28px; height: 28px; }
 }
 
+/* ─── Option 4: CAD coordinate ticks (gutters) ─── */
+.nb-page-container::before,
+.nb-page-container::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 24px;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        repeating-linear-gradient(
+            to bottom,
+            rgba(252, 249, 1, 0.55) 0px,
+            rgba(252, 249, 1, 0.55) 1px,
+            transparent 1px,
+            transparent 80px
+        ),
+        repeating-linear-gradient(
+            to bottom,
+            rgba(252, 249, 1, 0.35) 0px,
+            rgba(252, 249, 1, 0.35) 1px,
+            transparent 1px,
+            transparent calc(80px / 6)
+        ),
+        linear-gradient(
+            to right,
+            rgba(252, 249, 1, 0.18) 0,
+            rgba(252, 249, 1, 0.18) 1px,
+            transparent 1px,
+            transparent 100%
+        );
+    background-size: 100% 100%, 10px 100%, 100% 100%;
+    background-position: 0 0, 0 0, 0 0;
+    background-repeat: no-repeat, no-repeat, no-repeat;
+}
+
+.nb-page-container::before {
+    left: max(16px, calc(50% - 720px));
+    transform: scaleX(-1);
+}
+
+.nb-page-container::after {
+    right: max(16px, calc(50% - 720px));
+}
+
+@media (max-width: 768px) {
+    .nb-page-container::before,
+    .nb-page-container::after { display: none; }
+}
+
 /* ─── Typography ─── */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--nb-font-display);

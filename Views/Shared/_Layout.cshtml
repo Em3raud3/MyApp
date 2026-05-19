@@ -270,11 +270,15 @@
 
                          <li class="nav-item px-2 d-flex align-items-center"><span class="nav-divider"></span></li>
 
-                         <li class="nav-item dropdown nav-food">
+                         <li class="nav-item">
+                            <a class="nav-link" style="color: #E50914 !important;" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
+                        </li>
+
+                        <li class="nav-item dropdown nav-food ms-sm-auto">
                              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                  Food <span class="nav-caret">▾</span>
                              </a>
-                             <ul class="dropdown-menu">
+                             <ul class="dropdown-menu dropdown-menu-end">
                                  <li>
                                      <a class="dropdown-item" asp-area="" asp-controller="Food" asp-action="MealPlan">Meal Plans</a>
                                  </li>
@@ -289,10 +293,6 @@
                                  </li>
                              </ul>
                          </li>
-
-                          <li class="nav-item ms-sm-auto">
-                            <a class="nav-link" style="color: #E50914 !important;" asp-area="" asp-controller="Home" asp-action="WIP">WIP</a>
-                        </li>
 
                     </ul>
                 </div>
