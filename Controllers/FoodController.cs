@@ -17,7 +17,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     [HttpGet]
     public async Task<IActionResult> CreateRecipe()
     {
-        ViewBag.AllIngredients = await db.Ingredients.OrderBy(i => i.Name).ToListAsync();
+        ViewBag.AllIngredients = await GetAllIngredientsAsync();
         return View("RecipeForm", new Recipe());
     }
 
@@ -26,7 +26,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     {
         if (!ModelState.IsValid)
         {
-            ViewBag.AllIngredients = await db.Ingredients.OrderBy(i => i.Name).ToListAsync();
+            ViewBag.AllIngredients = await GetAllIngredientsAsync();
             return View("RecipeForm", model);
         }
         model.Ingredients = await db.Ingredients.Where(i => selectedIngredients.Contains(i.Id)).ToListAsync();
@@ -40,7 +40,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     {
         var recipe = await db.Recipes.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
         if (recipe is null) return NotFound();
-        ViewBag.AllIngredients = await db.Ingredients.OrderBy(i => i.Name).ToListAsync();
+        ViewBag.AllIngredients = await GetAllIngredientsAsync();
         return View("RecipeForm", recipe);
     }
 
@@ -50,7 +50,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         if (id != model.Id) return BadRequest();
         if (!ModelState.IsValid)
         {
-            ViewBag.AllIngredients = await db.Ingredients.OrderBy(i => i.Name).ToListAsync();
+            ViewBag.AllIngredients = await GetAllIngredientsAsync();
             return View("RecipeForm", model);
         }
         var recipe = await db.Recipes.Include(r => r.Ingredients).FirstOrDefaultAsync(r => r.Id == id);
@@ -59,7 +59,13 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         recipe.Description = model.Description;
         recipe.ImageUrl = model.ImageUrl;
         recipe.Instructions = model.Instructions;
-        recipe.Ingredients = await db.Ingredients.Where(i => selectedIngredients.Contains(i.Id)).ToListAsync();
+
+        var ids = selectedIngredients ?? [];
+        var newIngredients = await db.Ingredients.Where(i => ids.Contains(i.Id)).ToListAsync();
+        recipe.Ingredients.Clear();
+        foreach (var ingredient in newIngredients)
+            recipe.Ingredients.Add(ingredient);
+
         await db.SaveChangesAsync();
         return RedirectToAction(nameof(Recipes));
     }
@@ -165,20 +171,14 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     public async Task<IActionResult> ShoppingList(int? planId)
     {
         var plans = await db.MealPlans.OrderByDescending(p => p.WeekOf).ToListAsync();
-        MealPlan? selected = null;
+        var targetId = planId ?? plans.FirstOrDefault()?.Id;
 
-        if (planId.HasValue)
-        {
-            selected = await db.MealPlans
+        MealPlan? selected = targetId is null
+            ? null
+            : await db.MealPlans
+                .AsSplitQuery()
                 .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
-                .FirstOrDefaultAsync(p => p.Id == planId.Value);
-        }
-        else if (plans.Count > 0)
-        {
-            selected = await db.MealPlans
-                .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
-                .FirstOrDefaultAsync(p => p.Id == plans[0].Id);
-        }
+                .FirstOrDefaultAsync(p => p.Id == targetId);
 
         ViewBag.Plans = plans;
         ViewBag.SelectedPlan = selected;
@@ -221,4 +221,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         TempData["EmailSent"] = "Shopping list sent to your email!";
         return RedirectToAction(nameof(ShoppingList), new { planId });
     }
+
+    private Task<List<Ingredient>> GetAllIngredientsAsync() =>
+        db.Ingredients.OrderBy(i => i.Name).ToListAsync();
 }
