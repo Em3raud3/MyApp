@@ -39,6 +39,66 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Option 2C: HUD corner brackets ─── */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: 9999;
+    border: 2px solid var(--nb-primary);
+    filter: drop-shadow(0 0 6px rgba(252, 249, 1, 0.75))
+            drop-shadow(0 0 14px rgba(252, 249, 1, 0.35));
+}
+
+body::before {
+    top: 80px;
+    left: 16px;
+    border-right: none;
+    border-bottom: none;
+}
+
+body::after {
+    bottom: 16px;
+    right: 16px;
+    border-left: none;
+    border-top: none;
+}
+
+html::before,
+html::after {
+    content: "";
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    pointer-events: none;
+    z-index: 9999;
+    border: 2px solid var(--nb-primary);
+    filter: drop-shadow(0 0 6px rgba(252, 249, 1, 0.75))
+            drop-shadow(0 0 14px rgba(252, 249, 1, 0.35));
+}
+
+html::before {
+    top: 80px;
+    right: 16px;
+    border-left: none;
+    border-bottom: none;
+}
+
+html::after {
+    bottom: 16px;
+    left: 16px;
+    border-right: none;
+    border-top: none;
+}
+
+@media (max-width: 768px) {
+    body::before, body::after,
+    html::before, html::after { width: 28px; height: 28px; }
+}
+
 /* ─── Typography ─── */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--nb-font-display);
