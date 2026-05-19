@@ -112,6 +112,28 @@
         flex: 1;
     }
 
+    .recipe-desc p {
+        margin: 0 0 0.5rem;
+    }
+
+    .recipe-desc p:last-child {
+        margin-bottom: 0;
+    }
+
+    .recipe-desc ol,
+    .recipe-desc ul {
+        margin: 0 0 0.5rem 1.1rem;
+        padding: 0;
+    }
+
+    .recipe-desc li {
+        margin-bottom: 0.25rem;
+    }
+
+    .recipe-desc strong {
+        color: #e0e0e0;
+    }
+
     .recipe-tags {
         display: flex;
         flex-wrap: wrap;
@@ -226,7 +248,7 @@
                             <div class="recipe-name">@recipe.Name</div>
                             @if (!string.IsNullOrWhiteSpace(recipe.Description))
                             {
-                                <div class="recipe-desc">@recipe.Description</div>
+                                <div class="recipe-desc">@MarkdownHelper.ToHtml(recipe.Description)</div>
                             }
                             @if (recipe.Ingredients.Any())
                             {
