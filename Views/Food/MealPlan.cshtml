@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Meal Plans";
     var allRecipes = ViewBag.AllRecipes as IEnumerable<MyApp.Models.Recipe> ?? [];
+    var allQuickEats = ViewBag.AllQuickEats as IEnumerable<MyApp.Models.QuickEat> ?? [];
 }
 
 <style>
@@ -288,6 +289,20 @@
                 </div>
             }
 
+            @if (allQuickEats.Any())
+            {
+                <div class="mp-section-label" style="margin-top:1rem;">Pick quick eats</div>
+                <div class="mp-recipe-grid">
+                    @foreach (var quickEat in allQuickEats)
+                    {
+                        <label class="mp-recipe-chip">
+                            <input type="checkbox" name="selectedQuickEats" value="@quickEat.Id" />
+                            @quickEat.Name
+                        </label>
+                    }
+                </div>
+            }
+
             <button type="submit" class="mp-submit-btn">Save Plan</button>
         </form>
     </div>
@@ -312,6 +327,10 @@
                             @foreach (var r in plan.Recipes)
                             {
                                 <span class="mp-history-tag">@r.Name</span>
+                            }
+                            @foreach (var q in plan.QuickEats)
+                            {
+                                <span class="mp-history-tag" style="border-color:#5b3a7e; color:#c084fc;">@q.Name</span>
                             }
                         </div>
                     </div>

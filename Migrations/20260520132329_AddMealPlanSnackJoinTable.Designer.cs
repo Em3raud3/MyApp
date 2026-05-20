@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyApp.Data;
 
@@ -11,9 +12,11 @@ using MyApp.Data;
 namespace MyApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260520132329_AddMealPlanSnackJoinTable")]
+    partial class AddMealPlanSnackJoinTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,21 +24,6 @@ namespace MyApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("MealPlanQuickEat", b =>
-                {
-                    b.Property<int>("MealPlansId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("QuickEatsId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MealPlansId", "QuickEatsId");
-
-                    b.HasIndex("QuickEatsId");
-
-                    b.ToTable("MealPlanQuickEat");
-                });
 
             modelBuilder.Entity("MealPlanRecipe", b =>
                 {
@@ -50,6 +38,21 @@ namespace MyApp.Migrations
                     b.HasIndex("RecipesId");
 
                     b.ToTable("MealPlanRecipe");
+                });
+
+            modelBuilder.Entity("MealPlanSnack", b =>
+                {
+                    b.Property<int>("MealPlansId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SnacksId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MealPlansId", "SnacksId");
+
+                    b.HasIndex("SnacksId");
+
+                    b.ToTable("MealPlanSnack");
                 });
 
             modelBuilder.Entity("MyApp.Models.Ingredient", b =>
@@ -101,26 +104,6 @@ namespace MyApp.Migrations
                     b.ToTable("MealPlans");
                 });
 
-            modelBuilder.Entity("MyApp.Models.QuickEat", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("QuickEats");
-                });
-
             modelBuilder.Entity("MyApp.Models.Recipe", b =>
                 {
                     b.Property<int>("Id")
@@ -147,19 +130,24 @@ namespace MyApp.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("MealPlanQuickEat", b =>
+            modelBuilder.Entity("MyApp.Models.Snack", b =>
                 {
-                    b.HasOne("MyApp.Models.MealPlan", null)
-                        .WithMany()
-                        .HasForeignKey("MealPlansId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.HasOne("MyApp.Models.QuickEat", null)
-                        .WithMany()
-                        .HasForeignKey("QuickEatsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Snacks");
                 });
 
             modelBuilder.Entity("MealPlanRecipe", b =>
@@ -173,6 +161,21 @@ namespace MyApp.Migrations
                     b.HasOne("MyApp.Models.Recipe", null)
                         .WithMany()
                         .HasForeignKey("RecipesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MealPlanSnack", b =>
+                {
+                    b.HasOne("MyApp.Models.MealPlan", null)
+                        .WithMany()
+                        .HasForeignKey("MealPlansId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MyApp.Models.Snack", null)
+                        .WithMany()
+                        .HasForeignKey("SnacksId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

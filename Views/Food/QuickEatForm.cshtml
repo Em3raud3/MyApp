@@ -1,0 +1,195 @@
+@model MyApp.Models.QuickEat
+@{
+    var isEdit = Model.Id != 0;
+    ViewData["Title"] = isEdit ? "Edit Quick Eat" : "Add Quick Eat";
+}
+
+<style>
+    .food-wrapper {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+
+    @@media (max-width: 1200px) {
+        .food-wrapper {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .food-wrapper {
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+        }
+    }
+
+    .food-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.2;
+    }
+
+    .food-page-title span { color: #a855f7; }
+
+    .ing-form-card {
+        background-color: #272727;
+        border: 1px solid #484848;
+        border-top: 3px solid #a855f7;
+        padding: 1.5rem;
+        max-width: 480px;
+    }
+
+    .ing-form-group {
+        margin-bottom: 1.1rem;
+    }
+
+    .ing-form-label {
+        display: block;
+        font-family: var(--nb-font-display);
+        font-size: 0.72em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #a855f7;
+        margin-bottom: 0.4rem;
+    }
+
+    .ing-form-control {
+        width: 100%;
+        background-color: #1a1a1a;
+        border: 1px solid #484848;
+        color: var(--nb-on-surface);
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875em;
+        outline: none;
+        transition: border-color 0.15s ease;
+    }
+
+    .ing-form-control:focus {
+        border-color: #a855f7;
+    }
+
+    .ing-form-preview {
+        margin-top: 0.5rem;
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border: 1px solid #484848;
+    }
+
+    .ing-form-actions {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    .ing-btn {
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.45rem 1.1rem;
+        border: 1px solid #a855f7;
+        cursor: pointer;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .ing-btn-primary {
+        background-color: #a855f7;
+        color: #000;
+    }
+
+    .ing-btn-primary:hover {
+        background-color: #c084fc;
+        border-color: #c084fc;
+    }
+
+    .ing-btn-secondary {
+        background-color: transparent;
+        color: #a855f7;
+    }
+
+    .ing-btn-secondary:hover {
+        background-color: rgba(168, 85, 247, 0.1);
+        color: #c084fc;
+    }
+
+    .field-validation-error {
+        font-size: 0.75em;
+        color: #E50914;
+        display: block;
+        margin-top: 0.25rem;
+    }
+</style>
+
+<div class="food-wrapper py-4">
+
+    <h1 class="food-page-title">
+        @if (isEdit) { <text><span>Edit</span> Quick Eat</text> }
+        else { <text><span>Add</span> Quick Eat</text> }
+    </h1>
+
+    <form asp-controller="Food"
+          asp-action="@(isEdit ? "EditQuickEat" : "CreateQuickEat")"
+          asp-route-id="@(isEdit ? Model.Id : null)"
+          method="post">
+        @Html.AntiForgeryToken()
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="ing-form-card">
+
+            <div class="ing-form-group">
+                <label class="ing-form-label" asp-for="Name">Name</label>
+                <input class="ing-form-control" asp-for="Name" placeholder="e.g. Banana" />
+                <span asp-validation-for="Name" class="field-validation-error"></span>
+            </div>
+
+            <div class="ing-form-group">
+                <label class="ing-form-label" asp-for="ImageUrl">Image URL</label>
+                <input class="ing-form-control" asp-for="ImageUrl" placeholder="https://..." oninput="previewImg(this)" />
+                @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+                {
+                    <img id="img-preview" class="ing-form-preview" src="@Model.ImageUrl" alt="preview" />
+                }
+                else
+                {
+                    <img id="img-preview" class="ing-form-preview" src="" alt="preview" style="display:none" />
+                }
+            </div>
+
+            <div class="ing-form-actions">
+                <button class="ing-btn ing-btn-primary" type="submit">
+                    @(isEdit ? "Save Changes" : "Add Quick Eat")
+                </button>
+                <a class="ing-btn ing-btn-secondary" asp-controller="Food" asp-action="QuickEats">Cancel</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function previewImg(input) {
+            var img = document.getElementById('img-preview');
+            var val = input.value.trim();
+            img.src = val;
+            img.style.display = val ? 'block' : 'none';
+        }
+    </script>
+}

@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Recipe> Recipes => Set<Recipe>();
+    public DbSet<QuickEat> QuickEats => Set<QuickEat>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,5 +20,10 @@ public class AppDbContext : DbContext
             .HasMany(p => p.Recipes)
             .WithMany(r => r.MealPlans)
             .UsingEntity("MealPlanRecipe");
+
+        modelBuilder.Entity<MealPlan>()
+            .HasMany(p => p.QuickEats)
+            .WithMany(q => q.MealPlans)
+            .UsingEntity("MealPlanQuickEat");
     }
 }

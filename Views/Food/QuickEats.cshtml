@@ -1,0 +1,151 @@
+@model IEnumerable<MyApp.Models.QuickEat>
+@{
+    ViewData["Title"] = "Quick Eats";
+}
+
+<style>
+    .food-page-title {
+        font-family: var(--nb-font-display);
+        font-size: 2em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        margin: 0.5rem 0 1.5rem;
+        line-height: 1.2;
+    }
+
+    .food-page-title span {
+        color: #a855f7;
+    }
+
+    .ing-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .ing-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8em;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--nb-on-surface);
+        background-color: #272727;
+        border: 1px solid #484848;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .ing-pill-img {
+        width: 1.75rem;
+        height: 1.75rem;
+        object-fit: cover;
+        border-radius: 2px;
+        flex-shrink: 0;
+    }
+
+    .ing-pill-actions {
+        display: flex;
+        gap: 0.3rem;
+    }
+
+    .ing-pill-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        line-height: 1;
+        color: #555;
+        transition: color 0.15s ease;
+    }
+
+    .ing-pill-btn:hover { color: #a855f7; }
+    .ing-pill-btn.del:hover { color: #E50914; }
+
+    .ing-add-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #a855f7;
+        border: 1px solid #a855f7;
+        background: none;
+        padding: 0.35rem 0.9rem;
+        text-decoration: none;
+        transition: background-color 0.15s ease, color 0.15s ease;
+        margin-bottom: 1.5rem;
+    }
+
+    .ing-add-btn:hover {
+        background-color: rgba(168, 85, 247, 0.1);
+        color: #c084fc;
+    }
+
+    .food-empty {
+        color: #c0c0c0;
+        font-size: 0.875em;
+        padding: 2rem 0;
+    }
+</style>
+
+<div class="food-wrapper py-4">
+
+    <h1 class="food-page-title">My <span>Quick Eats</span></h1>
+
+    <a class="ing-add-btn" asp-controller="Food" asp-action="CreateQuickEat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg>
+        Add Quick Eat
+    </a>
+
+    @if (!Model.Any())
+    {
+        <p class="food-empty">No quick eats yet. Add one to get started!</p>
+    }
+    else
+    {
+        <ul class="ing-list">
+            @foreach (var quickEat in Model)
+            {
+                <li class="ing-pill">
+                    @if (!string.IsNullOrWhiteSpace(quickEat.ImageUrl))
+                    {
+                        <img src="@quickEat.ImageUrl" class="ing-pill-img" alt="@quickEat.Name" />
+                    }
+                    <span>@quickEat.Name</span>
+                    <span class="ing-pill-actions">
+                        <a class="ing-pill-btn"
+                           asp-controller="Food" asp-action="EditQuickEat" asp-route-id="@quickEat.Id"
+                           title="Edit">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                            </svg>
+                        </a>
+                        <form asp-controller="Food" asp-action="DeleteQuickEat" asp-route-id="@quickEat.Id"
+                              method="post" style="display:inline"
+                              onsubmit="return confirm('Delete @quickEat.Name?')">
+                            @Html.AntiForgeryToken()
+                            <button class="ing-pill-btn del" type="submit" title="Delete">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </span>
+                </li>
+            }
+        </ul>
+    }
+
+</div>

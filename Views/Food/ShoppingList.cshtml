@@ -170,6 +170,35 @@
         font-size: 0.825em;
         margin-bottom: 1rem;
     }
+
+    .sl-toast-error {
+        background: #3a1a1a;
+        border-color: #6a2d2d;
+        color: #cf7f7f;
+    }
+
+    .sl-snacks-section {
+        margin-top: 2rem;
+        border-top: 1px solid #353535;
+        padding-top: 1.25rem;
+    }
+
+    .sl-snacks-header {
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #a855f7;
+        border-bottom: 1px solid #484848;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .sl-snack-checked .sl-snack-label {
+        text-decoration: line-through;
+        color: #555;
+    }
 </style>
 
 <div class="food-wrapper py-4">
@@ -178,6 +207,11 @@
     @if (TempData["EmailSent"] is string msg)
     {
         <div class="sl-toast">✓ @msg</div>
+    }
+
+    @if (TempData["EmailError"] is string errMsg)
+    {
+        <div class="sl-toast sl-toast-error">✕ @errMsg</div>
     }
 
     @if (!plans.Any())
@@ -236,6 +270,23 @@
                 </div>
             }
         }
+
+        @if (selected!.QuickEats.Any())
+        {
+            <div class="sl-snacks-section">
+                <div class="sl-snacks-header">Quick Eats</div>
+                <ul class="sl-list">
+                    @foreach (var quickEat in selected.QuickEats.OrderBy(q => q.Name))
+                    {
+                        <li class="sl-item" id="sl-quickeat-@quickEat.Id">
+                            <input class="sl-checkbox" type="checkbox" id="quickeatchk-@quickEat.Id"
+                                   onchange="toggleQuickEat(@quickEat.Id, this)" />
+                            <label class="sl-label" for="quickeatchk-@quickEat.Id">@quickEat.Name</label>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     }
 </div>
 
@@ -243,6 +294,11 @@
     <script>
         function toggleItem(id, checkbox) {
             const item = document.getElementById('sl-item-' + id);
+            item.classList.toggle('checked', checkbox.checked);
+        }
+
+        function toggleQuickEat(id, checkbox) {
+            const item = document.getElementById('sl-quickeat-' + id);
             item.classList.toggle('checked', checkbox.checked);
         }
     </script>

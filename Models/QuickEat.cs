@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyApp.Models;
 
-public class Recipe
+public class QuickEat
 {
     public int Id { get; set; }
 
@@ -10,12 +10,7 @@ public class Recipe
     [StringLength(200, ErrorMessage = "Name cannot exceed 200 characters.")]
     public string Name { get; set; } = string.Empty;
 
-    [StringLength(1000, ErrorMessage = "Description cannot exceed 1000 characters.")]
-    public string? Description { get; set; }
-
     public string? ImageUrl { get; set; }
-    public string? Instructions { get; set; }
 
-    public ICollection<Ingredient> Ingredients { get; set; } = [];
     public ICollection<MealPlan> MealPlans { get; set; } = [];
 }

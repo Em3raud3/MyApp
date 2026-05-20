@@ -8,4 +8,5 @@ public class MealPlan
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public ICollection<Recipe> Recipes { get; set; } = [];
+    public ICollection<QuickEat> QuickEats { get; set; } = [];
 }
