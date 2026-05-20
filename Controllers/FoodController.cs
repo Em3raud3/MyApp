@@ -193,7 +193,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         if (!ModelState.IsValid) return View("QuickEatForm", model);
         db.QuickEats.Add(model);
         await db.SaveChangesAsync();
-        return RedirectToAction(nameof(QuickEats));
+        return RedirectToAction(nameof(Cravings));
     }
 
     [HttpGet]
