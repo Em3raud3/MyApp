@@ -310,6 +310,218 @@
 
     .recipe-nav-prev { left: 0; }
     .recipe-nav-next { right: 0; }
+
+    /* ── Recipe detail drawer ──────────────────────────────── */
+    .rm-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.72);
+        z-index: 10000;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    .rm-overlay.open {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .rm-drawer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-height: 82vh;
+        background: #1a1a1a;
+        border-top: 3px solid #a855f7;
+        transform: translateY(100%);
+        transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .rm-overlay.open .rm-drawer {
+        transform: translateY(0);
+    }
+
+    .rm-drawer-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.25rem 1.5rem 1rem;
+        border-bottom: 1px solid #353535;
+        flex-shrink: 0;
+    }
+
+    .rm-drawer-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid #484848;
+    }
+
+    .rm-drawer-img-placeholder {
+        width: 80px;
+        height: 80px;
+        background: #2a2a2a;
+        border: 1px solid #484848;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #484848;
+        flex-shrink: 0;
+    }
+
+    .rm-drawer-meta {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .rm-drawer-title {
+        font-family: var(--nb-font-display);
+        font-size: 1.1em;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #a855f7;
+        line-height: 1.2;
+    }
+
+    .rm-drawer-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 0.5rem;
+    }
+
+    .rm-close {
+        background: none;
+        border: 1px solid #00eefc;
+        color: #00eefc;
+        font-size: 1em;
+        line-height: 1;
+        width: 1.75rem;
+        height: 1.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        align-self: flex-start;
+        transition: border-color 0.15s, color 0.15s;
+    }
+
+    .rm-close:hover {
+        border-color: #E50914;
+        color: #E50914;
+    }
+
+    .rm-drawer-body {
+        padding: 1.25rem 1.5rem 2.5rem;
+        overflow-y: auto;
+        flex: 1;
+    }
+
+    .rm-instructions {
+        font-size: 0.875em;
+        color: #c0c0c0;
+        line-height: 1.75;
+    }
+
+    .rm-instructions p { margin: 0 0 0.75rem; }
+    .rm-instructions p:last-child { margin-bottom: 0; }
+    .rm-instructions ol, .rm-instructions ul { margin: 0 0 0.75rem 1.25rem; padding: 0; }
+    .rm-instructions li { margin-bottom: 0.4rem; }
+    .rm-instructions strong { color: #e0e0e0; }
+    .rm-instructions h1, .rm-instructions h2, .rm-instructions h3 {
+        font-family: var(--nb-font-display);
+        color: #a855f7;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin: 1rem 0 0.5rem;
+        font-size: 0.9em;
+    }
+
+    .rm-no-instructions {
+        color: #555;
+        font-size: 0.825em;
+        font-style: italic;
+    }
+
+    .rm-img-btn {
+        cursor: pointer;
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .rm-img-btn .rm-hover-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.82));
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 0.6rem 0.5rem;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        pointer-events: none;
+    }
+
+    .rm-img-btn .rm-hover-text {
+        font-family: var(--nb-font-display);
+        font-size: 0.65em;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #00eefc;
+        border: 1px solid #00eefc;
+        padding: 0.2rem 0.6rem;
+        white-space: nowrap;
+    }
+
+    .rm-img-btn:hover .rm-hover-overlay {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Mobile: persistent badge in corner */
+    .rm-mobile-badge {
+        display: none;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        font-family: var(--nb-font-display);
+        font-size: 0.6em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #00eefc;
+        background: rgba(0,0,0,0.72);
+        border: 1px solid #00eefc;
+        padding: 0.15rem 0.45rem;
+        pointer-events: none;
+    }
+
+    @@media (hover: none) {
+        .rm-mobile-badge { display: block; }
+        .rm-hover-overlay { display: none; }
+    }
+
+    .recipe-name.rm-clickable {
+        cursor: pointer;
+        transition: color 0.15s;
+    }
+
+    .recipe-name.rm-clickable:hover {
+        color: #c084fc;
+    }
 </style>
 
 <div class="food-wrapper py-4">
@@ -342,21 +554,27 @@
                     {
                         <div class="recipe-slide">
                             <div class="recipe-card">
-                                @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
-                                {
-                                    <img src="@recipe.ImageUrl" class="recipe-card-img" alt="@recipe.Name" />
-                                }
-                                else
-                                {
-                                    <div class="recipe-card-img-placeholder">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
-                                            <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-                                            <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
-                                        </svg>
+                                <div class="rm-img-btn" onclick="openRecipeModal(this.closest('.recipe-card'))">
+                                    @if (!string.IsNullOrWhiteSpace(recipe.ImageUrl))
+                                    {
+                                        <img src="@recipe.ImageUrl" class="recipe-card-img" alt="@recipe.Name" />
+                                    }
+                                    else
+                                    {
+                                        <div class="recipe-card-img-placeholder">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+                                                <path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+                                            </svg>
+                                        </div>
+                                    }
+                                    <div class="rm-hover-overlay">
+                                        <span class="rm-hover-text">View Recipe</span>
                                     </div>
-                                }
+                                    <span class="rm-mobile-badge">View Recipe</span>
+                                </div>
                                 <div class="recipe-card-body">
-                                    <div class="recipe-name">@recipe.Name</div>
+                                    <div class="recipe-name rm-clickable" onclick="openRecipeModal(this.closest('.recipe-card'))">@recipe.Name</div>
                                     @if (!string.IsNullOrWhiteSpace(recipe.Description))
                                     {
                                         <div class="recipe-desc">@MarkdownHelper.ToHtml(recipe.Description)</div>
@@ -370,6 +588,17 @@
                                             }
                                         </div>
                                     }
+                                </div>
+                                <div class="rm-data" style="display:none">
+                                    <div class="rm-d-name">@recipe.Name</div>
+                                    <div class="rm-d-img">@recipe.ImageUrl</div>
+                                    <div class="rm-d-instructions">@Html.Raw(MarkdownHelper.ToHtml(recipe.Instructions ?? string.Empty))</div>
+                                    <div class="rm-d-tags">
+                                        @foreach (var ingredient in recipe.Ingredients)
+                                        {
+                                            <span class="recipe-tag">@ingredient.Name</span>
+                                        }
+                                    </div>
                                 </div>
                                 <div class="recipe-card-footer">
                                     <a class="recipe-btn recipe-btn-edit"
@@ -484,6 +713,22 @@
             </button>
         </div>
     }
+
+    <div id="rm-overlay" class="rm-overlay" onclick="if(event.target===this)closeRecipeModal()">
+        <div class="rm-drawer">
+            <div class="rm-drawer-header">
+                <div id="rm-img-container"></div>
+                <div class="rm-drawer-meta">
+                    <div id="rm-title" class="rm-drawer-title"></div>
+                    <div id="rm-tags" class="rm-drawer-tags"></div>
+                </div>
+                <button class="rm-close" onclick="closeRecipeModal()">&#x2715;</button>
+            </div>
+            <div class="rm-drawer-body">
+                <div id="rm-instructions-content" class="rm-instructions"></div>
+            </div>
+        </div>
+    </div>
 
         <script>
             (function () {
@@ -634,5 +879,39 @@
                     viewport.addEventListener('dragstart', function (e) { e.preventDefault(); });
                 });
             })();
+
+        function openRecipeModal(card) {
+            var data = card.querySelector('.rm-data');
+            var name = data.querySelector('.rm-d-name').textContent;
+            var imgUrl = data.querySelector('.rm-d-img').textContent.trim();
+            var tagsEl = data.querySelector('.rm-d-tags');
+            var instrEl = data.querySelector('.rm-d-instructions');
+
+            document.getElementById('rm-title').textContent = name;
+            document.getElementById('rm-tags').innerHTML = tagsEl.innerHTML;
+
+            var imgContainer = document.getElementById('rm-img-container');
+            if (imgUrl) {
+                imgContainer.innerHTML = '<img class="rm-drawer-img" src="' + imgUrl.replace(/"/g, '&quot;') + '" alt="' + name.replace(/"/g, '&quot;') + '" />';
+            } else {
+                imgContainer.innerHTML = '<div class="rm-drawer-img-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16"><path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/><path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/></svg></div>';
+            }
+
+            var instrContent = instrEl.innerHTML.trim();
+            document.getElementById('rm-instructions-content').innerHTML = instrContent ||
+                '<p class="rm-no-instructions">No instructions added yet.</p>';
+
+            document.getElementById('rm-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRecipeModal() {
+            document.getElementById('rm-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeRecipeModal();
+        });
         </script>
 </div>
