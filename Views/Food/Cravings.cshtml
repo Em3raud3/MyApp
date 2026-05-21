@@ -523,30 +523,9 @@
         color: #c084fc;
     }
 
-    /* ── Matrix rain canvases ──────────────────────────────── */
-    .matrix-canvas {
-        position: fixed;
-        top: 0;
-        width: 240px;
-        height: 100vh;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 0.55;
-    }
+    </style>
 
-    .matrix-canvas-left  { left: 0; }
-    .matrix-canvas-right { right: 0; }
-
-    .food-wrapper {
-        position: relative;
-        z-index: 1;
-    }
-</style>
-
-<canvas id="matrix-left"  class="matrix-canvas matrix-canvas-left"></canvas>
-<canvas id="matrix-right" class="matrix-canvas matrix-canvas-right"></canvas>
-
-<div class="food-wrapper py-4">
+    <div class="food-wrapper py-4">
 
     <div class="recipe-header">
         <h1 class="food-page-title">My <span>Recipes</span></h1>
@@ -935,88 +914,5 @@
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeRecipeModal();
         });
-
-        /* ── Matrix digital rain ── */
-        (function () {
-            var CHARS = 'ｦｧｨｩｪｫｬｭｮｯｰｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜﾝ0123456789ABCDEF@@#$%&';
-            var FONT_SIZE = 14;
-            var COLORS = ['#a855f7', '#c084fc', '#7c3aed', '#00eefc', '#6d28d9'];
-            var HEAD_COLOR = '#e9d5ff';
-
-            function initCanvas(canvas) {
-                var ctx = canvas.getContext('2d');
-                var W, H, cols, drops, dropColors, speeds, glitchTimers;
-
-                function resize() {
-                    W = canvas.width  = canvas.offsetWidth;
-                    H = canvas.height = window.innerHeight;
-                    cols = Math.floor(W / FONT_SIZE);
-                    drops = [];
-                    dropColors = [];
-                    speeds = [];
-                    glitchTimers = [];
-                    for (var i = 0; i < cols; i++) {
-                        drops[i]       = Math.random() * -(H / FONT_SIZE);
-                        dropColors[i]  = COLORS[Math.floor(Math.random() * COLORS.length)];
-                        speeds[i]      = 0.3 + Math.random() * 0.7;
-                        glitchTimers[i] = Math.floor(Math.random() * 120);
-                    }
-                }
-
-                window.addEventListener('resize', resize);
-                resize();
-
-                function draw() {
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.045)';
-                    ctx.fillRect(0, 0, W, H);
-
-                    ctx.font = FONT_SIZE + 'px monospace';
-
-                    for (var i = 0; i < cols; i++) {
-                        /* occasional color glitch */
-                        glitchTimers[i]--;
-                        if (glitchTimers[i] <= 0) {
-                            dropColors[i]   = COLORS[Math.floor(Math.random() * COLORS.length)];
-                            glitchTimers[i] = 60 + Math.floor(Math.random() * 180);
-                        }
-
-                        var y = Math.floor(drops[i]) * FONT_SIZE;
-                        var x = i * FONT_SIZE;
-                        var ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-
-                        /* bright head */
-                        ctx.fillStyle = HEAD_COLOR;
-                        ctx.shadowColor = HEAD_COLOR;
-                        ctx.shadowBlur  = 8;
-                        ctx.fillText(ch, x, y);
-
-                        /* trail character one step behind */
-                        if (y - FONT_SIZE >= 0) {
-                            ctx.fillStyle = dropColors[i];
-                            ctx.shadowColor = dropColors[i];
-                            ctx.shadowBlur  = 6;
-                            ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FONT_SIZE);
-                        }
-
-                        ctx.shadowBlur = 0;
-
-                        drops[i] += speeds[i];
-
-                        /* reset with random delay so columns feel independent */
-                        if (drops[i] * FONT_SIZE > H && Math.random() > 0.975) {
-                            drops[i] = Math.random() * -(H / FONT_SIZE) * 0.5;
-                            speeds[i] = 0.3 + Math.random() * 0.7;
-                        }
-                    }
-
-                    requestAnimationFrame(draw);
-                }
-
-                draw();
-            }
-
-            initCanvas(document.getElementById('matrix-left'));
-            initCanvas(document.getElementById('matrix-right'));
-        })();
         </script>
 </div>
