@@ -39,6 +39,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* ─── Corner bracket breathing animation ─── */
 /* ─── Option 2C: HUD corner brackets ─── */
 body::before,
 body::after {
@@ -49,8 +50,8 @@ body::after {
     pointer-events: none;
     z-index: 9999;
     border: 2px solid var(--nb-primary);
-    filter: drop-shadow(0 0 6px rgba(252, 249, 1, 0.75))
-            drop-shadow(0 0 14px rgba(252, 249, 1, 0.35));
+    opacity: var(--breathe-opacity, 1);
+    filter: var(--breathe-glow, drop-shadow(0 0 10px rgba(252, 249, 1, 1)) drop-shadow(0 0 22px rgba(252, 249, 1, 0.7)) drop-shadow(0 0 40px rgba(252, 249, 1, 0.35)));
 }
 
 body::before {
@@ -76,8 +77,8 @@ html::after {
     pointer-events: none;
     z-index: 9999;
     border: 2px solid var(--nb-primary);
-    filter: drop-shadow(0 0 6px rgba(252, 249, 1, 0.75))
-            drop-shadow(0 0 14px rgba(252, 249, 1, 0.35));
+    opacity: var(--breathe-opacity, 1);
+    filter: var(--breathe-glow, drop-shadow(0 0 10px rgba(252, 249, 1, 1)) drop-shadow(0 0 22px rgba(252, 249, 1, 0.7)) drop-shadow(0 0 40px rgba(252, 249, 1, 0.35)));
 }
 
 html::before {
@@ -99,6 +100,18 @@ html::after {
     html::before, html::after { width: 28px; height: 28px; }
 }
 
+@property --long-tick-alpha {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0.55;
+}
+
+@property --short-tick-alpha {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0.35;
+}
+
 /* ─── Option 4: CAD coordinate ticks (gutters) ─── */
 .nb-page-container::before,
 .nb-page-container::after {
@@ -112,28 +125,30 @@ html::after {
     background-image:
         repeating-linear-gradient(
             to bottom,
-            rgba(252, 249, 1, 0.55) 0px,
-            rgba(252, 249, 1, 0.55) 1px,
+            rgba(252, 249, 1, var(--long-tick-alpha)) 0px,
+            rgba(252, 249, 1, var(--long-tick-alpha)) 1px,
             transparent 1px,
             transparent 80px
         ),
         repeating-linear-gradient(
             to bottom,
-            rgba(252, 249, 1, 0.35) 0px,
-            rgba(252, 249, 1, 0.35) 1px,
+            rgba(252, 249, 1, var(--short-tick-alpha)) 0px,
+            rgba(252, 249, 1, var(--short-tick-alpha)) 1px,
             transparent 1px,
             transparent calc(80px / 6)
         ),
         linear-gradient(
             to right,
-            rgba(252, 249, 1, 0.18) 0,
-            rgba(252, 249, 1, 0.18) 1px,
-            transparent 1px,
+            rgba(252, 249, 1, 0.9) 0,
+            rgba(252, 249, 1, 0.9) 2px,
+            transparent 2px,
             transparent 100%
         );
     background-size: 100% 100%, 10px 100%, 100% 100%;
     background-position: 0 0, 0 0, 0 0;
     background-repeat: no-repeat, no-repeat, no-repeat;
+    filter: drop-shadow(0 0 3px rgba(252, 249, 1, 0.8))
+            drop-shadow(0 0 8px rgba(252, 249, 1, 0.4));
 }
 
 .nb-page-container::before {

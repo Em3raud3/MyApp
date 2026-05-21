@@ -408,6 +408,44 @@
             initCanvas(document.getElementById('matrix-left'));
             initCanvas(document.getElementById('matrix-right'));
         })();
+
+        /* ── Synced breathe driver ── */
+        (function () {
+            var DURATION = 6000; /* ms — must match what was the CSS duration */
+            var root = document.documentElement.style;
+
+            function easeInOut(t) {
+                return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+            }
+
+            function tick(now) {
+                var t = (now % DURATION) / DURATION;          /* 0 → 1 linear */
+                /* bounce: 0→1→0 over one cycle */
+                var wave = t < 0.5 ? easeInOut(t * 2) : easeInOut((1 - t) * 2);
+                var dim  = 1 - wave;                           /* 1 = peak dim */
+
+                /* brackets */
+                var opacity = 1 - dim * 0.55;                 /* 1 → 0.45 */
+                var glow0   = (1  - dim * 0.8).toFixed(3);    /* 1    → 0.2  */
+                var glow1   = (0.7 - dim * 0.65).toFixed(3);  /* 0.7  → 0.05 */
+                var glow2   = (0.35 - dim * 0.32).toFixed(3); /* 0.35 → 0.03 */
+                var dimGlow0 = (0.3 - dim * -0.7 * 0).toFixed(3);
+                var glowStr = dim > 0.5
+                    ? 'drop-shadow(0 0 2px rgba(252,249,1,' + (0.3 * (1 - (dim - 0.5) * 2)).toFixed(3) + ')) drop-shadow(0 0 6px rgba(252,249,1,' + (0.1 * (1 - (dim - 0.5) * 2)).toFixed(3) + '))'
+                    : 'drop-shadow(0 0 10px rgba(252,249,1,' + glow0 + ')) drop-shadow(0 0 22px rgba(252,249,1,' + glow1 + ')) drop-shadow(0 0 40px rgba(252,249,1,' + glow2 + '))';
+
+                root.setProperty('--breathe-opacity', opacity.toFixed(3));
+                root.setProperty('--breathe-glow', glowStr);
+
+                /* ticks */
+                root.setProperty('--long-tick-alpha',  (0.55 - dim * 0.5).toFixed(3));
+                root.setProperty('--short-tick-alpha', (0.35 - dim * 0.3).toFixed(3));
+
+                requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        })();
     </script>
 </body>
 </html>
