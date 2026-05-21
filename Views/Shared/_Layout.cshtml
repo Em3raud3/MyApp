@@ -480,6 +480,9 @@
                 var ctx = canvas.getContext('2d');
                 var W, H, cols, drops, dropColors, speeds, glitchTimers;
 
+                /* impact particles per column */
+                var impacts = []; /* array of active splash events */
+
                 function resize() {
                     W = canvas.width  = canvas.offsetWidth;
                     H = canvas.height = window.innerHeight;
@@ -498,6 +501,66 @@
 
                 window.addEventListener('resize', resize);
                 resize();
+
+                function spawnImpact(x, color) {
+                    /* horizontal splash particles */
+                    var count = 4 + Math.floor(Math.random() * 5);
+                    for (var p = 0; p < count; p++) {
+                        impacts.push({
+                            x: x + FONT_SIZE * 0.5,
+                            y: H - FONT_SIZE * 0.5,
+                            vx: (Math.random() - 0.5) * 3.5,
+                            vy: -(Math.random() * 2.5 + 0.5),
+                            life: 1.0,
+                            decay: 0.04 + Math.random() * 0.04,
+                            ch: CHARS[Math.floor(Math.random() * CHARS.length)],
+                            color: color
+                        });
+                    }
+                    /* column flash: a bright line at the bottom */
+                    impacts.push({
+                        type: 'flash',
+                        x: x,
+                        y: H - 2,
+                        life: 1.0,
+                        decay: 0.08,
+                        color: '#e9d5ff'
+                    });
+                }
+
+                function drawImpacts() {
+                    ctx.font = FONT_SIZE + 'px monospace';
+                    for (var i = impacts.length - 1; i >= 0; i--) {
+                        var p = impacts[i];
+                        if (p.type === 'flash') {
+                            /* horizontal glow bar */
+                            ctx.save();
+                            ctx.globalAlpha = p.life * 0.9;
+                            ctx.strokeStyle = p.color;
+                            ctx.shadowColor = p.color;
+                            ctx.shadowBlur  = 10;
+                            ctx.lineWidth   = 2;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(p.x + FONT_SIZE, p.y);
+                            ctx.stroke();
+                            ctx.restore();
+                        } else {
+                            ctx.save();
+                            ctx.globalAlpha = p.life;
+                            ctx.fillStyle   = p.color;
+                            ctx.shadowColor = p.color;
+                            ctx.shadowBlur  = 6;
+                            ctx.fillText(p.ch, p.x, p.y);
+                            ctx.restore();
+                            p.x  += p.vx;
+                            p.y  += p.vy;
+                            p.vy += 0.12; /* gravity */
+                        }
+                        p.life -= p.decay;
+                        if (p.life <= 0) impacts.splice(i, 1);
+                    }
+                }
 
                 function draw() {
                     ctx.fillStyle = 'rgba(0, 0, 0, 0.045)';
@@ -531,11 +594,13 @@
                         drops[i] += speeds[i];
 
                         if (drops[i] * FONT_SIZE > H && Math.random() > 0.975) {
+                            spawnImpact(x, dropColors[i]);
                             drops[i]  = Math.random() * -(H / FONT_SIZE) * 0.5;
                             speeds[i] = 0.3 + Math.random() * 0.7;
                         }
                     }
 
+                    drawImpacts();
                     requestAnimationFrame(draw);
                 }
 
