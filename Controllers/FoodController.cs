@@ -149,19 +149,22 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         var plans = await db.MealPlans
             .Include(p => p.Recipes)
             .Include(p => p.QuickEats)
+            .Include(p => p.Drinks)
             .OrderByDescending(p => p.WeekOf)
             .ToListAsync();
         ViewBag.AllRecipes = await db.Recipes.OrderBy(r => r.Name).ToListAsync();
         ViewBag.AllQuickEats = await db.QuickEats.OrderBy(q => q.Name).ToListAsync();
+        ViewBag.AllDrinks = await db.Drinks.OrderBy(d => d.Name).ToListAsync();
         return View(plans);
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateMealPlan(string name, DateOnly weekOf, int[] selectedRecipes, int[] selectedQuickEats)
+    public async Task<IActionResult> CreateMealPlan(string name, DateOnly weekOf, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
     {
         var plan = new MealPlan { Name = name, WeekOf = weekOf };
         plan.Recipes = await db.Recipes.Where(r => selectedRecipes.Contains(r.Id)).ToListAsync();
         plan.QuickEats = await db.QuickEats.Where(q => selectedQuickEats.Contains(q.Id)).ToListAsync();
+        plan.Drinks = await db.Drinks.Where(d => selectedDrinks.Contains(d.Id)).ToListAsync();
         db.MealPlans.Add(plan);
         await db.SaveChangesAsync();
         return RedirectToAction(nameof(MealPlan));

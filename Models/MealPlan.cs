@@ -9,4 +9,5 @@ public class MealPlan
 
     public ICollection<Recipe> Recipes { get; set; } = [];
     public ICollection<QuickEat> QuickEats { get; set; } = [];
+    public ICollection<Drink> Drinks { get; set; } = [];
 }

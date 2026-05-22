@@ -3,6 +3,7 @@
     ViewData["Title"] = "Meal Plans";
     var allRecipes = ViewBag.AllRecipes as IEnumerable<MyApp.Models.Recipe> ?? [];
     var allQuickEats = ViewBag.AllQuickEats as IEnumerable<MyApp.Models.QuickEat> ?? [];
+    var allDrinks = ViewBag.AllDrinks as IEnumerable<MyApp.Models.Drink> ?? [];
 }
 
 <style>
@@ -134,6 +135,26 @@
         border-color: #a855f7;
         color: #e0e0e0;
         background: #2a1a3a;
+    }
+
+    .mp-recipe-chip--green input[type="checkbox"] {
+        accent-color: #4ade80;
+    }
+
+    .mp-recipe-chip--green:has(input:checked) {
+        border-color: #166534;
+        color: #4ade80;
+        background: #0d2818;
+    }
+
+    .mp-recipe-chip--blue input[type="checkbox"] {
+        accent-color: #60a5fa;
+    }
+
+    .mp-recipe-chip--blue:has(input:checked) {
+        border-color: #1e4a7e;
+        color: #60a5fa;
+        background: #0d1f3a;
     }
 
     .mp-submit-btn {
@@ -281,7 +302,7 @@
                 <div class="mp-recipe-grid">
                     @foreach (var recipe in allRecipes)
                     {
-                        <label class="mp-recipe-chip">
+                        <label class="mp-recipe-chip mp-recipe-chip--green">
                             <input type="checkbox" name="selectedRecipes" value="@recipe.Id" />
                             @recipe.Name
                         </label>
@@ -298,6 +319,20 @@
                         <label class="mp-recipe-chip">
                             <input type="checkbox" name="selectedQuickEats" value="@quickEat.Id" />
                             @quickEat.Name
+                        </label>
+                    }
+                </div>
+            }
+
+            @if (allDrinks.Any())
+            {
+                <div class="mp-section-label" style="margin-top:1rem;">Pick drinks</div>
+                <div class="mp-recipe-grid">
+                    @foreach (var drink in allDrinks)
+                    {
+                        <label class="mp-recipe-chip mp-recipe-chip--blue">
+                            <input type="checkbox" name="selectedDrinks" value="@drink.Id" />
+                            @drink.Name
                         </label>
                     }
                 </div>
@@ -326,11 +361,15 @@
                         <div class="mp-history-tags">
                             @foreach (var r in plan.Recipes)
                             {
-                                <span class="mp-history-tag">@r.Name</span>
+                                <span class="mp-history-tag" style="border-color:#166534; color:#4ade80;">@r.Name</span>
                             }
                             @foreach (var q in plan.QuickEats)
                             {
                                 <span class="mp-history-tag" style="border-color:#5b3a7e; color:#c084fc;">@q.Name</span>
+                            }
+                            @foreach (var d in plan.Drinks)
+                            {
+                                <span class="mp-history-tag" style="border-color:#1e4a7e; color:#60a5fa;">@d.Name</span>
                             }
                         </div>
                     </div>

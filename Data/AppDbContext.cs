@@ -26,5 +26,10 @@ public class AppDbContext : DbContext
             .HasMany(p => p.QuickEats)
             .WithMany(q => q.MealPlans)
             .UsingEntity("MealPlanQuickEat");
+
+        modelBuilder.Entity<MealPlan>()
+            .HasMany(p => p.Drinks)
+            .WithMany()
+            .UsingEntity("MealPlanDrink");
     }
 }
