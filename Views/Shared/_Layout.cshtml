@@ -299,7 +299,7 @@
         .matrix-canvas {
             position: fixed;
             top: 0;
-            width: 240px;
+            width: max(0px, calc(52% - 720px - 28px));
             height: 100vh;
             z-index: 0;
             pointer-events: none;
@@ -494,7 +494,7 @@
                     for (var i = 0; i < cols; i++) {
                         drops[i]        = Math.random() * -(H / FONT_SIZE);
                         dropColors[i]   = COLORS[Math.floor(Math.random() * COLORS.length)];
-                        speeds[i]       = 0.3 + Math.random() * 0.7;
+                        speeds[i]       = 0.24 + Math.random() * 0.56;
                         glitchTimers[i] = Math.floor(Math.random() * 120);
                     }
                 }
@@ -596,7 +596,7 @@
                         if (drops[i] * FONT_SIZE > H && Math.random() > 0.975) {
                             spawnImpact(x, dropColors[i]);
                             drops[i]  = Math.random() * -(H / FONT_SIZE) * 0.5;
-                            speeds[i] = 0.3 + Math.random() * 0.7;
+                            speeds[i] = 0.24 + Math.random() * 0.56;
                         }
                     }
 
