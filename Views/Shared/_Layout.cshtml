@@ -508,38 +508,55 @@
                 resize();
 
                 function spawnImpact(x, color) {
-                    /* horizontal splash particles */
-                    var count = 4 + Math.floor(Math.random() * 5);
-                    for (var p = 0; p < count; p++) {
-                        impacts.push({
-                            x: x + FONT_SIZE * 0.5,
-                            y: H - FONT_SIZE * 0.5,
-                            vx: (Math.random() - 0.5) * 3.5,
-                            vy: -(Math.random() * 2.5 + 0.5),
-                            life: 1.0,
-                            decay: 0.04 + Math.random() * 0.04,
-                            ch: CHARS[Math.floor(Math.random() * CHARS.length)],
-                            color: color
-                        });
-                    }
-                    /* column flash: a bright line at the bottom */
+                    var cx = x + FONT_SIZE * 0.5;
+
+                    /* inner ring — tight, fast, bright */
                     impacts.push({
-                        type: 'flash',
-                        x: x,
-                        y: H - 2,
-                        life: 1.0,
-                        decay: 0.08,
-                        color: '#e9d5ff'
+                        type: 'shockwave', x: cx, y: H - 3,
+                        halfW: FONT_SIZE * 0.5,
+                        speed: 7,
+                        life: 1.0, decay: 0.07,
+                        lineWidth: 2.5,
+                        blur: 14,
+                        color: HEAD_COLOR
+                    });
+
+                    /* mid ring — column color, medium speed */
+                    impacts.push({
+                        type: 'shockwave', x: cx, y: H - 3,
+                        halfW: FONT_SIZE * 0.5,
+                        speed: 4.5,
+                        life: 1.0, decay: 0.045,
+                        lineWidth: 1.5,
+                        blur: 9,
+                        color: color
+                    });
+
+                    /* outer ring — slow bleed, wide glow */
+                    impacts.push({
+                        type: 'shockwave', x: cx, y: H - 3,
+                        halfW: FONT_SIZE * 0.5,
+                        speed: 2.5,
+                        life: 0.7, decay: 0.025,
+                        lineWidth: 1,
+                        blur: 5,
+                        color: color
+                    });
+
+                    /* column ground flash */
+                    impacts.push({
+                        type: 'flash', x: x, y: H - 2,
+                        life: 1.0, decay: 0.1,
+                        color: HEAD_COLOR
                     });
                 }
 
                 function drawImpacts() {
-                    ctx.font = FONT_SIZE + 'px monospace';
                     for (var i = impacts.length - 1; i >= 0; i--) {
                         var p = impacts[i];
+                        ctx.save();
+
                         if (p.type === 'flash') {
-                            /* horizontal glow bar */
-                            ctx.save();
                             ctx.globalAlpha = p.life * 0.9;
                             ctx.strokeStyle = p.color;
                             ctx.shadowColor = p.color;
@@ -549,19 +566,21 @@
                             ctx.moveTo(p.x, p.y);
                             ctx.lineTo(p.x + FONT_SIZE, p.y);
                             ctx.stroke();
-                            ctx.restore();
-                        } else {
-                            ctx.save();
-                            ctx.globalAlpha = p.life;
-                            ctx.fillStyle   = p.color;
+
+                        } else if (p.type === 'shockwave') {
+                            ctx.globalAlpha = p.life * 0.9;
+                            ctx.strokeStyle = p.color;
                             ctx.shadowColor = p.color;
-                            ctx.shadowBlur  = 6;
-                            ctx.fillText(p.ch, p.x, p.y);
-                            ctx.restore();
-                            p.x  += p.vx;
-                            p.y  += p.vy;
-                            p.vy += 0.12; /* gravity */
+                            ctx.shadowBlur  = p.blur;
+                            ctx.lineWidth   = p.lineWidth;
+                            ctx.beginPath();
+                            ctx.moveTo(p.x - p.halfW, p.y);
+                            ctx.lineTo(p.x + p.halfW, p.y);
+                            ctx.stroke();
+                            p.halfW += p.speed;
                         }
+
+                        ctx.restore();
                         p.life -= p.decay;
                         if (p.life <= 0) impacts.splice(i, 1);
                     }
