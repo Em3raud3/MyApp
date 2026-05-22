@@ -1,6 +1,6 @@
-@model IEnumerable<MyApp.Models.QuickEat>
+@model IEnumerable<MyApp.Models.Drink>
 @{
-    ViewData["Title"] = "Quick Eats";
+    ViewData["Title"] = "Drinks";
 }
 
 <style>
@@ -141,12 +141,12 @@
 <div class="food-wrapper py-4">
 
     <div class="ing-header-row">
-        <h1 class="food-page-title">My <span>Quick Eats</span></h1>
-        <a class="ing-add-btn" asp-controller="Food" asp-action="CreateQuickEat">
+        <h1 class="food-page-title">My <span>Drinks</span></h1>
+        <a class="ing-add-btn" asp-controller="Food" asp-action="CreateDrink">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
             </svg>
-            Add Quick Eat
+            Add Drink
         </a>
         <a class="ing-back-btn" asp-controller="Food" asp-action="Cravings">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" viewBox="0 0 16 16">
@@ -158,30 +158,30 @@
 
     @if (!Model.Any())
     {
-        <p class="food-empty">No quick eats yet. Add one to get started!</p>
+        <p class="food-empty">No drinks yet. Add one to get started!</p>
     }
     else
     {
         <ul class="ing-list">
-            @foreach (var quickEat in Model)
+            @foreach (var drink in Model)
             {
                 <li class="ing-pill">
-                    @if (!string.IsNullOrWhiteSpace(quickEat.ImageUrl))
+                    @if (!string.IsNullOrWhiteSpace(drink.ImageUrl))
                     {
-                        <img src="@quickEat.ImageUrl" class="ing-pill-img" alt="@quickEat.Name" />
+                        <img src="@drink.ImageUrl" class="ing-pill-img" alt="@drink.Name" />
                     }
-                    <span>@quickEat.Name</span>
+                    <span>@drink.Name</span>
                     <span class="ing-pill-actions">
                         <a class="ing-pill-btn"
-                           asp-controller="Food" asp-action="EditQuickEat" asp-route-id="@quickEat.Id"
+                           asp-controller="Food" asp-action="EditDrink" asp-route-id="@drink.Id"
                            title="Edit">
                             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                             </svg>
                         </a>
-                        <form asp-controller="Food" asp-action="DeleteQuickEat" asp-route-id="@quickEat.Id"
+                        <form asp-controller="Food" asp-action="DeleteDrink" asp-route-id="@drink.Id"
                               method="post" style="display:inline"
-                              onsubmit="return confirm('Delete @quickEat.Name?')">
+                              onsubmit="return confirm('Delete @drink.Name?')">
                             @Html.AntiForgeryToken()
                             <button class="ing-pill-btn del" type="submit" title="Delete">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">

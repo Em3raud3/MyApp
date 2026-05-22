@@ -12,12 +12,15 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     {
         var recipes = await db.Recipes.Include(r => r.Ingredients).ToListAsync();
         var quickEats = await db.QuickEats.ToListAsync();
+        var drinks = await db.Drinks.ToListAsync();
 
         var rng = Random.Shared;
         var shuffledRecipes = recipes.OrderBy(_ => rng.Next()).ToList();
         var shuffledQuickEats = quickEats.OrderBy(_ => rng.Next()).ToList();
+        var shuffledDrinks = drinks.OrderBy(_ => rng.Next()).ToList();
 
         ViewBag.QuickEats = shuffledQuickEats;
+        ViewBag.Drinks = shuffledDrinks;
         return View(shuffledRecipes);
     }
 
@@ -311,6 +314,56 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         }
 
         return RedirectToAction(nameof(ShoppingList), new { planId });
+    }
+
+    // ── Drinks ───────────────────────────────────────────────────
+
+    public async Task<IActionResult> Drinks()
+    {
+        var drinks = await db.Drinks.OrderBy(d => d.Name).ToListAsync();
+        return View(drinks);
+    }
+
+    [HttpGet]
+    public IActionResult CreateDrink() => View("DrinkForm", new Drink());
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> CreateDrink(Drink model)
+    {
+        if (!ModelState.IsValid) return View("DrinkForm", model);
+        db.Drinks.Add(model);
+        await db.SaveChangesAsync();
+        return RedirectToAction(nameof(Cravings));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> EditDrink(int id)
+    {
+        var drink = await db.Drinks.FindAsync(id);
+        if (drink is null) return NotFound();
+        return View("DrinkForm", drink);
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditDrink(int id, Drink model)
+    {
+        if (id != model.Id) return BadRequest();
+        if (!ModelState.IsValid) return View("DrinkForm", model);
+        db.Drinks.Update(model);
+        await db.SaveChangesAsync();
+        return RedirectToAction(nameof(Drinks));
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteDrink(int id)
+    {
+        var drink = await db.Drinks.FindAsync(id);
+        if (drink is not null)
+        {
+            db.Drinks.Remove(drink);
+            await db.SaveChangesAsync();
+        }
+        return RedirectToAction(nameof(Cravings));
     }
 
     private Task<List<Ingredient>> GetAllIngredientsAsync() =>

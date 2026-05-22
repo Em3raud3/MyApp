@@ -12,6 +12,7 @@ public class AppDbContext : DbContext
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
     public DbSet<Recipe> Recipes => Set<Recipe>();
     public DbSet<QuickEat> QuickEats => Set<QuickEat>();
+    public DbSet<Drink> Drinks => Set<Drink>();
     public DbSet<MealPlan> MealPlans => Set<MealPlan>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
