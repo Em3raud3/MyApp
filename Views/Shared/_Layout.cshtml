@@ -594,6 +594,7 @@
                     ctx.fillStyle = 'rgba(0, 0, 0, 0.045)';
                     ctx.fillRect(0, 0, W, H);
                     ctx.font = FONT_SIZE + 'px monospace';
+                    ctx.textAlign = 'center';
 
                     for (var i = 0; i < cols; i++) {
                         glitchTimers[i]--;
@@ -604,18 +605,19 @@
 
                         var y  = Math.floor(drops[i]) * FONT_SIZE;
                         var x  = i * FONT_SIZE;
+                        var cx = x + FONT_SIZE * 0.5;
                         var ch = CHARS[Math.floor(Math.random() * CHARS.length)];
 
                         ctx.fillStyle  = HEAD_COLOR;
                         ctx.shadowColor = HEAD_COLOR;
                         ctx.shadowBlur  = 8;
-                        ctx.fillText(ch, x, y);
+                        ctx.fillText(ch, cx, y);
 
                         if (y - FONT_SIZE >= 0) {
                             ctx.fillStyle  = dropColors[i];
                             ctx.shadowColor = dropColors[i];
                             ctx.shadowBlur  = 6;
-                            ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], x, y - FONT_SIZE);
+                            ctx.fillText(CHARS[Math.floor(Math.random() * CHARS.length)], cx, y - FONT_SIZE);
                         }
 
                         ctx.shadowBlur = 0;

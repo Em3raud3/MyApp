@@ -170,6 +170,41 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         return RedirectToAction(nameof(MealPlan));
     }
 
+    [HttpGet]
+    public async Task<IActionResult> EditMealPlan(int id)
+    {
+        var plan = await db.MealPlans
+            .Include(p => p.Recipes)
+            .Include(p => p.QuickEats)
+            .Include(p => p.Drinks)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        if (plan is null) return NotFound();
+        ViewBag.AllRecipes = await db.Recipes.OrderBy(r => r.Name).ToListAsync();
+        ViewBag.AllQuickEats = await db.QuickEats.OrderBy(q => q.Name).ToListAsync();
+        ViewBag.AllDrinks = await db.Drinks.OrderBy(d => d.Name).ToListAsync();
+        return View(plan);
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> EditMealPlan(int id, string name, DateOnly weekOf, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
+    {
+        var plan = await db.MealPlans
+            .Include(p => p.Recipes)
+            .Include(p => p.QuickEats)
+            .Include(p => p.Drinks)
+            .FirstOrDefaultAsync(p => p.Id == id);
+        if (plan is null) return NotFound();
+
+        plan.Name = name;
+        plan.WeekOf = weekOf;
+        plan.Recipes = await db.Recipes.Where(r => selectedRecipes.Contains(r.Id)).ToListAsync();
+        plan.QuickEats = await db.QuickEats.Where(q => selectedQuickEats.Contains(q.Id)).ToListAsync();
+        plan.Drinks = await db.Drinks.Where(d => selectedDrinks.Contains(d.Id)).ToListAsync();
+
+        await db.SaveChangesAsync();
+        return RedirectToAction(nameof(MealPlan));
+    }
+
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteMealPlan(int id)
     {
@@ -258,6 +293,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
                 .AsSplitQuery()
                 .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
                 .Include(p => p.QuickEats)
+                .Include(p => p.Drinks)
                 .FirstOrDefaultAsync(p => p.Id == targetId);
 
         ViewBag.Plans = plans;
@@ -274,6 +310,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
         var plan = await db.MealPlans
             .Include(p => p.Recipes).ThenInclude(r => r.Ingredients)
             .Include(p => p.QuickEats)
+            .Include(p => p.Drinks)
             .FirstOrDefaultAsync(p => p.Id == planId);
 
         if (plan is null) return NotFound();

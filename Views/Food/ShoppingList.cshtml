@@ -287,6 +287,23 @@
                 </ul>
             </div>
         }
+
+        @if (selected!.Drinks.Any())
+        {
+            <div class="sl-snacks-section">
+                <div class="sl-snacks-header">Drinks</div>
+                <ul class="sl-list">
+                    @foreach (var drink in selected.Drinks.OrderBy(d => d.Name))
+                    {
+                        <li class="sl-item" id="sl-drink-@drink.Id">
+                            <input class="sl-checkbox" type="checkbox" id="drinkcchk-@drink.Id"
+                                   onchange="toggleDrink(@drink.Id, this)" />
+                            <label class="sl-label" for="drinkcchk-@drink.Id">@drink.Name</label>
+                        </li>
+                    }
+                </ul>
+            </div>
+        }
     }
 </div>
 
@@ -299,6 +316,11 @@
 
         function toggleQuickEat(id, checkbox) {
             const item = document.getElementById('sl-quickeat-' + id);
+            item.classList.toggle('checked', checkbox.checked);
+        }
+
+        function toggleDrink(id, checkbox) {
+            const item = document.getElementById('sl-drink-' + id);
             item.classList.toggle('checked', checkbox.checked);
         }
     </script>
