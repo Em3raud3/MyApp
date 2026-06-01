@@ -6,6 +6,7 @@ public class MealPlan
     public string Name { get; set; } = string.Empty;
     public DateOnly WeekOf { get; set; }
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+    public string? Notes { get; set; }
 
     public ICollection<Recipe> Recipes { get; set; } = [];
     public ICollection<QuickEat> QuickEats { get; set; } = [];

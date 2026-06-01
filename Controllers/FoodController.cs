@@ -159,9 +159,9 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> CreateMealPlan(string name, DateOnly weekOf, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
+    public async Task<IActionResult> CreateMealPlan(string name, DateOnly weekOf, string? notes, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
     {
-        var plan = new MealPlan { Name = name, WeekOf = weekOf };
+        var plan = new MealPlan { Name = name, WeekOf = weekOf, Notes = notes };
         plan.Recipes = await db.Recipes.Where(r => selectedRecipes.Contains(r.Id)).ToListAsync();
         plan.QuickEats = await db.QuickEats.Where(q => selectedQuickEats.Contains(q.Id)).ToListAsync();
         plan.Drinks = await db.Drinks.Where(d => selectedDrinks.Contains(d.Id)).ToListAsync();
@@ -186,7 +186,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
     }
 
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> EditMealPlan(int id, string name, DateOnly weekOf, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
+    public async Task<IActionResult> EditMealPlan(int id, string name, DateOnly weekOf, string? notes, int[] selectedRecipes, int[] selectedQuickEats, int[] selectedDrinks)
     {
         var plan = await db.MealPlans
             .Include(p => p.Recipes)
@@ -197,6 +197,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
 
         plan.Name = name;
         plan.WeekOf = weekOf;
+        plan.Notes = notes;
         plan.Recipes = await db.Recipes.Where(r => selectedRecipes.Contains(r.Id)).ToListAsync();
         plan.QuickEats = await db.QuickEats.Where(q => selectedQuickEats.Contains(q.Id)).ToListAsync();
         plan.Drinks = await db.Drinks.Where(d => selectedDrinks.Contains(d.Id)).ToListAsync();
@@ -340,6 +341,21 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
             lines.AppendLine("QUICK EATS");
             foreach (var quickEat in plan.QuickEats.OrderBy(q => q.Name))
                 lines.AppendLine($"  - {quickEat.Name}");
+            lines.AppendLine();
+        }
+
+        if (plan.Drinks.Any())
+        {
+            lines.AppendLine("DRINKS");
+            foreach (var drink in plan.Drinks.OrderBy(d => d.Name))
+                lines.AppendLine($"  - {drink.Name}");
+            lines.AppendLine();
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.Notes))
+        {
+            lines.AppendLine("NOTES");
+            lines.AppendLine(plan.Notes);
             lines.AppendLine();
         }
 

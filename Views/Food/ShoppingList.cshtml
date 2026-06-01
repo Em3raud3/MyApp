@@ -199,6 +199,31 @@
         text-decoration: line-through;
         color: #555;
     }
+
+    .sl-notes-section {
+        margin-top: 2rem;
+        border-top: 1px solid #353535;
+        padding-top: 1.25rem;
+    }
+
+    .sl-notes-header {
+        font-family: var(--nb-font-display);
+        font-size: 0.75em;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #a855f7;
+        border-bottom: 1px solid #484848;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .sl-notes-body {
+        font-size: 0.875em;
+        color: #c0c0c0;
+        line-height: 1.6;
+        white-space: pre-wrap;
+    }
 </style>
 
 <div class="food-wrapper py-4">
@@ -302,6 +327,14 @@
                         </li>
                     }
                 </ul>
+            </div>
+        }
+
+        @if (!string.IsNullOrWhiteSpace(selected!.Notes))
+        {
+            <div class="sl-notes-section">
+                <div class="sl-notes-header">Notes</div>
+                <div class="sl-notes-body">@selected.Notes</div>
             </div>
         }
     }
