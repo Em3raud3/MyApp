@@ -323,6 +323,7 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
             .ThenBy(i => i.Name)
             .GroupBy(i => i.Category ?? "Uncategorized");
 
+        // ── Plain-text body ───────────────────────────────────────
         var lines = new System.Text.StringBuilder();
         lines.AppendLine($"Shopping list for: {plan.Name}");
         lines.AppendLine($"Week of {plan.WeekOf:MMMM d, yyyy}");
@@ -359,9 +360,77 @@ public class FoodController(AppDbContext db, EmailService email) : Controller
             lines.AppendLine();
         }
 
+        // ── HTML body with checkboxes ─────────────────────────────
+        var html = new System.Text.StringBuilder();
+        html.AppendLine("""
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <title>Shopping List</title>
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:#1a1a1a; color:#e0e0e0; margin:0; padding:16px; }
+              h1 { font-size:1.4em; color:#a855f7; margin:0 0 4px; }
+              .week { font-size:0.85em; color:#888; margin:0 0 24px; }
+              h2 { font-size:0.75em; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#a855f7; border-bottom:1px solid #333; padding-bottom:4px; margin:24px 0 8px; }
+              ul { list-style:none; margin:0; padding:0; }
+              li { display:flex; align-items:center; gap:10px; padding:6px 0; border-bottom:1px solid #2a2a2a; }
+              li:last-child { border-bottom:none; }
+              input[type=checkbox] { width:18px; height:18px; accent-color:#a855f7; flex-shrink:0; cursor:pointer; }
+              label { font-size:0.95em; cursor:pointer; }
+              input[type=checkbox]:checked + label { text-decoration:line-through; color:#555; }
+              .notes { background:#222; border-left:3px solid #a855f7; padding:10px 14px; margin-top:24px; font-size:0.875em; white-space:pre-wrap; color:#c0c0c0; }
+            </style>
+            </head>
+            <body>
+            """);
+
+        html.AppendLine($"<h1>🛒 {System.Web.HttpUtility.HtmlEncode(plan.Name)}</h1>");
+        html.AppendLine($"<p class=\"week\">Week of {plan.WeekOf:MMMM d, yyyy}</p>");
+
+        int uid = 0;
+        foreach (var group in ingredients)
+        {
+            html.AppendLine($"<h2>{System.Web.HttpUtility.HtmlEncode(group.Key)}</h2><ul>");
+            foreach (var ingredient in group)
+            {
+                uid++;
+                html.AppendLine($"<li><input type=\"checkbox\" id=\"i{uid}\"><label for=\"i{uid}\">{System.Web.HttpUtility.HtmlEncode(ingredient.Name)}</label></li>");
+            }
+            html.AppendLine("</ul>");
+        }
+
+        if (plan.QuickEats.Any())
+        {
+            html.AppendLine("<h2>Quick Eats</h2><ul>");
+            foreach (var quickEat in plan.QuickEats.OrderBy(q => q.Name))
+            {
+                uid++;
+                html.AppendLine($"<li><input type=\"checkbox\" id=\"i{uid}\"><label for=\"i{uid}\">{System.Web.HttpUtility.HtmlEncode(quickEat.Name)}</label></li>");
+            }
+            html.AppendLine("</ul>");
+        }
+
+        if (plan.Drinks.Any())
+        {
+            html.AppendLine("<h2>Drinks</h2><ul>");
+            foreach (var drink in plan.Drinks.OrderBy(d => d.Name))
+            {
+                uid++;
+                html.AppendLine($"<li><input type=\"checkbox\" id=\"i{uid}\"><label for=\"i{uid}\">{System.Web.HttpUtility.HtmlEncode(drink.Name)}</label></li>");
+            }
+            html.AppendLine("</ul>");
+        }
+
+        if (!string.IsNullOrWhiteSpace(plan.Notes))
+            html.AppendLine($"<div class=\"notes\"><strong>Notes</strong><br>{System.Web.HttpUtility.HtmlEncode(plan.Notes)}</div>");
+
+        html.AppendLine("</body></html>");
+
         try
         {
-            await email.SendAsync($"🛒 Shopping List — {plan.Name}", lines.ToString());
+            await email.SendAsync($"🛒 Shopping List — {plan.Name}", lines.ToString(), html.ToString());
             TempData["EmailSent"] = "Shopping list sent to your email!";
         }
         catch (Exception ex)
